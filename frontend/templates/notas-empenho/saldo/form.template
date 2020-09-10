@@ -1,0 +1,94 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Atualizar saldo de notas de empenho</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Enviar arquivo de saldo</h6>
+    </div>
+    <div class="card-body">
+        <form id="form-atualizar-saldo-ne" action="<%= action %>" method="<%= method %>">
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <input id="posicao-saldo" class="form-control date-picker" type="text" name="posicao-saldo" placeholder="Data do arquivo" autocomplete="off">
+                </div>
+                <div class="form-group col-10 custom-file">
+                    <label class="custom-file-label" for="arquivo">Selecione o arquivo</label>
+                    <input type="file" class="custom-file-input" name="arquivo" id="arquivo" accept=".csv, .txt"  required />
+                </div>
+            </div>
+            <button type="submit" id="submit-trigger" class="btn btn-primary mt-3">Enviar</button>
+            <button type="button" id="preview-trigger" class="btn btn-warning mt-3">Visualizar 50 primeiras linhas</button>          
+        </form>
+
+        <div id="preview-file" />
+    </div>
+</div>
+
+<script>
+    $('.date-picker').datepicker({
+        locale: 'pt-br',
+        uiLibrary: 'bootstrap4',
+        maxDate: new Date(),
+        format: 'dd/mm/yyyy'
+    });
+
+    $('.custom-file-input').on('change', function() {
+        fileName = $(this).val().replace(/^.*[\\\/]/, '');
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    $(document).ready(function() {
+        $('#preview-trigger').on('click', function(event) {
+            event.preventDefault();
+            waitingDialog.show('Aguarde quanto preparamos o arquivo...');
+            preview();
+            waitingDialog.hide();
+        });
+    });
+
+    function errorHandler(event) {
+        alert("Não foi possível ler o arquivo!");
+    }
+
+    function preview() {
+        var file = document.getElementById('arquivo').files[0];
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onerror = errorHandler;
+        reader.onload = function(event) {
+            var csv = event.target.result;
+            var obj = parseCsvToObject(csv);
+            addPreviewTable(obj, 50);
+            $('#preview-table').DataTable();
+        }
+    }
+
+    function addPreviewTable(data, lines=100) {
+        tableTemplate = '<hr /><table class="table table-bordered table-responsive" id="preview-table" width="100%" cellspacing="0"><thead class="thead-light"></thead><tbody></tbody></table>';
+        headerItemTemplate = '<th></th>';
+        columnItemTemplate = '<td></td>';
+        lineTeplate = '<tr></tr>';
+        table = $(tableTemplate);
+        header = $(lineTeplate);
+
+        $.each(Object.keys(data[0]), function(i, value){
+            head = $(headerItemTemplate).text(value);
+            header.append(head);
+        });
+
+        table.find('thead').html(header);
+
+        $.each(data.slice(0, lines), function(i, obj) {
+            line = $(lineTeplate);
+            $.each(Object.keys(obj), function(i, prop) {
+                column = $(columnItemTemplate);
+                column.text(obj[prop]);
+                line.append(column);
+            });
+            table.find('tbody').append(line);
+        });
+    
+        $('#preview-file').html(table);
+    }
+</script>

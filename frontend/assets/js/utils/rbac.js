@@ -1,0 +1,3 @@
+function aplicarRBAC() {
+  $('body').rbac();
+}

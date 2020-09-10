@@ -1,0 +1,9 @@
+.idea/
+/coverage/
+/vendor/
+/var/cache/*
+/var/upload/*
+/logs/*
+!/logs/README.md
+.env
+tests

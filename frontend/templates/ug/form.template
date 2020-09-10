@@ -1,0 +1,34 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h5 mb-0 text-gray-800 d-block d-sm-none">Cadastrar UG</h1>
+    <h1 class="h3 mb-0 text-gray-800 d-none d-sm-block">Cadastrar Unidade Gestora</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Dados da unidade gestora</h6>
+    </div>
+    <div class="card-body">
+        <form action="<%= action %>" method="<%= method %>">
+            <div class="form-row">
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="codigo">Código da UG</label>
+                    <input type="number" class="form-control" name="codigo" id="codigo" value="<%= ug.codigo %>" required />
+                </div>
+                <div class="form-group col-xs-12 col-sm-9">
+                    <label for="nome">Nome da UG</label>
+                    <input type="text" class="form-control" name="nome" id="nome" value="<%= ug.nome %>" required />
+                </div>
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="nome">Sigla Gestor</label>
+                    <input type="text" class="form-control" name="siglaGestor" id="siglaGestor" value="<%= ug.siglaGestor %>" required />
+                </div>
+                <div class="form-group col-xs-12 col-sm-9">
+                    <label for="nome">Nome do Gestor</label>
+                    <input type="text" class="form-control" name="nomeGestor" id="nomeGestor" value="<%= ug.nomeGestor %>" required />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            <a href="#/ug" class="btn btn-warning">Voltar</a>
+        </form>
+    </div>
+</div>
