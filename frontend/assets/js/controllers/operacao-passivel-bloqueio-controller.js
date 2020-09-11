@@ -3,7 +3,7 @@ operacaoPassivelBloqueioController = {
     var anoExecucao = this.params['anoExecucao'];
     var siglaGestor = this.params['siglaGestor']
     var tipoInformacaoId = this.params['tipoInformacaoId']
-    perfil = roles.rede.locations.includes(parseInt(user.physical_lotation_id)) ? user.physical_lotation_id : null;
+    perfil = roles.rede.locations.includes(parseInt(user.physicalLotationId)) ? user.physicalLotationId : null;
     var unidadeId = $('#lista-unidades-rede').length ? $('#lista-unidades-rede').val() : perfil;
 
     apiRestosAPagar.operacoes.passiveisBloqueio.listar(anoExecucao, tipoInformacaoId, unidadeId, siglaGestor)

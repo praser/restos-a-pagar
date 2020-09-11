@@ -27,7 +27,7 @@ function setUser() {
 // Retorna o perfil de acesso do usuário que está acessando o app
 function getRole() {
 	if (user) {
-		var userPhisicalLotationId = parseInt(user.physical_lotation_id);
+		var userPhisicalLotationId = parseInt(user.physicalLotationId);
 		if (roles.administrador.locations.includes(userPhisicalLotationId)) return roles.administrador.name;
 		if (roles.rede.locations.includes(userPhisicalLotationId)) return roles.rede.name;
 		if (roles.gestor.locations.includes(userPhisicalLotationId)) return roles.gestor.name;
@@ -88,7 +88,10 @@ rules[roles.visitante.name] = {
 
 // Verifica se um usuÃ¡rio pode acessar uma url
 function canAccess(path) {
-	path = path.substring(path.indexOf('#')).replace(/\/\d{1,}/, '/:id');
+	regex = /\/dashboard\/\d{4}/;
+	suffix = (regex.exec(path)) ? '/:anoExecucao' : '/:id';
+
+	path = path.substring(path.indexOf('#')).replace(/\/\d{1,}/, suffix);
 	flattenRoutes = flattenObject(routes);
 	routesRoles = eval('routes.' + getKeyByValue(flattenRoutes, path).replace('.path', '.roles'))
 	return routesRoles.includes(getRole());

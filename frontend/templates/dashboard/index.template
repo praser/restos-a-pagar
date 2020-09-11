@@ -1,5 +1,8 @@
+<script>
+    console.log('user: ', user);
+</script>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Gestão de possíveis bloqueios da safra <%= anoExecucao -2 %> - <%= user.physical_lotation_abberviation %></h1>
+    <h1 class="h3 mb-0 text-gray-800">Gestão de possíveis bloqueios da safra <%= anoExecucao -2 %> - <%= user.physicalLotationAbbreviation %></h1>
     <div>
         <a href="#/operacoes/passiveis-bloqueio/<%= anoExecucao %>" id="btn-download-csv" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> Download da base csv
@@ -28,7 +31,7 @@
                 <div class="form-group mr-2" data-rbac-roles="administrador,gestor">
                     <select id="lista-unidades-rede" class="form-control" name="unidade-rede">
                         <option value="">Todas as GIGOV/REGOV</option>
-                    </select>
+                    </select> 
                 </div>
 
                 <div class="form-group mr-2">

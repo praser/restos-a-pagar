@@ -179,7 +179,7 @@ function preencherDadosAnaliticos(data, selector) {
  */
 function obterDadosDashboard(anoExecucao) {
   tipoInformacaoId = stringIsEmpty($('#set-operacoes').val()) ? 3: $('#set-operacoes').val();
-  perfil = roles.rede.locations.includes(parseInt(user.physical_lotation_id)) ? user.physical_lotation_id : null;
+  perfil = roles.rede.locations.includes(parseInt(user.physicalLotationId)) ? user.physicalLotationId : null;
   unidadeId = $('#lista-unidades-rede').length ? $('#lista-unidades-rede').val() : perfil;
   siglaGestor = stringIsEmpty($('#lista-gestores').val()) ? null: $('#lista-gestores').val();
 
@@ -274,7 +274,7 @@ function obterDadosFiltros(anoExecucao) {
   switch (getRole()) {
     case 'rede':
       unidades = $.noop;
-      unidadeId = user.physical_lotation_id;
+      unidadeId = user.physicalLotationId;
       break;
   
     default:
