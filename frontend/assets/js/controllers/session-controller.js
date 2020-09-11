@@ -7,8 +7,8 @@ var sessionController = {
   create: function(context) {
     apiAutenticacao.autenticar(context.params)
     .then(function(response) {
-      sessionStorage.setItem('jwt', response.jwt);
-      sessionStorage.setItem('user', JSON.stringify(parseJwt(response.jwt).user));
+      sessionStorage.setItem('jwt', response.token);
+      sessionStorage.setItem('user', JSON.stringify(parseJwt(response.token).user));
       waitingDialog.hide(function() {
         location.reload();
       });
