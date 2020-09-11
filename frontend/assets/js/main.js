@@ -18,17 +18,25 @@
 		}
 
 		this.around(function(callback) {
+			var avatar = './assets/images/undraw_male_avatar_323b.svg';
 			setUser();
 			this.path.endsWith(routes.login.path) && !user || user ? callback() : this.redirect(routes.login.path);
 			canAccess(this.path) ? callback : this.redirect(routes.erros.acessoNegado.path);
 			if (user) {
-				$('.only-logged').show()
+				var userImage = 'http://api.sutre.mz.caixa/app/controller/index.php?site=siteSutre&pagina=userImage&matricula=' + user.id;
+				$.get(userImage)
+				.then(function(){
+					$('#userDropdown img').prop('src', userImage);
+				})
+				.catch(function(){
+					$('#userDropdown img').prop('src', avatar);
+				})
+				$('.only-logged').show();
 				$('#user-name').text(firstLetterUp(user.name.split(' ')[0]));
-				$('#userDropdown img').prop('src', 'http://api.sutre.mz.caixa/app/controller/index.php?site=siteSutre&pagina=userImage&matricula=' + user.id);
 			} else {
 				$('#user-name').text('');
 				$('.only-logged').hide()
-				$('#userDropdown img').prop('src', './assets/images/undraw_male_avatar_323b.svg');
+				$('#userDropdown img').prop('src', avatar);
 			}
 		});
 
