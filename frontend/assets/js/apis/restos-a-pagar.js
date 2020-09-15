@@ -1,5 +1,5 @@
 var apiRestosAPagar = {
-    url: 'http://localhost/api-restos-a-pagar/',
+    url: 'http://localhost:3000/',
     ug: {
         buscar: function(id) {
             return xhrRequest(apiRestosAPagar.url + 'ug/' + id);

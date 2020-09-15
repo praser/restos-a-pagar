@@ -35,7 +35,7 @@ var notaEmpenhoSaldoController = {
       })
       .catch(function(error) {
         waitingDialog.hide(function() {
-          bootnox.alert({
+          bootbox.alert({
             title: 'Ops...',
             message: 'Houve um erro ao salvar o arquivo de saldos',
           })

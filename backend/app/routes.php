@@ -18,6 +18,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 return function (App $app) {
+    $app->options('/{routes:.+}', function ($request, $response, $args) {
+        return $response;
+    });
+
     $app->group('/ug', function (Group $group) {
         $group->get('/gestores', UgGestoresController::class . ':index');
         $group->get('/{id}', UgController::class . ':show');

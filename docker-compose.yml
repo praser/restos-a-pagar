@@ -14,6 +14,8 @@ services:
     ports:
       - 1433:1433
     restart: always
+    volumes:
+      - "./database:/var/opt/database"
   php:
     build: 
       context: ./php
@@ -62,4 +64,12 @@ services:
     volumes:
       - "./frontend:/var/www/html"
       - "./nginx/nginx.frontend.conf:/etc/nginx/nginx.conf"
-    
+  smtp:
+    container_name: smtp
+    image: marcopas/docker-mailslurper
+    networks:
+      - restos-a-pagar-net
+    ports:
+      - 8080:8080
+      - 2500:2500
+      - 8085:8085
