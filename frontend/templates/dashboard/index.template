@@ -205,10 +205,10 @@
                             <th rowspan="2">Objeto</th>
                         </tr>
                         <tr>
-                            <th>Suspensiva</th>
-                            <th>VRPL</th>
-                            <th>AIO</th>
-                            <th>Percentual de Obra</th>
+                            <th class="no-filter">Suspensiva</th>
+                            <th class="no-filter">VRPL</th>
+                            <th class="no-filter">AIO</th>
+                            <th class="no-filter">Percentual de Obra</th>
                         </tr>
                     </thead>
                 </table>

@@ -84,6 +84,10 @@ function preencherDadosAnaliticos(data, selector) {
   dataTable = $(selector).DataTable({
     columnDefs: [
       {
+        targets: [3, 4, 5, 6],
+        orderable: false
+      },
+      {
         targets: [10, 11],
         render: function(data, type, full, meta) {
           return type === 'sort' || type === 'type' || type === 'filter' ? data : numeral(data).format('$0,0.00');
@@ -110,7 +114,8 @@ function preencherDadosAnaliticos(data, selector) {
       dt = this;
       dt.api().columns().every( function () {
         var column = this;
-        var select = $('<select id="my-select" class="datatable-column-filter form-control" name=""><option></option></select>')
+        if (!$(column.header()).hasClass('no-filter')) {
+          var select = $('<select id="my-select" class="datatable-column-filter form-control" name=""><option></option></select>')
           .appendTo( $(column.header()) )
           .on('click', function(e) {
             e.stopPropagation();
@@ -121,11 +126,12 @@ function preencherDadosAnaliticos(data, selector) {
               .search(val, false, false, true)
               .draw();
           });
-          
+        
           column.data().unique().sort().each( function ( d, j ) {
             select.append( '<option value="'+d+'">'+d+'</option>' )
           });
-      } );
+        }
+      });
     },
     ordering: true,
     fixedHeader: false,
