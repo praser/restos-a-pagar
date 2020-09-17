@@ -1,5 +1,5 @@
 var apiRestosAPagar = {
-    url: 'http://localhost:3000/',
+    url: 'http://localhost:3003/',
     ug: {
         buscar: function(id) {
             return xhrRequest(apiRestosAPagar.url + 'ug/' + id);
@@ -86,5 +86,9 @@ var apiRestosAPagar = {
         listar: function(ano, loading = false) {
             return xhrRequest(apiRestosAPagar.url + 'tipos-informacoes/' + ano, 'GET', {}, loading);
         }
+    },
+
+    status: function() {
+        return xhrRequest(apiRestosAPagar.url, 'GET', {}, false);
     }
 }

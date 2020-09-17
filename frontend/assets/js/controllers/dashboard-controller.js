@@ -7,8 +7,8 @@ dashboardController = {
       waitingDialog.show('Carregando...');
       
       obterDadosDashboard(anoExecucao)
-      .then(function(estatisticas, analitico) {
-        preencherDashboard(estatisticas, analitico)
+      .then(function(estatisticas, analitico, status) {
+        preencherDashboard(estatisticas, analitico, status)
       })
       .fail(function(error) {
         bootbox.alert({

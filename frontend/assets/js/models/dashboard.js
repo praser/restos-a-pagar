@@ -23,6 +23,15 @@ function preencherDataBloqueio(data) {
 }
 
 /**
+ * Preenche a data da posição do banco de dados
+ * @param {object} data 
+ */
+function preencherPosicaoBancoDeDados(data) {
+  date = new Date(data.databasePosition);
+  $('#posicao-base-dados').text(date.format('dd/mm/yyyy'));
+}
+
+/**
  * Preenche o gréfico da evolução do saldos das notas de empenho
  * @param {object} data 
  */
@@ -192,16 +201,19 @@ function obterDadosDashboard(anoExecucao) {
   return $.when(
     apiRestosAPagar.estatisticas.listar(anoExecucao, tipoInformacaoId, unidadeId, siglaGestor, false),
     apiRestosAPagar.operacoes.passiveisBloqueio.listar(anoExecucao, tipoInformacaoId, unidadeId, siglaGestor, false),
+    apiRestosAPagar.status(),
   )
 }
 
 /**
  * Preenche os dados do painel
  * @param {object} estatisticas 
- * @param {object} analitico 
+ * @param {object} analitico
+ * @param {object} status
  */
-function preencherDashboard(estatisticas, analitico) {
+function preencherDashboard(estatisticas, analitico, status) {
   preencherDataBloqueio(estatisticas[0].parametros);
+  preencherPosicaoBancoDeDados(status[0])
   preencherSumario(estatisticas[0]);
   preencherEvolucaoSaldo(estatisticas[0].estatisticas);
   preencherSaldoPorGestor(estatisticas[0].estatisticasPorGestor);

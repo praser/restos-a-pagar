@@ -11,6 +11,7 @@
 </div>
 <div class="row mb-4">
     <h2 class="col-12 h5"><i class="fas fa-calendar-alt fa-sm"></i> Data do bloqueio: <span id="data-bloqueio"></span></h2>
+    <h2 class="col-12 h5"><i class="fas fa-database fa-sm"></i> Posição da base de dados: <span id="posicao-base-dados"></span></h2>
     <h5 class="col-12"><i class="fas fa-filter fa-sm"></i> Filtros ativos: <span id="filter-badges-list"></span></h5>
 </div>
 
