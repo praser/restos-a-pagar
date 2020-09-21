@@ -1,24 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Reset } from 'styled-reset';
-import { createGlobalStyle } from 'styled-components';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import { Login } from './components/login';
+import { PrivateRoute, PublicRoute } from './components/Routes';
+import { routes } from './utils/routes';
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-  body {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'
-  }
-`;
+const Dashboard = () => <h1>Dashboard</h1>;
 
 ReactDOM.render(
   <React.StrictMode>
     <Reset />
-    <GlobalStyles />
-    <Login />
+    <Router>
+      <Switch>
+        <PublicRoute restricted component={Login} path={routes.home} exact />
+        <PublicRoute restricted component={Login} path={routes.login} exact />
+        <PrivateRoute component={Dashboard} path={routes.dashboard} exact />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );
