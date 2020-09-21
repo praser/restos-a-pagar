@@ -35,7 +35,7 @@ function mountMenuItem(params) {
   var items = [];
   
   items.push(`<a class="collapse-item" href="#/dashboard/${params.anoExecucao}">Prévia do bloqueio</a>`)
-  items.push(`<a class="collapse-item" href="#/dashboard/${params.anoExecucao}">Liminares judiciais</a>`);
+  items.push(`<a class="collapse-item" href="#/liminares/${params.anoExecucao}">Liminares judiciais</a>`);
   
   if (new Date(params.dataBloqueio) <= new Date()) {
     items.push(`<a class="collapse-item" href="#/dashboard/${params.anoExecucao}">Empenhos bloqueados</a>`);

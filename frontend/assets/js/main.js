@@ -66,6 +66,9 @@
 
 		// OPERACOES
 		this.get(routes.operacoes.passiveisBloqueioSaldo.path, operacaoPassivelBloqueioController.index);
+
+		// Liminares
+		this.get(routes.liminares.path, liminaresController.index);
 	});
 
 	$(function() {

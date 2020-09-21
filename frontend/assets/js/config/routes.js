@@ -85,6 +85,14 @@ var routes = {
         roles.rede.name,
       ],
     }
+  },
+  liminares: {
+    path: '#/liminares/:anoExecucao',
+    roles: [
+      roles.administrador.name,
+      roles.gestor.name,
+      roles.rede.name,
+    ],
+    template: 'templates/liminares/index.template',
   }
-    
 }
