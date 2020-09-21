@@ -31,6 +31,11 @@ export const Login = () => {
     history.push(routes.home);
   };
 
+  const handleGoToSudep = event => {
+    event.preventDefault();
+    window.location.href = process.env.REACT_APP_MAIN_PORTAL;
+  };
+
   return (
     <Container>
       <Content>
@@ -49,9 +54,13 @@ export const Login = () => {
           />
           <ButtonPrimary onClick={handleLoginClick}>Login</ButtonPrimary>
           <Divider />
-          <ButtonDanger>Ir para a página da SUDEP </ButtonDanger>
+          <ButtonDanger onClick={handleGoToSudep}>
+            Ir para a página da SUDEP{' '}
+          </ButtonDanger>
           <Divider />
-          <Link href={process.env.REACT_APP_MAIN_PORTAL}>
+          <Link
+            href={`mailto:${process.env.REACT_APP_TECHNICAL_SUPPORT_MAIL}?cc=${process.env.REACT_APP_MANGER_AREA_MAIL}&subject=Não consigo acessar o painel do RAP`}
+          >
             Não consegue acessar?
           </Link>
         </Form>
