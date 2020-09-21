@@ -88,7 +88,13 @@ var apiRestosAPagar = {
         }
     },
 
-    status: function() {
-        return xhrRequest(apiRestosAPagar.url, 'GET', {}, false);
+    status: function(loading = false) {
+        return xhrRequest(apiRestosAPagar.url, 'GET', {}, loading);
+    },
+
+    parametros: {
+        listar: function(loading = false) {
+            return xhrRequest(apiRestosAPagar.url + 'parametros/', 'GET', {}, loading);
+        }
     }
 }

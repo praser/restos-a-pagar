@@ -1,0 +1,34 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Liminares Judiciais</h1>
+  <a href="#/ug/novo" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+      <i class="fas fa-plus-circle"></i>
+       Cadastrar UG
+  </a>
+</div>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Lista de unidades gestoras cadastradas nos sistema</h6>
+  </div>
+  <div class="card-body">
+      <div class="table-responsive">
+          <table id="lista-ug" class="table table-bordered table-striped table-responsive" width="100%" cellspacing="0">
+              <colgroup>
+                  <col style="width: 10%" />
+                  <col style="width: 50%" />
+                  <col style="width: 20%;" />
+                  <col style="width: 20%" />
+              </colgroup>
+              <thead class="thead-light">
+                  <tr>
+                      <th>Código</th>
+                      <th>Nome</th>
+                      <th>Gestor</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody />
+          </table>
+      </div>
+  </div>
+</div>
