@@ -12,7 +12,7 @@ import {
   ButtonDanger,
   Divider,
   Link,
-} from './styles';
+} from '../components/Layout/External';
 import { Alert, Loading } from '~/components/Dialog';
 
 import { authenticate } from '~/utils/authApi';
