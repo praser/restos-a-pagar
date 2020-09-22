@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   ButtonPrimary as BaseButtonPrimary,
   ButtonDanger as BaseButtonDanger,
-} from '../../components/Button';
+} from '~/components/Button';
 
 export const Container = styled.div`
   align-items: center;

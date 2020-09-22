@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { isLoggedIn } from '../../utils/login';
-import { dashboardPath } from '../../utils/paths';
+import { isLoggedIn } from '~/utils/login';
+import { dashboardPath } from '~/utils/paths';
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   return (

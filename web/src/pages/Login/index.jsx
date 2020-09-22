@@ -13,13 +13,13 @@ import {
   Divider,
   Link,
 } from './styles';
-import { Alert, Loading } from '../../components/Dialog';
+import { Alert, Loading } from '~/components/Dialog';
 
-import { authenticate } from '../../utils/authApi';
-import { login } from '../../utils/login';
-import { homePath } from '../../utils/paths';
+import { authenticate } from '~/utils/authApi';
+import { login } from '~/utils/login';
+import { homePath } from '~/utils/paths';
 
-import image from '../../assets/undraw_Login_v483.svg';
+import image from '~/assets/undraw_Login_v483.svg';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
