@@ -13,7 +13,7 @@ import {
   Divider,
   Link,
 } from './styles';
-import { Alert } from '../MessageBox';
+import { Alert, Loading } from '../Dialog';
 
 import { authenticate } from '../../utils/authApi';
 import { login } from '../../utils/login';
@@ -25,6 +25,7 @@ export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const handleUsernameChange = event => setUsername(event.target.value);
@@ -39,11 +40,16 @@ export const Login = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
+      setLoading(true);
       const res = await authenticate(username, password);
       login(res.data.token);
-      history.push(homePath);
     } catch {
       setAlert(true);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        history.push(homePath);
+      }, 500);
     }
   };
 
@@ -54,6 +60,7 @@ export const Login = () => {
 
   return (
     <Container>
+      <Loading visible={loading} title="Carregando..." />
       <Alert
         visible={alert}
         title="Ops..."

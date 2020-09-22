@@ -57,3 +57,32 @@ export const Footer = styled(partContainer)`
   border-bottom-left-radius: 0.3rem;
   justify-content: flex-end;
 `;
+
+export const ProgressBar = styled.div`
+  background-color: #4e73df;
+  width: 100%;
+  height: 1rem;
+  border-radius: 0.35rem;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progress-bar-stripes 1s linear infinite;
+  transition: width 0.6s ease;
+
+  @keyframes progress-bar-stripes {
+    from {
+      background-position: 1rem 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+`;
