@@ -13,31 +13,53 @@ import {
   Divider,
   Link,
 } from './styles';
+import Alert from '../MessageBox/Alert';
+
+import { authenticate } from '../../utils/authApi';
 import { login } from '../../utils/login';
-import { routes } from '../../utils/routes';
+import { homePath } from '../../utils/paths';
+
 import image from '../../assets/undraw_Login_v483.svg';
 
 export const Login = () => {
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [alert, setAlert] = useState(false);
   const history = useHistory();
 
-  const handleUsernameBlur = event => setUsername(event.target.value);
-  const handlePasswordBlur = event => setPassword(event.target.value);
+  const handleUsernameChange = event => setUsername(event.target.value);
 
-  const handleLoginClick = async event => {
-    event.preventDefault();
-    await login(username, password);
-    history.push(routes.home);
-  };
+  const handlePasswordChange = event => setPassword(event.target.value);
 
   const handleGoToSudep = event => {
     event.preventDefault();
     window.location.href = process.env.REACT_APP_MAIN_PORTAL;
   };
 
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const res = await authenticate(username, password);
+      login(res.data.token);
+      history.push(homePath);
+    } catch {
+      setAlert(true);
+    }
+  };
+
+  const handleAlertConfirm = event => {
+    event.preventDefault();
+    setAlert(false);
+  };
+
   return (
     <Container>
+      <Alert
+        visible={alert}
+        title="Ops..."
+        text="Login e senha inválidos"
+        onConfirm={handleAlertConfirm}
+      />
       <Content>
         <LoginImage src={image} />
         <Form>
@@ -45,14 +67,16 @@ export const Login = () => {
           <Input
             type="text"
             placeholder="Digite a sua matrícula"
-            onBlur={handleUsernameBlur}
+            onChange={handleUsernameChange}
+            value={username}
           />
           <Input
             type="password"
             placeholder="Digite a sua senha"
-            onBlur={handlePasswordBlur}
+            onChange={handlePasswordChange}
+            value={password}
           />
-          <ButtonPrimary onClick={handleLoginClick}>Login</ButtonPrimary>
+          <ButtonPrimary onClick={handleSubmit}>Login</ButtonPrimary>
           <Divider />
           <ButtonDanger onClick={handleGoToSudep}>
             Ir para a página da SUDEP{' '}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { isLoggedIn } from '../../utils/login';
-import { routes } from '../../utils/routes';
+import { dashboardPath } from '../../utils/paths';
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   return (
@@ -9,7 +9,7 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
       {...rest}
       render={props =>
         isLoggedIn() && restricted ? (
-          <Redirect to={routes.dashboard} />
+          <Redirect to={dashboardPath} />
         ) : (
           <Component {...props} />
         )

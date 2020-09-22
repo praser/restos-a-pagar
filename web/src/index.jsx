@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { Login } from './components/login';
 import { PrivateRoute, PublicRoute } from './components/Routes';
-import { routes } from './utils/routes';
+import * as paths from './utils/paths';
 
 const Dashboard = () => <h1>Dashboard</h1>;
 
@@ -15,9 +15,14 @@ ReactDOM.render(
     <Reset />
     <Router>
       <Switch>
-        <PublicRoute restricted component={Login} path={routes.home} exact />
-        <PublicRoute restricted component={Login} path={routes.login} exact />
-        <PrivateRoute component={Dashboard} path={routes.dashboard} exact />
+        <PublicRoute restricted component={Login} path={paths.homePath} exact />
+        <PublicRoute
+          restricted
+          component={Login}
+          path={paths.loginPath}
+          exact
+        />
+        <PrivateRoute component={Dashboard} path={paths.dashboardPath} exact />
       </Switch>
     </Router>
   </React.StrictMode>,
