@@ -13,7 +13,7 @@ import {
   Divider,
   Link,
 } from './styles';
-import Alert from '../MessageBox/Alert';
+import { Alert } from '../MessageBox';
 
 import { authenticate } from '../../utils/authApi';
 import { login } from '../../utils/login';
