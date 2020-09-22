@@ -4,7 +4,7 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import { Login } from './components/Login';
+import { Login } from './pages/Login';
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
 
