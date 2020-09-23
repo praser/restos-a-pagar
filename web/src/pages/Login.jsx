@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { Container } from '~/components/Layout/styles';
 import {
-  Container,
   Content,
   LoginImage,
   Form,
@@ -21,7 +21,7 @@ import { homePath } from '~/utils/paths';
 
 import image from '~/assets/undraw_Login_v483.svg';
 
-export const Login = () => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState(false);
@@ -99,3 +99,5 @@ export const Login = () => {
     </Container>
   );
 };
+
+export default Login;

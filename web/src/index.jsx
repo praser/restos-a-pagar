@@ -4,11 +4,10 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import { Login } from './pages/Login';
+import { Dashboard, Login } from './pages';
+
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
-
-const Dashboard = () => <h1>Dashboard</h1>;
 
 ReactDOM.render(
   <React.StrictMode>
