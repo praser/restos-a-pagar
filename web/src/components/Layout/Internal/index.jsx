@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     <Container>
       <Navigation />
       <Content>
-        <Header title="Restos a pagar" />
+        <Header title={process.env.REACT_APP_WEBSITE_NAME} />
         {children}
       </Content>
     </Container>
