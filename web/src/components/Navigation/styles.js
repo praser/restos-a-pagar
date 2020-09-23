@@ -2,7 +2,16 @@ import styled from 'styled-components';
 
 export const Collapse = styled.div``;
 
-export const Divider = styled.hr``;
+export const Divider = styled.hr`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 1rem 1rem;
+  border-top: 1px solid #eaecf4;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+`;
+
 export const Link = styled.a``;
 
 export const Navbar = styled.div`
