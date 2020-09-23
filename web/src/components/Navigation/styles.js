@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const Collapse = styled.div``;
-
 export const Divider = styled.hr`
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -12,9 +10,7 @@ export const Divider = styled.hr`
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 `;
 
-export const Link = styled.a``;
-
-export const Navbar = styled.div`
+export const Navbar = styled.ul`
   width: 14rem;
   min-height: 100vh;
   background-color: #36b9cc;
