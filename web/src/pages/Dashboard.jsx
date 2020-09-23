@@ -1,15 +1,9 @@
 import React from 'react';
 
-import { Container } from '~/components/Layout/styles';
-
-import Navigation from '~/components/Navigation';
+import Layout from '~/components/Layout/Internal';
 
 const Dashboard = () => {
-  return (
-    <Container>
-      <Navigation />
-    </Container>
-  );
+  return <Layout></Layout>;
 };
 
 export default Dashboard;
