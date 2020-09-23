@@ -18,7 +18,6 @@ import {
   ugPath,
   joinPath,
 } from '~/utils/paths';
-import { join } from 'lodash';
 
 const Navigation = () => {
   return (

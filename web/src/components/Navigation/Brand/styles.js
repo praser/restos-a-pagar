@@ -17,6 +17,7 @@ export const Link = styled.a`
   box-sizing: border-box;
   cursor: pointer;
 `;
+
 export const Image = styled.img`
   vertical-align: center;
   border-style: none;

@@ -1,5 +1,3 @@
-import { matches } from 'lodash';
-
 export const dashboardPath = '/dashboard';
 export const homePath = '/';
 export const loginPath = '/login';
@@ -15,6 +13,7 @@ const replaceParams = (path, from, to) => {
   let result = path.repeat(1);
   from.map((value, i) => {
     result = result.replaceAll(value, to[i]);
+    return result;
   });
   return result;
 };
