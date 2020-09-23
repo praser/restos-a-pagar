@@ -20,4 +20,22 @@ export const Navbar = styled.ul`
   flex-direction: column;
 `;
 
-export const SectionTitle = styled.p``;
+export const SectionTitle = styled.p`
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.4);
+  display: block;
+  font-size: 10.4px;
+  font-weight: 800;
+  height: 15px;
+  line-height: 15.6px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  padding-bottom: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 0px;
+  text-align: left;
+  text-size-adjust: 100%;
+  text-transform: uppercase;
+`;
