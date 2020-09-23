@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '~/components/Header/Index';
 import Navigation from '~/components/Navigation';
 
 import { Container } from '../styles';
@@ -8,7 +9,10 @@ const Layout = ({ children }) => {
   return (
     <Container>
       <Navigation />
-      <Content>{children}</Content>
+      <Content>
+        <Header title="Restos a pagar" />
+        {children}
+      </Content>
     </Container>
   );
 };
