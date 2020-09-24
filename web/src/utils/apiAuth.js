@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { setup } from 'axios-cache-adapter';
 
 const options = {
   baseURL: process.env.REACT_APP_AUTH_API_URL,
@@ -9,7 +9,7 @@ const options = {
   },
 };
 
-const client = axios.create(options);
+const client = setup(options);
 
 export const postAuthenticate = async (username, password) => {
   return client.post('/authenticate', {
