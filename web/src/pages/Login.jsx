@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Container } from '~/components/Layout/styles';
+import { Container } from '~/components/Layout';
 import {
   Content,
   LoginImage,

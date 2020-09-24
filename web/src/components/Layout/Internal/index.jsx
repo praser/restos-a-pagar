@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '~/components/Header/Index';
 import Navigation from '~/components/Navigation';
 
-import { Container } from '../styles';
-import { Content } from './styles';
+import { Container } from '..';
+import { Content, Main } from './styles';
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <Navigation />
       <Content>
         <Header title={process.env.REACT_APP_WEBSITE_NAME} />
-        {children}
+        <Main>{children}</Main>
       </Content>
     </Container>
   );

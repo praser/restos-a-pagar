@@ -6,6 +6,7 @@ export const Code = styled.div`
   line-height: 1;
   width: 12.5rem;
   position: relative;
+  align-self: center;
 
   @keyframes noise-anim {
     0% {
@@ -165,23 +166,18 @@ export const Code = styled.div`
     animation: noise-anim 2s infinite linear alternate-reverse;
   }
 `;
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0 1.5rem;
-  align-items: center;
-  text-align: center;
-  flex: 1;
-`;
+
 export const Description = styled.p`
   color: #5a5c69;
   margin-bottom: 5rem;
   font-size: 1.25rem;
   font-weight: 300;
+  align-self: center;
 `;
 
 export const Paragraph = styled.p`
   color: #b7b9cc;
+  align-self: center;
 `;
 
 export const GoBack = styled.button`
@@ -194,6 +190,7 @@ export const GoBack = styled.button`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  align-self: center;
 
   &&:active {
     outline: none;

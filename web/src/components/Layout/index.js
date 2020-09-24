@@ -9,3 +9,8 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
+export const Heading = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
