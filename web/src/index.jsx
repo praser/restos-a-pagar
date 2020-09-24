@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Reset } from 'styled-reset';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import { Dashboard, Login } from './pages';
+import { Dashboard, Error, Login } from './pages';
 
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
@@ -22,6 +22,12 @@ ReactDOM.render(
           exact
         />
         <PrivateRoute component={Dashboard} path={paths.dashboardPath} exact />
+        <Route
+          render={() => (
+            <Error code="404" description="Página não encontrada" />
+          )}
+          path="*"
+        />
       </Switch>
     </Router>
   </React.StrictMode>,
