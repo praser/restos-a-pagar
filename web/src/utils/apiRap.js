@@ -25,7 +25,7 @@ const configure = async () => {
       'X-Token': getToken(),
     },
     cache: {
-      maxAge: 12 * 60 * 60 * 100, // 12 horas
+      maxAge: process.env.REACT_APP_LOCAL_CACHE_MAX_AGE,
       store,
     },
   });
