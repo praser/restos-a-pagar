@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { useHistory } from 'react-router-dom';
 import {
   Avatar,
+  Button,
   Collapsable,
   CollapsableLink,
   Container,
   Icon,
-  Link,
   Name,
 } from './styles';
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { logout } from '~/utils/login';
-import { useHistory } from 'react-router-dom';
 import { homePath } from '~/utils/paths';
 
 const Profile = ({ user }) => {
@@ -33,10 +33,10 @@ const Profile = ({ user }) => {
 
   return (
     <Container>
-      <Link onClick={handleClick}>
+      <Button onClick={handleClick}>
         <Name>{name}</Name>
-        <Avatar src={avatar ? avatar : avatarImg}></Avatar>
-      </Link>
+        <Avatar src={avatar || avatarImg} />
+      </Button>
       <Collapsable expanded={expanded}>
         <CollapsableLink onClick={handleLogout}>
           <Icon icon={faSignInAlt} />

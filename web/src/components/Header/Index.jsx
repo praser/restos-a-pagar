@@ -13,7 +13,7 @@ const Header = ({ title }) => {
       <Title>{title}</Title>
       <Navbar>
         <Divider />
-        <Profile user={user}></Profile>
+        <Profile user={user} />
       </Navbar>
     </Container>
   );

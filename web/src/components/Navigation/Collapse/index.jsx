@@ -26,8 +26,8 @@ const Collapse = ({ label, icon, collapsables }) => {
       </Navlink>
       <CollapseContainer expanded={expanded}>
         <Collapsable>
-          {collapsables.map((item, i) => (
-            <Collapselink to={item.to} key={i}>
+          {collapsables.map(item => (
+            <Collapselink to={item.to} key={item.label}>
               {item.label}
             </Collapselink>
           ))}

@@ -15,7 +15,7 @@ const Error = ({ code, description }) => {
 
   const handleGoBack = event => {
     event.preventDefault();
-    console.log(history.goBack());
+    history.goBack();
   };
 
   return (

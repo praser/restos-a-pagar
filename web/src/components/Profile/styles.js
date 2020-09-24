@@ -83,7 +83,7 @@ export const Container = styled.li`
   width: 107.578px;
 `;
 
-export const Link = styled.a`
+export const Button = styled.button`
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
@@ -105,6 +105,8 @@ export const Link = styled.a`
   text-decoration-style: solid;
   text-size-adjust: 100%;
   white-space: nowrap;
+  border: none;
+  outline: none;
 `;
 
 export const Name = styled.span`
