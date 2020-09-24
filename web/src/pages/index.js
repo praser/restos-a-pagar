@@ -1,5 +1,5 @@
-import Dashboard from './Dashboard';
+import PossibleBlocks from './PossibleBlocks';
 import Error from './Error';
 import Login from './Login';
 
-export { Dashboard, Error, Login };
+export { PossibleBlocks, Error, Login };

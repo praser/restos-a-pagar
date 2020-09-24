@@ -8,7 +8,7 @@ import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 import { useCurrentUser } from '~/utils/user';
 
-const Dashboard = () => {
+const PossibleBlocks = () => {
   const { physicalLotationAbbreviation } = useCurrentUser();
 
   return (
@@ -33,4 +33,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default PossibleBlocks;

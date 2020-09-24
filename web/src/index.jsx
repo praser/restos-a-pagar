@@ -4,7 +4,7 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import { Dashboard, Error, Login } from './pages';
+import { PossibleBlocks, Error, Login } from './pages';
 
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
@@ -21,7 +21,11 @@ ReactDOM.render(
           path={paths.loginPath}
           exact
         />
-        <PrivateRoute component={Dashboard} path={paths.dashboardPath} exact />
+        <PrivateRoute
+          component={PossibleBlocks}
+          path={paths.dashboardPath}
+          exact
+        />
         <Route
           render={() => (
             <Error code="404" description="Página não encontrada" />

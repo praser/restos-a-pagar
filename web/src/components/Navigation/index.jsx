@@ -10,7 +10,7 @@ import Collapse from './Collapse';
 import { Divider, Navbar, SectionTitle } from '~/components/Navigation/styles';
 
 import {
-  predictedBlockPath,
+  PossibleBlocksPath,
   blockedPath,
   canceledPath,
   createUgPath,
@@ -32,7 +32,7 @@ const Navigation = () => {
         collapsables={[
           {
             label: 'Prévia do bloqueio',
-            to: joinPath(predictedBlockPath, [2017]),
+            to: joinPath(PossibleBlocksPath, [2017]),
           },
           { label: 'Empenhos bloqueados', to: joinPath(blockedPath, [2017]) },
           { label: 'Empenhos cancelados', to: joinPath(canceledPath, [2017]) },
@@ -45,7 +45,7 @@ const Navigation = () => {
         collapsables={[
           {
             label: 'Prévia do bloqueio',
-            to: joinPath(predictedBlockPath, [2018]),
+            to: joinPath(PossibleBlocksPath, [2018]),
           },
         ]}
       />
