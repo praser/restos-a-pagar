@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   faBuilding,
   faDollarSign,
@@ -18,37 +18,46 @@ import {
   ugPath,
   joinPath,
 } from '~/utils/paths';
+import { getParams } from '~/utils/apiRap';
 
 const Navigation = () => {
+  const [params, setParams] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getParams();
+      setParams(response.data.parametros);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Navbar>
       <Brand />
 
       <Divider />
 
-      <Collapse
-        label="Safra 2017"
-        icon={faFileSignature}
-        collapsables={[
-          {
-            label: 'Prévia do bloqueio',
-            to: joinPath(PossibleBlocksPath, [2017]),
-          },
-          { label: 'Empenhos bloqueados', to: joinPath(blockedPath, [2017]) },
-          { label: 'Empenhos cancelados', to: joinPath(canceledPath, [2017]) },
-        ]}
-      />
-
-      <Collapse
-        label="Safra 2018"
-        icon={faFileSignature}
-        collapsables={[
-          {
-            label: 'Prévia do bloqueio',
-            to: joinPath(PossibleBlocksPath, [2018]),
-          },
-        ]}
-      />
+      {params.map(param => (
+        <Collapse
+          label={`Safra ${param.anoOrcamentario}`}
+          icon={faFileSignature}
+          collapsables={[
+            {
+              label: 'Prévia do bloqueio',
+              to: joinPath(PossibleBlocksPath, [param.anoOrcamentario]),
+            },
+            {
+              label: 'Empenhos bloqueados',
+              to: joinPath(blockedPath, [param.anoOrcamentario]),
+            },
+            {
+              label: 'Empenhos cancelados',
+              to: joinPath(canceledPath, [param.anoOrcamentario]),
+            },
+          ]}
+        />
+      ))}
 
       <Divider />
 
