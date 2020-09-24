@@ -11,7 +11,7 @@ const options = {
 
 const client = axios.create(options);
 
-export const authenticate = async (username, password) => {
+export const postAuthenticate = async (username, password) => {
   return client.post('/authenticate', {
     credentials: { username, password },
   });

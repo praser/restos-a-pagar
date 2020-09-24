@@ -15,7 +15,7 @@ import {
 } from '../components/Layout/External';
 import { Alert, Loading } from '~/components/Dialog';
 
-import { authenticate } from '~/utils/authApi';
+import { postAuthenticate } from '~/utils/apiAuth';
 import { login } from '~/utils/login';
 import { homePath } from '~/utils/paths';
 
@@ -41,7 +41,7 @@ const Login = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const res = await authenticate(username, password);
+      const res = await postAuthenticate(username, password);
       login(res.data.token);
     } catch {
       setAlert(true);
