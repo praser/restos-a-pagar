@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { isToday, isPast, parseISO } from 'date-fns';
 import {
   faBuilding,
   faDollarSign,
@@ -19,6 +20,34 @@ import {
   joinPath,
 } from '~/utils/paths';
 import { getParams } from '~/utils/apiRap';
+
+const mountCollapsables = param => {
+  const blockDate = parseISO(param.dataBloqueio);
+  const cancellationDate = parseISO(param.dataCancelamento);
+
+  const collapsables = [
+    {
+      label: 'Prévia do bloqueio',
+      to: joinPath(PossibleBlocksPath, [param.anoOrcamentario]),
+    },
+  ];
+
+  const blocked = {
+    label: 'Empenhos bloqueados',
+    to: joinPath(blockedPath, [param.anoOrcamentario]),
+  };
+
+  const cancelled = {
+    label: 'Empenhos cancelados',
+    to: joinPath(canceledPath, [param.anoOrcamentario]),
+  };
+
+  if (isPast(blockDate) || isToday(blockDate)) collapsables.push(blocked);
+  if (isPast(cancellationDate) || isToday(cancellationDate))
+    collapsables.push(cancelled);
+
+  return collapsables;
+};
 
 const Navigation = () => {
   const [params, setParams] = useState([]);
@@ -42,20 +71,7 @@ const Navigation = () => {
         <Collapse
           label={`Safra ${param.anoOrcamentario}`}
           icon={faFileSignature}
-          collapsables={[
-            {
-              label: 'Prévia do bloqueio',
-              to: joinPath(PossibleBlocksPath, [param.anoOrcamentario]),
-            },
-            {
-              label: 'Empenhos bloqueados',
-              to: joinPath(blockedPath, [param.anoOrcamentario]),
-            },
-            {
-              label: 'Empenhos cancelados',
-              to: joinPath(canceledPath, [param.anoOrcamentario]),
-            },
-          ]}
+          collapsables={mountCollapsables(param)}
         />
       ))}
 
