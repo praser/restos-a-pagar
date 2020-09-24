@@ -11,3 +11,7 @@ export const login = token => {
 export const logout = () => {
   sessionStorage.removeItem(TOKEN_KEY);
 };
+
+export const getToken = () => {
+  return sessionStorage.getItem(TOKEN_KEY);
+};
