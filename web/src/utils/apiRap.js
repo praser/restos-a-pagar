@@ -4,7 +4,7 @@ import localforage from 'localforage';
 import memoryDriver from 'localforage-memoryStorageDriver';
 import { getToken } from './login';
 
-const maxAge = parseInt(process.env.REACT_APP_LOCAL_CACHE_MAX_AGE);
+const maxAge = parseInt(process.env.REACT_APP_LOCAL_CACHE_MAX_AGE, 10);
 
 const configure = async () => {
   await localforage.defineDriver(memoryDriver);
@@ -21,7 +21,7 @@ const configure = async () => {
   const cache = (() => {
     if (maxAge) {
       return {
-        maxAge: maxAge,
+        maxAge,
         store,
       };
     }

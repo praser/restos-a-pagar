@@ -11,7 +11,6 @@ import {
   SmallButtonPrimary,
   SmallButtonSecondary,
 } from '~/components/Button';
-import { pre } from 'lodash';
 
 import Layout from '~/components/Layout/Internal';
 import { Heading } from '~/components/Layout';
@@ -92,7 +91,7 @@ const PossibleBlocks = () => {
 
     fetchUnidades();
     fetchGestores();
-    fetchTiposInformacoes(parseInt(budgetYear) + 2);
+    fetchTiposInformacoes(parseInt(budgetYear, 10) + 2);
   }, []);
 
   return (
