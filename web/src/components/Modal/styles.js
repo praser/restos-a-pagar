@@ -4,6 +4,25 @@ const partContainer = styled.div`
   padding: 16px;
 `;
 
+export const DismissButton = styled.button`
+  cursor: pointer;
+  padding-left: 1rem;
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #000000;
+  opacity: 0.5;
+  text-shadow: 0 1px 0 #ffffff;
+  outline: 0;
+
+  &&:hover {
+    opacity: 1;
+  }
+`;
+
 export const Modal = styled.div`
   position: fixed;
   top: 0;
@@ -29,6 +48,15 @@ export const Container = styled.div`
   flex-direction: column;
   background-color: #ffffff;
   justify-content: center;
+
+  ${({ alignLeft }) =>
+    alignLeft &&
+    `
+    align-self: flex-end;
+    height: 100%;
+    width: 320px;
+    margin-top: 0;
+  `}
 `;
 
 export const Header = styled(partContainer)`
@@ -38,10 +66,13 @@ export const Header = styled(partContainer)`
   border-bottom: 1px solid #e3e6f0;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
+  display: flex;
+  justify-content: space-between;
   line-height: 1.5;
   font-size: 1.25rem;
   color: #885588;
 `;
+
 export const Body = styled(partContainer)`
   font-size: 1rem;
   font-weight: 400;
