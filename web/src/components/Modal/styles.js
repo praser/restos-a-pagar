@@ -6,20 +6,27 @@ const partContainer = styled.div`
 
 export const DismissButton = styled.button`
   cursor: pointer;
-  padding-left: 1rem;
+  width: 2rem;
   background-color: transparent;
   border: 0;
+  border-radius: 0.35rem;
   appearance: none;
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1;
-  color: #000000;
-  opacity: 0.5;
+  color: rgba(0, 0, 0, 0.5);
   text-shadow: 0 1px 0 #ffffff;
   outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &&:hover {
-    opacity: 1;
+  &&:focus {
+    color: #6e707e;
+    background-color: #fff;
+    border-color: #bac8f3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
   }
 `;
 
