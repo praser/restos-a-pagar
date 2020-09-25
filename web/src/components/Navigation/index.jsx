@@ -69,6 +69,7 @@ const Navigation = () => {
 
       {params.map(param => (
         <Collapse
+          key={param.anoOrcamentario}
           label={`Safra ${param.anoOrcamentario}`}
           icon={faFileSignature}
           collapsables={mountCollapsables(param)}
