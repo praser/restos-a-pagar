@@ -13,7 +13,7 @@ import {
   Divider,
   Link,
 } from '../components/Layout/External';
-import { Alert, Loading } from '~/components/Dialog';
+import { Alert, Loading } from '~/components/Modal';
 
 import { postAuthenticate } from '~/utils/apiAuth';
 import { login } from '~/utils/login';
