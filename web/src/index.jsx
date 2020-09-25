@@ -26,6 +26,11 @@ ReactDOM.render(
           path={paths.dashboardPath}
           exact
         />
+        <PrivateRoute
+          component={PossibleBlocks}
+          path={paths.PossibleBlocksPath}
+          exact
+        />
         <Route
           render={() => (
             <Error code="404" description="Página não encontrada" />

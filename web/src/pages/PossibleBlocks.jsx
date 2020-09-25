@@ -7,15 +7,17 @@ import Layout from '~/components/Layout/Internal';
 import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 import { useCurrentUser } from '~/utils/user';
+import { useParams } from 'react-router-dom';
 
 const PossibleBlocks = () => {
+  const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
 
   return (
     <Layout>
       <Heading>
         <PageTitle>
-          Gestão de possíveis bloqueios da safra 2018 -{' '}
+          Gestão de possíveis bloqueios da safra {budgetYear} -{' '}
           {physicalLotationAbbreviation}
         </PageTitle>
         <div>
