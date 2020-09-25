@@ -86,6 +86,8 @@ export const Body = styled(partContainer)`
   line-height: 1.5;
   color: #858796;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 `;
 export const Footer = styled(partContainer)`
   display: flex;
