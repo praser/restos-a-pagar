@@ -1,17 +1,11 @@
-import { setup } from 'axios-cache-adapter';
+import getXhrClient from './xhrClient';
 
-const options = {
-  baseURL: process.env.REACT_APP_AUTH_API_URL,
-  timeout: 5000,
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-};
-
-const client = setup(options);
+const xhrClient = (async () => {
+  return await getXhrClient(process.env.REACT_APP_AUTH_API_URL);
+})();
 
 export const postAuthenticate = async (username, password) => {
+  const client = await xhrClient;
   return client.post('/authenticate', {
     credentials: { username, password },
   });
