@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { useHistory } from 'react-router-dom';
+import { useCurrentUser } from '~/hooks';
+
 import {
   Avatar,
   Button,
@@ -14,7 +16,6 @@ import {
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { logout } from '~/utils/login';
 import { homePath } from '~/utils/paths';
-import { useCurrentUser } from '~/utils/user';
 
 const Profile = () => {
   const { firstName, avatar } = useCurrentUser();

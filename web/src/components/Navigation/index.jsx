@@ -19,7 +19,7 @@ import {
   ugPath,
   joinPath,
 } from '~/utils/paths';
-import { getParams } from '~/utils/apiRap';
+import { useApiRap } from '~/hooks';
 
 const mountCollapsables = param => {
   const blockDate = parseISO(param.dataBloqueio);
@@ -51,14 +51,12 @@ const mountCollapsables = param => {
 
 const Navigation = () => {
   const [params, setParams] = useState([]);
+  const apiRap = useApiRap();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getParams();
-      setParams(response.data.parametros);
-    };
-
-    fetchData();
+    apiRap.then(api => {
+      api.getParams().then(res => setParams(res.data.parametros));
+    });
   }, []);
 
   return (

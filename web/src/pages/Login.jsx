@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useApiAuth } from '~/hooks';
 
 import { Container } from '~/components/Layout';
 import {
@@ -15,7 +16,6 @@ import {
 } from '../components/Layout/External';
 import { Alert, Loading } from '~/components/Modal';
 
-import { postAuthenticate } from '~/utils/apiAuth';
 import { login } from '~/utils/login';
 import { homePath } from '~/utils/paths';
 
@@ -27,6 +27,7 @@ const Login = () => {
   const [alert, setAlert] = useState(false);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const apiAuth = useApiAuth();
 
   const handleUsernameChange = event => setUsername(event.target.value);
 
@@ -39,18 +40,19 @@ const Login = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    try {
+    apiAuth.then(api => {
       setLoading(true);
-      const res = await postAuthenticate(username, password);
-      login(res.data.token);
-    } catch {
-      setAlert(true);
-    } finally {
-      setTimeout(() => {
-        setLoading(false);
-        history.push(homePath);
-      }, 500);
-    }
+      api
+        .postAuthenticate(username, password)
+        .then(res => login(res.data.token))
+        .catch(() => setAlert(true))
+        .finally(() =>
+          setTimeout(() => {
+            setLoading(false);
+            history.push(homePath);
+          }, 500),
+        );
+    });
   };
 
   const handleAlertConfirm = event => {

@@ -15,10 +15,9 @@ import {
 import Layout from '~/components/Layout/Internal';
 import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
-import { useCurrentUser } from '~/utils/user';
+import { useCurrentUser, useApiRap } from '~/hooks';
 import RightTab from '~/components/Modal/RightTab';
 import { Select } from '~/components/Form';
-import * as rapApi from '~/utils/apiRap';
 
 const defaultUnidade = { value: null, label: 'Todas as GIGOV/REGOV' };
 const defaultGestor = { value: null, label: 'Todos os gestores' };
@@ -48,13 +47,10 @@ const formatGestores = gestores => {
 };
 
 const formatTiposInformacoes = tipos => {
-  const arr = tipos.map(tipo => {
+  return tipos.map(tipo => {
     const { tipoInformacaoId: value, tipoInformacaoDescricao: label } = tipo;
     return { value, label };
   });
-
-  arr.splice(0, 0, defaultTipoInfo);
-  return arr;
 };
 
 const PossibleBlocks = () => {
@@ -62,11 +58,12 @@ const PossibleBlocks = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [unidade, setUnidade] = useState(defaultUnidade);
   const [gestor, setGestor] = useState(defaultGestor);
-  const [tipoInfo, setTipoInfo] = useState(defaultTipoInfo);
-  const [unidades, setUnidades] = useState([]);
-  const [gestores, setGestores] = useState([]);
+  const [tipoInfo, setTipoInfo] = useState([defaultTipoInfo]);
+  const [unidades, setUnidades] = useState([defaultUnidade]);
+  const [gestores, setGestores] = useState([defaultGestor]);
   const [tiposInformacoes, setTiposInformacoes] = useState([]);
   const { physicalLotationAbbreviation } = useCurrentUser();
+  const apiRap = useApiRap();
 
   const handleFilterVisibility = event => {
     event.preventDefault();
@@ -74,25 +71,18 @@ const PossibleBlocks = () => {
   };
 
   useEffect(() => {
-    const fetchUnidades = async () => {
-      const response = await rapApi.getUnidades();
-      setUnidades(formatUnidades(response.data));
-    };
-
-    const fetchGestores = async () => {
-      const response = await rapApi.getGestores();
-      setGestores(formatGestores(response.data));
-    };
-
-    const fetchTiposInformacoes = async anoExecucao => {
-      const response = await rapApi.getTiposInformacoes(anoExecucao);
-      setTiposInformacoes(formatTiposInformacoes(response.data));
-    };
-
-    fetchUnidades();
-    fetchGestores();
-    fetchTiposInformacoes(parseInt(budgetYear, 10) + 2);
-  }, []);
+    apiRap.then(api => {
+      Promise.all([
+        api.getUnidades(),
+        api.getGestores(),
+        api.getTiposInformacoes(parseInt(budgetYear, 10) + 2),
+      ]).then(res => {
+        setUnidades(formatUnidades(res[0].data));
+        setGestores(formatGestores(res[1].data));
+        setTiposInformacoes(formatTiposInformacoes(res[2].data));
+      });
+    });
+  }, [budgetYear]);
 
   return (
     <Layout>
