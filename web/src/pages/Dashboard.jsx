@@ -34,7 +34,7 @@ const parseParam = param => {
 };
 
 const getLink = params => {
-  if (!params.length) return;
+  if (!params.length) return null;
 
   const { anoOrcamentario, dataBloqueio, dataCancelamento } = parseParam(
     currYearparam(params),
