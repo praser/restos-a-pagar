@@ -19,96 +19,83 @@ import { useCurrentUser, useApiRap } from '~/hooks';
 import RightTab from '~/components/Modal/RightTab';
 import { Select } from '~/components/Form';
 
-const defaultUnidade = { value: null, label: 'Todas as GIGOV/REGOV' };
-const defaultGestor = { value: null, label: 'Todos os gestores' };
-const defaultTipoInfo = {
-  value: 3,
-  label: 'Operações que ainda não cumpriram os critérios de desbloqueio',
-};
-
-const formatUnidades = unidades => {
-  const arr = unidades.map(unidade => {
-    const { id: value, nome: label } = unidade;
-    return { value, label };
-  });
-
-  arr.splice(0, 0, defaultUnidade);
-  return arr;
-};
-
-const formatGestores = gestores => {
-  const arr = gestores.map(gestor => {
-    const { siglaGestor: value, nomeGestor } = gestor;
-    return { value, label: `${value} - ${nomeGestor}` };
-  });
-
-  arr.splice(0, 0, defaultGestor);
-  return arr;
-};
-
-const formatTiposInformacoes = tipos => {
-  return tipos.map(tipo => {
-    const { tipoInformacaoId: value, tipoInformacaoDescricao: label } = tipo;
-    return { value, label };
-  });
+const initialState = {
+  showFilters: false,
+  unidade: {},
+  gestor: {},
+  tipoInfo: [],
+  unidades: [],
+  gestores: [],
+  tiposInfo: [],
 };
 
 const PossibleLocks = ({ setLoading, setAlert }) => {
   const { budgetYear } = useParams();
-  const [showFilters, setShowFilters] = useState(false);
-  const [unidade, setUnidade] = useState(defaultUnidade);
-  const [gestor, setGestor] = useState(defaultGestor);
-  const [tipoInfo, setTipoInfo] = useState([defaultTipoInfo]);
-  const [unidades, setUnidades] = useState([defaultUnidade]);
-  const [gestores, setGestores] = useState([defaultGestor]);
-  const [tiposInformacoes, setTiposInformacoes] = useState([]);
+  const [state, setState] = useState(initialState);
   const { physicalLotationAbbreviation } = useCurrentUser();
 
   const apiRap = useApiRap();
 
   const handleFilterVisibility = event => {
     event.preventDefault();
-    setShowFilters(prev => !prev);
+    setState(prev => {
+      const showFilters = !prev.showFilters;
+      return { ...prev, showFilters };
+    });
   };
 
   useEffect(() => {
-    apiRap.then(api => {
-      setLoading(true);
-      Promise.all([
-        api.getUnidades(),
-        api.getGestores(),
-        api.getTiposInformacoes(parseInt(budgetYear, 10) + 2),
-      ])
-        .then(res => {
-          setUnidades(formatUnidades(res[0].data));
-          setGestores(formatGestores(res[1].data));
-          setTiposInformacoes(formatTiposInformacoes(res[2].data));
-        })
-        .finally(() => setTimeout(() => setLoading(false), 500));
-    });
+    apiRap
+      .then(api => {
+        setState(prev => ({
+          ...prev,
+          unidade: api.defaults.unidade,
+          gestor: api.defaults.gestor,
+          tipoInfo: [api.defaults.tipoInfo],
+          unidades: [api.defaults.unidade],
+          gestores: [api.defaults.gestor],
+        }));
+        return api;
+      })
+      .then(api => {
+        setLoading(true);
+        Promise.all([
+          api.requests.getUnidades(),
+          api.requests.getGestores(),
+          api.requests.getTiposInformacoes(parseInt(budgetYear, 10) + 2),
+        ])
+          .then(res => {
+            const unidades = api.formatters.unidades(res[0].data);
+            const gestores = api.formatters.gestores(res[1].data);
+            const tiposInfo = api.formatters.tiposInfo(res[2].data);
+            setState(prev => ({ ...prev, unidades, gestores, tiposInfo }));
+          })
+          .catch(setAlert(true))
+          .finally(() => setTimeout(() => setLoading(false), 500));
+      });
   }, [budgetYear]);
 
   return (
     <Layout>
       <RightTab
-        visible={showFilters}
+        visible={state.showFilters}
         title="Filtros"
         onClose={handleFilterVisibility}
       >
         <Select
-          options={unidades}
-          value={unidade}
-          onChange={value => setUnidade(value)}
+          options={state.unidades}
+          value={state.unidade}
+          onChange={unidade => setState(prev => ({ ...prev, unidade }))}
         />
         <Select
-          options={gestores}
-          value={gestor}
-          onChange={value => setGestor(value)}
+          options={state.gestores}
+          value={state.gestor}
+          onChange={gestor => setState(prev => ({ ...prev, gestor }))}
         />
         <Select
-          options={tiposInformacoes}
-          value={tipoInfo}
-          onChange={value => setTipoInfo(value)}
+          options={state.tiposInfo}
+          value={state.tipoInfo}
+          onChange={tipoInfo => setState(prev => ({ ...prev, tipoInfo }))}
         />
         <ButtonPrimary>
           <FontAwesomeIcon icon={faCheckCircle} />

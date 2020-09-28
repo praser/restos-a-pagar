@@ -35,7 +35,6 @@ const getUser = () => {
 };
 
 const useCurrentUser = () => {
-  console.log(getUser());
   return getUser();
 };
 

@@ -43,11 +43,11 @@ const getLink = params => {
   const today = new Date();
   const interval = { start: dataBloqueio, end: dataCancelamento };
 
-  if (isBefore(today, dataBloqueio)) {
+  if (isBefore(today, dataBloqueio))
     return joinPath(possibleLocksPath, [anoOrcamentario]);
-  } else if (isWithinInterval(today, interval)) {
+
+  if (isWithinInterval(today, interval))
     return joinPath(blockedPath, [anoOrcamentario]);
-  }
 
   return joinPath(canceledPath, [anoOrcamentario]);
 };
@@ -58,8 +58,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     apiRap.then(api => {
-      api.getParams().then(res => setDestiny(getLink(res.data.parametros)));
-      console.log(destiny);
+      api.requests
+        .getParams()
+        .then(res => setDestiny(getLink(res.data.parametros)));
     });
   }, []);
 
