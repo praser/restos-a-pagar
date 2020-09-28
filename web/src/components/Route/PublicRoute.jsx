@@ -3,7 +3,13 @@ import { Redirect, Route } from 'react-router-dom';
 import { isLoggedIn } from '~/utils/login';
 import { dashboardPath } from '~/utils/paths';
 
-const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+const PublicRoute = ({
+  component: Component,
+  restricted,
+  setAlert,
+  setLoading,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
@@ -11,7 +17,7 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
         isLoggedIn() && restricted ? (
           <Redirect to={dashboardPath} />
         ) : (
-          <Component {...props} />
+          <Component {...props} setAlert={setAlert} setLoading={setLoading} />
         )
       }
     />

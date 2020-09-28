@@ -14,20 +14,19 @@ import {
   Divider,
   Link,
 } from '../components/Layout/External';
-import { Alert, Loading } from '~/components/Modal';
 
 import { login } from '~/utils/login';
 import { homePath } from '~/utils/paths';
 
 import image from '~/assets/undraw_Login_v483.svg';
 
-const Login = () => {
+const Login = ({ setLoading, setAlert }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [alert, setAlert] = useState(false);
-  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const apiAuth = useApiAuth();
+
+  console.log(setLoading, setAlert);
 
   const handleUsernameChange = event => setUsername(event.target.value);
 
@@ -55,20 +54,8 @@ const Login = () => {
     });
   };
 
-  const handleAlertConfirm = event => {
-    event.preventDefault();
-    setAlert(false);
-  };
-
   return (
     <Container>
-      <Loading visible={loading} title="Carregando..." />
-      <Alert
-        visible={alert}
-        title="Ops..."
-        text="Login e senha inválidos"
-        onConfirm={handleAlertConfirm}
-      />
       <Content>
         <LoginImage src={image} />
         <Form>

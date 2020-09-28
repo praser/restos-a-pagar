@@ -53,7 +53,7 @@ const formatTiposInformacoes = tipos => {
   });
 };
 
-const PossibleBlocks = () => {
+const PossibleBlocks = ({ setLoading, setAlert }) => {
   const { budgetYear } = useParams();
   const [showFilters, setShowFilters] = useState(false);
   const [unidade, setUnidade] = useState(defaultUnidade);
@@ -63,6 +63,7 @@ const PossibleBlocks = () => {
   const [gestores, setGestores] = useState([defaultGestor]);
   const [tiposInformacoes, setTiposInformacoes] = useState([]);
   const { physicalLotationAbbreviation } = useCurrentUser();
+
   const apiRap = useApiRap();
 
   const handleFilterVisibility = event => {
@@ -72,15 +73,18 @@ const PossibleBlocks = () => {
 
   useEffect(() => {
     apiRap.then(api => {
+      setLoading(true);
       Promise.all([
         api.getUnidades(),
         api.getGestores(),
         api.getTiposInformacoes(parseInt(budgetYear, 10) + 2),
-      ]).then(res => {
-        setUnidades(formatUnidades(res[0].data));
-        setGestores(formatGestores(res[1].data));
-        setTiposInformacoes(formatTiposInformacoes(res[2].data));
-      });
+      ])
+        .then(res => {
+          setUnidades(formatUnidades(res[0].data));
+          setGestores(formatGestores(res[1].data));
+          setTiposInformacoes(formatTiposInformacoes(res[2].data));
+        })
+        .finally(() => setTimeout(() => setLoading(false), 500));
     });
   }, [budgetYear]);
 

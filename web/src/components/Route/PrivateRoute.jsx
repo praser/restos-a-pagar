@@ -3,12 +3,21 @@ import { Redirect, Route } from 'react-router-dom';
 import { isLoggedIn } from '~/utils/login';
 import { loginPath } from '~/utils/paths';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({
+  component: Component,
+  setAlert,
+  setLoading,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
       render={props =>
-        isLoggedIn() ? <Component {...props} /> : <Redirect to={loginPath} />
+        isLoggedIn() ? (
+          <Component {...props} setAlert={setAlert} setLoading={setLoading} />
+        ) : (
+          <Redirect to={loginPath} />
+        )
       }
     />
   );
