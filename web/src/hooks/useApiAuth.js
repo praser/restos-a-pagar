@@ -9,7 +9,7 @@ const useApiAuth = async () => {
     });
   };
 
-  return { postAuthenticate };
+  return { requests: { postAuthenticate } };
 };
 
 export default useApiAuth;

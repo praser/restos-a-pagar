@@ -39,7 +39,7 @@ const Login = ({ setLoading, setAlert }) => {
     event.preventDefault();
     apiAuth.then(api => {
       setLoading(true);
-      api
+      api.requests
         .postAuthenticate(username, password)
         .then(res => login(res.data.token))
         .catch(() => setAlert(true))
