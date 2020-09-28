@@ -3,7 +3,7 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Alert, Loading } from '~/components/Modal';
-import { PossibleBlocks, Error, Login } from './pages';
+import { PossibleLocks, Error, Login } from './pages';
 
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
@@ -54,8 +54,8 @@ const App = () => {
             setLoading={setLoading}
           />
           <PrivateRoute
-            component={PossibleBlocks}
-            path={paths.possibleBlocksPath}
+            component={PossibleLocks}
+            path={paths.possibleLocksPath}
             exact
             setAlert={setAlert}
             setLoading={setLoading}

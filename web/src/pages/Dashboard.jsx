@@ -8,7 +8,7 @@ import {
   blockedPath,
   canceledPath,
   joinPath,
-  possibleBlocksPath,
+  possibleLocksPath,
 } from '~/utils/paths';
 import { useApiRap } from '../hooks';
 
@@ -44,7 +44,7 @@ const getLink = params => {
   const interval = { start: dataBloqueio, end: dataCancelamento };
 
   if (isBefore(today, dataBloqueio)) {
-    return joinPath(possibleBlocksPath, [anoOrcamentario]);
+    return joinPath(possibleLocksPath, [anoOrcamentario]);
   } else if (isWithinInterval(today, interval)) {
     return joinPath(blockedPath, [anoOrcamentario]);
   }

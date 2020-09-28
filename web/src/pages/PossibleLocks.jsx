@@ -53,7 +53,7 @@ const formatTiposInformacoes = tipos => {
   });
 };
 
-const PossibleBlocks = ({ setLoading, setAlert }) => {
+const PossibleLocks = ({ setLoading, setAlert }) => {
   const { budgetYear } = useParams();
   const [showFilters, setShowFilters] = useState(false);
   const [unidade, setUnidade] = useState(defaultUnidade);
@@ -135,4 +135,4 @@ const PossibleBlocks = ({ setLoading, setAlert }) => {
   );
 };
 
-export default PossibleBlocks;
+export default PossibleLocks;
