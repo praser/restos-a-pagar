@@ -49,7 +49,7 @@ const mountCollapsables = param => {
   return collapsables;
 };
 
-const Navigation = () => {
+const Navigation = ({ visible }) => {
   const [params, setParams] = useState([]);
   const apiRap = useApiRap();
 
@@ -60,7 +60,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <Navbar>
+    <Navbar visible={visible}>
       <Brand />
 
       <Divider />
