@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
@@ -23,7 +23,7 @@ const initialState = {
   showFilters: false,
   unidade: {},
   gestor: {},
-  tipoInfo: [],
+  tipoInfo: {},
   unidades: [],
   gestores: [],
   tiposInfo: [],
@@ -33,6 +33,10 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
   const { budgetYear } = useParams();
   const [state, setState] = useState(initialState);
   const { physicalLotationAbbreviation } = useCurrentUser();
+
+  const refGestores = createRef();
+  const refUnidades = createRef();
+  const refTiposInfo = createRef();
 
   const apiRap = useApiRap();
 
@@ -44,6 +48,17 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
     });
   };
 
+  const handleFilter = event => {
+    event.preventDefault();
+    setState(prev => {
+      const showFilters = false;
+      const unidade = refUnidades.current.props.value;
+      const gestor = refGestores.current.props.value;
+      const tipoInfo = refTiposInfo.current.props.value;
+      return { ...prev, showFilters, unidade, gestor, tipoInfo };
+    });
+  };
+
   useEffect(() => {
     apiRap
       .then(api => {
@@ -51,7 +66,7 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
           ...prev,
           unidade: api.defaults.unidade,
           gestor: api.defaults.gestor,
-          tipoInfo: [api.defaults.tipoInfo],
+          tipoInfo: api.defaults.tipoInfo,
           unidades: [api.defaults.unidade],
           gestores: [api.defaults.gestor],
         }));
@@ -70,15 +85,15 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
             const tiposInfo = api.formatters.tiposInfo(res[2].data);
             setState(prev => ({ ...prev, unidades, gestores, tiposInfo }));
           })
-          .catch(
+          .catch(() => {
             setAlert(prev => ({
               ...prev,
               title: 'Uh-oh...',
               text:
                 'Parece que você encontrou um buraco na Maxtrix. Por favor tente novamente',
               visible: true,
-            })),
-          )
+            }));
+          })
           .finally(() => setTimeout(() => setLoading(false), 500));
       });
   }, [budgetYear]);
@@ -94,18 +109,21 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
           options={state.unidades}
           value={state.unidade}
           onChange={unidade => setState(prev => ({ ...prev, unidade }))}
+          ref={refUnidades}
         />
         <Select
           options={state.gestores}
           value={state.gestor}
           onChange={gestor => setState(prev => ({ ...prev, gestor }))}
+          ref={refGestores}
         />
         <Select
           options={state.tiposInfo}
           value={state.tipoInfo}
           onChange={tipoInfo => setState(prev => ({ ...prev, tipoInfo }))}
+          ref={refTiposInfo}
         />
-        <ButtonPrimary>
+        <ButtonPrimary onClick={handleFilter}>
           <FontAwesomeIcon icon={faCheckCircle} />
           Aplicar filtros
         </ButtonPrimary>
