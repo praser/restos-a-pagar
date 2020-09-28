@@ -11,7 +11,7 @@ import Collapse from './Collapse';
 import { Divider, Navbar, SectionTitle } from '~/components/Navigation/styles';
 
 import {
-  PossibleBlocksPath,
+  possibleBlocksPath,
   blockedPath,
   canceledPath,
   createUgPath,
@@ -28,7 +28,7 @@ const mountCollapsables = param => {
   const collapsables = [
     {
       label: 'Prévia do bloqueio',
-      to: joinPath(PossibleBlocksPath, [param.anoOrcamentario]),
+      to: joinPath(possibleBlocksPath, [param.anoOrcamentario]),
     },
   ];
 

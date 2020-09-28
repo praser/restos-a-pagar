@@ -7,6 +7,7 @@ import { PossibleBlocks, Error, Login } from './pages';
 
 import { PrivateRoute, PublicRoute } from './components/Route';
 import * as paths from './utils/paths';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ const App = () => {
             setLoading={setLoading}
           />
           <PrivateRoute
-            component={PossibleBlocks}
+            component={Dashboard}
             path={paths.dashboardPath}
             exact
             setAlert={setAlert}
@@ -54,7 +55,7 @@ const App = () => {
           />
           <PrivateRoute
             component={PossibleBlocks}
-            path={paths.PossibleBlocksPath}
+            path={paths.possibleBlocksPath}
             exact
             setAlert={setAlert}
             setLoading={setLoading}

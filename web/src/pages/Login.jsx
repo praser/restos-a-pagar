@@ -26,8 +26,6 @@ const Login = ({ setLoading, setAlert }) => {
   const history = useHistory();
   const apiAuth = useApiAuth();
 
-  console.log(setLoading, setAlert);
-
   const handleUsernameChange = event => setUsername(event.target.value);
 
   const handlePasswordChange = event => setPassword(event.target.value);
