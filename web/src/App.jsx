@@ -15,12 +15,17 @@ import { useCurrentUser } from './hooks';
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(false);
   const currentUser = useCurrentUser();
+
+  const [alert, setAlert] = useState({
+    visible: false,
+    title: '',
+    text: '',
+  });
 
   const handleAlertConfirm = event => {
     event.preventDefault();
-    setAlert(false);
+    setAlert(prev => ({ ...prev, visible: false }));
   };
 
   return (
@@ -28,9 +33,9 @@ const App = () => {
       <Reset />
       <Loading visible={loading} title="Carregando..." />
       <Alert
-        visible={alert}
-        title="Ops..."
-        text="Login e senha inválidos"
+        visible={alert.visible}
+        title={alert.title}
+        text={alert.text}
         onConfirm={handleAlertConfirm}
       />
       <Container>

@@ -42,7 +42,15 @@ const Login = ({ setLoading, setAlert }) => {
       api.requests
         .postAuthenticate(username, password)
         .then(res => login(res.data.token))
-        .catch(() => setAlert(true))
+        .catch(() =>
+          setAlert(prev => ({
+            ...prev,
+            title: 'Ops...',
+            text:
+              'Parece que a sua matrícula e a sua senha não estão corretas. Por favor tente novamente',
+            visible: true,
+          })),
+        )
         .finally(() =>
           setTimeout(() => {
             setLoading(false);

@@ -70,7 +70,15 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
             const tiposInfo = api.formatters.tiposInfo(res[2].data);
             setState(prev => ({ ...prev, unidades, gestores, tiposInfo }));
           })
-          .catch(setAlert(true))
+          .catch(
+            setAlert(prev => ({
+              ...prev,
+              title: 'Uh-oh...',
+              text:
+                'Parece que você encontrou um buraco na Maxtrix. Por favor tente novamente',
+              visible: true,
+            })),
+          )
           .finally(() => setTimeout(() => setLoading(false), 500));
       });
   }, [budgetYear]);
