@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import { capitalize, join, split } from 'lodash';
 import { parseISO } from 'date-fns';
-import { isLoggedIn, getToken } from '../utils/login';
+import { getToken } from '../utils/login';
 
 const capitalizeFirstChar = name => split(name, ' ').map(n => capitalize(n));
 
@@ -27,12 +27,16 @@ const format = user => {
 };
 
 const getUser = () => {
-  const { user } = jwtDecode(getToken());
+  const token = getToken();
+  if (!token) return null;
+
+  const { user } = jwtDecode(token);
   return format(user);
 };
 
 const useCurrentUser = () => {
-  return isLoggedIn() ? getUser() : null;
+  console.log(getUser());
+  return getUser();
 };
 
 export default useCurrentUser;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { isLoggedIn } from '~/utils/login';
+import { useCurrentUser } from '~/hooks';
 import { loginPath } from '~/utils/paths';
 
 const PrivateRoute = ({
@@ -9,11 +9,12 @@ const PrivateRoute = ({
   setLoading,
   ...rest
 }) => {
+  const currentUser = useCurrentUser();
   return (
     <Route
       {...rest}
       render={props =>
-        isLoggedIn() ? (
+        currentUser ? (
           <Component {...props} setAlert={setAlert} setLoading={setLoading} />
         ) : (
           <Redirect to={loginPath} />

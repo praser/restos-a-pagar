@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { isLoggedIn } from '~/utils/login';
+import { useCurrentUser } from '~/hooks';
 import { dashboardPath } from '~/utils/paths';
 
 const PublicRoute = ({
@@ -10,11 +10,12 @@ const PublicRoute = ({
   setLoading,
   ...rest
 }) => {
+  const currentUser = useCurrentUser();
   return (
     <Route
       {...rest}
       render={props =>
-        isLoggedIn() && restricted ? (
+        currentUser && restricted ? (
           <Redirect to={dashboardPath} />
         ) : (
           <Component {...props} setAlert={setAlert} setLoading={setLoading} />
