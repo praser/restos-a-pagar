@@ -3,7 +3,7 @@ import { defaultMessage } from '~/utils/messages';
 const finallyAct = setLoading => setTimeout(() => setLoading(false), 500);
 
 const catchAct = (setAlert, alertProps) => {
-  const message = alertProps ? alertProps : defaultMessage;
+  const message = alertProps || defaultMessage;
   setAlert(prev => ({
     ...prev,
     ...message,

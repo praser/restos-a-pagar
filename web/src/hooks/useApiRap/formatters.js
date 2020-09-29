@@ -1,25 +1,25 @@
 import { parseISO } from 'date-fns';
 import * as defaults from './defaults';
 
-export const unidade = unidade => {
-  const { id: value, nome: label } = unidade;
+export const unidade = und => {
+  const { id: value, nome: label } = und;
   return { value, label };
 };
 
-export const unidades = unidades => {
-  const arr = unidades.map(u => unidade(u));
+export const unidades = unds => {
+  const arr = unds.map(u => unidade(u));
 
   arr.splice(0, 0, defaults.unidade);
   return arr;
 };
 
-export const gestor = gestor => {
-  const { siglaGestor: value, nomeGestor } = gestor;
+export const gestor = gtr => {
+  const { siglaGestor: value, nomeGestor } = gtr;
   return { value, label: `${value} - ${nomeGestor}` };
 };
 
-export const gestores = gestores => {
-  const arr = gestores.map(g => gestor(g));
+export const gestores = gtrs => {
+  const arr = gtrs.map(g => gestor(g));
 
   arr.splice(0, 0, defaults.gestor);
   return arr;
@@ -34,20 +34,20 @@ export const tiposInfo = tipos => {
   return tipos.map(tipo => tipoInfo(tipo));
 };
 
-export const operacao = operacao => {
+export const operacao = opr => {
   const {
-    created_at,
+    created_at: createdAt,
     dataAIO,
     dataCumprimentoCriteriosDesbloqueio,
     dataSPA,
     dataVRPL,
     dataVigencia,
-    updated_at,
-  } = operacao;
+    updated_at: updatedAt,
+  } = opr;
 
   return {
-    ...operacao,
-    createdAt: parseISO(created_at),
+    ...opr,
+    createdAt: parseISO(createdAt),
     dataAIO: parseISO(dataAIO),
     dataCumprimentoCriteriosDesbloqueio: parseISO(
       dataCumprimentoCriteriosDesbloqueio,
@@ -55,10 +55,10 @@ export const operacao = operacao => {
     dataSPA: parseISO(dataSPA),
     dataVRPL: parseISO(dataVRPL),
     dataVigencia: parseISO(dataVigencia),
-    updatedAt: parseISO(updated_at),
+    updatedAt: parseISO(updatedAt),
   };
 };
 
-export const operacoes = operacoes => {
-  return operacoes.map(o => operacao(o));
+export const operacoes = oprs => {
+  return oprs.map(opr => operacao(opr));
 };

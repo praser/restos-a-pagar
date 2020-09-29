@@ -11,6 +11,8 @@ const setDefaults = api => {
   };
 };
 
+const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
+
 const getRequests = (api, budgetYear) => {
   return [
     api.requests.getUnidades(),
@@ -26,8 +28,6 @@ const formatData = (api, res) => ({
   gestores: api.formatters.gestores(res[1].data),
   tiposInfo: api.formatters.tiposInfo(res[2].data),
 });
-
-const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
 
 export const initialState = {
   unidade: {},
