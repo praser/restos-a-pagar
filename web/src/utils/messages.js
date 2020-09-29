@@ -11,3 +11,9 @@ export const possibleLocksFilters = getMessage({
   text:
     'Houve um erro ao obter os dados dos filtros. Por favor tente novamente',
 });
+
+export const loginFail = getMessage({
+  title: 'Ops...',
+  text:
+    'Parece que a sua matrícula e a sua senha não estão corretas. Por favor tente novamente',
+});
