@@ -11,8 +11,8 @@ import { PageTitle } from '~/components/Tipography';
 import { useCurrentUser } from '~/hooks';
 import { unidade, gestor, tipoInfo } from '~/hooks/useApiRap/defaults';
 
-import { handleVisibility } from './PossibleLocks/RightTab/handlers';
-import RightTab from './PossibleLocks/RightTab';
+import { handleVisibility } from './RightTab/handlers';
+import RightTab from './RightTab';
 
 const initialState = {
   showFilters: false,
