@@ -19,6 +19,8 @@ import { useCurrentUser, useApiRap } from '~/hooks';
 import RightTab from '~/components/Modal/RightTab';
 import { Select } from '~/components/Form';
 
+import { handleFilter, handleFilterVisibility } from './PossibleLocks/handlers';
+
 const initialState = {
   showFilters: false,
   unidade: {},
@@ -40,24 +42,6 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
   const refTiposInfo = createRef();
 
   const apiRap = useApiRap();
-
-  const handleFilterVisibility = event => {
-    event.preventDefault();
-    setState(prev => {
-      const showFilters = !prev.showFilters;
-      return { ...prev, showFilters };
-    });
-  };
-
-  const handleFilter = event => {
-    setState(prev => {
-      const showFilters = false;
-      const unidade = refUnidades.current.props.value;
-      const gestor = refGestores.current.props.value;
-      const tipoInfo = refTiposInfo.current.props.value;
-      return { ...prev, showFilters, unidade, gestor, tipoInfo };
-    });
-  };
 
   useEffect(() => {
     return apiRap
@@ -128,7 +112,15 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
           onChange={tipoInfo => setState(prev => ({ ...prev, tipoInfo }))}
           ref={refTiposInfo}
         />
-        <ButtonPrimary onClick={handleFilter}>
+        <ButtonPrimary
+          onClick={() =>
+            handleFilter(setState, [
+              refUnidades.current.props.value,
+              refGestores.current.props.value,
+              refTiposInfo.current.props.value,
+            ])
+          }
+        >
           <FontAwesomeIcon icon={faCheckCircle} />
           Aplicar filtros
         </ButtonPrimary>
@@ -143,7 +135,9 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
             <FontAwesomeIcon icon={faDownload} />
             Download da base csv
           </SmallButtonPrimary>
-          <SmallButtonSecondary onClick={handleFilterVisibility}>
+          <SmallButtonSecondary
+            onClick={() => handleFilterVisibility(setState)}
+          >
             <FontAwesomeIcon icon={faFilter} />
             Filtros
           </SmallButtonSecondary>
