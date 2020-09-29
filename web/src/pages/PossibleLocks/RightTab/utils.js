@@ -11,7 +11,7 @@ const setDefaults = api => {
   };
 };
 
-const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
+export const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
 
 const getRequests = (api, budgetYear) => {
   return [

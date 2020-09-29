@@ -7,6 +7,11 @@ const getMessage = args => {
   return { ...defaultMessage, ...args };
 };
 
+export const possibleLocks = getMessage({
+  text:
+    'Houve um erro ao carrtegar os dados do pré bloqueio. Por favor tente novamente.',
+});
+
 export const possibleLocksFilters = getMessage({
   text:
     'Houve um erro ao obter os dados dos filtros. Por favor tente novamente',

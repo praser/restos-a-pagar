@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
+import { CSVLink } from 'react-csv';
 
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import Layout from '~/components/Layout/Internal';
 import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 
-import { useCurrentUser } from '~/hooks';
+import { useApiRap, useCurrentUser } from '~/hooks';
 import { unidade, gestor, tipoInfo } from '~/hooks/useApiRap/defaults';
 
+import { possibleLocks as alertProps } from '~/utils/messages';
+
 import { handleVisibility } from './RightTab/handlers';
+import { calcExecutionYear } from './RightTab/utils';
 import RightTab from './RightTab';
+import { doAllXhrRequest } from '~/utils/xhr';
 
 const initialState = {
   showFilters: false,
@@ -21,10 +26,42 @@ const initialState = {
   tipoInfo,
 };
 
+const dataInitialState = {
+  operacoes: [{}],
+};
+
 const PossibleLocks = ({ setLoading, setAlert }) => {
   const [state, setState] = useState(initialState);
+  const [dataState, setDataState] = useState(dataInitialState);
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
+  const apiRap = useApiRap();
+  const { tipoInfo, unidade, gestor } = state;
+
+  useEffect(() => {
+    apiRap.then(api => {
+      const success = res => {
+        const operacoes = api.formatters.operacoes(res[0].data);
+        setDataState(prev => ({ ...prev, operacoes }));
+      };
+
+      const requests = [
+        api.requests.getOperacoesPreBloqueio({
+          anoExecucao: calcExecutionYear(budgetYear),
+          tipoInfo: tipoInfo.value,
+          unidadeId: unidade.value || '',
+          siglaGestor: gestor.value || '',
+        }),
+      ];
+      doAllXhrRequest({
+        alertProps,
+        requests,
+        setAlert,
+        setLoading,
+        success,
+      });
+    });
+  }, [tipoInfo, unidade, gestor]);
 
   return (
     <Layout>
@@ -40,7 +77,12 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
           {physicalLotationAbbreviation}
         </PageTitle>
         <div>
-          <SmallButtonPrimary>
+          <SmallButtonPrimary
+            as={CSVLink}
+            data={dataState.operacoes}
+            separator=";"
+            filename="operacoesPassiveisBloqueio.csv"
+          >
             <FontAwesomeIcon icon={faDownload} />
             Download da base csv
           </SmallButtonPrimary>
