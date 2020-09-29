@@ -10,7 +10,11 @@ import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 
 import { useApiRap, useCurrentUser } from '~/hooks';
-import { unidade, gestor, tipoInfo } from '~/hooks/useApiRap/defaults';
+import {
+  unidade as defUnidade,
+  gestor as defGestor,
+  tipoInfo as defTipoInfo,
+} from '~/hooks/useApiRap/defaults';
 
 import { possibleLocks as alertProps } from '~/utils/messages';
 
@@ -21,9 +25,9 @@ import { doAllXhrRequest } from '~/utils/xhr';
 
 const initialState = {
   showFilters: false,
-  unidade,
-  gestor,
-  tipoInfo,
+  unidade: defUnidade,
+  gestor: defGestor,
+  tipoInfo: defTipoInfo,
 };
 
 const dataInitialState = {

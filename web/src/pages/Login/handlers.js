@@ -1,6 +1,6 @@
 import { login } from '~/utils/login';
 import { homePath } from '~/utils/paths';
-import { doAllXhrRequest, doXhrRequest } from '~/utils/xhr';
+import { doAllXhrRequest } from '~/utils/xhr';
 import { loginFail as alertProps } from '~/utils/messages';
 
 export const handleUsernameChange = (event, setState) => {
