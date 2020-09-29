@@ -27,9 +27,14 @@ export const Button = styled.button`
     color: rgba(255, 255, 255, 1);
   }
 
-  &&:focus {
+  &:focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 

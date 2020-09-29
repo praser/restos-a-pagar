@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect, createRef, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
@@ -31,6 +31,7 @@ const initialState = {
 
 const PossibleLocks = ({ setLoading, setAlert }) => {
   const { budgetYear } = useParams();
+  const executionYear = parseInt(budgetYear, 10) + 2;
   const [state, setState] = useState(initialState);
   const { physicalLotationAbbreviation } = useCurrentUser();
 
@@ -49,7 +50,6 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
   };
 
   const handleFilter = event => {
-    event.preventDefault();
     setState(prev => {
       const showFilters = false;
       const unidade = refUnidades.current.props.value;
@@ -60,7 +60,7 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
   };
 
   useEffect(() => {
-    apiRap
+    return apiRap
       .then(api => {
         setState(prev => ({
           ...prev,
@@ -77,13 +77,18 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
         Promise.all([
           api.requests.getUnidades(),
           api.requests.getGestores(),
-          api.requests.getTiposInformacoes(parseInt(budgetYear, 10) + 2),
+          api.requests.getTiposInformacoes({ anoExecucao: executionYear }),
         ])
           .then(res => {
             const unidades = api.formatters.unidades(res[0].data);
             const gestores = api.formatters.gestores(res[1].data);
             const tiposInfo = api.formatters.tiposInfo(res[2].data);
-            setState(prev => ({ ...prev, unidades, gestores, tiposInfo }));
+            setState(prev => ({
+              ...prev,
+              unidades,
+              gestores,
+              tiposInfo,
+            }));
           })
           .catch(() => {
             setAlert(prev => ({
@@ -96,7 +101,7 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
           })
           .finally(() => setTimeout(() => setLoading(false), 500));
       });
-  }, [budgetYear]);
+  }, [executionYear]);
 
   return (
     <Layout>
