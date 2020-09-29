@@ -32,7 +32,6 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
         budgetYear={budgetYear}
         visible={state.showFilters}
         setAlert={setAlert}
-        setLoading={setLoading}
         setState={setState}
       />
       <Heading>

@@ -9,19 +9,14 @@ import RightTabSC from '~/components/Modal/RightTab';
 import { handleClick, handleVisibility } from './handlers';
 import { fetchData, initialState } from './utils';
 
-const RightTab = ({
-  setLoading,
-  setAlert,
-  visible,
-  setState: setParentState,
-}) => {
+const RightTab = ({ setAlert, visible, setState: setParentState }) => {
   const { budgetYear } = useParams();
   const [state, setState] = useState(initialState);
   const apiRap = useApiRap();
 
   useEffect(() => {
-    fetchData({ apiRap, budgetYear, setLoading, setAlert, setState });
-  }, [budgetYear, setAlert, setLoading]);
+    fetchData({ apiRap, budgetYear, setAlert, setState });
+  }, [budgetYear, setAlert]);
 
   return (
     <RightTabSC
