@@ -16,6 +16,7 @@ export const Button = styled.button`
   box-shadow: 0 0.125rem 0.25rem 0 rgba(58, 59, 69, 0.2);
   margin: 0 0.15rem;
   letter-spacing: 0.04rem;
+  text-decoration: none;
   svg {
     margin-right: 0.3rem;
   }
