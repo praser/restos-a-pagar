@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faFilter } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSVLink } from 'react-csv';
+import { useParams } from 'react-router-dom';
 
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import Layout from '~/components/Layout/Internal';
@@ -10,11 +10,6 @@ import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 
 import { useApiRap, useCurrentUser } from '~/hooks';
-import {
-  unidade as defUnidade,
-  gestor as defGestor,
-  tipoInfo as defTipoInfo,
-} from '~/hooks/useApiRap/defaults';
 
 import { possibleLocks as alertProps } from '~/utils/messages';
 
@@ -23,16 +18,7 @@ import { calcExecutionYear } from './RightTab/utils';
 import RightTab from './RightTab';
 import { doAllXhrRequest } from '~/utils/xhr';
 
-const initialState = {
-  showFilters: false,
-  unidade: defUnidade,
-  gestor: defGestor,
-  tipoInfo: defTipoInfo,
-};
-
-const dataInitialState = {
-  operacoes: [{}],
-};
+import { initialState, dataInitialState, csvHeaders } from './utils';
 
 const PossibleLocks = ({ setLoading, setAlert }) => {
   const [state, setState] = useState(initialState);
@@ -46,7 +32,8 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
     apiRap.then(api => {
       const success = res => {
         const operacoes = api.formatters.operacoes(res[0].data);
-        setDataState(prev => ({ ...prev, operacoes }));
+        const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
+        setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
       };
 
       const requests = [
@@ -83,9 +70,10 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
         <div>
           <SmallButtonPrimary
             as={CSVLink}
-            data={dataState.operacoes}
+            data={dataState.operacoesCsv}
             separator=";"
             filename="operacoesPassiveisBloqueio.csv"
+            headers={csvHeaders}
           >
             <FontAwesomeIcon icon={faDownload} />
             Download da base csv

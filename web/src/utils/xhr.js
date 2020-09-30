@@ -22,6 +22,9 @@ export const doAllXhrRequest = args => {
   if (isFunction(setLoading)) setLoading(true);
   return Promise.all(requests)
     .then(res => success(res))
-    .catch(() => catchAct(setAlert, alertProps))
+    .catch(error => {
+      console.error(error);
+      catchAct(setAlert, alertProps);
+    })
     .finally(() => finallyAct(setLoading));
 };
