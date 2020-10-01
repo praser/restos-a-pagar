@@ -13,29 +13,41 @@ import Navigation from './components/Navigation';
 import { Container } from './components/Layout';
 import { useCurrentUser } from './hooks';
 
-const App = () => {
-  const [loading, setLoading] = useState(false);
-  const currentUser = useCurrentUser();
-
-  const [alert, setAlert] = useState({
+const initialState = {
+  jwt: '',
+  loading: false,
+  alert: {
     visible: false,
     title: '',
     text: '',
-  });
+  },
+};
+
+const App = () => {
+  const [state, setState] = useState(initialState);
+  const currentUser = useCurrentUser();
+
+  const setLoading = loading => {
+    setState(prev => ({ ...prev, loading }));
+  };
+
+  const setAlert = alert => {
+    setState(prev => ({ ...prev, alert: alert() }));
+  };
 
   const handleAlertConfirm = event => {
     event.preventDefault();
-    setAlert(prev => ({ ...prev, visible: false }));
+    setState(prev => ({ ...prev, alert: { visible: false } }));
   };
 
   return (
     <React.StrictMode>
       <Reset />
-      <Loading visible={loading} title="Carregando..." />
+      <Loading visible={state.loading} title="Carregando..." />
       <Alert
-        visible={alert.visible}
-        title={alert.title}
-        text={alert.text}
+        visible={state.alert.visible}
+        title={state.alert.title}
+        text={state.alert.text}
         onConfirm={handleAlertConfirm}
       />
       <Container>
