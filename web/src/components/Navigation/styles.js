@@ -18,7 +18,6 @@ export const Navbar = styled.ul`
   background-size: cover;
   display: flex;
   flex-direction: column;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
 `;
 
 export const SectionTitle = styled.p`

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -14,10 +14,15 @@ import Navigation from './components/Navigation';
 import { Container } from './components/Layout';
 import { useCurrentUser } from './hooks';
 import { Context } from './Store';
+import { getToken } from '~/utils/jwt';
 
 const App = () => {
   const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
+
+  useEffect(() => {
+    dispatch({ type: 'SET_JWT', payload: getToken() });
+  }, []);
 
   const handleAlertConfirm = event => {
     event.preventDefault();
@@ -25,6 +30,14 @@ const App = () => {
       type: 'SET_ALERT',
       payload: { alert: { visible: false } },
     });
+  };
+
+  const navigation = () => {
+    if (isNull(currentUser)) {
+      return <></>;
+    }
+
+    return <Navigation />;
   };
 
   return (
@@ -39,7 +52,7 @@ const App = () => {
       />
       <Container>
         <Router>
-          <Navigation visible={!isNull(currentUser)} />
+          {navigation()}
           <Switch>
             <PublicRoute
               restricted
