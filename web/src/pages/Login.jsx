@@ -25,7 +25,7 @@ const initialState = {
 };
 
 const Login = () => {
-  const [context, dispatch] = useContext(Context);
+  const dispatch = useContext(Context)[1];
   const [state, setState] = useState(initialState);
   const apiAuth = useApiAuth();
   const { doAllXhrRequest } = useXHR();

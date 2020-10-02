@@ -16,7 +16,7 @@ import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { removeToken } from '~/utils/jwt';
 
 const Profile = () => {
-  const [context, dispatch] = useContext(Context);
+  const dispatch = useContext(Context)[1];
   const { firstName, avatar } = useCurrentUser();
   const [expanded, setExpanded] = useState(false);
 

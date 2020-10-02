@@ -40,14 +40,17 @@ const App = () => {
     return <Navigation />;
   };
 
+  const { loading, alert } = context;
+  const { visible, title, text } = alert;
+
   return (
     <React.StrictMode>
       <Reset />
-      <Loading visible={context.loading} title="Carregando..." />
+      <Loading visible={loading} title="Carregando..." />
       <Alert
-        visible={context.alert.visible}
-        title={context.alert.title}
-        text={context.alert.text}
+        visible={visible}
+        title={title}
+        text={text}
         onConfirm={handleAlertConfirm}
       />
       <Container>

@@ -3,7 +3,7 @@ import { Context } from '~/Store';
 import { defaultMessage } from '~/utils/messages';
 
 const useXHR = () => {
-  const [context, dispatch] = useContext(Context);
+  const dispatch = useContext(Context)[1];
 
   const finallyAct = () => {
     setTimeout(
@@ -35,8 +35,7 @@ const useXHR = () => {
     setTimeout(() => {
       return Promise.all(requests)
         .then(res => success(res))
-        .catch(error => {
-          console.error(error);
+        .catch(() => {
           catchAct(alertProps);
         })
         .finally(() => finallyAct());
