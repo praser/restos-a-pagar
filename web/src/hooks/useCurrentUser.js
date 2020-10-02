@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import { capitalize, join, split } from 'lodash';
 import { parseISO } from 'date-fns';
-import { getToken } from '../utils/login';
+import { getToken } from '../utils/jwt';
 
 const capitalizeFirstChar = name => split(name, ' ').map(n => capitalize(n));
 

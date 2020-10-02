@@ -2,7 +2,7 @@
 import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
 import memoryDriver from 'localforage-memoryStorageDriver';
-import { getToken } from './login';
+import { getToken } from './jwt';
 
 const maxAge = parseInt(process.env.REACT_APP_LOCAL_CACHE_MAX_AGE, 10);
 const timeout = 5000;

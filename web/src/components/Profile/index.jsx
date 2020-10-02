@@ -14,7 +14,7 @@ import {
   Name,
 } from './styles';
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
-import { logout } from '~/utils/login';
+import { removeToken } from '~/utils/jwt';
 import { homePath } from '~/utils/paths';
 
 const Profile = () => {
@@ -24,7 +24,7 @@ const Profile = () => {
 
   const handleLogout = event => {
     event.preventDefault();
-    logout();
+    removeToken();
     history.push(homePath);
   };
 

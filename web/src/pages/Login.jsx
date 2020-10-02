@@ -12,7 +12,7 @@ import {
   Link,
 } from '../components/Layout/External';
 import { useApiAuth, useXHR } from '~/hooks';
-import { login } from '~/utils/login';
+import { setToken } from '~/utils/jwt';
 import { loginFail as alertProps } from '~/utils/messages';
 
 import image from '~/assets/undraw_Login_v483.svg';
@@ -46,7 +46,7 @@ const Login = () => {
 
   const handleSuccess = res => {
     const { token } = res[0].data;
-    login(token);
+    setToken(token);
   };
 
   const sendRequest = useCallback(async () => {

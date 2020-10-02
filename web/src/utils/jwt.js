@@ -1,10 +1,10 @@
 const TOKEN_KEY = 'jwt';
 
-export const login = token => {
+export const setToken = token => {
   sessionStorage.setItem(TOKEN_KEY, token);
 };
 
-export const logout = () => {
+export const removeToken = () => {
   sessionStorage.removeItem(TOKEN_KEY);
 };
 
