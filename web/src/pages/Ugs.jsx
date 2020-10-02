@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SmallButtonPrimary } from '~/components/Button';
+import { Card, CardBody, CardHeader } from '~/components/Card';
 import { Heading } from '~/components/Layout';
 import Layout from '~/components/Layout/Internal';
 import { PageTitle } from '~/components/Tipography';
@@ -20,6 +21,12 @@ const Ugs = () => {
           </SmallButtonPrimary>
         </div>
       </Heading>
+      <Card>
+        <CardHeader>
+          Lista de unidades gestoras cadastradas nos sistema
+        </CardHeader>
+        <CardBody />
+      </Card>
     </Layout>
   );
 };

@@ -13,4 +13,5 @@ export const Container = styled.div`
 export const Heading = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 `;
