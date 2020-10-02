@@ -5,7 +5,6 @@ import { loginPath } from '~/utils/paths';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = useCurrentUser();
-  console.log(currentUser);
   return (
     <Route
       {...rest}
