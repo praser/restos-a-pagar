@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { Container } from '~/components/Layout';
 import {
   Content,
@@ -14,6 +14,7 @@ import {
 import { useApiAuth, useXHR } from '~/hooks';
 import { setToken } from '~/utils/jwt';
 import { loginFail as alertProps } from '~/utils/messages';
+import { Context } from '~/Store';
 
 import image from '~/assets/undraw_Login_v483.svg';
 
@@ -24,6 +25,7 @@ const initialState = {
 };
 
 const Login = () => {
+  const [context, dispatch] = useContext(Context);
   const [state, setState] = useState(initialState);
   const apiAuth = useApiAuth();
   const { doAllXhrRequest } = useXHR();
@@ -47,6 +49,7 @@ const Login = () => {
   const handleSuccess = res => {
     const { token } = res[0].data;
     setToken(token);
+    dispatch({ type: 'SET_JWT', payload: token });
   };
 
   const sendRequest = useCallback(async () => {

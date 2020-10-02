@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { useHistory } from 'react-router-dom';
 import { useCurrentUser } from '~/hooks';
+import { Context } from '~/Store';
 
 import {
   Avatar,
@@ -15,17 +14,16 @@ import {
 } from './styles';
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { removeToken } from '~/utils/jwt';
-import { homePath } from '~/utils/paths';
 
 const Profile = () => {
+  const [context, dispatch] = useContext(Context);
   const { firstName, avatar } = useCurrentUser();
   const [expanded, setExpanded] = useState(false);
-  const history = useHistory();
 
   const handleLogout = event => {
     event.preventDefault();
     removeToken();
-    history.push(homePath);
+    dispatch({ type: 'SET_JWT', payload: null });
   };
 
   const handleClick = event => {
