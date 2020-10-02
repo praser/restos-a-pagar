@@ -1,7 +1,4 @@
-import { doAllXhrRequest } from '~/utils/xhr';
-import { possibleLocksFilters as alertProps } from '~/utils/messages';
-
-const setDefaults = api => {
+export const setDefaults = api => {
   return {
     unidade: api.defaults.unidade,
     gestor: api.defaults.gestor,
@@ -13,7 +10,7 @@ const setDefaults = api => {
 
 export const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
 
-const getRequests = (api, budgetYear) => {
+export const getRequests = (api, budgetYear) => {
   return [
     api.requests.getUnidades(),
     api.requests.getGestores(),
@@ -23,7 +20,7 @@ const getRequests = (api, budgetYear) => {
   ];
 };
 
-const formatData = (api, res) => ({
+export const formatData = (api, res) => ({
   unidades: api.formatters.unidades(res[0].data),
   gestores: api.formatters.gestores(res[1].data),
   tiposInfo: api.formatters.tiposInfo(res[2].data),
@@ -36,27 +33,4 @@ export const initialState = {
   unidades: [],
   gestores: [],
   tiposInfo: [],
-};
-
-export const fetchData = args => {
-  const { apiRap, budgetYear, setLoading, setAlert, setState } = args;
-  return apiRap
-    .then(api => {
-      setState(prev => ({ ...prev, ...setDefaults(api) }));
-      return api;
-    })
-    .then(api => {
-      const success = res => {
-        const data = formatData(api, res);
-        setState(prev => ({ ...prev, ...data }));
-      };
-
-      return doAllXhrRequest({
-        requests: getRequests(api, budgetYear),
-        setLoading,
-        setAlert,
-        alertProps,
-        success,
-      });
-    });
 };

@@ -3,22 +3,13 @@ import { Redirect, Route } from 'react-router-dom';
 import { useCurrentUser } from '~/hooks';
 import { loginPath } from '~/utils/paths';
 
-const PrivateRoute = ({
-  component: Component,
-  setAlert,
-  setLoading,
-  ...rest
-}) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   const currentUser = useCurrentUser();
   return (
     <Route
       {...rest}
       render={props =>
-        currentUser ? (
-          <Component {...props} setAlert={setAlert} setLoading={setLoading} />
-        ) : (
-          <Redirect to={loginPath} />
-        )
+        currentUser ? <Component {...props} /> : <Redirect to={loginPath} />
       }
     />
   );

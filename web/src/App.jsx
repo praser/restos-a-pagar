@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { isNull } from 'lodash';
+
 import { Alert, Loading } from '~/components/Modal';
 import { PossibleLocks, Error, Login } from './pages';
 
@@ -12,42 +13,28 @@ import Dashboard from './pages/Dashboard';
 import Navigation from './components/Navigation';
 import { Container } from './components/Layout';
 import { useCurrentUser } from './hooks';
-
-const initialState = {
-  jwt: '',
-  loading: false,
-  alert: {
-    visible: false,
-    title: '',
-    text: '',
-  },
-};
+import { Context } from './Store';
 
 const App = () => {
-  const [state, setState] = useState(initialState);
+  const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
-
-  const setLoading = loading => {
-    setState(prev => ({ ...prev, loading }));
-  };
-
-  const setAlert = alert => {
-    setState(prev => ({ ...prev, alert: alert() }));
-  };
 
   const handleAlertConfirm = event => {
     event.preventDefault();
-    setState(prev => ({ ...prev, alert: { visible: false } }));
+    dispatch({
+      type: 'SET_ALERT',
+      payload: { alert: { visible: false } },
+    });
   };
 
   return (
     <React.StrictMode>
       <Reset />
-      <Loading visible={state.loading} title="Carregando..." />
+      <Loading visible={context.loading} title="Carregando..." />
       <Alert
-        visible={state.alert.visible}
-        title={state.alert.title}
-        text={state.alert.text}
+        visible={context.alert.visible}
+        title={context.alert.title}
+        text={context.alert.text}
         onConfirm={handleAlertConfirm}
       />
       <Container>
@@ -59,30 +46,22 @@ const App = () => {
               component={Login}
               path={paths.homePath}
               exact
-              setAlert={setAlert}
-              setLoading={setLoading}
             />
             <PublicRoute
               restricted
               component={Login}
               path={paths.loginPath}
               exact
-              setAlert={setAlert}
-              setLoading={setLoading}
             />
             <PrivateRoute
               component={Dashboard}
               path={paths.dashboardPath}
               exact
-              setAlert={setAlert}
-              setLoading={setLoading}
             />
             <PrivateRoute
               component={PossibleLocks}
               path={paths.possibleLocksPath}
               exact
-              setAlert={setAlert}
-              setLoading={setLoading}
             />
             <Route
               render={() => (

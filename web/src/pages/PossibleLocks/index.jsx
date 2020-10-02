@@ -9,24 +9,24 @@ import Layout from '~/components/Layout/Internal';
 import { Heading } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 
-import { useApiRap, useCurrentUser } from '~/hooks';
+import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 
 import { possibleLocks as alertProps } from '~/utils/messages';
 
 import { handleVisibility } from './RightTab/handlers';
 import { calcExecutionYear } from './RightTab/utils';
 import RightTab from './RightTab';
-import { doAllXhrRequest } from '~/utils/xhr';
 
 import { initialState, dataInitialState, csvHeaders } from './utils';
 
-const PossibleLocks = ({ setLoading, setAlert }) => {
+const PossibleLocks = () => {
   const [state, setState] = useState(initialState);
   const [dataState, setDataState] = useState(dataInitialState);
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
+  const { doAllXhrRequest } = useXHR();
 
   useEffect(() => {
     apiRap.then(api => {
@@ -47,8 +47,6 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
       doAllXhrRequest({
         alertProps,
         requests,
-        setAlert,
-        setLoading,
         success,
       });
     });
@@ -56,12 +54,7 @@ const PossibleLocks = ({ setLoading, setAlert }) => {
 
   return (
     <Layout>
-      <RightTab
-        budgetYear={budgetYear}
-        visible={state.showFilters}
-        setAlert={setAlert}
-        setState={setState}
-      />
+      <RightTab budgetYear={budgetYear} visible={state.showFilters} />
       <Heading>
         <PageTitle>
           Gestão de possíveis bloqueios da safra {budgetYear} -{' '}

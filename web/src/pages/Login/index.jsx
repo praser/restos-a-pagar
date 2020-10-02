@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useApiAuth } from '~/hooks';
-
+import React, { useState, useCallback } from 'react';
 import { Container } from '~/components/Layout';
 import {
   Content,
@@ -14,25 +11,61 @@ import {
   Divider,
   Link,
 } from '../../components/Layout/External';
+import { useApiAuth, useXHR } from '~/hooks';
+import { login } from '~/utils/login';
+import { loginFail as alertProps } from '~/utils/messages';
 
 import image from '~/assets/undraw_Login_v483.svg';
-
-import {
-  handleGoToSudepClick,
-  handlePasswordChange,
-  handleSubmit,
-  handleUsernameChange,
-} from './handlers';
 
 const initialState = {
   username: '',
   password: '',
+  isSending: false,
 };
 
-const Login = ({ setLoading, setAlert }) => {
+const Login = () => {
   const [state, setState] = useState(initialState);
-  const history = useHistory();
   const apiAuth = useApiAuth();
+  const { doAllXhrRequest } = useXHR();
+  const { username, password, isSending } = state;
+
+  const handleUsernameChange = event => {
+    const { value } = event.target;
+    setState(prev => ({ ...prev, username: value }));
+  };
+
+  const handlePasswordChange = event => {
+    const { value } = event.target;
+    setState(prev => ({ ...prev, password: value }));
+  };
+
+  const handleGoToSudepClick = event => {
+    event.preventDefault();
+    window.location.href = process.env.REACT_APP_MAIN_PORTAL;
+  };
+
+  const handleSuccess = res => {
+    const { token } = res[0].data;
+    login(token);
+  };
+
+  const sendRequest = useCallback(async () => {
+    if (isSending) return;
+    setState(prev => ({ ...prev, isSending: true }));
+    await apiAuth.then(api => {
+      doAllXhrRequest({
+        alertProps,
+        requests: [api.requests.postAuthenticate(username, password)],
+        success: handleSuccess,
+      });
+    });
+    setState(prev => ({ ...prev, isSending: false }));
+  }, [username, password, isSending]);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    sendRequest();
+  };
 
   return (
     <Container>
@@ -43,28 +76,14 @@ const Login = ({ setLoading, setAlert }) => {
           <Input
             type="text"
             placeholder="Digite a sua matrícula"
-            onChange={event => handleUsernameChange(event, setState)}
-            value={state.username}
+            onChange={handleUsernameChange}
           />
           <Input
             type="password"
             placeholder="Digite a sua senha"
-            onChange={event => handlePasswordChange(event, setState)}
-            value={state.password}
+            onChange={handlePasswordChange}
           />
-          <ButtonPrimary
-            onClick={event =>
-              handleSubmit(event, {
-                apiAuth,
-                history,
-                setAlert,
-                setLoading,
-                state,
-              })
-            }
-          >
-            Login
-          </ButtonPrimary>
+          <ButtonPrimary onClick={handleSubmit}>Login</ButtonPrimary>
           <Divider />
           <ButtonDanger onClick={handleGoToSudepClick}>
             Ir para a página da SUDEP
