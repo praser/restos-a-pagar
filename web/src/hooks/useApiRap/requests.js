@@ -21,12 +21,15 @@ const requests = async () => {
     );
   };
 
+  const getUgs = async () => client.get('/ug');
+
   return {
     getGestores,
+    getOperacoesPreBloqueio,
     getParams,
     getTiposInformacoes,
+    getUgs,
     getUnidades,
-    getOperacoesPreBloqueio,
   };
 };
 

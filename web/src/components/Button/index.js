@@ -90,3 +90,10 @@ export const SmallButtonSecondary = styled(ButtonSecondary)`
   line-height: 1.5;
   border-radius: 0.2rem;
 `;
+
+export const SmallButtonDanger = styled(ButtonDanger)`
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+`;

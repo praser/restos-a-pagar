@@ -9,7 +9,7 @@ const getMessage = args => {
 
 export const possibleLocks = getMessage({
   text:
-    'Houve um erro ao carrtegar os dados do pré bloqueio. Por favor tente novamente.',
+    'Houve um erro ao carregar os dados da operações passíveis de bloqueio. Por favor tente novamente.',
 });
 
 export const possibleLocksFilters = getMessage({
@@ -21,4 +21,10 @@ export const loginFail = getMessage({
   title: 'Ops...',
   text:
     'Parece que a sua matrícula e a sua senha não estão corretas. Por favor tente novamente',
+});
+
+export const ugsFail = getMessage({
+  title: 'Ops...',
+  texst:
+    'Algo estranho aconteceu quando busquei a lista de UGs. Por favor tente novamente.',
 });
