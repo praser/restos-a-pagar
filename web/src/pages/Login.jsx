@@ -10,7 +10,7 @@ import {
   ButtonDanger,
   Divider,
   Link,
-} from '../../components/Layout/External';
+} from '../components/Layout/External';
 import { useApiAuth, useXHR } from '~/hooks';
 import { login } from '~/utils/login';
 import { loginFail as alertProps } from '~/utils/messages';
