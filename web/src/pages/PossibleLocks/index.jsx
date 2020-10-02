@@ -54,7 +54,11 @@ const PossibleLocks = () => {
 
   return (
     <Layout>
-      <RightTab budgetYear={budgetYear} visible={state.showFilters} />
+      <RightTab
+        budgetYear={budgetYear}
+        visible={state.showFilters}
+        setState={setState}
+      />
       <Heading>
         <PageTitle>
           Gestão de possíveis bloqueios da safra {budgetYear} -{' '}

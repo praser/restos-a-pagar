@@ -11,6 +11,7 @@ import { possibleLocksFilters as alertProps } from '~/utils/messages';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
 
 const RightTab = ({ visible, setState: setParentState }) => {
+  console.log(setParentState);
   const { budgetYear } = useParams();
   const [state, setState] = useState(initialState);
   const apiRap = useApiRap();
