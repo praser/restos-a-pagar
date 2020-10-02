@@ -3,6 +3,7 @@ import { capitalize, join, split } from 'lodash';
 import { parseISO } from 'date-fns';
 import { useContext } from 'react';
 import { Context } from '~/Store';
+import { getToken } from '~/utils/jwt';
 
 const capitalizeFirstChar = name => split(name, ' ').map(n => capitalize(n));
 
@@ -35,7 +36,7 @@ const getUser = token => {
 
 const useCurrentUser = () => {
   const [context] = useContext(Context);
-  const token = context.jwt;
+  const token = context.jwt || getToken();
   return getUser(token);
 };
 
