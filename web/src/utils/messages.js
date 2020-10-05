@@ -53,3 +53,13 @@ export const updateUgSuccess = getMessage({
   title: 'Maravilha!',
   text: 'A UG foi atualizada com sucesso.',
 });
+
+export const deleteUgFail = getMessage({
+  text:
+    'Houve um erro ao tentar deletar a UG e não foi possível finalizar a sua solicitação. Por favor tente novamente.',
+});
+
+export const deleteUgSucces = getMessage({
+  title: 'Excelente!',
+  text: 'A Ug foi removida com sucesso',
+});

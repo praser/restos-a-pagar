@@ -36,16 +36,21 @@ const requests = async () => {
     return client.put(`/ug/${id}`, { ug });
   };
 
+  const deleteUg = async id => {
+    return client.delete(`/ug/${id}`);
+  };
+
   return {
+    deleteUg,
     getGestores,
     getOperacoesPreBloqueio,
     getParams,
     getTiposInformacoes,
+    getUg,
     getUgs,
+    getUnidades,
     postUg,
     putUg,
-    getUg,
-    getUnidades,
   };
 };
 
