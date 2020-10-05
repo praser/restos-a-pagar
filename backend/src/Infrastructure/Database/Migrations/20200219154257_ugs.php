@@ -13,7 +13,7 @@ class Ugs extends AbstractMigration
         $this
             ->table('ugs')
             ->addColumn('codigo', 'integer', ['comment' => 'Cógido da UG'])
-            ->addColumn('arquivo', 'string', ['limit' => 255, 'comment' => 'Nome da UG'])
+            ->addColumn('nome', 'string', ['limit' => 255, 'comment' => 'Nome da UG'])
             ->addTimestamps()
             ->addIndex(['codigo'], ['unique' => true])
             ->create();
