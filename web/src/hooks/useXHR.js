@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '~/Store';
+import { Context } from '~/components/Store';
 import { defaultMessage } from '~/utils/messages';
 
 const useXHR = () => {

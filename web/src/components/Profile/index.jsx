@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { useCurrentUser } from '~/hooks';
-import { Context } from '~/Store';
+import { Context } from '../Store';
 
 import {
   Avatar,
