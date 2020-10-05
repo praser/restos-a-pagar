@@ -5,7 +5,7 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   SmallButtonDanger,
   SmallButtonPrimary,
@@ -35,7 +35,6 @@ const Ugs = () => {
   const apiRap = useApiRap();
   const [state, setState] = useState(initialState);
   const { doAllXhrRequest } = useXHR();
-  const history = useHistory();
 
   useEffect(() => {
     apiRap.then(api => {
