@@ -28,6 +28,14 @@ const requests = async () => {
     return client.post('/ug', { ug });
   };
 
+  const getUg = async id => {
+    return client.get(`/ug/${id}`);
+  };
+
+  const putUg = async (id, ug) => {
+    return client.put(`/ug/${id}`, { ug });
+  };
+
   return {
     getGestores,
     getOperacoesPreBloqueio,
@@ -35,6 +43,8 @@ const requests = async () => {
     getTiposInformacoes,
     getUgs,
     postUg,
+    putUg,
+    getUg,
     getUnidades,
   };
 };

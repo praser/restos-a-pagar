@@ -10,13 +10,13 @@ import {
   SmallButtonDanger,
   SmallButtonPrimary,
   SmallButtonSecondary,
-} from '~/components/Button';
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Heading } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import Table from '~/components/Table';
-import { PageTitle } from '~/components/Tipography';
-import { createUgPath } from '~/utils/paths';
+} from '../Button';
+import { Card, CardBody, CardHeader } from '../Card';
+import { Heading } from '../Layout';
+import Layout from '../Layout/Internal';
+import Table from '../Table';
+import { PageTitle } from '../Tipography';
+import { createUgPath, joinPath, updateUgPath } from '~/utils/paths';
 import { useApiRap, useXHR } from '~/hooks';
 import { ugsFail as alertProps } from '~/utils/messages';
 
@@ -30,9 +30,9 @@ const columns = [
     name: 'Ações',
     sortable: false,
     width: '220px',
-    cell: () => (
+    cell: row => (
       <>
-        <SmallButtonSecondary>
+        <SmallButtonSecondary as={Link} to={joinPath(updateUgPath, [row.id])}>
           <FontAwesomeIcon icon={faEdit} />
           Editar
         </SmallButtonSecondary>

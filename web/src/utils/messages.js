@@ -20,7 +20,7 @@ export const possibleLocksFilters = getMessage({
 export const loginFail = getMessage({
   title: 'Ops...',
   text:
-    'Parece que a sua matrícula e a sua senha não estão corretas. Por favor tente novamente',
+    'Parece que a sua matrícula e a sua senha não estão corretas. Por favor tente novamente.',
 });
 
 export const ugsFail = getMessage({
@@ -29,12 +29,27 @@ export const ugsFail = getMessage({
     'Algo estranho aconteceu quando busquei a lista de UGs. Por favor tente novamente.',
 });
 
-export const crateUgFail = getMessage({
+export const createUgFail = getMessage({
   title: 'Ops...',
-  text: 'Houve um erro ao cadastrar a UG. Por favor tente novamente',
+  text: 'Houve um erro ao cadastrar a UG. Por favor tente novamente.',
 });
 
 export const createUgSuccess = getMessage({
   title: 'Maravilha!',
   text: 'A UG foi cadastrada com sucesso.',
+});
+
+export const loadUgFail = getMessage({
+  title: 'Eita...',
+  text:
+    'Não consegui carregar os dados da UG que você solicitou. Por favor tente novamnete.',
+});
+
+export const updateUgFail = getMessage({
+  text: 'Houve um erro ao atualizar a UG. Por favor tente novamente.',
+});
+
+export const updateUgSuccess = getMessage({
+  title: 'Maravilha!',
+  text: 'A UG foi atualizada com sucesso.',
 });

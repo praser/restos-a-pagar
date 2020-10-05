@@ -5,7 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 
 import { Alert, Loading } from '~/components/Modal';
-import { PossibleLocks, Error, Login, UgList, UgCreate } from '../../pages';
+import {
+  PossibleLocks,
+  Error,
+  Login,
+  UgList,
+  UgCreate,
+  UgUpdate,
+} from '../../pages';
 
 import { PrivateRoute, PublicRoute } from '../Route';
 import * as paths from '../../utils/paths';
@@ -83,6 +90,11 @@ const App = () => {
             <PrivateRoute
               component={UgCreate}
               path={paths.createUgPath}
+              exact
+            />
+            <PrivateRoute
+              component={UgUpdate}
+              path={paths.updateUgPath}
               exact
             />
             <Route

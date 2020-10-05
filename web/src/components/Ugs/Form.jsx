@@ -24,7 +24,12 @@ const validationSchema = Yup.object().shape({
 
 const Form = ({ initialValues, onSubmit }) => {
   const history = useHistory();
-  const formik = useFormik({ initialValues, validationSchema, onSubmit });
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+    enableReinitialize: true,
+  });
 
   const handleGoBack = event => {
     event.preventDefault();
