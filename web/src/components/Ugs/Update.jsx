@@ -8,6 +8,7 @@ import { useApiRap, useXHR } from '~/hooks';
 import { updateUgFail as alertProps, updateUgSuccess } from '~/utils/messages';
 import { ugPath } from '~/utils/paths';
 import { Context } from '../Store';
+import { PageTitle } from '../Tipography';
 
 const initialState = {
   isSending: false,
@@ -87,7 +88,9 @@ const Update = () => {
 
   return (
     <Layout>
-      <Heading>Cadastrar Unidade Gestora</Heading>
+      <Heading>
+        <PageTitle>Cadastrar Unidade Gestora</PageTitle>
+      </Heading>
       <Card>
         <CardHeader>Dados da unidade gestora</CardHeader>
         <CardBody>
