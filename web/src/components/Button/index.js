@@ -58,7 +58,7 @@ export const ButtonDanger = styled(Button)`
     border-color: #e12717;
   }
 
-  &&:focus {
+  &:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 39, 23, 0.5);
   }
 `;
@@ -77,6 +77,20 @@ export const ButtonSecondary = styled(Button)`
   }
 `;
 
+export const ButtonWarning = styled(Button)`
+  background-color: #f6c23e;
+  border-color: #f6c23e;
+
+  &:hover {
+    background-color: #f4b619;
+    border-color: #f4b30d;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(247, 203, 91, 0.5);
+  }
+`;
+
 export const SmallButtonPrimary = styled(ButtonPrimary)`
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -92,6 +106,13 @@ export const SmallButtonSecondary = styled(ButtonSecondary)`
 `;
 
 export const SmallButtonDanger = styled(ButtonDanger)`
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+`;
+
+export const SmallButtonWarning = styled(ButtonWarning)`
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;

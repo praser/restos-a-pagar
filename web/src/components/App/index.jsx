@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 
 import { Alert, Loading } from '~/components/Modal';
-import { PossibleLocks, Error, Login, UgList } from '../../pages';
+import { PossibleLocks, Error, Login, UgList, UgCreate } from '../../pages';
 
 import { PrivateRoute, PublicRoute } from '../Route';
 import * as paths from '../../utils/paths';
@@ -80,6 +80,11 @@ const App = () => {
               exact
             />
             <PrivateRoute component={UgList} path={paths.ugPath} exact />
+            <PrivateRoute
+              component={UgCreate}
+              path={paths.createUgPath}
+              exact
+            />
             <Route
               render={() => (
                 <Error code="404" description="Página não encontrada" />
