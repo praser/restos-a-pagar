@@ -33,3 +33,8 @@ export const crateUgFail = getMessage({
   title: 'Ops...',
   text: 'Houve um erro ao cadastrar a UG. Por favor tente novamente',
 });
+
+export const createUgSuccess = getMessage({
+  title: 'Maravilha!',
+  text: 'A UG foi cadastrada com sucesso.',
+});

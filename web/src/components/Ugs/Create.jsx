@@ -1,10 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Form from './Form';
 import Layout from '../Layout/Internal';
 import { Heading } from '../Layout';
 import { Card, CardBody, CardHeader } from '../Card';
 import { useApiRap, useXHR } from '~/hooks';
-import { crateUgFail as alertProps } from '~/utils/messages';
+import { crateUgFail as alertProps, createUgSuccess } from '~/utils/messages';
+import { ugPath } from '~/utils/paths';
+import { Context } from '../Store';
 
 const initialValues = {
   code: '',
@@ -19,13 +22,16 @@ const initialState = {
 
 const Create = () => {
   const [state, setState] = useState(initialState);
+  const dispatch = useContext(Context)[1];
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const { isSending } = state;
+  const history = useHistory();
 
   const handleSuccess = () => {
-    // deve redirecionar
-    alert('sucesso');
+    const { title, text } = createUgSuccess;
+    dispatch({ type: 'SET_ALERT', payload: { visible: true, title, text } });
+    history.push(ugPath);
   };
 
   const sendRequest = useCallback(
