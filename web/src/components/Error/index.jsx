@@ -2,7 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Layout from '~/components/Layout/Internal';
-import { Code, Description, GoBack, Paragraph } from '~/components/Error';
+import {
+  Code,
+  Description,
+  GoBack,
+  Paragraph,
+} from '~/components/Error/styles';
 
 const Error = ({ code, description }) => {
   const history = useHistory();

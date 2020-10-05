@@ -1,6 +1,6 @@
-import PossibleLocks from './PossibleLocks';
-import Error from './Error';
-import Login from './Login';
-import Ugs from './Ugs';
+import PossibleLocks from '~/components/PossibleLocks';
+import Error from '~/components/Error';
+import Login from '~/components/Login';
+import { List as UgList } from '~/components/Ugs';
 
-export { PossibleLocks, Error, Login, Ugs };
+export { PossibleLocks, Error, Login, UgList };

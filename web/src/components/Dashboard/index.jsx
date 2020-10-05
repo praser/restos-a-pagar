@@ -10,7 +10,7 @@ import {
   joinPath,
   possibleLocksPath,
 } from '~/utils/paths';
-import { useApiRap } from '../hooks';
+import { useApiRap } from '../../hooks';
 
 const currYearparam = params => {
   const currYear = getYear(new Date());
