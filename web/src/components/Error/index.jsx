@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import Layout from '~/components/Layout/Internal';
 import {
   Code,
@@ -22,7 +24,10 @@ const Error = ({ code, description }) => {
       <Code>{code}</Code>
       <Description>{description}</Description>
       <Paragraph>Parece que você encontrou um buraco na Matrix...</Paragraph>
-      <GoBack onClick={handleGoBack}>← Voltar para a página anterior</GoBack>
+      <GoBack onClick={handleGoBack}>
+        <FontAwesomeIcon icon={faLongArrowAltLeft} /> Voltar para a página
+        anterior
+      </GoBack>
     </Layout>
   );
 };
