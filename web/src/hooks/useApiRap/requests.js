@@ -23,12 +23,18 @@ const requests = async () => {
 
   const getUgs = async () => client.get('/ug');
 
+  const postUg = async args => {
+    const { ug } = args;
+    return client.post('/ug', { ug });
+  };
+
   return {
     getGestores,
     getOperacoesPreBloqueio,
     getParams,
     getTiposInformacoes,
     getUgs,
+    postUg,
     getUnidades,
   };
 };

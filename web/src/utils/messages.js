@@ -25,6 +25,11 @@ export const loginFail = getMessage({
 
 export const ugsFail = getMessage({
   title: 'Ops...',
-  texst:
+  text:
     'Algo estranho aconteceu quando busquei a lista de UGs. Por favor tente novamente.',
+});
+
+export const crateUgFail = getMessage({
+  title: 'Ops...',
+  text: 'Houve um erro ao cadastrar a UG. Por favor tente novamente',
 });
