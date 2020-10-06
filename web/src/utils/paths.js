@@ -1,14 +1,14 @@
+export const locksPath = '/safras/:budgetYear/bloqueios';
+export const canceledPath = '/safras/:budgetYear/cancelamentos';
+export const createUgPath = '/ugs/novo';
 export const dashboardPath = '/dashboard';
 export const homePath = '/';
 export const loginPath = '/login';
 export const logouPath = '/logout';
 export const possibleLocksPath = '/safras/:budgetYear/previa-bloqueio';
-export const blockedPath = '/safras/:budgetYear/bloqueios';
-export const canceledPath = '/safras/:budgetYear/cancelamentos';
 export const ugPath = '/ugs';
-export const createUgPath = '/ugs/novo';
-export const updateUgPath = '/ugs/editar/:id';
 export const updateCommitmentPath = '/notas-empenho/saldo/novo';
+export const updateUgPath = '/ugs/editar/:id';
 
 const replaceParams = (path, from, to) => {
   let result = path.repeat(1);

@@ -7,11 +7,12 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import { Alert, Loading } from '~/components/Modal';
 import {
-  PossibleLocks,
   Error,
+  Locks,
   Login,
-  UgList,
+  PossibleLocks,
   UgCreate,
+  UgList,
   UgUpdate,
   UpdateCommitment,
 } from '../../pages';
@@ -109,6 +110,7 @@ const App = () => {
               path={paths.updateCommitmentPath}
               exact
             />
+            <PrivateRoute component={Locks} path={paths.locksPath} exact />
             <Route
               render={() => (
                 <Error code="404" description="Página não encontrada" />

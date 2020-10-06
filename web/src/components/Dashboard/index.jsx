@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Layout from '~/components/Layout/Internal';
 import {
-  blockedPath,
+  locksPath,
   canceledPath,
   joinPath,
   possibleLocksPath,
@@ -47,7 +47,7 @@ const getLink = params => {
     return joinPath(possibleLocksPath, [anoOrcamentario]);
 
   if (isWithinInterval(today, interval))
-    return joinPath(blockedPath, [anoOrcamentario]);
+    return joinPath(locksPath, [anoOrcamentario]);
 
   return joinPath(canceledPath, [anoOrcamentario]);
 };

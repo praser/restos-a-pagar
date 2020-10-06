@@ -12,7 +12,7 @@ import { Divider, Navbar, SectionTitle } from '~/components/Navigation/styles';
 
 import {
   possibleLocksPath,
-  blockedPath,
+  locksPath,
   canceledPath,
   createUgPath,
   updateCommitmentPath,
@@ -34,7 +34,7 @@ const mountCollapsables = param => {
 
   const blocked = {
     label: 'Empenhos bloqueados',
-    to: joinPath(blockedPath, [param.anoOrcamentario]),
+    to: joinPath(locksPath, [param.anoOrcamentario]),
   };
 
   const cancelled = {
