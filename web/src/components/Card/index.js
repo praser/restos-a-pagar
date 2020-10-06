@@ -9,6 +9,17 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
+  ${({ width }) => width && { width }}
+  ${({ width }) => !width && { flex: 1 }}
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 export const CardHeader = styled.div`
