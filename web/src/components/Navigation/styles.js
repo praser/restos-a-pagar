@@ -13,11 +13,16 @@ export const Divider = styled.hr`
 export const Navbar = styled.ul`
   width: 14rem;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Content = styled.div`
   background-color: #36b9cc;
   background-image: linear-gradient(180deg, #36b9cc 10%, #258391 100%);
   background-size: cover;
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  height: 100%;
 `;
 
 export const SectionTitle = styled.p`

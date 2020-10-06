@@ -8,7 +8,7 @@ import {
 
 import Brand from './Brand';
 import Collapse from './Collapse';
-import { Divider, Navbar, SectionTitle } from '~/components/Navigation/styles';
+import { Content, Divider, Navbar, SectionTitle } from './styles';
 
 import {
   possibleLocksPath,
@@ -61,37 +61,39 @@ const Navigation = () => {
 
   return (
     <Navbar>
-      <Brand />
+      <Content>
+        <Brand />
 
-      <Divider />
+        <Divider />
 
-      {params.map(param => (
+        {params.map(param => (
+          <Collapse
+            key={param.anoOrcamentario}
+            label={`Safra ${param.anoOrcamentario}`}
+            icon={faFileSignature}
+            collapsables={mountCollapsables(param)}
+          />
+        ))}
+
+        <Divider />
+
+        <SectionTitle>Configuraçãoes</SectionTitle>
+
         <Collapse
-          key={param.anoOrcamentario}
-          label={`Safra ${param.anoOrcamentario}`}
-          icon={faFileSignature}
-          collapsables={mountCollapsables(param)}
+          label="UGs"
+          icon={faBuilding}
+          collapsables={[
+            { label: 'Listar', to: ugPath },
+            { label: 'Cadastrar', to: createUgPath },
+          ]}
         />
-      ))}
 
-      <Divider />
-
-      <SectionTitle>Configuraçãoes</SectionTitle>
-
-      <Collapse
-        label="UGs"
-        icon={faBuilding}
-        collapsables={[
-          { label: 'Listar', to: ugPath },
-          { label: 'Cadastrar', to: createUgPath },
-        ]}
-      />
-
-      <Collapse
-        label="Saldos NE"
-        icon={faDollarSign}
-        collapsables={[{ label: 'Atualizar', to: updateCommitmentPath }]}
-      />
+        <Collapse
+          label="Saldos NE"
+          icon={faDollarSign}
+          collapsables={[{ label: 'Atualizar', to: updateCommitmentPath }]}
+        />
+      </Content>
     </Navbar>
   );
 };
