@@ -15,7 +15,7 @@ import {
   blockedPath,
   canceledPath,
   createUgPath,
-  createCommitmentPath,
+  updateCommitmentPath,
   ugPath,
   joinPath,
 } from '~/utils/paths';
@@ -90,7 +90,7 @@ const Navigation = () => {
       <Collapse
         label="Saldos NE"
         icon={faDollarSign}
-        collapsables={[{ label: 'Atualizar', to: createCommitmentPath }]}
+        collapsables={[{ label: 'Atualizar', to: updateCommitmentPath }]}
       />
     </Navbar>
   );

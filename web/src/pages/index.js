@@ -6,5 +6,14 @@ import {
   Create as UgCreate,
   Update as UgUpdate,
 } from '~/components/Ugs';
+import UpdateCommitment from '~/components/Commitment';
 
-export { PossibleLocks, Error, Login, UgList, UgCreate, UgUpdate };
+export {
+  PossibleLocks,
+  Error,
+  Login,
+  UgList,
+  UgCreate,
+  UgUpdate,
+  UpdateCommitment,
+};

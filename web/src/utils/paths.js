@@ -8,7 +8,7 @@ export const canceledPath = '/safras/:budgetYear/cancelamentos';
 export const ugPath = '/ugs';
 export const createUgPath = '/ugs/novo';
 export const updateUgPath = '/ugs/editar/:id';
-export const createCommitmentPath = '/notas-empenho/saldo/novo';
+export const updateCommitmentPath = '/notas-empenho/saldo/novo';
 
 const replaceParams = (path, from, to) => {
   let result = path.repeat(1);

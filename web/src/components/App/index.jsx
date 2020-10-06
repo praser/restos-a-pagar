@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import { isNull } from 'lodash';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import ptBR from 'date-fns/locale/pt-BR';
 
 import { Alert, Loading } from '~/components/Modal';
 import {
@@ -12,6 +13,7 @@ import {
   UgList,
   UgCreate,
   UgUpdate,
+  UpdateCommitment,
 } from '../../pages';
 
 import { PrivateRoute, PublicRoute } from '../Route';
@@ -22,6 +24,11 @@ import { Container } from '../Layout';
 import { useCurrentUser } from '../../hooks';
 import { Context } from '../Store';
 import { getToken } from '~/utils/jwt';
+
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('pt-BR', ptBR);
+setDefaultLocale('pt-BR');
 
 const App = () => {
   const [context, dispatch] = useContext(Context);
@@ -95,6 +102,11 @@ const App = () => {
             <PrivateRoute
               component={UgUpdate}
               path={paths.updateUgPath}
+              exact
+            />
+            <PrivateRoute
+              component={UpdateCommitment}
+              path={paths.updateCommitmentPath}
               exact
             />
             <Route
