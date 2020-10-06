@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { handleVariant } from '~/utils/colors';
 
 export const Container = styled.div`
   height: 0.5rem;
@@ -14,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Progress = styled.div`
-  background-color: #f6c23e;
+  background-color: ${({ variant }) => handleVariant(variant)};
   display: flex;
   flex-direction: column;
   justify-content: center;

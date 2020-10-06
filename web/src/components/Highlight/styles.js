@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const handleVariant = variant => {
-  switch (variant) {
-    case 'success':
-      return '#1cc88a ';
-    case 'info':
-      return '#36b9cc';
-    case 'warning':
-      return '#f6c23e';
-    default:
-      return '#4e73df';
-  }
-};
+import { handleVariant } from '~/utils/colors';
 
 export const Container = styled.div`
   padding-bottom: 0.5rem;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Progress } from './styles';
 
-const Progressbar = ({ width }) => {
+const Progressbar = ({ width, variant }) => {
   return (
     <Container>
-      <Progress width={width} />
+      <Progress width={width} variant={variant} />
     </Container>
   );
 };
