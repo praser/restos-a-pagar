@@ -216,27 +216,27 @@ const Locks = () => {
       </Row>
       <Row>
         <Highlight
-          title="quantidade de operações"
           icon={faFileContract}
           siblings={3}
+          title="quantidade de operações"
         >
           1.892
         </Highlight>
 
         <Highlight
-          title=" quantidade de notas de empenho"
           icon={faMoneyCheckAlt}
-          variant="info"
           siblings={3}
+          title=" quantidade de notas de empenho"
+          variant="info"
         >
           1.941
         </Highlight>
 
         <Highlight
-          title="dias até o cancelamento"
           icon={faCalendarAlt}
-          variant="warning"
           siblings={3}
+          title="dias até o cancelamento"
+          variant="warning"
         >
           <div style={{ display: 'flex' }}>
             45 <Progressbar width="5%" variant="warning" />
@@ -245,28 +245,28 @@ const Locks = () => {
       </Row>
       <Row>
         <Highlight
-          title="Saldo bloqueado"
           icon={faLock}
+          siblings={3}
+          title="Saldo bloqueado"
           variant="danger"
-          siblings={3}
         >
           R$ 1.49 bilhões
         </Highlight>
 
         <Highlight
-          title="Saldo desbloqueado"
           icon={faLockOpen}
-          variant="success"
           siblings={3}
+          title="Saldo desbloqueado"
+          variant="success"
         >
           R$ 1.49 bilhões
         </Highlight>
 
         <Highlight
-          title="Saldo agaurdando desbloqueio"
           icon={faHourglassHalf}
-          variant="warning"
           siblings={3}
+          title="Saldo agaurdando desbloqueio"
+          variant="warning"
         >
           R$ 1.49 bilhões
         </Highlight>
