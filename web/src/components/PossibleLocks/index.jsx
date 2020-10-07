@@ -43,9 +43,7 @@ const PossibleLocks = () => {
         const operacoes = api.formatters.operacoes(res[0].data);
         const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
         const statusData = api.formatters.status(res[1].data);
-        const parametrosData = api.formatters.parametros(
-          res[2].data.filter(item => item.anoOrcamentario == budgetYear)[0],
-        );
+        const parametrosData = api.formatters.parametros(res[2].data);
         setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
         setState(prev => ({
           ...prev,
@@ -62,7 +60,7 @@ const PossibleLocks = () => {
           siglaGestor: gestor.value || '',
         }),
         api.requests.getStatus(),
-        api.requests.getParams(),
+        api.requests.getParam(budgetYear),
       ];
       doAllXhrRequest({
         alertProps,
