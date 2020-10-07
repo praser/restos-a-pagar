@@ -175,8 +175,7 @@ const Locks = () => {
       />
       <Heading>
         <PageTitle>
-          Gestão de bloqueios da safra {budgetYear} -{' '}
-          {physicalLotationAbbreviation}
+          Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
         </PageTitle>
         <div>
           <SmallButtonPrimary

@@ -83,7 +83,7 @@ const PossibleLocks = () => {
       />
       <Heading>
         <PageTitle>
-          Gestão de possíveis bloqueios da safra {budgetYear} -{' '}
+          Prévia dos bloqueios da safra {budgetYear} -{' '}
           {physicalLotationAbbreviation}
         </PageTitle>
         <div>

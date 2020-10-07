@@ -27,18 +27,18 @@ const mountCollapsables = param => {
 
   const collapsables = [
     {
-      label: 'Prévia do bloqueio',
+      label: 'Prévia dos bloqueios',
       to: joinPath(possibleLocksPath, [param.anoOrcamentario]),
     },
   ];
 
   const blocked = {
-    label: 'Empenhos bloqueados',
+    label: 'Bloqueios',
     to: joinPath(locksPath, [param.anoOrcamentario]),
   };
 
   const cancelled = {
-    label: 'Empenhos cancelados',
+    label: 'Cancelamentos',
     to: joinPath(cancellationsPath, [param.anoOrcamentario]),
   };
 
