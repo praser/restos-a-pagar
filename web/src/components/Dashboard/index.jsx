@@ -58,9 +58,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     apiRap.then(api => {
-      api.requests
-        .getParams()
-        .then(res => setDestiny(getLink(res.data.parametros)));
+      api.requests.getParams().then(res => setDestiny(getLink(res.data)));
     });
   }, []);
 

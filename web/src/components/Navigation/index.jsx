@@ -55,7 +55,7 @@ const Navigation = () => {
 
   useEffect(() => {
     apiRap.then(api => {
-      api.requests.getParams().then(res => setParams(res.data.parametros));
+      api.requests.getParams().then(res => setParams(res.data));
     });
   }, []);
 

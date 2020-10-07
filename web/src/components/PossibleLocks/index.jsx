@@ -44,9 +44,7 @@ const PossibleLocks = () => {
         const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
         const statusData = api.formatters.status(res[1].data);
         const parametrosData = api.formatters.parametros(
-          res[2].data.parametros.filter(
-            item => item.anoOrcamentario == budgetYear,
-          )[0],
+          res[2].data.filter(item => item.anoOrcamentario == budgetYear)[0],
         );
         setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
         setState(prev => ({
