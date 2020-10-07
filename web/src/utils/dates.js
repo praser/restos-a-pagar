@@ -8,7 +8,12 @@ export const parseISO = isoDate => {
   return isValid(date) ? date : null;
 };
 
+export const formatDate = date => {
+  if (!isValid(date)) return null;
+  return format(date, dateFormat, { locale: ptBR });
+};
+
 export const formatISO = isoDate => {
   const date = parseISO(isoDate);
-  return date ? format(date, dateFormat, { locale: ptBR }) : null;
+  return formatDate(date);
 };

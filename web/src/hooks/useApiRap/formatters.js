@@ -85,3 +85,37 @@ export const operacoesCsv = oprs => {
   const options = { date: formatISO, decimal: formatDecimal };
   return oprs.map(opr => operacao(opr, options));
 };
+
+export const status = (opr, options = {}) => {
+  const dafaultOptions = {
+    date: parseISO,
+    decimal: parseNumber,
+  };
+
+  const currOptions = { ...dafaultOptions, ...options };
+
+  const { databasePosition, databaseLastUpdate } = opr;
+
+  return {
+    ...opr,
+    databasePosition: currOptions.date(databasePosition),
+    databaseLastUpdate: currOptions.date(databaseLastUpdate),
+  };
+};
+
+export const parametros = (opr, options = {}) => {
+  const dafaultOptions = {
+    date: parseISO,
+    decimal: parseNumber,
+  };
+
+  const currOptions = { ...dafaultOptions, ...options };
+
+  const { dataBloqueio, dataCancelamento } = opr;
+
+  return {
+    ...opr,
+    dataBloqueio: currOptions.date(dataBloqueio),
+    dataCancelamento: currOptions.date(dataCancelamento),
+  };
+};

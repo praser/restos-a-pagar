@@ -28,23 +28,20 @@ const requests = async () => {
     return client.post('/ug', { ug });
   };
 
-  const getUg = async id => {
-    return client.get(`/ug/${id}`);
-  };
+  const getUg = async id => client.get(`/ug/${id}`);
 
-  const putUg = async (id, ug) => {
-    return client.put(`/ug/${id}`, { ug });
-  };
+  const putUg = async (id, ug) => client.put(`/ug/${id}`, { ug });
 
-  const deleteUg = async id => {
-    return client.delete(`/ug/${id}`);
-  };
+  const deleteUg = async id => client.delete(`/ug/${id}`);
+
+  const getStatus = () => client.get('/');
 
   return {
     deleteUg,
     getGestores,
     getOperacoesPreBloqueio,
     getParams,
+    getStatus,
     getTiposInformacoes,
     getUg,
     getUgs,

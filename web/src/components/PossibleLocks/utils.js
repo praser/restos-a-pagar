@@ -9,6 +9,12 @@ export const initialState = {
   unidade: defUnidade,
   gestor: defGestor,
   tipoInfo: defTipoInfo,
+  status: {
+    databasePosition: null,
+  },
+  parametros: {
+    dataBloqueio: null,
+  },
 };
 
 export const dataInitialState = {
