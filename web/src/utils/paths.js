@@ -1,5 +1,5 @@
 export const locksPath = '/safras/:budgetYear/bloqueios';
-export const canceledPath = '/safras/:budgetYear/cancelamentos';
+export const cancellationsPath = '/safras/:budgetYear/cancelamentos';
 export const createUgPath = '/ugs/novo';
 export const dashboardPath = '/dashboard';
 export const homePath = '/';

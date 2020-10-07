@@ -7,6 +7,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import { Alert, Loading } from '~/components/Modal';
 import {
+  Cancellations,
   Error,
   Locks,
   Login,
@@ -111,6 +112,11 @@ const App = () => {
               exact
             />
             <PrivateRoute component={Locks} path={paths.locksPath} exact />
+            <PrivateRoute
+              component={Cancellations}
+              path={paths.cancellationsPath}
+              exact
+            />
             <Route
               render={() => (
                 <Error code="404" description="Página não encontrada" />

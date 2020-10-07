@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Layout from '~/components/Layout/Internal';
 import {
   locksPath,
-  canceledPath,
+  cancellationsPath,
   joinPath,
   possibleLocksPath,
 } from '~/utils/paths';
@@ -49,7 +49,7 @@ const getLink = params => {
   if (isWithinInterval(today, interval))
     return joinPath(locksPath, [anoOrcamentario]);
 
-  return joinPath(canceledPath, [anoOrcamentario]);
+  return joinPath(cancellationsPath, [anoOrcamentario]);
 };
 
 const Dashboard = () => {

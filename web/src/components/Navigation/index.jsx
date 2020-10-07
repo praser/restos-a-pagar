@@ -13,7 +13,7 @@ import { Content, Divider, Navbar, SectionTitle } from './styles';
 import {
   possibleLocksPath,
   locksPath,
-  canceledPath,
+  cancellationsPath,
   createUgPath,
   updateCommitmentPath,
   ugPath,
@@ -39,7 +39,7 @@ const mountCollapsables = param => {
 
   const cancelled = {
     label: 'Empenhos cancelados',
-    to: joinPath(canceledPath, [param.anoOrcamentario]),
+    to: joinPath(cancellationsPath, [param.anoOrcamentario]),
   };
 
   if (isPast(blockDate) || isToday(blockDate)) collapsables.push(blocked);
