@@ -14,7 +14,7 @@ import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
 
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
-import ContextInfo from '../../ContextInfo';
+import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Heading, Row } from '~/components/Layout';
 import {
@@ -29,14 +29,14 @@ import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 
 import { possibleLocks as alertProps } from '~/utils/messages';
 
-import { handleVisibility } from './RightTab/handlers';
-import { calcExecutionYear } from './RightTab/utils';
-import RightTab from './RightTab';
+import { handleVisibility } from '../RightTab/handlers';
+import { calcExecutionYear } from '../RightTab/utils';
+import RightTab from '../RightTab';
 
-import { initialState, dataInitialState, csvHeaders } from './utils';
-import Highlight from '../../Highlight';
-import { Card, CardBody, CardHeader } from '../../Card';
-import Table from '../../Table';
+import { initialState, dataInitialState, csvHeaders } from '../utils';
+import Highlight from '../../../Highlight';
+import { Card, CardBody, CardHeader } from '../../../Card';
+import Table from '../../../Table';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],
