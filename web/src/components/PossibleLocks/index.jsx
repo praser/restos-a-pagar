@@ -1,32 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import {
-  faCalendar,
-  faDatabase,
-  faDownload,
-  faFilter,
-} from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
-
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import Layout from '~/components/Layout/Internal';
 import { Heading, Row } from '~/components/Layout';
-import {
-  PageContextInfo,
-  PageTitle,
-  PillPrimary,
-  PillSuccess,
-  PillWarning,
-} from '~/components/Tipography';
-
+import { PageTitle } from '~/components/Tipography';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
 import { handleVisibility } from './RightTab/handlers';
 import { calcExecutionYear } from './RightTab/utils';
+import ContextInfo from '../ContextInfo';
 import RightTab from './RightTab';
 import { initialState, dataInitialState, csvHeaders } from './utils';
-import { formatDate } from '~/utils/dates';
 
 const PossibleLocks = () => {
   const [state, setState] = useState(initialState);
@@ -34,7 +21,7 @@ const PossibleLocks = () => {
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
   const apiRap = useApiRap();
-  const { tipoInfo, unidade, gestor, status, parametros } = state;
+  const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
 
   useEffect(() => {
@@ -99,23 +86,7 @@ const PossibleLocks = () => {
           </SmallButtonSecondary>
         </div>
       </Heading>
-      <Row direction="column">
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faCalendar} />
-          Data do bloqueio: {formatDate(parametros.dataBloqueio)}
-        </PageContextInfo>
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faDatabase} />
-          Posição da base de dados: {formatDate(status.databasePosition)}
-        </PageContextInfo>
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faFilter} />
-          Filtros ativos:
-          <PillSuccess>{unidade.label}</PillSuccess>
-          <PillWarning>{gestor.label}</PillWarning>
-          <PillPrimary>{tipoInfo.label}</PillPrimary>
-        </PageContextInfo>
-      </Row>
+      <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
     </Layout>
   );
 };

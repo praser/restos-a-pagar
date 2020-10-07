@@ -17,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import { Doughnut, Line } from 'react-chartjs-2';
 
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
+import ContextInfo from '../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Heading, Row } from '~/components/Layout';
 import {
@@ -194,25 +195,7 @@ const Locks = () => {
           </SmallButtonSecondary>
         </div>
       </Heading>
-      <Row direction="column">
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faCalendar} />
-          Data do bloqueio: 14/11/2020
-        </PageContextInfo>
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faDatabase} />
-          Posição da base de dados: 14/09/2020
-        </PageContextInfo>
-        <PageContextInfo>
-          <FontAwesomeIcon icon={faFilter} />
-          Filtros ativos:
-          <PillSuccess>Todas as GIGOV/REGOV</PillSuccess>
-          <PillWarning>Todos os gestores</PillWarning>
-          <PillPrimary>
-            Operações que ainda não cumpriram os critérios de desbloqueio
-          </PillPrimary>
-        </PageContextInfo>
-      </Row>
+      <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
       <Row>
         <Highlight
           icon={faFileContract}
