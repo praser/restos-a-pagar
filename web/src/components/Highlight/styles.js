@@ -9,14 +9,13 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #e3e6f0;
   border-radius: 0.35rem;
   border-left: 0.25rem solid;
   border-left-color: ${({ variant }) => handleVariant(variant)};
-  min-width: 23%;
+  width: calc((100% - 5%) / ${({ siblings }) => siblings || 4});
 `;
 
 export const Body = styled.div`

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Body, Container, Content, Icon, Title } from './styles';
 
-const Highlight = ({ children, icon, title, variant }) => {
+const Highlight = ({ children, icon, siblings, title, variant }) => {
   return (
-    <Container variant={variant}>
+    <Container variant={variant} siblings={siblings}>
       <Body>
         <Content>
           <Title variant={variant}>{title}</Title>
