@@ -10,11 +10,11 @@ import {
   ButtonDanger,
   Divider,
   Link,
-} from '../Layout/External';
+} from '../../Layout/External';
 import { useApiAuth, useXHR } from '~/hooks';
 import { setToken } from '~/utils/jwt';
 import { loginFail as alertProps } from '~/utils/messages';
-import { Context } from '../Store';
+import { Context } from '../../Store';
 
 import image from '~/assets/undraw_Login_v483.svg';
 

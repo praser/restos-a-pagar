@@ -1,14 +1,14 @@
 import React, { useCallback, useState, useContext, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Form from './Form';
-import Layout from '../Layout/Internal';
-import { Heading } from '../Layout';
-import { Card, CardBody, CardHeader } from '../Card';
+import Layout from '../../Layout/Internal';
+import { Heading } from '../../Layout';
+import { Card, CardBody, CardHeader } from '../../Card';
 import { useApiRap, useXHR } from '~/hooks';
 import { updateUgFail as alertProps, updateUgSuccess } from '~/utils/messages';
 import { ugPath } from '~/utils/paths';
-import { Context } from '../Store';
-import { PageTitle } from '../Tipography';
+import { Context } from '../../Store';
+import { PageTitle } from '../../Tipography';
 
 const initialState = {
   isSending: false,

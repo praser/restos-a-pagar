@@ -10,12 +10,12 @@ import {
   SmallButtonDanger,
   SmallButtonPrimary,
   SmallButtonSecondary,
-} from '../Button';
-import { Card, CardBody, CardHeader } from '../Card';
-import { Heading } from '../Layout';
-import Layout from '../Layout/Internal';
-import Table from '../Table';
-import { PageTitle } from '../Tipography';
+} from '../../Button';
+import { Card, CardBody, CardHeader } from '../../Card';
+import { Heading } from '../../Layout';
+import Layout from '../../Layout/Internal';
+import Table from '../../Table';
+import { PageTitle } from '../../Tipography';
 import { createUgPath, joinPath, updateUgPath } from '~/utils/paths';
 import { useApiRap, useXHR } from '~/hooks';
 import {
@@ -23,7 +23,7 @@ import {
   deleteUgFail,
   deleteUgSucces,
 } from '~/utils/messages';
-import { Prompt } from '../Modal';
+import { Prompt } from '../../Modal';
 
 const initialState = {
   ugs: [],

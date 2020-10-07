@@ -11,7 +11,7 @@ import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
 import { handleVisibility } from './RightTab/handlers';
 import { calcExecutionYear } from './RightTab/utils';
-import ContextInfo from '../ContextInfo';
+import ContextInfo from '../../ContextInfo';
 import RightTab from './RightTab';
 import { initialState, dataInitialState, csvHeaders } from './utils';
 

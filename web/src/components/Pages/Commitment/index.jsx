@@ -4,12 +4,12 @@ import { faSave, faTable } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { SmallButtonPrimary, SmallButtonWarning } from '../Button';
-import { Card, CardBody, CardHeader } from '../Card';
-import { ErrorMesssage, FormGroup, FormRow, Input, Label } from '../Form';
-import { Heading } from '../Layout';
-import Layout from '../Layout/Internal';
-import { PageTitle } from '../Tipography';
+import { SmallButtonPrimary, SmallButtonWarning } from '../../Button';
+import { Card, CardBody, CardHeader } from '../../Card';
+import { ErrorMesssage, FormGroup, FormRow, Input, Label } from '../../Form';
+import { Heading } from '../../Layout';
+import Layout from '../../Layout/Internal';
+import { PageTitle } from '../../Tipography';
 
 const initialValues = {
   fileDate: new Date(),

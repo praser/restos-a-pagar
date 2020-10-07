@@ -16,7 +16,7 @@ import {
   UgList,
   UgUpdate,
   UpdateCommitment,
-} from '../../pages';
+} from '../Pages';
 
 import { PrivateRoute, PublicRoute } from '../Route';
 import * as paths from '../../utils/paths';

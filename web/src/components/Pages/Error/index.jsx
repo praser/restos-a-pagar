@@ -9,7 +9,7 @@ import {
   Description,
   GoBack,
   Paragraph,
-} from '~/components/Error/styles';
+} from '~/components/Pages/Error/styles';
 
 const Error = ({ code, description }) => {
   const history = useHistory();

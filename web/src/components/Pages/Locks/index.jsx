@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom';
 import { Doughnut, Line } from 'react-chartjs-2';
 
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
-import ContextInfo from '../ContextInfo';
+import ContextInfo from '../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Heading, Row } from '~/components/Layout';
 import {
@@ -37,10 +37,10 @@ import { calcExecutionYear } from './RightTab/utils';
 import RightTab from './RightTab';
 
 import { initialState, dataInitialState, csvHeaders } from './utils';
-import Highlight from '../Highlight';
-import Progressbar from '../Progressbar';
-import { Card, CardBody, CardHeader } from '../Card';
-import Table from '../Table';
+import Highlight from '../../Highlight';
+import Progressbar from '../../Progressbar';
+import { Card, CardBody, CardHeader } from '../../Card';
+import Table from '../../Table';
 
 const data = {
   labels: [

@@ -1,14 +1,14 @@
 import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from './Form';
-import Layout from '../Layout/Internal';
-import { Heading } from '../Layout';
-import { Card, CardBody, CardHeader } from '../Card';
+import Layout from '../../Layout/Internal';
+import { Heading } from '../../Layout';
+import { Card, CardBody, CardHeader } from '../../Card';
 import { useApiRap, useXHR } from '~/hooks';
 import { createUgFail as alertProps, createUgSuccess } from '~/utils/messages';
 import { ugPath } from '~/utils/paths';
-import { Context } from '../Store';
-import { PageTitle } from '../Tipography';
+import { Context } from '../../Store';
+import { PageTitle } from '../../Tipography';
 
 const initialValues = {
   code: '',
