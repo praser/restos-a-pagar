@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const onSubmit = values => {
-  alert(JSON.stringify(values));
+  return JSON.stringify(values);
 };
 
 const Create = () => {

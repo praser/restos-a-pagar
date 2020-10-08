@@ -1,41 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {
-  faCalendar,
   faCalendarAlt,
-  faDatabase,
-  faDownload,
   faFileContract,
-  faFilter,
   faHourglassHalf,
   faLock,
   faLockOpen,
   faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
 import { Doughnut, Line } from 'react-chartjs-2';
-
-import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
-import {
-  PageContextInfo,
-  PageTitle,
-  PillPrimary,
-  PillSuccess,
-  PillWarning,
-} from '~/components/Tipography';
-
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-
 import { possibleLocks as alertProps } from '~/utils/messages';
-
-import { handleVisibility } from '../RightTab/handlers';
 import { calcExecutionYear } from '../RightTab/utils';
 import RightTab from '../RightTab';
-
 import { initialState, dataInitialState, csvHeaders } from '../utils';
 import Highlight from '../../../Highlight';
 import Progressbar from '../../../Progressbar';
@@ -144,29 +124,29 @@ const Locks = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
 
-  // useEffect(() => {
-  //   apiRap.then(api => {
-  //     const success = res => {
-  //       const operacoes = api.formatters.operacoes(res[0].data);
-  //       const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
-  //       setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
-  //     };
+  useEffect(() => {
+    apiRap.then(api => {
+      const success = res => {
+        const operacoes = api.formatters.operacoes(res[0].data);
+        const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
+        setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
+      };
 
-  //     const requests = [
-  //       api.requests.getOperacoesPreBloqueio({
-  //         anoExecucao: calcExecutionYear(budgetYear),
-  //         tipoInfo: tipoInfo.value,
-  //         unidadeId: unidade.value || '',
-  //         siglaGestor: gestor.value || '',
-  //       }),
-  //     ];
-  //     doAllXhrRequest({
-  //       alertProps,
-  //       requests,
-  //       success,
-  //     });
-  //   });
-  // }, [tipoInfo, unidade, gestor]);
+      const requests = [
+        api.requests.getOperacoesPreBloqueio({
+          anoExecucao: calcExecutionYear(budgetYear),
+          tipoInfo: tipoInfo.value,
+          unidadeId: unidade.value || '',
+          siglaGestor: gestor.value || '',
+        }),
+      ];
+      doAllXhrRequest({
+        alertProps,
+        requests,
+        success,
+      });
+    });
+  }, [tipoInfo, unidade, gestor]);
 
   return (
     <Layout>

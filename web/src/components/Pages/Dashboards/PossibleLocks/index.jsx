@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { faDownload, faFilter } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
-import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import Layout from '~/components/Layout/Internal';
-import { Row } from '~/components/Layout';
-import { PageTitle } from '~/components/Tipography';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
-import { handleVisibility } from '../RightTab/handlers';
 import { calcExecutionYear } from '../RightTab/utils';
 import ContextInfo from '../../../ContextInfo';
 import RightTab from '../RightTab';
