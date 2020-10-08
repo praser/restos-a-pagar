@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom';
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
-import { Heading, Row } from '~/components/Layout';
+import { Row } from '~/components/Layout';
 import {
   PageContextInfo,
   PageTitle,
@@ -37,6 +37,7 @@ import { initialState, dataInitialState, csvHeaders } from '../utils';
 import Highlight from '../../../Highlight';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
+import Heading from '../Heading';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],
@@ -111,26 +112,12 @@ const Cancellations = () => {
         visible={state.showFilters}
         setState={setState}
       />
-      <Heading>
-        <PageTitle>
-          Cancelamentos da safra {budgetYear} - {physicalLotationAbbreviation}
-        </PageTitle>
-        <div>
-          <SmallButtonPrimary
-            as={CSVLink}
-            data={dataState.operacoesCsv}
-            separator=";"
-            filename="operacoesPassiveisBloqueio.csv"
-            headers={csvHeaders}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-            Download da base csv
-          </SmallButtonPrimary>
-          <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
-            <FontAwesomeIcon icon={faFilter} />
-            Filtros
-          </SmallButtonSecondary>
-        </div>
+      <Heading
+        data={dataState.operacoesCsv}
+        headers={csvHeaders}
+        setState={setState}
+      >
+        Cancelamentos da safra {budgetYear} - {physicalLotationAbbreviation}
       </Heading>
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
       <Row>

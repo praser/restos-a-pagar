@@ -5,7 +5,7 @@ import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import Layout from '~/components/Layout/Internal';
-import { Heading, Row } from '~/components/Layout';
+import { Row } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
@@ -14,12 +14,13 @@ import { calcExecutionYear } from '../RightTab/utils';
 import ContextInfo from '../../../ContextInfo';
 import RightTab from '../RightTab';
 import { initialState, dataInitialState, csvHeaders } from '../utils';
+import Heading from '../Heading';
 
 const PossibleLocks = () => {
   const [state, setState] = useState(initialState);
   const [dataState, setDataState] = useState(dataInitialState);
   const { budgetYear } = useParams();
-  const { physicalLotationAbbreviation } = useCurrentUser();
+  const { physicalLotationAbbreviation: lotation } = useCurrentUser();
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
@@ -64,27 +65,12 @@ const PossibleLocks = () => {
         visible={state.showFilters}
         setState={setState}
       />
-      <Heading>
-        <PageTitle>
-          Prévia dos bloqueios da safra {budgetYear} -{' '}
-          {physicalLotationAbbreviation}
-        </PageTitle>
-        <div>
-          <SmallButtonPrimary
-            as={CSVLink}
-            data={dataState.operacoesCsv}
-            separator=";"
-            filename="operacoesPassiveisBloqueio.csv"
-            headers={csvHeaders}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-            Download da base csv
-          </SmallButtonPrimary>
-          <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
-            <FontAwesomeIcon icon={faFilter} />
-            Filtros
-          </SmallButtonSecondary>
-        </div>
+      <Heading
+        data={dataState.operacoesCsv}
+        headers={csvHeaders}
+        setState={setState}
+      >
+        Prévia dos bloqueios da safra {budgetYear} - {lotation}
       </Heading>
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
     </Layout>

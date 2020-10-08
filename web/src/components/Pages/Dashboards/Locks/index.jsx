@@ -19,7 +19,7 @@ import { Doughnut, Line } from 'react-chartjs-2';
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
-import { Heading, Row } from '~/components/Layout';
+import { Row } from '~/components/Layout';
 import {
   PageContextInfo,
   PageTitle,
@@ -41,6 +41,7 @@ import Highlight from '../../../Highlight';
 import Progressbar from '../../../Progressbar';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
+import Heading from '../Heading';
 
 const data = {
   labels: [
@@ -174,26 +175,12 @@ const Locks = () => {
         visible={state.showFilters}
         setState={setState}
       />
-      <Heading>
-        <PageTitle>
-          Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
-        </PageTitle>
-        <div>
-          <SmallButtonPrimary
-            as={CSVLink}
-            data={dataState.operacoesCsv}
-            separator=";"
-            filename="operacoesPassiveisBloqueio.csv"
-            headers={csvHeaders}
-          >
-            <FontAwesomeIcon icon={faDownload} />
-            Download da base csv
-          </SmallButtonPrimary>
-          <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
-            <FontAwesomeIcon icon={faFilter} />
-            Filtros
-          </SmallButtonSecondary>
-        </div>
+      <Heading
+        data={dataState.operacoesCsv}
+        headers={csvHeaders}
+        setState={setState}
+      >
+        Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
       </Heading>
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
       <Row>
