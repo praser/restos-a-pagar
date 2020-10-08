@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { SmallButtonPrimary, SmallButtonWarning } from '../../Button';
 import { Card, CardBody, CardHeader } from '../../Card';
-import { ErrorMesssage, FormGroup, FormRow, Input, Label } from '../../Form';
+import { Field, FormRow, Input } from '../../Form';
 import { Heading } from '../../Layout';
 import Layout from '../../Layout/Internal';
 import { PageTitle } from '../../Tipography';
@@ -44,8 +44,12 @@ const Create = () => {
         <CardBody>
           <form onSubmit={Formik.handleSubmit}>
             <FormRow>
-              <FormGroup width="192px">
-                <Label htmlFor="fileDate">Data do arquivo</Label>
+              <Field
+                formik={Formik}
+                label="Data do arquivo"
+                name="fileDate"
+                width="192px"
+              >
                 <DatePicker
                   selected={Formik.values.fileDate}
                   maxDate={new Date()}
@@ -57,25 +61,14 @@ const Create = () => {
                     <Input id="fileDate" name="fileDate" type="text" />
                   }
                 />
-                {Formik.touched.fileDate && Formik.errors.fileDate ? (
-                  <ErrorMesssage>{Formik.errors.fileDate}</ErrorMesssage>
-                ) : null}
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="filePath">Arquivo</Label>
-                <Input
-                  accept=".csv, .txt"
-                  id="filePath"
-                  name="filePath"
-                  onChange={Formik.handleChange}
-                  onBlur={Formik.handleBlur}
-                  value={Formik.values.filePath}
-                  type="file"
-                />
-                {Formik.touched.filePath && Formik.errors.filePath ? (
-                  <ErrorMesssage>{Formik.errors.filePath}</ErrorMesssage>
-                ) : null}
-              </FormGroup>
+              </Field>
+              <Field
+                formik={Formik}
+                label="Arquivo"
+                name="filePath"
+                type="file"
+                accept=".csv, .txt"
+              />
             </FormRow>
             <FormRow>
               <SmallButtonPrimary>
