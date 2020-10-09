@@ -1,7 +1,21 @@
+import { isNull, pickBy } from 'lodash';
 import getXhrClient from '~/utils/xhrClient';
+
+const search = params => {
+  const query = pickBy(params, value => !isNull(value));
+  const urlSearchParams = new URLSearchParams(query);
+  return `?${urlSearchParams.toString()}`;
+};
 
 const requests = async () => {
   const client = await getXhrClient(process.env.REACT_APP_RAP_API_URL);
+
+  const getEstatisticas = async args => {
+    const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
+    const path = `/estatisticas/${anoExecucao}/${tipoInfo}`;
+    const query = search({ unidadeId, siglaGestor });
+    return client.get(`${path}${query}`);
+  };
 
   const getGestores = async () => client.get('/ug/gestores');
 
@@ -18,9 +32,9 @@ const requests = async () => {
 
   const getOperacoesPreBloqueio = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
-    return client.get(
-      `/operacoes/passiveis-bloqueio/${anoExecucao}/${tipoInfo}?unidadeId=${unidadeId}&siglaGestor=${siglaGestor}`,
-    );
+    const path = `/operacoes/passiveis-bloqueio/${anoExecucao}/${tipoInfo}`;
+    const query = search({ unidadeId, siglaGestor });
+    return client.get(`${path}${query}`);
   };
 
   const getUgs = async () => client.get('/ug');
@@ -40,6 +54,7 @@ const requests = async () => {
 
   return {
     deleteUg,
+    getEstatisticas,
     getGestores,
     getOperacoesPreBloqueio,
     getParam,

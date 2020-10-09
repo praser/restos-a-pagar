@@ -1,4 +1,10 @@
-import { format, isValid, parseISO as dParseISO } from 'date-fns';
+import {
+  differenceInDays,
+  format,
+  isValid,
+  parseISO as dParseISO,
+  startOfYear,
+} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 const dateFormat = 'dd/MM/yyyy';
@@ -16,4 +22,18 @@ export const formatDate = date => {
 export const formatISO = isoDate => {
   const date = parseISO(isoDate);
   return formatDate(date);
+};
+
+export const remainingDays = targetDate => {
+  const days = differenceInDays(targetDate, new Date());
+  return days > 0 ? days : 0;
+};
+
+export const percentElapsedTime = (
+  targetDate,
+  startDate = startOfYear(targetDate),
+) => {
+  const daysBetween = differenceInDays(targetDate, startDate);
+  const elapsedDays = differenceInDays(targetDate, new Date());
+  return 100 - (elapsedDays / daysBetween) * 100;
 };

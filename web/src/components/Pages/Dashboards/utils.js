@@ -15,6 +15,14 @@ export const initialState = {
   parametros: {
     dataBloqueio: null,
   },
+  estatisticas: {
+    estatisticas: [
+      {
+        quantidade_operacoes: null,
+        saldo_notas_empenho: null,
+      },
+    ],
+  },
 };
 
 export const dataInitialState = {
