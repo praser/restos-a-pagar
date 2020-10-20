@@ -3,6 +3,7 @@ import { Reset } from 'styled-reset';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { defaults } from 'react-chartjs-2';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { Alert, Loading } from '~/components/Modal';
@@ -31,6 +32,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 registerLocale('pt-BR', ptBR);
 setDefaultLocale('pt-BR');
+
+defaults.global.defaultFontFamily =
+  'Nunito,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+defaults.global.defaultFontColor = '#858796';
 
 const App = () => {
   const [context, dispatch] = useContext(Context);
