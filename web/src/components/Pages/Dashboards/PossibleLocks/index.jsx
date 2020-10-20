@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { faFileContract } from '@fortawesome/free-solid-svg-icons';
 import Layout from '~/components/Layout/Internal';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
@@ -10,18 +9,11 @@ import RightTab from '../RightTab';
 import { initialState, dataInitialState, csvHeaders } from '../utils';
 import Heading from '../Heading';
 import { Row } from '~/components/Layout';
-import Highlight from '~/components/Highlight';
-import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
-import Progressbar from '~/components/Progressbar';
-import {
-  monthNameShort,
-  percentElapsedTime,
-  remainingDays,
-  parseISO,
-} from '~/utils/dates';
+import { formatCurrencyShort } from '~/utils/numbers';
+import { monthNameShort, parseISO } from '~/utils/dates';
 import { Card, CardBody, CardHeader } from '~/components/Card';
 import { Line, defaults } from 'react-chartjs-2';
-import { last } from 'lodash';
+import Highlights from './Highlights';
 defaults.global.defaultFontFamily =
   'Nunito, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 defaults.global.defaultFontColor = '#858796';
@@ -74,11 +66,7 @@ const PossibleLocks = () => {
     });
   }, [tipoInfo, unidade, gestor]);
 
-  const {
-    quantidade_operacoes: countOperacoes,
-    quantidade_notas_empenho: countEmpenhos,
-    saldo_notas_empenho: balanceEmpenhos,
-  } = last(state.estatisticas.estatisticas);
+  const estatisticas = state.estatisticas;
 
   const lineChartData = () => {
     const { estatisticas } = state.estatisticas;
@@ -123,45 +111,8 @@ const PossibleLocks = () => {
 
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
 
-      <Row>
-        <Highlight
-          icon={faFileContract}
-          siblings={4}
-          title="Quantidade de operações"
-        >
-          {formatInteger(countOperacoes)}
-        </Highlight>
-        <Highlight
-          icon={faFileContract}
-          siblings={4}
-          title="Quantidade de notas de empenho"
-          variant="success"
-        >
-          {formatInteger(countEmpenhos)}
-        </Highlight>
-        <Highlight
-          icon={faFileContract}
-          siblings={4}
-          title="Saldo passível de bloqueio"
-          variant="info"
-        >
-          {formatCurrencyShort(balanceEmpenhos)}
-        </Highlight>
-        <Highlight
-          icon={faFileContract}
-          siblings={4}
-          title="Dias até o bloqueio"
-          variant="warning"
-        >
-          <div style={{ display: 'flex' }}>
-            {remainingDays(dataBloqueio)}{' '}
-            <Progressbar
-              width={`${percentElapsedTime(dataBloqueio)}%`}
-              variant="warning"
-            />
-          </div>
-        </Highlight>
-      </Row>
+      <Highlights estatisticas={estatisticas} dataBloqueio={dataBloqueio} />
+
       <Row>
         <Card width="65%">
           <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
