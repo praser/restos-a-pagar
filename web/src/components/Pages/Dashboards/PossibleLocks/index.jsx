@@ -61,7 +61,7 @@ const PossibleLocks = () => {
     });
   }, [tipoInfo, unidade, gestor]);
 
-  const estatisticas = state.estatisticas;
+  const { estatisticas } = state;
 
   const { dataBloqueio } = state.parametros;
 

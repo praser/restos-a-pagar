@@ -28,7 +28,7 @@ const yAxes = [
     ticks: {
       maxTicksLimit: 5,
       padding: 10,
-      callback: function (value) {
+      callback(value) {
         return formatCurrencyShort(value);
       },
     },
@@ -51,7 +51,7 @@ const tooltips = {
   mode: 'index',
   caretPadding: 10,
   callbacks: {
-    label: function (tooltipItem) {
+    label(tooltipItem) {
       return `Saldo: ${formatCurrencyShort(tooltipItem.yLabel)}`;
     },
   },
@@ -87,6 +87,7 @@ const lineChartData = estatisticas => {
   estatisticas.map(item => {
     data.labels.push(`${monthNameShort(parseISO(item.data))}`.toUpperCase());
     data.datasets[0].data.push(item.saldo_notas_empenho);
+    return item;
   });
   return data;
 };

@@ -5,12 +5,12 @@ import {
   faFileContract,
   faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { last } from 'lodash';
 import { Row } from '~/components/Layout';
 import Highlight from '~/components/Highlight';
 import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
 import Progressbar from '~/components/Progressbar';
 import { percentElapsedTime, remainingDays } from '~/utils/dates';
-import { last } from 'lodash';
 
 const Highlights = ({ estatisticas, dataBloqueio }) => {
   const {
