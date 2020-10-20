@@ -37,3 +37,8 @@ export const percentElapsedTime = (
   const elapsedDays = differenceInDays(targetDate, new Date());
   return 100 - (elapsedDays / daysBetween) * 100;
 };
+
+export const monthNameShort = date => {
+  if (!isValid(date)) return null;
+  return format(date, 'MMM', { locale: ptBR });
+};
