@@ -12,6 +12,7 @@ import { Row } from '~/components/Layout';
 import { Card, CardBody, CardHeader } from '~/components/Card';
 import Highlights from './Highlights';
 import EvolutionChart from './EvolutionChart';
+import SegmentChart from './SegmentChart';
 
 const PossibleLocks = () => {
   const [state, setState] = useState(initialState);
@@ -63,6 +64,8 @@ const PossibleLocks = () => {
 
   const { estatisticas } = state;
 
+  console.log(estatisticas);
+
   const { dataBloqueio } = state.parametros;
 
   return (
@@ -89,12 +92,14 @@ const PossibleLocks = () => {
         <Card width="65%">
           <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
           <CardBody>
-            <EvolutionChart estatisticas={estatisticas.estatisticas} />
+            <EvolutionChart stats={estatisticas.estatisticas} />
           </CardBody>
         </Card>
-        <Card>
+        <Card width="33%">
           <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
-          <CardBody>Um belo gráfico aqui</CardBody>
+          <CardBody>
+            <SegmentChart stats={estatisticas.estatisticasPorGestor} />
+          </CardBody>
         </Card>
       </Row>
     </Layout>

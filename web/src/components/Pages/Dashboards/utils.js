@@ -22,6 +22,12 @@ export const initialState = {
         saldo_notas_empenho: null,
       },
     ],
+    estatisticasPorGestor: [
+      {
+        siglaGestor: '',
+        saldo_notas_empenho: 0,
+      },
+    ],
   },
 };
 

@@ -2,10 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { formatCurrencyShort } from '~/utils/numbers';
 import { monthNameShort, parseISO } from '~/utils/dates';
-
-const layout = {
-  padding: { left: 10, right: 25, top: 25, bottom: 0 },
-};
+import { layout, tooltips } from './charts';
 
 const xAxes = [
   {
@@ -28,34 +25,11 @@ const yAxes = [
     ticks: {
       maxTicksLimit: 5,
       padding: 10,
-      callback(value) {
-        return formatCurrencyShort(value);
-      },
+      callback: value => formatCurrencyShort(value),
     },
     gridLines,
   },
 ];
-
-const tooltips = {
-  backgroundColor: 'rgb(255,255,255)',
-  bodyFontColor: '#858796',
-  titleMarginBottom: 10,
-  titleFontColor: '#6e707e',
-  titleFontSize: 14,
-  borderColor: '#dddfeb',
-  borderWidth: 1,
-  xPadding: 15,
-  yPadding: 15,
-  displayColors: false,
-  intersect: false,
-  mode: 'index',
-  caretPadding: 10,
-  callbacks: {
-    label(tooltipItem) {
-      return `Saldo: ${formatCurrencyShort(tooltipItem.yLabel)}`;
-    },
-  },
-};
 
 const options = {
   maintainAspectRatio: true,
@@ -82,9 +56,9 @@ const dataset = {
   pointBorderWidth: 2,
 };
 
-const lineChartData = estatisticas => {
+const lineChartData = stats => {
   const data = { labels: [], datasets: [{ ...dataset, data: [] }] };
-  estatisticas.map(item => {
+  stats.map(item => {
     data.labels.push(`${monthNameShort(parseISO(item.data))}`.toUpperCase());
     data.datasets[0].data.push(item.saldo_notas_empenho);
     return item;
@@ -92,8 +66,8 @@ const lineChartData = estatisticas => {
   return data;
 };
 
-const EvolutionChart = ({ estatisticas }) => {
-  return <Line data={lineChartData(estatisticas)} options={options} />;
+const EvolutionChart = ({ stats }) => {
+  return <Line data={lineChartData(stats)} options={options} />;
 };
 
 export default EvolutionChart;
