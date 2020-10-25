@@ -1,0 +1,141 @@
+{
+    "source": "mockoon:1.10.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "api-mail",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3002,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "Envia e-mails",
+                        "method": "post",
+                        "endpoint": "send",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"result\": \"error\",\n  \"message\": \"Invalid request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"result\": \"success\",\n  \"message\": \"The message has been sent\",\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Api-Key",
+                                        "value": "^(?!.*bad).*$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "from.email",
+                                        "value": "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "to",
+                                        "value": "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "message.subject",
+                                        "value": ".*",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "message.body",
+                                        "value": ".*",
+                                        "isRegex": true
+                                    }
+                                ],
+                                "rulesOperator": "AND",
+                                "disableTemplating": false
+                            },
+                            {
+                                "uuid": "",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Api-Key",
+                                        "value": "",
+                                        "isRegex": true
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,123 @@
+{
+    "source": "mockoon:1.10.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "api-restos-a-pagar",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3003,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"name\": \"Restos a Pagar\",\n  \"description\": \"API REST que fornece dados relativos aos restos a pagar dos contratos de repasse sob gestão da GEOTR\",\n  \"documentation\": \"http://docs.com\",\n  \"source\": \"http://github.com\",\n  \"uptime\": 23424323,\n  \"databasePosition\": \"2020-09-15\",\n  \"databaseLastUpdate\": \"2020-09-26 11:30:00\"\n}\n",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "parametros",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n  {\n    \"anoExecucao\": 2019,\n    \"anoOrcamentario\": 2017,\n    \"dataBloqueio\": \"2019-06-30\",\n    \"dataCancelamento\": \"2019-12-31\"\n  },\n  {\n    \"anoExecucao\": 2020,\n    \"anoOrcamentario\": 2018,\n    \"dataBloqueio\": \"2020-11-14\",\n    \"dataCancelamento\": \"2020-11-30\"\n  }\n]",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "parametros/:anoOrcamentario",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"anoExecucao\": 2020,\n  \"anoOrcamentario\": {{urlParam 'anoOrcamentario'}},\n  \"dataBloqueio\": \"2020-11-14\",\n  \"dataCancelamento\": \"2020-12-31\"\n  }",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": true,
+                "proxyHost": "http://localhost:3000",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Methods",
+                        "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Headers",
+                        "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With, X-Token"
+                    }
+                ],
+                "proxyReqHeaders": [],
+                "proxyResHeaders": []
+            }
+        }
+    ]
+}
