@@ -35,7 +35,8 @@ const useXHR = () => {
     setTimeout(() => {
       return Promise.all(requests)
         .then(res => success(res))
-        .catch(() => {
+        .catch(e => {
+          console.error(e);
           catchAct(alertProps);
         })
         .finally(() => finallyAct());

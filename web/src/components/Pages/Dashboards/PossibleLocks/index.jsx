@@ -102,6 +102,12 @@ const PossibleLocks = () => {
           </CardBody>
         </Card>
       </Row>
+      <Row>
+        <Card>
+          <CardHeader>Dados analíticos</CardHeader>
+          <CardBody>Tabela maneira</CardBody>
+        </Card>
+      </Row>
     </Layout>
   );
 };
