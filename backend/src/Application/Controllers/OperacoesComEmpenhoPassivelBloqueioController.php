@@ -2,7 +2,7 @@
 
 namespace App\Application\Controllers;
 
-use App\Domain\EstatisticasDomain;
+use App\Domain\EstatisticasPreBloqueioDomain;
 use App\Domain\OperacaoDomain;
 use App\Persistence\OperacaoDao;
 use Psr\Container\ContainerInterface as Container;

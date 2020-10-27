@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Application\Controllers;
 
-use App\Persistence\EstatisticasDao;
+use App\Persistence\EstatisticasPreBloqueioDao;
 use App\Persistence\ParametrosDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class EstatisticasController extends ControllerBase
+class EstatisticasPreBloqueioController extends ControllerBase
 {
     private $dao;
     private $parametrosDao;
@@ -18,7 +18,7 @@ class EstatisticasController extends ControllerBase
     public function __construct(Container $container)
     {
         parent::__construct($container);
-        $this->dao = new EstatisticasDao($this->container);
+        $this->dao = new EstatisticasPreBloqueioDao($this->container);
         $this->parametrosDao = new ParametrosDao($this->container);
     }
 

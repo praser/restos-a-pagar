@@ -6,7 +6,7 @@ namespace App\Domain;
 
 use DateTime;
 
-class EstatisticasDomain extends DomainBase
+class EstatisticasPreBloqueioDomain extends DomainBase
 {
     public const ANO_EXECUCAO = 'anoExecucao';
     public const ANO_ORCAMENTARIO = 'anoOrcamentario';

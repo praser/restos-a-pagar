@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-use App\Application\Controllers\EstatisticasController;
+use App\Application\Controllers\EstatisticasPreBloqueioController;
 use App\Application\Controllers\OperacoesComEmpenhoPassivelBloqueioController;
 use App\Application\Controllers\TipoInformacaoController;
 use App\Application\Controllers\UgController;
@@ -43,7 +43,7 @@ return function (App $app) {
     });
 
     $app->group('/estatisticas/{anoExecucao}', function(Group $group) {
-        $group->get('/passiveis-bloqueio', EstatisticasController::class . ':index');
+        $group->get('/passiveis-bloqueio', EstatisticasPreBloqueioController::class . ':index');
     });
 
     $app->group('/tipos-informacoes/{anoExecucao}', function(Group $group) {

@@ -6,15 +6,15 @@ declare(strict_types=1);
 namespace App\Persistence;
 
 use App\Domain\DomainInterface;
-use App\Domain\EstatisticasDomain;
+use App\Domain\EstatisticasPreBloqueioDomain;
 use DateTime;
 use Exception;
 use NilPortugues\Sql\QueryBuilder\Syntax\OrderBy;
 
-class EstatisticasDao extends DaoBase
+class EstatisticasPreBloqueioDao extends DaoBase
 {
     protected const TABLE = 'cache.estatisticas';
-    protected $domain = EstatisticasDomain::class;
+    protected $domain = EstatisticasPreBloqueioDomain::class;
 
     public function findSumario(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
     {
@@ -32,7 +32,7 @@ class EstatisticasDao extends DaoBase
     public function findSumarioPorGestor(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
     {
         try {
-            $cols = [EstatisticasDomain::SIGLA_GESTOR, EstatisticasDomain::NOME_GESTOR];
+            $cols = [EstatisticasPreBloqueioDomain::SIGLA_GESTOR, EstatisticasPreBloqueioDomain::NOME_GESTOR];
             [$queryBuilder, $query] = $this->getBaseQuery($tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla, null, $cols);
 
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
@@ -46,7 +46,7 @@ class EstatisticasDao extends DaoBase
     public function findAllTipoInformacao(int $anoExecucao): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
-        $colunas = [EstatisticasDomain::TIPO_INFORMACAO_ID, EstatisticasDomain::TIPO_INFORMACAO_DESCRICAO];
+        $colunas = [EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID, EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_DESCRICAO];
 
         $query = $queryBuilder
             ->select()
@@ -55,9 +55,9 @@ class EstatisticasDao extends DaoBase
             ->setValueAsColumn(null, 'data')
             ->groupBy($colunas)
             ->where()
-            ->equals(EstatisticasDomain::ANO_EXECUCAO, $anoExecucao)
+            ->equals(EstatisticasPreBloqueioDomain::ANO_EXECUCAO, $anoExecucao)
             ->end()
-            ->orderBy(EstatisticasDomain::TIPO_INFORMACAO_ID, self::ASC);
+            ->orderBy(EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID, self::ASC);
 
         try {
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
@@ -74,11 +74,11 @@ class EstatisticasDao extends DaoBase
         $dataStr = $dt->format($outputDateFormat);
 
         $defaultColumns = [
-            EstatisticasDomain::ANO_EXECUCAO,
-            EstatisticasDomain::ANO_ORCAMENTARIO,
-            EstatisticasDomain::DATA,
-            EstatisticasDomain::TIPO_INFORMACAO_ID,
-            EstatisticasDomain::TIPO_INFORMACAO_DESCRICAO,
+            EstatisticasPreBloqueioDomain::ANO_EXECUCAO,
+            EstatisticasPreBloqueioDomain::ANO_ORCAMENTARIO,
+            EstatisticasPreBloqueioDomain::DATA,
+            EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID,
+            EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_DESCRICAO,
         ];
         $queryColumns = array_merge($defaultColumns, $columns);
         $queryBuilder = $this->getQueryBuilder();
@@ -87,31 +87,31 @@ class EstatisticasDao extends DaoBase
             ->select()
             ->setTable(self::TABLE)
             ->setColumns($queryColumns)
-            ->setFunctionAsColumn('MIN', [EstatisticasDomain::ID], EstatisticasDomain::ID)
-            ->setFunctionAsColumn('SUM', [EstatisticasDomain::QUANTIDADE_OPERACOES], EstatisticasDomain::QUANTIDADE_OPERACOES)
-            ->setFunctionAsColumn('SUM', [EstatisticasDomain::QUANTIDADE_NOTAS_EMPENHO], EstatisticasDomain::QUANTIDADE_NOTAS_EMPENHO)
-            ->setFunctionAsColumn('SUM', [EstatisticasDomain::SALDO_NOTAS_EMPENHO], EstatisticasDomain::SALDO_NOTAS_EMPENHO)
-            ->setFunctionAsColumn('MIN', [EstatisticasDomain::CREATED_AT], EstatisticasDomain::CREATED_AT)
-            ->setFunctionAsColumn('MAX', [EstatisticasDomain::UPDATED_AT], EstatisticasDomain::UPDATED_AT)
+            ->setFunctionAsColumn('MIN', [EstatisticasPreBloqueioDomain::ID], EstatisticasPreBloqueioDomain::ID)
+            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES], EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES)
+            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO], EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO)
+            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO], EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO)
+            ->setFunctionAsColumn('MIN', [EstatisticasPreBloqueioDomain::CREATED_AT], EstatisticasPreBloqueioDomain::CREATED_AT)
+            ->setFunctionAsColumn('MAX', [EstatisticasPreBloqueioDomain::UPDATED_AT], EstatisticasPreBloqueioDomain::UPDATED_AT)
             ->groupBy($queryColumns)
             ->where()
-            ->lessThanOrEqual(EstatisticasDomain::DATA, $dataStr)
-            ->equals(EstatisticasDomain::TIPO_INFORMACAO_ID, $tipoInformacaoId)
-            ->equals(EstatisticasDomain::ANO_EXECUCAO, $anoExecucao)
+            ->lessThanOrEqual(EstatisticasPreBloqueioDomain::DATA, $dataStr)
+            ->equals(EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID, $tipoInformacaoId)
+            ->equals(EstatisticasPreBloqueioDomain::ANO_EXECUCAO, $anoExecucao)
             ->end()
-            ->orderBy(EstatisticasDomain::DATA, self::ASC);
+            ->orderBy(EstatisticasPreBloqueioDomain::DATA, self::ASC);
 
         if ($unidadeId) {
             $query
                 ->where()
-                ->equals(EstatisticasDomain::GIGOV_ID, $unidadeId)
+                ->equals(EstatisticasPreBloqueioDomain::GIGOV_ID, $unidadeId)
                 ->end();
         }
 
         if (!empty($gestorSigla)) {
             $query
                 ->where()
-                ->equals(EstatisticasDomain::SIGLA_GESTOR, $gestorSigla)
+                ->equals(EstatisticasPreBloqueioDomain::SIGLA_GESTOR, $gestorSigla)
                 ->end();
         }
         return array($queryBuilder, $query);
