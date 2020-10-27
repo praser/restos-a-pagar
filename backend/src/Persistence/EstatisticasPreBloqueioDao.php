@@ -13,7 +13,7 @@ use NilPortugues\Sql\QueryBuilder\Syntax\OrderBy;
 
 class EstatisticasPreBloqueioDao extends DaoBase
 {
-    protected const TABLE = 'cache.estatisticas';
+    protected const TABLE = 'cache.estatisticas_pre_bloqueio';
     protected $domain = EstatisticasPreBloqueioDomain::class;
 
     public function findSumario(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
