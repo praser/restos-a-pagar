@@ -12,8 +12,8 @@ const requests = async () => {
 
   const getEstatisticas = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
-    const path = `/estatisticas/${anoExecucao}/${tipoInfo}`;
-    const query = search({ unidadeId, siglaGestor });
+    const path = `/estatisticas/${anoExecucao}/passiveis-bloqueio`;
+    const query = search({ unidadeId, siglaGestor, tipoInfo });
     return client.get(`${path}${query}`);
   };
 
@@ -32,8 +32,8 @@ const requests = async () => {
 
   const getOperacoesPreBloqueio = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
-    const path = `/operacoes/passiveis-bloqueio/${anoExecucao}/${tipoInfo}`;
-    const query = search({ unidadeId, siglaGestor });
+    const path = `/operacoes/${anoExecucao}/passiveis-bloqueio`;
+    const query = search({ unidadeId, siglaGestor, tipoInfo });
     return client.get(`${path}${query}`);
   };
 
@@ -50,7 +50,7 @@ const requests = async () => {
 
   const deleteUg = async id => client.delete(`/ug/${id}`);
 
-  const getStatus = () => client.get('/');
+  const getStatus = () => client.get('/info');
 
   return {
     deleteUg,
