@@ -21,4 +21,12 @@ class ParametrosDao extends DaoBase
             self::VALUE_KEY => $anoExecucao
         ]]);
     }
+
+    public function findByAnoOrcamentario(int $anoOrcamentario): ?DomainInterface
+    {
+        return $this->findBy([[
+            self::COLUMN_KEY => ParametrosDomain::ANO_ORCAMENTARIO,
+            self::VALUE_KEY => $anoOrcamentario
+        ]]);
+    }
 }

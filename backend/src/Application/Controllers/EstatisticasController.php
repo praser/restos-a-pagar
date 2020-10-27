@@ -24,17 +24,15 @@ class EstatisticasController extends ControllerBase
 
     public function index(Request $req, Response $res, array $args): Response {
         $anoExecucao = (int) $args['anoExecucao'];
-        $tipoInformacaoId = (int) $args['tipoInformacaoId'];
+        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams()) ? (int) $req->getQueryParams()['tipoInfo'] : 3;
         $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
         $gestorSigla = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
 
-        $parametrosRap = $this->parametrosDao->findByAnoExecucao($anoExecucao);
         $estatisticas = $this->dao->findSumario($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
         $estatiscasPorGestor = $this->dao->findDistribuicaoPorGestor($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
 
         if($estatisticas) {
             $responseBody = [
-                'parametros' => $parametrosRap,
                 'estatisticas' => $estatisticas,
                 'estatisticasPorGestor' => $estatiscasPorGestor,
             ];

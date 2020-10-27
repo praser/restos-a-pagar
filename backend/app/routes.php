@@ -11,6 +11,8 @@ use App\Application\Controllers\UgController;
 use App\Application\Controllers\SaldoNotaEmpenhoController;
 use App\Application\Controllers\UgGestoresController;
 use App\Application\Controllers\UnidadesController;
+use App\Application\Controllers\ParametrosController;
+use App\Domain\InfoDomain;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -36,12 +38,12 @@ return function (App $app) {
         $group->post('', SaldoNotaEmpenhoController::class . ':create');
     });
 
-    $app->group('/operacoes/passiveis-bloqueio/{anoExecucao}', function (Group $group) {
-        $group->get('/{tipoInformacaoId}', OperacoesComEmpenhoPassivelBloqueioController::class . ':index');
+    $app->group('/operacoes/{anoExecucao}', function (Group $group) {
+        $group->get('/passiveis-bloqueio', OperacoesComEmpenhoPassivelBloqueioController::class . ':index');
     });
 
     $app->group('/estatisticas/{anoExecucao}', function(Group $group) {
-        $group->get('/{tipoInformacaoId}', EstatisticasController::class . ':index');
+        $group->get('/passiveis-bloqueio', EstatisticasController::class . ':index');
     });
 
     $app->group('/tipos-informacoes/{anoExecucao}', function(Group $group) {
@@ -52,8 +54,14 @@ return function (App $app) {
         $group->get('', UnidadesController::class . ':index');
     });
 
-    $app->get('/', function(Request $req, Response $res, array $args): Response {
-        $res->getBody()->write("API Restos a pagar");
+    $app->group('/parametros', function (Group $group) {
+        $group->get('', ParametrosController::class . ':index');
+        $group->get('/{anoOrcamentario}', ParametrosController::class . ':show');
+    });
+
+    $app->get('/info', function(Request $req, Response $res, array $args): Response {
+        $info = new InfoDomain();
+        $res->getBody()->write(json_encode($info, JSON_THROW_ON_ERROR, 512));
         return $res;
     });
 };

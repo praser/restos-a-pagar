@@ -20,17 +20,19 @@ return function (App $app) {
     $app->add(new JwtAuthentication([
         'regexp' => '/(.*)/',
         'header' => 'X-Token',
+        'ignore' => ['/info'],
         'path' => '/',
         'realm' => 'Protected',
         'secure' => false,
         'secret' => $container ? $container->get('settings')['jwt']['secret'] : null,
-        "error" => function ($response, $arguments) {
+        'error' => function ($response, $arguments) {
             $data["status"] = "error";
             $data["message"] = $arguments["message"];
             return $response
                 ->withHeader("Content-Type", "application/json")
                 ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }
+
     ]));
 
     $app->addErrorMiddleware(true, true, true);

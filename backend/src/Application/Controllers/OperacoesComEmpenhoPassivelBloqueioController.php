@@ -22,7 +22,7 @@ class OperacoesComEmpenhoPassivelBloqueioController extends ControllerBase
     public function index(Request $req, Response $res, array $args): Response
     {
         $anoExecucao = (int) $args[OperacaoDomain::ANO_EXECUCAO];
-        $tipoInformacaoId = (int) $args[EstatisticasDomain::TIPO_INFORMACAO_ID];
+        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams()) ? (int) $req->getQueryParams()['tipoInfo'] : 3;
         $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
         $siglaGestor = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
 
