@@ -12,7 +12,7 @@ use App\Application\Controllers\SaldoNotaEmpenhoController;
 use App\Application\Controllers\UgGestoresController;
 use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
-use App\Domain\InfoDomain;
+use App\Application\Controllers\InfoController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -59,9 +59,5 @@ return function (App $app) {
         $group->get('/{anoOrcamentario}', ParametrosController::class . ':show');
     });
 
-    $app->get('/info', function(Request $req, Response $res, array $args): Response {
-        $info = new InfoDomain();
-        $res->getBody()->write(json_encode($info, JSON_THROW_ON_ERROR, 512));
-        return $res;
-    });
+    $app->get('/info', InfoController::class . ':index');
 };

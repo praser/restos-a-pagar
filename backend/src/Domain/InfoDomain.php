@@ -12,8 +12,8 @@ class InfoDomain extends DomainBase
     public const DESCRIPTION = 'description';
     private const DOCS = 'docs';
     private const SOURCE = 'source';
-    private const DATABASE_POSITION = 'databasePosition';
-    private const DATABASE_LAST_UPDATE =  'databaseLastUpdate';
+    public const DATABASE_POSITION = 'databasePosition';
+    public const DATABASE_LAST_UPDATE =  'databaseLastUpdate';
   
 
     private $name;
@@ -30,8 +30,8 @@ class InfoDomain extends DomainBase
         $this->descriotion = "API que fornece dados e informações das operações e notas de empenho que possuem saldo inscrito em restos a pagar";
         $this->docs = "https://anonimous.postman.co/collections/1406279-22655d3a-c6b7-4d0e-8880-49a0534d012d?version=latest&workspace=d72067b3-4f80-4a60-bfa7-2eb279b0cdd8#278e220d-13fe-4545-a137-4b8a2a6de591";
         $this->source = "https://github.com/praser/restos-a-pagar";
-        $this->databasePosition = '2020-10-26';
-        $this->databaseLastUpdate = '2020-10-26 14:36:55';
+        $this->databasePosition = $params[self::DATABASE_POSITION];
+        $this->databaseLastUpdate = $params[self::DATABASE_LAST_UPDATE];
     }
 
     public function getName(): ?string
