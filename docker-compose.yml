@@ -1,11 +1,11 @@
 version: "3"
-networks: 
+networks:
   restos-a-pagar-net:
     driver: bridge
 services:
   database:
     container_name: database
-    environment: 
+    environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: S3cr3t00
     image: microsoft/mssql-server-linux
@@ -17,10 +17,10 @@ services:
     volumes:
       - "./database:/var/opt/database"
   php:
-    build: 
+    build:
       context: ./php
     container_name: php
-    depends_on: 
+    depends_on:
       - database
     networks:
       - restos-a-pagar-net
@@ -42,15 +42,17 @@ services:
       - "./nginx/nginx.backend.conf:/etc/nginx/nginx.conf"
   auth_api:
     container_name: auth-api
-    environment: 
+    environment:
+      APP_PATH: ""
+      AUTH_DRIVER: "inMemory"
       AUTH_SECRET: secret
       AUTH_EXPIRATION: 21600
       AUTH_ISSUER: SUDEP
     image: praser/api-autenticacao
     networks:
-        - restos-a-pagar-net
+      - restos-a-pagar-net
     ports:
-        - 3001:3000
+      - 3001:3000
   frontend:
     container_name: frontend
     depends_on:
