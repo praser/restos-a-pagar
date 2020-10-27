@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Application\Controllers;
 
 use App\Persistence\EstatisticasPreBloqueioDao;
-use App\Persistence\ParametrosDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -13,13 +12,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class EstatisticasPreBloqueioController extends ControllerBase
 {
     private $dao;
-    private $parametrosDao;
 
     public function __construct(Container $container)
     {
         parent::__construct($container);
         $this->dao = new EstatisticasPreBloqueioDao($this->container);
-        $this->parametrosDao = new ParametrosDao($this->container);
     }
 
     public function index(Request $req, Response $res, array $args): Response {
