@@ -14,7 +14,7 @@ export const PageContextInfo = styled.h3`
   line-height: 1.2;
   color: #858796;
   text-align: left;
-  background-color: #fff;
+  background-color: transparent;
   svg {
     margin-right: 0.5rem;
   }
