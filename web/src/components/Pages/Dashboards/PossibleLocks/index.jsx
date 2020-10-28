@@ -64,8 +64,6 @@ const PossibleLocks = () => {
 
   const { estatisticas } = state;
 
-  console.log(estatisticas);
-
   const { dataBloqueio } = state.parametros;
 
   return (

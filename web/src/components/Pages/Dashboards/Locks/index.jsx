@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {
-  faCalendarAlt,
-  faFileContract,
-  faHourglassHalf,
-  faLock,
-  faLockOpen,
-  faMoneyCheckAlt,
-} from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { Doughnut, Line } from 'react-chartjs-2';
 import ContextInfo from '../../../ContextInfo';
@@ -17,11 +9,10 @@ import { possibleLocks as alertProps } from '~/utils/messages';
 import { calcExecutionYear } from '../RightTab/utils';
 import RightTab from '../RightTab';
 import { initialState, dataInitialState, csvHeaders } from '../utils';
-import Highlight from '../../../Highlight';
-import Progressbar from '../../../Progressbar';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
+import Highlights from './Highlights';
 
 const data = {
   labels: [
@@ -162,64 +153,23 @@ const Locks = () => {
       >
         Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
       </Heading>
+
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
-      <Row>
-        <Highlight
-          icon={faFileContract}
-          siblings={3}
-          title="quantidade de operações"
-        >
-          1.892
-        </Highlight>
 
-        <Highlight
-          icon={faMoneyCheckAlt}
-          siblings={3}
-          title=" quantidade de notas de empenho"
-          variant="info"
-        >
-          1.941
-        </Highlight>
+      <Highlights
+        estatisticas={[
+          {
+            quantidadeOperacoes: 1000,
+            quantidadeDocumentos: 2000,
+            saldoBloqueado: 1000000000,
+            saldoDesbloqueado: 500000000,
+            saldoAguardandoDesbloqueio: 600000000,
+          },
+        ]}
+        dataBloqueio={new Date(2020, 10, 14)}
+        dataCancelamento={new Date(2020, 11, 31)}
+      />
 
-        <Highlight
-          icon={faCalendarAlt}
-          siblings={3}
-          title="dias até o cancelamento"
-          variant="warning"
-        >
-          <div style={{ display: 'flex' }}>
-            45 <Progressbar width="5%" variant="warning" />
-          </div>
-        </Highlight>
-      </Row>
-      <Row>
-        <Highlight
-          icon={faLock}
-          siblings={3}
-          title="Saldo bloqueado"
-          variant="danger"
-        >
-          R$ 1.49 bilhões
-        </Highlight>
-
-        <Highlight
-          icon={faLockOpen}
-          siblings={3}
-          title="Saldo desbloqueado"
-          variant="success"
-        >
-          R$ 1.49 bilhões
-        </Highlight>
-
-        <Highlight
-          icon={faHourglassHalf}
-          siblings={3}
-          title="Saldo agaurdando desbloqueio"
-          variant="warning"
-        >
-          R$ 1.49 bilhões
-        </Highlight>
-      </Row>
       <Row>
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>

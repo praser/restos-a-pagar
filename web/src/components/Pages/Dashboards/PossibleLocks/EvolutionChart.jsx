@@ -4,14 +4,6 @@ import { formatCurrencyShort } from '~/utils/numbers';
 import { monthNameShort, parseISO } from '~/utils/dates';
 import { layout, tooltips } from './charts';
 
-const xAxes = [
-  {
-    time: { unit: 'date' },
-    gridLines: { display: false, drawBorder: false },
-    ticks: { maxTicksLimit: 7 },
-  },
-];
-
 const gridLines = {
   color: 'rgb(234, 236, 244)',
   zeroLineColor: 'rgb(234, 236, 244)',
@@ -19,6 +11,14 @@ const gridLines = {
   borderDash: [2],
   zeroLineBorderDash: [2],
 };
+
+const xAxes = [
+  {
+    time: { unit: 'date' },
+    gridLines: { display: false, drawBorder: false },
+    ticks: { maxTicksLimit: 7 },
+  },
+];
 
 const yAxes = [
   {
