@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  faCalendar,
+  faBan,
   faDatabase,
   faFilter,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
@@ -55,8 +56,12 @@ const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
   return (
     <Row direction="column">
       <PageContextInfo>
-        <FontAwesomeIcon icon={faCalendar} />
+        <FontAwesomeIcon icon={faLock} />
         Data do bloqueio: {formatDate(parametros.dataBloqueio)}
+      </PageContextInfo>
+      <PageContextInfo>
+        <FontAwesomeIcon icon={faBan} />
+        Data do cancelamento: {formatDate(parametros.dataCancelamento)}
       </PageContextInfo>
       <PageContextInfo>
         <FontAwesomeIcon icon={faDatabase} />
