@@ -39,6 +39,8 @@ const configure = async baseURL => {
     return {};
   })();
 
+  options.headers['X-Token'] = getToken();
+
   return setup({
     baseURL,
     cache,
@@ -51,6 +53,7 @@ const getXhrClient = (baseURL, cache = true) => {
     return configure(baseURL).then(async client => client);
   }
 
+  options.headers['X-Token'] = getToken();
   return setup({ baseURL, ...options });
 };
 
