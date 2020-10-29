@@ -96,9 +96,8 @@ const lineChartData = stats => {
   return data;
 };
 
-const EvolutionChart = ({ stats }) => {
-  console.log(lineChartData(stats));
+const LineChart = ({ stats }) => {
   return <Line data={lineChartData(stats)} options={options} />;
 };
 
-export default EvolutionChart;
+export default LineChart;

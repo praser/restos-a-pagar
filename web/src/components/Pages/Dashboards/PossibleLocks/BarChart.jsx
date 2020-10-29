@@ -98,8 +98,8 @@ const barChartData = stats => {
   return { labels, datasets: [{ ...dataset, data }] };
 };
 
-const SegmentChart = ({ stats }) => {
+const BarChart = ({ stats }) => {
   return <Bar data={barChartData(stats)} options={options} />;
 };
 
-export default SegmentChart;
+export default BarChart;

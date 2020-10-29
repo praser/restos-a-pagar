@@ -13,7 +13,7 @@ import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
 import Highlights from './Highlights';
-import EvolutionChart from './EvolutionChart';
+import LineChart from './LineChart';
 
 const data = {
   labels: [
@@ -132,7 +132,7 @@ const Locks = () => {
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
           <CardBody>
-            <EvolutionChart stats={data2} />
+            <LineChart stats={data2} />
           </CardBody>
         </Card>
 
