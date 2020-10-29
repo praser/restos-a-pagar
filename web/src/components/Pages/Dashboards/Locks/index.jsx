@@ -42,32 +42,6 @@ const data = {
   ],
 };
 
-const data2 = {
-  labels: [
-    '2020-01-28',
-    '2020-02-28',
-    '2020-03-28',
-    '2020-04-28',
-    '2020-05-28',
-    '2020-06-28',
-    '2020-07-28',
-  ],
-  datasets: [
-    {
-      label: 'Desbloqueios realizados',
-      data: [0, 2, 5, 5, 10, 11, 12],
-    },
-    {
-      label: 'Solicitações de desbloqueio',
-      data: [0, 40, 42, 44, 45, 46, 40],
-    },
-    {
-      label: 'Saldo bloquado',
-      data: [100, 98, 95, 95, 90, 89, 88],
-    },
-  ],
-};
-
 const Locks = () => {
   const [state, setState] = useState(initialState);
   const [context] = useContext(Context);
@@ -109,8 +83,6 @@ const Locks = () => {
     item => item.anoOrcamentario === parseInt(budgetYear, 10),
   );
 
-  console.log(param);
-
   return (
     <Layout>
       <RightTab
@@ -141,7 +113,7 @@ const Locks = () => {
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
           <CardBody>
-            <LineChart data={lineChartData(data2)} />
+            <LineChart data={lineChartData(estatisticas)} />
           </CardBody>
         </Card>
 

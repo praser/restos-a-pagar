@@ -1,4 +1,4 @@
-import { monthNameShort, parseISO } from '~/utils/dates';
+import { monthNameShort } from '~/utils/dates';
 import {
   danger,
   dangerOp20,
@@ -44,11 +44,45 @@ const dataDef = [
   },
 ];
 
-export const lineChartData = stats => {
+const extractData = data => {
+  const labels = [];
+  const saldoDesbloqueado = [];
+  const saldoAguardandoDesbloqueio = [];
+  const saldoBloqueado = [];
+
+  data.map(item => {
+    labels.push(item.data);
+    saldoDesbloqueado.push(item.saldoDesbloqueado);
+    saldoAguardandoDesbloqueio.push(item.saldoAguardandoDesbloqueio);
+    saldoBloqueado.push(item.saldoBloqueado);
+    return item;
+  });
+
+  return {
+    labels,
+    datasets: [
+      {
+        label: 'Desbloqueios realizados',
+        data: saldoDesbloqueado,
+      },
+      {
+        label: 'Solicitações de desbloqueio',
+        data: saldoAguardandoDesbloqueio,
+      },
+      {
+        label: 'Saldo bloquado',
+        data: saldoBloqueado,
+      },
+    ],
+  };
+};
+
+export const lineChartData = data => {
+  const stats = extractData(data);
   const labels = stats.labels.map(item =>
-    `${monthNameShort(parseISO(item))}`.toUpperCase(),
+    `${monthNameShort(item)}`.toUpperCase(),
   );
-  const data = { labels, datasets: [] };
+  const dataArray = { labels, datasets: [] };
 
   stats.datasets.map((item, index) => {
     const dataset = {
@@ -56,8 +90,8 @@ export const lineChartData = stats => {
       ...dataDef[index],
       ...item,
     };
-    data.datasets.push(dataset);
+    dataArray.datasets.push(dataset);
     return item;
   });
-  return data;
+  return dataArray;
 };
