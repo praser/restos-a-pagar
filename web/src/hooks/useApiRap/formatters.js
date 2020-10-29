@@ -119,3 +119,21 @@ export const parametros = (opr, options = {}) => {
     dataCancelamento: currOptions.date(dataCancelamento),
   };
 };
+
+const estatisticaBloqueio = (opr, options = {}) => {
+  const dafaultOptions = {
+    date: parseISO,
+    decimal: parseNumber,
+  };
+
+  const currOptions = { ...dafaultOptions, ...options };
+
+  const { data } = opr;
+
+  return {
+    ...opr,
+    data: currOptions.date(data),
+  };
+};
+
+export const estatisticasBloqueio = data => data.map(estatisticaBloqueio);

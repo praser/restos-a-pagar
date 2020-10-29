@@ -7,7 +7,8 @@ import { possibleLocks as alertProps } from '~/utils/messages';
 import { calcExecutionYear } from '../RightTab/utils';
 import ContextInfo from '../../../ContextInfo';
 import RightTab from '../RightTab';
-import { initialState, dataInitialState, csvHeaders } from '../utils';
+import { csvHeaders } from '../utils';
+import { initialState, dataInitialState } from './utils';
 import Heading from '../Heading';
 import { Row } from '~/components/Layout';
 import { Card, CardBody, CardHeader } from '~/components/Card';
@@ -54,7 +55,7 @@ const PossibleLocks = () => {
       const requests = [
         api.requests.getOperacoesPreBloqueio(reqArgs),
         api.requests.getStatus(),
-        api.requests.getEstatisticas(reqArgs),
+        api.requests.getEstatisticasPreBloqueio(reqArgs),
       ];
       doAllXhrRequest({
         alertProps,

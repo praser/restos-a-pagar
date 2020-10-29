@@ -12,6 +12,11 @@ export const possibleLocks = getMessage({
     'Houve um erro ao carregar os dados da operações passíveis de bloqueio. Por favor tente novamente.',
 });
 
+export const locks = getMessage({
+  text:
+    'Houve um erro ao carregar os dados da operações com empenho bloqueado. Por favor tente novamente.',
+});
+
 export const possibleLocksFilters = getMessage({
   text:
     'Houve um erro ao obter os dados dos filtros. Por favor tente novamente',

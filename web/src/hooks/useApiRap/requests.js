@@ -10,9 +10,16 @@ const search = params => {
 const requests = async () => {
   const client = await getXhrClient(process.env.REACT_APP_RAP_API_URL);
 
-  const getEstatisticas = async args => {
+  const getEstatisticasPreBloqueio = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
     const path = `/estatisticas/${anoExecucao}/passiveis-bloqueio`;
+    const query = search({ unidadeId, siglaGestor, tipoInfo });
+    return client.get(`${path}${query}`);
+  };
+
+  const getEstatisticasBloqueio = async args => {
+    const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
+    const path = `/estatisticas/${anoExecucao}/bloqueio`;
     const query = search({ unidadeId, siglaGestor, tipoInfo });
     return client.get(`${path}${query}`);
   };
@@ -52,7 +59,8 @@ const requests = async () => {
 
   return {
     deleteUg,
-    getEstatisticas,
+    getEstatisticasPreBloqueio,
+    getEstatisticasBloqueio,
     getGestores,
     getOperacoesPreBloqueio,
     getParams,

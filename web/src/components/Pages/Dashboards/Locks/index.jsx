@@ -1,22 +1,23 @@
-// import React, { useEffect, useState } from 'react';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { isUndefined } from 'lodash';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
-// import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { useCurrentUser } from '~/hooks';
-// import { possibleLocks as alertProps } from '~/utils/messages';
-// import { calcExecutionYear } from '../RightTab/utils';
+import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
+import { locks as alertProps } from '~/utils/messages';
+import { calcExecutionYear } from '../RightTab/utils';
 import RightTab from '../RightTab';
-// import { initialState, dataInitialState, csvHeaders } from '../utils';
-import { initialState, csvHeaders } from '../utils';
+import { csvHeaders } from '../utils';
+import { initialState } from './utils';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
 import Highlights from './Highlights';
 import { DoughnutChart, LineChart } from '../../../Chart';
 import { lineChartData } from './lineChart';
+import { Context } from '../../../Store';
+import { parseISO } from '~/utils/dates';
 
 const data = {
   labels: [
@@ -69,36 +70,46 @@ const data2 = {
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
-  // const [dataState, setDataState] = useState(dataInitialState);
+  const [context] = useContext(Context);
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
-  // const apiRap = useApiRap();
+  const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
-  // const { doAllXhrRequest } = useXHR();
+  const { doAllXhrRequest } = useXHR();
 
-  // useEffect(() => {
-  //   apiRap.then(api => {
-  //     const success = res => {
-  //       const operacoes = api.formatters.operacoes(res[0].data);
-  //       const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
-  //       setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
-  //     };
+  useEffect(() => {
+    apiRap.then(api => {
+      const success = res => {
+        const { estatisticas } = res[0].data;
+        setState(prev => ({
+          ...prev,
+          estatisticas: api.formatters.estatisticasBloqueio(estatisticas),
+        }));
+      };
 
-  //     const requests = [
-  //       api.requests.getOperacoesPreBloqueio({
-  //         anoExecucao: calcExecutionYear(budgetYear),
-  //         tipoInfo: tipoInfo.value,
-  //         unidadeId: unidade.value || '',
-  //         siglaGestor: gestor.value || '',
-  //       }),
-  //     ];
-  //     doAllXhrRequest({
-  //       alertProps,
-  //       requests,
-  //       success,
-  //     });
-  //   });
-  // }, [tipoInfo, unidade, gestor]);
+      const requests = [
+        api.requests.getEstatisticasBloqueio({
+          anoExecucao: calcExecutionYear(budgetYear),
+          tipoInfo: tipoInfo.value,
+          unidadeId: unidade.value || '',
+          siglaGestor: gestor.value || '',
+        }),
+      ];
+      doAllXhrRequest({
+        alertProps,
+        requests,
+        success,
+      });
+    });
+  }, [tipoInfo, unidade, gestor]);
+
+  const { estatisticas } = state;
+  const { params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+
+  console.log(param);
 
   return (
     <Layout>
@@ -119,17 +130,11 @@ const Locks = () => {
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
 
       <Highlights
-        estatisticas={[
-          {
-            quantidadeOperacoes: 1000,
-            quantidadeDocumentos: 2000,
-            saldoBloqueado: 1000000000,
-            saldoDesbloqueado: 500000000,
-            saldoAguardandoDesbloqueio: 600000000,
-          },
-        ]}
-        dataBloqueio={new Date(2020, 10, 14)}
-        dataCancelamento={new Date(2020, 11, 31)}
+        estatisticas={estatisticas}
+        dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
+        dataCancelamento={
+          !isUndefined(param) && parseISO(param.dataCancelamento)
+        }
       />
 
       <Row>
