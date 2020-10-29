@@ -13,6 +13,7 @@ import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
 import Highlights from './Highlights';
+import EvolutionChart from './EvolutionChart';
 
 const data = {
   labels: [
@@ -38,69 +39,26 @@ const data = {
 };
 
 const data2 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: [
+    '2020-01-28',
+    '2020-02-28',
+    '2020-03-28',
+    '2020-04-28',
+    '2020-05-28',
+    '2020-06-28',
+    '2020-07-28',
+  ],
   datasets: [
     {
       label: 'Desbloqueios realizados',
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(28, 200, 137,0.4)',
-      borderColor: 'rgba(28, 200, 137,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(28, 200, 137,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(28, 200, 137,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
       data: [0, 2, 5, 5, 10, 11, 12],
     },
     {
       label: 'Solicitações de desbloqueio',
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(246, 194, 62, 0.4)',
-      borderColor: 'rgba(246, 194, 62,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(246, 194, 62,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(246, 194, 62,0.4)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
       data: [0, 40, 42, 44, 45, 46, 40],
     },
     {
       label: 'Saldo bloquado',
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(234, 68, 53, 0.4)',
-      borderColor: 'rgba(234, 68, 53,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(234, 68, 53,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(234, 68, 53,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
       data: [100, 98, 95, 95, 90, 89, 88],
     },
   ],
@@ -174,7 +132,7 @@ const Locks = () => {
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
           <CardBody>
-            <Line data={data2} />
+            <EvolutionChart stats={data2} />
           </CardBody>
         </Card>
 
