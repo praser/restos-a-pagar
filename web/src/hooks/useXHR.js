@@ -36,6 +36,7 @@ const useXHR = () => {
       return Promise.all(requests)
         .then(res => success(res))
         .catch(e => {
+          // eslint-disable-next-line no-console
           console.error(e);
           catchAct(alertProps);
         })

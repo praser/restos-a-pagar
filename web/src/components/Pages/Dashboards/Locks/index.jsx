@@ -64,8 +64,6 @@ const data2 = {
   ],
 };
 
-console.log(lineChartData(data2));
-
 const Locks = () => {
   const [state, setState] = useState(initialState);
   const [dataState, setDataState] = useState(dataInitialState);
