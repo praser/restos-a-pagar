@@ -9,6 +9,12 @@ const initialState = {
     title: '',
     text: '',
   },
+  params: [
+    {
+      dataBloqueio: null,
+      dataCancelamento: null,
+    },
+  ],
 };
 
 const Store = ({ children }) => {

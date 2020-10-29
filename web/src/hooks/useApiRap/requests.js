@@ -21,8 +21,6 @@ const requests = async () => {
 
   const getParams = async () => client.get('/parametros');
 
-  const getParam = async budgetYear => client.get(`/parametros/${budgetYear}`);
-
   const getTiposInformacoes = async args => {
     const { anoExecucao } = args;
     return client.get(`/tipos-informacoes/${anoExecucao}`);
@@ -57,7 +55,6 @@ const requests = async () => {
     getEstatisticas,
     getGestores,
     getOperacoesPreBloqueio,
-    getParam,
     getParams,
     getStatus,
     getTiposInformacoes,

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { possibleLocks as alertProps } from '~/utils/messages';
-import { calcExecutionYear } from '../RightTab/utils';
+// import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
+import { useCurrentUser } from '~/hooks';
+// import { possibleLocks as alertProps } from '~/utils/messages';
+// import { calcExecutionYear } from '../RightTab/utils';
 import RightTab from '../RightTab';
-import { initialState, dataInitialState, csvHeaders } from '../utils';
+// import { initialState, dataInitialState, csvHeaders } from '../utils';
+import { initialState, csvHeaders } from '../utils';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
@@ -66,36 +69,36 @@ const data2 = {
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
-  const [dataState, setDataState] = useState(dataInitialState);
+  // const [dataState, setDataState] = useState(dataInitialState);
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
-  const apiRap = useApiRap();
+  // const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
-  const { doAllXhrRequest } = useXHR();
+  // const { doAllXhrRequest } = useXHR();
 
-  useEffect(() => {
-    apiRap.then(api => {
-      const success = res => {
-        const operacoes = api.formatters.operacoes(res[0].data);
-        const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
-        setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
-      };
+  // useEffect(() => {
+  //   apiRap.then(api => {
+  //     const success = res => {
+  //       const operacoes = api.formatters.operacoes(res[0].data);
+  //       const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
+  //       setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
+  //     };
 
-      const requests = [
-        api.requests.getOperacoesPreBloqueio({
-          anoExecucao: calcExecutionYear(budgetYear),
-          tipoInfo: tipoInfo.value,
-          unidadeId: unidade.value || '',
-          siglaGestor: gestor.value || '',
-        }),
-      ];
-      doAllXhrRequest({
-        alertProps,
-        requests,
-        success,
-      });
-    });
-  }, [tipoInfo, unidade, gestor]);
+  //     const requests = [
+  //       api.requests.getOperacoesPreBloqueio({
+  //         anoExecucao: calcExecutionYear(budgetYear),
+  //         tipoInfo: tipoInfo.value,
+  //         unidadeId: unidade.value || '',
+  //         siglaGestor: gestor.value || '',
+  //       }),
+  //     ];
+  //     doAllXhrRequest({
+  //       alertProps,
+  //       requests,
+  //       success,
+  //     });
+  //   });
+  // }, [tipoInfo, unidade, gestor]);
 
   return (
     <Layout>
@@ -105,7 +108,8 @@ const Locks = () => {
         setState={setState}
       />
       <Heading
-        data={dataState.operacoesCsv}
+        // data={dataState.operacoesCsv}
+        data={[[]]}
         headers={csvHeaders}
         setState={setState}
       >

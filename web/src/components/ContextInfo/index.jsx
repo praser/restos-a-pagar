@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   faBan,
   faDatabase,
@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
+import { first, isUndefined } from 'lodash';
 import {
   PageContextInfo,
   PillPrimary,
@@ -14,15 +15,13 @@ import {
   PillWarning,
 } from '~/components/Tipography';
 import { useApiRap } from '~/hooks';
-import { formatDate } from '~/utils/dates';
+import { formatDate, parseISO } from '~/utils/dates';
 import { Row } from '../Layout';
+import { Context } from '../Store';
 
 export const initialState = {
   status: {
     databasePosition: null,
-  },
-  parametros: {
-    dataBloqueio: null,
   },
 };
 
@@ -34,9 +33,14 @@ const handleSuccess = (key, res, formatter, setState) => {
 
 const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
   const [state, setState] = useState(initialState);
+  const [context] = useContext(Context);
   const { budgetYear } = useParams();
   const apiRap = useApiRap();
-  const { status, parametros } = state;
+  const { status } = state;
+  const { params } = context;
+  const param = first(
+    params.filter(item => item.anoOrcamentario === parseInt(budgetYear, 10)),
+  );
 
   useEffect(() => {
     apiRap.then(api => {
@@ -45,11 +49,6 @@ const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
         .then(res =>
           handleSuccess('status', res, api.formatters.status, setState),
         );
-      api.requests
-        .getParam(budgetYear)
-        .then(res =>
-          handleSuccess('parametros', res, api.formatters.parametros, setState),
-        );
     });
   }, []);
 
@@ -57,11 +56,13 @@ const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
     <Row direction="column">
       <PageContextInfo>
         <FontAwesomeIcon icon={faLock} />
-        Data do bloqueio: {formatDate(parametros.dataBloqueio)}
+        Data do bloqueio:{' '}
+        {!isUndefined(param) && formatDate(parseISO(param.dataBloqueio))}
       </PageContextInfo>
       <PageContextInfo>
         <FontAwesomeIcon icon={faBan} />
-        Data do cancelamento: {formatDate(parametros.dataCancelamento)}
+        Data do cancelamento:{' '}
+        {!isUndefined(param) && formatDate(parseISO(param.dataCancelamento))}
       </PageContextInfo>
       <PageContextInfo>
         <FontAwesomeIcon icon={faDatabase} />

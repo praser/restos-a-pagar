@@ -15,6 +15,11 @@ const Reducer = (state, action) => {
         ...state,
         alert: action.payload,
       };
+    case 'SET_PARAMS':
+      return {
+        ...state,
+        params: action.payload,
+      };
     default:
       return state;
   }

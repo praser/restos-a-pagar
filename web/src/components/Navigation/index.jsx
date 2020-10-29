@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { isToday, isPast, parseISO } from 'date-fns';
 import {
   faBuilding,
@@ -9,6 +9,7 @@ import {
 import Brand from './Brand';
 import Collapse from './Collapse';
 import { Content, Divider, Navbar, SectionTitle } from './styles';
+import { Context } from '../Store';
 
 import {
   possibleLocksPath,
@@ -50,14 +51,18 @@ const mountCollapsables = param => {
 };
 
 const Navigation = () => {
-  const [params, setParams] = useState([]);
+  const [context, dispatch] = useContext(Context);
   const apiRap = useApiRap();
 
   useEffect(() => {
     apiRap.then(api => {
-      api.requests.getParams().then(res => setParams(res.data));
+      api.requests
+        .getParams()
+        .then(res => dispatch({ type: 'SET_PARAMS', payload: res.data }));
     });
   }, []);
+
+  const { params } = context;
 
   return (
     <Navbar>
