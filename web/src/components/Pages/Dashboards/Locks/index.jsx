@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Doughnut, Line } from 'react-chartjs-2';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
@@ -13,7 +12,8 @@ import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
 import Highlights from './Highlights';
-import LineChart from './LineChart';
+import { DoughnutChart, LineChart } from '../../../Chart';
+import { lineChartData } from './lineChart';
 
 const data = {
   labels: [
@@ -63,6 +63,8 @@ const data2 = {
     },
   ],
 };
+
+console.log(lineChartData(data2));
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
@@ -132,18 +134,14 @@ const Locks = () => {
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
           <CardBody>
-            <LineChart stats={data2} />
+            <LineChart data={lineChartData(data2)} />
           </CardBody>
         </Card>
 
         <Card width="33%">
           <CardHeader>Distribuição do saldo bloqueado</CardHeader>
           <CardBody>
-            <Doughnut
-              data={data}
-              width={100}
-              options={{ maintainAspectRatio: false }}
-            />
+            <DoughnutChart data={data} />
           </CardBody>
         </Card>
       </Row>

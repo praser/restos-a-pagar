@@ -11,8 +11,9 @@ import Heading from '../Heading';
 import { Row } from '~/components/Layout';
 import { Card, CardBody, CardHeader } from '~/components/Card';
 import Highlights from './Highlights';
-import LineChart from './LineChart';
-import BarChart from './BarChart';
+import { LineChart, BarChart } from '../../../Chart';
+import { lineChartData } from './lineChart';
+import { barChartData } from './barChart';
 
 const PossibleLocks = () => {
   const [state, setState] = useState(initialState);
@@ -90,13 +91,13 @@ const PossibleLocks = () => {
         <Card width="65%">
           <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
           <CardBody>
-            <LineChart stats={estatisticas.estatisticas} />
+            <LineChart data={lineChartData(estatisticas.estatisticas)} />
           </CardBody>
         </Card>
         <Card width="33%">
           <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
           <CardBody>
-            <BarChart stats={estatisticas.estatisticasPorGestor} />
+            <BarChart data={barChartData(estatisticas.estatisticasPorGestor)} />
           </CardBody>
         </Card>
       </Row>
