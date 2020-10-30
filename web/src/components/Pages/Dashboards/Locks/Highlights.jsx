@@ -61,8 +61,16 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
       <Row>
         <Highlight
           icon={faLock}
-          siblings={3}
-          title="Saldo bloqueado"
+          siblings={4}
+          title="Bloqueado em 14/11/2020"
+          variant="info"
+        >
+          {formatCurrencyShort(1390000)}
+        </Highlight>
+        <Highlight
+          icon={faLock}
+          siblings={4}
+          title="Bloqueado"
           variant="danger"
         >
           {formatCurrencyShort(saldoBloqueado)}
@@ -70,8 +78,8 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
 
         <Highlight
           icon={faLockOpen}
-          siblings={3}
-          title="Saldo desbloqueado"
+          siblings={4}
+          title="Desbloqueado"
           variant="success"
         >
           {formatCurrencyShort(saldoDesbloqueado)}
@@ -79,8 +87,8 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
 
         <Highlight
           icon={faHourglassHalf}
-          siblings={3}
-          title="Saldo aguardando processamento"
+          siblings={4}
+          title="Aguardando processamento"
           variant="warning"
         >
           {formatCurrencyShort(saldoAguardandoDesbloqueio)}
