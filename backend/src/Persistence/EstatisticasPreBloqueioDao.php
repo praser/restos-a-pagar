@@ -119,7 +119,7 @@ class EstatisticasPreBloqueioDao extends DaoBase
 
     public function findDistribuicaoPorGestor(int $anoExecucao, int $tipoInformacaoId, int $unidadeId = null, string $siglaGestor = null): ?array
     {
-        $query = 'exec SP_DISTRIBUICAO_GESTOR :anoExecucao, :tipoInformacaoId, :unidadeId, :siglaGestor';
+        $query = 'exec SP_DISTRIBUICAO_PRE_BLOQUEIO_GESTOR :anoExecucao, :tipoInformacaoId, :unidadeId, :siglaGestor';
         $values = [
             ':anoExecucao' => $anoExecucao,
             ':tipoInformacaoId' => $tipoInformacaoId,
