@@ -80,7 +80,7 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
         <Highlight
           icon={faHourglassHalf}
           siblings={3}
-          title="Saldo agaurdando desbloqueio"
+          title="Saldo aguardando processamento"
           variant="warning"
         >
           {formatCurrencyShort(saldoAguardandoDesbloqueio)}
