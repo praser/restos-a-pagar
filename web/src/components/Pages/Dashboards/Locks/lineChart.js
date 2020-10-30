@@ -7,6 +7,7 @@ import {
   warning,
   warningOp20,
 } from '~/utils/colors';
+import { isAfter } from 'date-fns';
 
 const datasetDef = {
   fill: true,
@@ -50,6 +51,7 @@ const extractData = data => {
   const saldoAguardandoDesbloqueio = [];
   const saldoBloqueado = [];
 
+  data.sort((a, b) => (isAfter(a.data, b.data) ? 1 : -1));
   data.map(item => {
     labels.push(item.data);
     saldoDesbloqueado.push(item.saldoDesbloqueado);

@@ -18,29 +18,7 @@ import { DoughnutChart, LineChart } from '../../../Chart';
 import { lineChartData } from './lineChart';
 import { Context } from '../../../Store';
 import { parseISO } from '~/utils/dates';
-
-const data = {
-  labels: [
-    'Sem solicitação de desbloqueio',
-    'Desbloqueios solicitados',
-    'Desbloqueios realizados',
-  ],
-  datasets: [
-    {
-      data: [68, 28, 12],
-      backgroundColor: [
-        'rgba(234, 68, 53,0.8)',
-        'rgba(246, 194, 62,0.8)',
-        'rgba(28, 200, 137,0.8)',
-      ],
-      hoverBackgroundColor: [
-        'rgba(234, 68, 53,1)',
-        'rgba(246, 194, 62,1)',
-        'rgba(28, 200, 137,1)',
-      ],
-    },
-  ],
-};
+import { dougnutChartData } from './doughnutChart';
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
@@ -120,7 +98,7 @@ const Locks = () => {
         <Card width="33%">
           <CardHeader>Distribuição do saldo bloqueado</CardHeader>
           <CardBody>
-            <DoughnutChart data={data} />
+            <DoughnutChart data={dougnutChartData(estatisticas)} />
           </CardBody>
         </Card>
       </Row>
