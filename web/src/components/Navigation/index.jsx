@@ -56,9 +56,12 @@ const Navigation = () => {
 
   useEffect(() => {
     apiRap.then(api => {
-      api.requests
-        .getParams()
-        .then(res => dispatch({ type: 'SET_PARAMS', payload: res.data }));
+      api.requests.getParams().then(res => {
+        res.data.sort((a, b) =>
+          a.anoOrcamentario > b.anoOrcamentario ? -1 : 1,
+        );
+        return dispatch({ type: 'SET_PARAMS', payload: res.data });
+      });
     });
   }, []);
 
