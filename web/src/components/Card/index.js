@@ -10,7 +10,6 @@ export const Card = styled.div`
   flex-direction: column;
   margin-bottom: 1.5rem;
   ${({ width }) => width && { width }}
-  ${({ width }) => !width && { flex: 1 }}
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   &:first-child {
