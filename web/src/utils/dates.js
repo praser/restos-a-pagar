@@ -4,6 +4,8 @@ import {
   isValid,
   parseISO as dParseISO,
   startOfYear,
+  parse,
+  getYear as getYearDateFns,
 } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -42,3 +44,11 @@ export const monthNameShort = date => {
   if (!isValid(date)) return null;
   return format(date, 'MMM', { locale: ptBR });
 };
+
+export const parseDate = (dateString, format = dateFormat) => {
+  return parse(dateString, format, new Date());
+};
+
+export const getYear = date => getYearDateFns(date);
+
+export const formatAsISO = date => format(date, 'yyyy-MM-dd');

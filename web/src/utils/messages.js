@@ -68,3 +68,9 @@ export const deleteUgSucces = getMessage({
   title: 'Excelente!',
   text: 'A Ug foi removida com sucesso',
 });
+
+export const wrongBalanceFile = getMessage({
+  title: 'Eita!!!',
+  text:
+    'O arquivo de saldo que você selecinou não está correto. Por favor seleciona o arquivo com os dados que foram extraídos do tesouro gerencial.',
+});
