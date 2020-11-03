@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import {
   faFolderOpen,
   faSave,
-  faTable,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,8 +15,8 @@ import { Heading } from '../../Layout';
 import Layout from '../../Layout/Internal';
 import { PageTitle } from '../../Tipography';
 import { CSVReader } from 'react-papaparse';
-import { parseDate, getYear, formatAsISO } from '~/utils/dates';
-import { parseNumber } from '~/utils/numbers';
+import { parseDate, getYear, formatAsISO, formatISO } from '~/utils/dates';
+import { formatCurrency, parseNumber } from '~/utils/numbers';
 import {
   splitDocumento,
   parseNumeroContratoRepasse,
@@ -29,6 +28,7 @@ import { isNull, first } from 'lodash';
 import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
 import { Context } from '../../Store';
 import { wrongBalanceFile } from '~/utils/messages';
+import Table from '~/components/Table';
 
 const initialValues = {
   fileDate: new Date(),
@@ -141,9 +141,39 @@ const Create = () => {
         return 'pcaspConta';
       case 'Saldo - R$ (Conta Contábil)':
         return 'saldoContaContabil';
-        defaut: return 'unknowField';
+      default:
+        return 'unknowField';
     }
   };
+
+  const columns = [
+    {
+      name: 'Código da UG',
+      selector: 'ugCodigo',
+      sortable: true,
+    },
+    { name: 'PTRES', selector: 'ptres', sortable: true },
+    {
+      name: 'Resultado primário',
+      selector: 'tipoResultadoPrimarioDescricao',
+      sortable: true,
+    },
+    { name: 'Documento', selector: 'documento', sortable: true },
+    {
+      name: 'Data emissão',
+      selector: 'dataEmissao',
+      sortable: true,
+      format: row => formatISO(row.dataEmissao),
+    },
+    { name: 'Convênio', selector: 'convenio', sortable: true },
+    { name: 'Conta', selector: 'pcaspConta', sortable: true },
+    {
+      name: 'Saldo',
+      selector: 'saldoContaContabil',
+      sortable: true,
+      format: row => formatCurrency(row.saldoContaContabil),
+    },
+  ];
 
   return (
     <Layout>
@@ -174,13 +204,6 @@ const Create = () => {
                   }
                 />
               </Field>
-              {/* <Field
-                formik={Formik}
-                label="Arquivo"
-                name="filePath"
-                type="file"
-                accept=".csv, .txt"
-              /> */}
               <FormGroup>
                 <Label>Arquivo.</Label>
                 <CSVReader
@@ -222,18 +245,33 @@ const Create = () => {
               <SmallButtonPrimary disabled={isNull(state.data)}>
                 <FontAwesomeIcon icon={faSave} /> Salvar
               </SmallButtonPrimary>
-              <SmallButtonWarning
-                type="button"
-                disabled={isNull(state.data)}
-                onClick={() => console.log(state.data.slice(0, 50))}
-              >
-                <FontAwesomeIcon icon={faTable} /> Visualizar as primeiras 50
-                linhas
-              </SmallButtonWarning>
             </FormRow>
           </form>
         </CardBody>
       </Card>
+      {state.data && (
+        <Card>
+          <CardHeader>Pré-visualização dos dados</CardHeader>
+          <CardBody>
+            <Table
+              data={state.data.slice(0, 50)}
+              columns={columns}
+              pagination
+              paginationComponentOptions={{
+                rowsPerPageText: 'Resultados por página:',
+                rangeSeparatorText: 'de',
+                noRowsPerPage: false,
+                selectAllRowsItem: false,
+                selectAllRowsItemText: 'Todos',
+              }}
+              noHeader
+              striped
+              highlightOnHover
+              noDataComponent="Ainda não tenho nada para mostrar aqui..."
+            />
+          </CardBody>
+        </Card>
+      )}
     </Layout>
   );
 };

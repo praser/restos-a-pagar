@@ -5,6 +5,7 @@ export const Content = styled.div`
   flex: 1;
   flex-direction: column;
   height: 100%;
+  width: calc(100% - 14rem);
 `;
 
 export const Main = styled.div`
