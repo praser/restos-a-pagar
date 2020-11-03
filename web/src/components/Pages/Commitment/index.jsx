@@ -113,18 +113,20 @@ const Create = () => {
     const saldoContaContabil = parseNumber(data.saldoContaContabil);
     const dataEmissao = formatAsISO(parseDate(data.dataEmissao));
     const documento = splitDocumento(data.documento).join('');
+    const { ptres, tipoResultadoPrimarioDescricao } = data;
 
     return {
-      ...data,
       pcaspConta,
       ugCodigo,
       convenio,
       operacao,
+      ptres,
+      tipoResultadoPrimarioId,
+      tipoResultadoPrimarioDescricao,
       anoOrcamentario,
       documento,
       dataEmissao,
       saldoContaContabil,
-      tipoResultadoPrimarioId,
     };
   };
 
