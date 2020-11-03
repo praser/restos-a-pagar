@@ -57,6 +57,11 @@ const requests = async () => {
 
   const getStatus = () => client.get('/info');
 
+  const postSaldoNe = async args => {
+    const { payload } = args;
+    return client.post('/notas-empenho/saldo', { ...payload });
+  };
+
   return {
     deleteUg,
     getEstatisticasPreBloqueio,
@@ -70,6 +75,7 @@ const requests = async () => {
     getUgs,
     getUnidades,
     postUg,
+    postSaldoNe,
     putUg,
   };
 };

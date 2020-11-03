@@ -74,3 +74,14 @@ export const wrongBalanceFile = getMessage({
   text:
     'O arquivo de saldo que você selecinou não está correto. Por favor seleciona o arquivo com os dados que foram extraídos do tesouro gerencial.',
 });
+
+export const createNeBalanceFail = getMessage({
+  text:
+    'Houve um erro ao enviar o arquivo de saldos das notas de empenho. Por favor tente novamente.',
+});
+
+export const createNeBalanceSuccess = getMessage({
+  title: 'Maravilha...',
+  text:
+    'O arquivo foi enviado com sucesso. Você será avisado por e-mail quando os dados forem processados.',
+});

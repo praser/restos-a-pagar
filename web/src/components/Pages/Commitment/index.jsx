@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import {
   faFolderOpen,
@@ -27,41 +27,49 @@ import { useCurrentUser } from '~/hooks';
 import { isNull, first } from 'lodash';
 import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
 import { Context } from '../../Store';
-import { wrongBalanceFile } from '~/utils/messages';
+import {
+  wrongBalanceFile,
+  createNeBalanceFail as alertProps,
+  createNeBalanceSuccess,
+} from '~/utils/messages';
 import Table from '~/components/Table';
+import { useApiRap, useXHR } from '~/hooks';
+import { useHistory } from 'react-router-dom';
 
 const initialValues = {
   fileDate: new Date(),
-  filePath: '',
 };
 
 const validationSchema = Yup.object().shape({
   fileDate: Yup.date()
     .max(new Date(), 'Não pode ser uma data no futuro')
     .required('Obrigatório'),
-  filePath: Yup.string().required('Obrigatório'),
 });
 
-const onSubmit = values => {
-  return JSON.stringify(values);
-};
-
 const Create = () => {
+  const onSubmit = () => {
+    const payload = getPayload();
+    sendRequest({ payload });
+  };
+
   const Formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
   });
 
-  const initialState = { data: null, headers: null };
+  const initialState = { data: null, headers: null, isSending: false };
   const dispatch = useContext(Context)[1];
   const { id: matricula } = useCurrentUser();
   const buttonRef = useRef();
   const dataRef = useRef();
   const [state, setState] = useState(initialState);
+  const apiRap = useApiRap();
+  const { doAllXhrRequest } = useXHR();
+  const { isSending } = state;
+  const history = useHistory();
 
   const handleOpenDialog = e => {
-    // Note that the ref is set async, so it might be null at some point
     if (buttonRef.current) {
       buttonRef.current.open(e);
     }
@@ -90,7 +98,6 @@ const Create = () => {
   };
 
   const handleRemoveFile = e => {
-    // Note that the ref is set async, so it might be null at some point
     if (buttonRef.current) {
       buttonRef.current.removeFile(e);
     }
@@ -175,6 +182,42 @@ const Create = () => {
     },
   ];
 
+  const getPayload = () => {
+    const uuid = uuidv4();
+    const dataReferencia = formatAsISO(dataRef.current.props.selected);
+    const saldos = state.data;
+    return {
+      uuid,
+      matricula,
+      dataReferencia,
+      saldos,
+    };
+  };
+
+  const handleSuccess = () => {
+    dispatch({
+      type: 'SET_ALERT',
+      payload: { visible: true, ...createNeBalanceSuccess },
+    });
+    history.goBack();
+  };
+
+  const sendRequest = useCallback(
+    async values => {
+      if (isSending) return;
+      setState(prev => ({ ...prev, isSending: true }));
+      await apiRap.then(api => {
+        doAllXhrRequest({
+          alertProps,
+          requests: [api.requests.postSaldoNe(values)],
+          success: handleSuccess,
+        });
+      });
+      setState(prev => ({ ...prev, isSending: false }));
+    },
+    [isSending],
+  );
+
   return (
     <Layout>
       <Heading>
@@ -242,7 +285,7 @@ const Create = () => {
               </FormGroup>
             </FormRow>
             <FormRow>
-              <SmallButtonPrimary disabled={isNull(state.data)}>
+              <SmallButtonPrimary type="submit" disabled={isNull(state.data)}>
                 <FontAwesomeIcon icon={faSave} /> Salvar
               </SmallButtonPrimary>
             </FormRow>
