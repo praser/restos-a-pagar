@@ -22,13 +22,13 @@ class MinisteriosSeeder extends AbstractSeed
             ['id' => 12, 'nome' => 'Ministério da Mulher, da Família e dos Direitos Humanos', 'sigla' => 'MMFDH', 'criacao' => '2020-01-01'],
         ];
 
-        $this->execute('SET IDENTITY_INSERT dbo.Tool ON');
+        $this->execute('SET IDENTITY_INSERT dbo.ministerios ON');
 
         $this
             ->table('ministerios')
             ->insert($data)
             ->save();
-;
-        $this->execute('SET IDENTITY_INSERT dbo.Tool OFF');
+        
+        $this->execute('SET IDENTITY_INSERT dbo.ministerios OFF');
     }
 }
