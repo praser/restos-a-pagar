@@ -9,7 +9,9 @@ const tooltips = {
   bodyFontColor: '#858796',
   borderColor: '#dddfeb',
   borderWidth: 1,
-  callbacks: tooltipItem => `Saldo: ${formatCurrencyShort(tooltipItem.yLabel)}`,
+  callbacks: {
+    label: tooltipItem => `Saldo: ${formatCurrencyShort(tooltipItem.yLabel)}`,
+  },
   caretPadding: 10,
   displayColors: false,
   intersect: false,
