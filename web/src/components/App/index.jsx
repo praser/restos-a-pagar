@@ -41,6 +41,8 @@ const App = () => {
   const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
 
+  console.log(currentUser);
+
   useEffect(() => {
     dispatch({ type: 'SET_JWT', payload: getToken() });
   }, []);
@@ -93,38 +95,58 @@ const App = () => {
             <PrivateRoute
               component={Dashboard}
               path={paths.dashboardPath}
+              perform="dashboards:show"
               exact
             />
             <PrivateRoute
               component={PossibleLocks}
               path={paths.possibleLocksPath}
+              perform="dashboards:show"
               exact
             />
-            <PrivateRoute component={UgList} path={paths.ugPath} exact />
+            <PrivateRoute
+              component={UgList}
+              path={paths.ugPath}
+              perform="ugs:list"
+              exact
+            />
             <PrivateRoute
               component={UgCreate}
               path={paths.createUgPath}
+              perform="ugs:create"
               exact
             />
             <PrivateRoute
               component={UgUpdate}
               path={paths.updateUgPath}
+              perform="ugs:update"
               exact
             />
             <PrivateRoute
               component={UpdateCommitment}
               path={paths.updateCommitmentPath}
+              perform="commitment:update"
               exact
             />
-            <PrivateRoute component={Locks} path={paths.locksPath} exact />
+            <PrivateRoute
+              component={Locks}
+              path={paths.locksPath}
+              perform="dashboards:show"
+              exact
+            />
             <PrivateRoute
               component={Cancellations}
               path={paths.cancellationsPath}
+              perform="dashboards:show"
               exact
             />
             <Route
               render={() => (
-                <Error code="404" description="Página não encontrada" />
+                <Error
+                  code="404"
+                  description="Página não encontrada"
+                  paragraph="Parece que você encontrou um buraco na Matrix..."
+                />
               )}
             />
           </Switch>

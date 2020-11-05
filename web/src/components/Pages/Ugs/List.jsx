@@ -24,6 +24,7 @@ import {
   deleteUgSucces,
 } from '~/utils/messages';
 import { Prompt } from '../../Modal';
+import Can from '~/components/Can';
 
 const initialState = {
   ugs: [],
@@ -105,18 +106,32 @@ const Ugs = () => {
       width: '220px',
       cell: row => (
         <>
-          <SmallButtonSecondary as={Link} to={joinPath(updateUgPath, [row.id])}>
-            <FontAwesomeIcon icon={faEdit} />
-            Editar
-          </SmallButtonSecondary>
-          <SmallButtonDanger
-            data-name={row.nome}
-            data-id={row.id}
-            onClick={handleDeleteClick}
-          >
-            <FontAwesomeIcon icon={faTrashAlt} />
-            Remover
-          </SmallButtonDanger>
+          <Can
+            perform="ugs:update"
+            yes={() => (
+              <SmallButtonSecondary
+                as={Link}
+                to={joinPath(updateUgPath, [row.id])}
+              >
+                <FontAwesomeIcon icon={faEdit} />
+                Editar
+              </SmallButtonSecondary>
+            )}
+          />
+
+          <Can
+            perform="ugs:destroy"
+            yes={() => (
+              <SmallButtonDanger
+                data-name={row.nome}
+                data-id={row.id}
+                onClick={handleDeleteClick}
+              >
+                <FontAwesomeIcon icon={faTrashAlt} />
+                Remover
+              </SmallButtonDanger>
+            )}
+          />
         </>
       ),
     },
@@ -134,10 +149,15 @@ const Ugs = () => {
       <Heading>
         <PageTitle>Unidades Gestoras</PageTitle>
         <div>
-          <SmallButtonPrimary as={Link} to={createUgPath}>
-            <FontAwesomeIcon icon={faPlusCircle} />
-            Cadastrar UG
-          </SmallButtonPrimary>
+          <Can
+            perform="ugs:create"
+            yes={() => (
+              <SmallButtonPrimary as={Link} to={createUgPath}>
+                <FontAwesomeIcon icon={faPlusCircle} />
+                Cadastrar UG
+              </SmallButtonPrimary>
+            )}
+          />
         </div>
       </Heading>
       <Card>

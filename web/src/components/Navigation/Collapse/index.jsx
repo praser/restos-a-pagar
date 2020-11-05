@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Can from '~/components/Can';
 
 import {
   Collapsable,
@@ -27,9 +28,14 @@ const Collapse = ({ label, icon, collapsables }) => {
       <CollapseContainer expanded={expanded}>
         <Collapsable>
           {collapsables.map(item => (
-            <Collapselink to={item.to} key={item.label}>
-              {item.label}
-            </Collapselink>
+            <Can
+              perform={item.perform}
+              yes={() => (
+                <Collapselink to={item.to} key={item.label}>
+                  {item.label}
+                </Collapselink>
+              )}
+            />
           ))}
         </Collapsable>
       </CollapseContainer>

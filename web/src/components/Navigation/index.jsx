@@ -21,6 +21,7 @@ import {
   joinPath,
 } from '~/utils/paths';
 import { useApiRap } from '~/hooks';
+import Can from '../Can';
 
 const mountCollapsables = param => {
   const blockDate = parseISO(param.dataBloqueio);
@@ -30,17 +31,20 @@ const mountCollapsables = param => {
     {
       label: 'Prévia dos bloqueios',
       to: joinPath(possibleLocksPath, [param.anoOrcamentario]),
+      perform: 'dashboards:show',
     },
   ];
 
   const blocked = {
     label: 'Bloqueios',
     to: joinPath(locksPath, [param.anoOrcamentario]),
+    perform: 'dashboards:show',
   };
 
   const cancelled = {
     label: 'Cancelamentos',
     to: joinPath(cancellationsPath, [param.anoOrcamentario]),
+    perform: 'dashboards:show',
   };
 
   if (isPast(blockDate) || isToday(blockDate)) collapsables.push(blocked);
@@ -75,31 +79,51 @@ const Navigation = () => {
         <Divider />
 
         {params.map(param => (
-          <Collapse
-            key={param.anoOrcamentario}
-            label={`Safra ${param.anoOrcamentario}`}
-            icon={faFileSignature}
-            collapsables={mountCollapsables(param)}
+          <Can
+            perform="dashboards:show"
+            yes={() => (
+              <Collapse
+                key={param.anoOrcamentario}
+                label={`Safra ${param.anoOrcamentario}`}
+                icon={faFileSignature}
+                collapsables={mountCollapsables(param)}
+              />
+            )}
           />
         ))}
 
         <Divider />
 
         <SectionTitle>Configuraçãoes</SectionTitle>
-
-        <Collapse
-          label="UGs"
-          icon={faBuilding}
-          collapsables={[
-            { label: 'Listar', to: ugPath },
-            { label: 'Cadastrar', to: createUgPath },
-          ]}
+        <Can
+          perform="ugs:list"
+          yes={() => (
+            <Collapse
+              label="UGs"
+              icon={faBuilding}
+              collapsables={[
+                { label: 'Listar', to: ugPath, perform: 'ugs:list' },
+                { label: 'Cadastrar', to: createUgPath, perform: 'ugs:create' },
+              ]}
+            />
+          )}
         />
 
-        <Collapse
-          label="Saldos NE"
-          icon={faDollarSign}
-          collapsables={[{ label: 'Atualizar', to: updateCommitmentPath }]}
+        <Can
+          perform="commitment:create"
+          yes={() => (
+            <Collapse
+              label="Saldos NE"
+              icon={faDollarSign}
+              collapsables={[
+                {
+                  label: 'Atualizar',
+                  to: updateCommitmentPath,
+                  perform: 'commitment:create',
+                },
+              ]}
+            />
+          )}
         />
       </Content>
     </Navbar>

@@ -11,7 +11,7 @@ import {
   Paragraph,
 } from '~/components/Pages/Error/styles';
 
-const Error = ({ code, description }) => {
+const Error = ({ code, description, paragraph }) => {
   const history = useHistory();
 
   const handleGoBack = event => {
@@ -23,7 +23,7 @@ const Error = ({ code, description }) => {
     <Layout>
       <Code>{code}</Code>
       <Description>{description}</Description>
-      <Paragraph>Parece que você encontrou um buraco na Matrix...</Paragraph>
+      <Paragraph>{paragraph}</Paragraph>
       <GoBack onClick={handleGoBack}>
         <FontAwesomeIcon icon={faLongArrowAltLeft} /> Voltar para a página
         anterior
