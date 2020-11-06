@@ -1,20 +1,20 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/28/2020 11:57:07 AM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="DF5385NB215"
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{B1BA9DFF-3C24-4BC1-ACB1-DA2886EAA2E9}"
-  DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{541E7EE3-3A50-4EE8-BC2A-36008BB7D837}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{FDFCC3F0-F61F-454B-9268-BB7D33E80F9C}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[DF7436SR464.DB5469_BD_GESTORES.s546909]"
@@ -23,11 +23,11 @@
       DTS:ObjectName="DF7436SR464.DB5469_BD_GESTORES.s546909">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=192.168.0.56;User ID=sa;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546909;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXZ+VkaFwfEyY4JXP7BFA4gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB7gGL3V/XoLrGseAAkV7dLc693qv+mmyd+7phPAKJhMwAAAAAOgAAAAAIAACAAAACXoSxq+X7dy8Ox/5V16PQJBdkD4EsNbFtv9iHNGhAEsiAAAAAjSl1klvn5NxlmQ1aFJXHFg33bUCm8RM8S7ooYSAT+bEAAAAAKU8bbBmDLp1taLfsBVPOJXq9VhC7Tfvl0QvuUuOOxseR/AcKfK8DV4VN2ybBM2efK9P4KGkq1tZWCdcuz5JCV</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADsIeZB40Xitb63HPs1rINYAAAAAASAAACgAAAAEAAAAEbhSjp/uwciUedzjL5d6bgoAAAA4jJ9HhcLTEeF1apzzn66VhfzeEfzHXI3LglF0AVpyb06ZNxnm8oI6BQAAADZoLH9uM/TTuDs1VYbpVbsWINE1A</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -36,10 +36,10 @@
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Tarefa Executar SQL"
       DTS:DTSID="{3189DDB4-98D4-4CEC-93E5-AE1C627C232E}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)"
       DTS:ThreadHint="0">
@@ -52,10 +52,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Atualiza o cumprimento dos critérios de desbloqueio (PAC)"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Tarefa Executar SQL"
       DTS:DTSID="{6563c387-4bb7-4e77-9d13-48280413cff5}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Atualiza o cumprimento dos critérios de desbloqueio (PAC)"
       DTS:ThreadHint="1">
@@ -78,10 +78,10 @@
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Atualiza operações\Atualiza registros existentes"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Tarefa Executar SQL"
           DTS:DTSID="{8A7B0553-3733-4788-AFED-11B05F3E8030}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Atualiza registros existentes"
           DTS:ThreadHint="0">
@@ -94,10 +94,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Atualiza operações\Importa novos registros"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Tarefa Executar SQL"
           DTS:DTSID="{E2502157-00B2-4796-933C-8EC5E35652FC}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Importa novos registros"
           DTS:ThreadHint="0">
@@ -140,12 +140,12 @@
       DTS:To="Package\Atualiza o cumprimento dos critérios de desbloqueio (PAC)" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
 <Objects
-  Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  Version="sql11">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>

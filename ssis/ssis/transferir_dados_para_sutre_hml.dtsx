@@ -2,19 +2,19 @@
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/2/2020 6:51:19 PM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="DF5385NB215"
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{4C239B36-CE9C-47B7-BAEB-D960B7972D88}"
-  DTS:ExecutableType="Microsoft.Package"
+  DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="13.0.1601.5"
   DTS:LocaleID="1046"
   DTS:ObjectName="transferir_dados_para_sutre_hml"
   DTS:PackageType="5"
   DTS:VersionBuild="4"
-  DTS:VersionGUID="{251EADBA-FA76-49C0-B8F8-52AF4D08EB62}">
+  DTS:VersionGUID="{B980A19F-4E3C-424A-BC5F-01E977F5F4E0}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[df7436sr438.s538201]"
@@ -26,7 +26,7 @@
           ConnectionString="SqlServerName=df7436sr438;UseWindowsAuthentication=False;UserName=s538201;">
           <PassWord
             Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADs0nIWua+z1IjIl62XXu4CAAAAAASAAACgAAAAEAAAAPtuQb04gJB8Jb2rZop2T94gAAAAYh9TNFqeHkKReMlV7uSPshOY6sjffkBcrie4rKnlLNwUAAAA30ND455ILNX/HF3Cu7U+qEgq/lo</PassWord>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAEtRqOLVY5pF/ynnana5gRAAAAAASAAACgAAAAEAAAAHLiRm4/EL4e3fKieLl+T5ggAAAAGn1Edrcj6CLpsOAmbGPPWXeLaekVDdnynvCAzUjT5K0UAAAAOqvsPQmzcbX48muNhb29UyJYjBk</PassWord>
         </SMOServerConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -40,7 +40,7 @@
           ConnectionString="SqlServerName=DF7436SR464;UseWindowsAuthentication=False;UserName=s546901;">
           <PassWord
             Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC4NDy0d2fB/Gk04LUquKJjAAAAAASAAACgAAAAEAAAAOtON2pLB72wOdC+DstsR2gYAAAAXIgpkZMBmj13wrJ0kCk1eom1i9etVUr7FAAAABAFiXb1S/VXd5s2ktm2XdIgbas4</PassWord>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACk1qsIfhZPNOhoFKinAZ78AAAAAASAAACgAAAAEAAAALZR8ozUz1l/ouAEuGspnSMYAAAAcF5vBVJ7OkJIefUdEDU5l2kNQJEydOAdFAAAAEwVc2ArCS2qpTkt/FHSmeiOumSn</PassWord>
         </SMOServerConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -55,7 +55,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACmmGjwatETI+Q9sBJffKRCAAAAAASAAACgAAAAEAAAAEeCDwW7AnF9lm6J0ItPEtggAAAAy4/fsQ+AlYnhtlAEEzk2+C0/A3SYtV/WfvZwwcdc+4sUAAAAe8MwEoUoVP7oGG06lTnx0Sr4LrU</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADk6bb3sdsQ/g/vtG87JfqJAAAAAASAAACgAAAAEAAAAGtXsd3srFuhwc3ClLxxSEIgAAAAttgx/HiTLp81ORbv08FHmNnD1q3UMpsQpjR9jtUZkPIUAAAAfGtXCmW/l0JORaXTfvVFa9Q2+uE</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -64,10 +64,10 @@
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Carrega tabelas na sutre_hml"
-      DTS:CreationName="Microsoft.TransferSqlServerObjectsTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Tarefa Transferir Objetos do SQL Server"
       DTS:DTSID="{D24B4B55-36A2-43C7-8CBE-04C2DC2726BE}"
-      DTS:ExecutableType="Microsoft.TransferSqlServerObjectsTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Carrega tabelas na sutre_hml"
       DTS:ThreadHint="0">
@@ -85,10 +85,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\remove operações que já cumpriram os critérios de desbloqueio"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Tarefa Executar SQL"
       DTS:DTSID="{5B1C84B5-B755-496F-A68C-FFA3B668C5C0}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="remove operações que já cumpriram os critérios de desbloqueio"
       DTS:ThreadHint="0">
@@ -115,7 +115,7 @@
 <!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
 <!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
 <Objects
-  Version="8">
+  Version="sql11">
   <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
   <Package
     design-time-name="Package">
