@@ -20,7 +20,8 @@ import { Context } from '../../../Store';
 import { parseISO } from '~/utils/dates';
 
 const PossibleLocks = () => {
-  const [state, setState] = useState(initialState);
+  const currentUser = useCurrentUser();
+  const [state, setState] = useState(initialState(currentUser));
   const [dataState, setDataState] = useState(dataInitialState);
   const [context] = useContext(Context);
   const { budgetYear } = useParams();
@@ -74,11 +75,7 @@ const PossibleLocks = () => {
 
   return (
     <Layout>
-      <RightTab
-        budgetYear={budgetYear}
-        visible={state.showFilters}
-        setState={setState}
-      />
+      <RightTab visible={state.showFilters} setState={setState} />
 
       <Heading
         data={dataState.operacoesCsv}

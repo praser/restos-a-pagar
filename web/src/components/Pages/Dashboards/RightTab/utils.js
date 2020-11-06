@@ -1,6 +1,6 @@
-export const setDefaults = api => {
+export const setDefaults = (api, currentUser) => {
   return {
-    unidade: api.defaults.unidade,
+    unidade: api.defaults.unidade(currentUser),
     gestor: api.defaults.gestor,
     tipoInfo: api.defaults.tipoInfo,
     unidades: [api.defaults.unidade],

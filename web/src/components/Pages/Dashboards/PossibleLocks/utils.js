@@ -4,9 +4,9 @@ import {
   tipoInfo as defTipoInfo,
 } from '~/hooks/useApiRap/defaults';
 
-export const initialState = {
+export const initialState = currentUser => ({
   showFilters: false,
-  unidade: defUnidade,
+  unidade: defUnidade(currentUser),
   gestor: defGestor,
   tipoInfo: defTipoInfo,
   status: {
@@ -29,7 +29,7 @@ export const initialState = {
       },
     ],
   },
-};
+});
 
 export const dataInitialState = {
   operacoes: [{}],

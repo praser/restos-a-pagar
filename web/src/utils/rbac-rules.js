@@ -8,16 +8,33 @@ const rules = {
       'ugs:destroy',
       'error:show',
       'dashboards:show',
-      'dashboardDownload:show',
+      'dashboard:download',
+      'dashboard:filter',
+      'dashboard:filter:unidade',
+      'dashboard:filter:gestor',
+      'dashboard:filter:situacao',
     ],
   },
 
   manager: {
-    static: ['dashboards:show'],
+    static: [
+      'dashboards:show',
+      'dashboard:download',
+      'dashboard:filter',
+      'dashboard:filter:unidade',
+      'dashboard:filter:gestor',
+      'dashboard:filter:situacao',
+    ],
   },
 
   attendance: {
-    static: ['dashboards:show'],
+    static: [
+      'dashboards:show',
+      'dashboard:download',
+      'dashboard:filter',
+      'dashboard:filter:gestor',
+      'dashboard:filter:situacao',
+    ],
   },
 };
 

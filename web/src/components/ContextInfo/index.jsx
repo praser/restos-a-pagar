@@ -18,6 +18,7 @@ import { useApiRap } from '~/hooks';
 import { formatDate, parseISO } from '~/utils/dates';
 import { Row } from '../Layout';
 import { Context } from '../Store';
+import Can from '../Can';
 
 export const initialState = {
   status: {
@@ -71,9 +72,18 @@ const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
       <PageContextInfo>
         <FontAwesomeIcon icon={faFilter} />
         Filtros ativos:
-        <PillSuccess>{unidade.label}</PillSuccess>
-        <PillWarning>{gestor.label}</PillWarning>
-        <PillPrimary>{tipoInfo.label}</PillPrimary>
+        <Can
+          perform="dashboard:filter:unidade"
+          yes={() => <PillSuccess>{unidade.label}</PillSuccess>}
+        />
+        <Can
+          perform="dashboard:filter:gestor"
+          yes={() => <PillWarning>{gestor.label}</PillWarning>}
+        />
+        <Can
+          perform="dashboard:filter:situacao"
+          yes={() => <PillPrimary>{tipoInfo.label}</PillPrimary>}
+        />
       </PageContextInfo>
     </Row>
   );

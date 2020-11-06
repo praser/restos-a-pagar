@@ -16,7 +16,7 @@ function Heading({ children, data, headers, setState }) {
       <PageTitle>{children}</PageTitle>
       <div>
         <Can
-          perform="dashboardDownload:show"
+          perform="dashboard:download"
           yes={() => (
             <SmallButtonPrimary
               as={CSVLink}
@@ -30,10 +30,15 @@ function Heading({ children, data, headers, setState }) {
             </SmallButtonPrimary>
           )}
         />
-        <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
-          <FontAwesomeIcon icon={faFilter} />
-          Filtros
-        </SmallButtonSecondary>
+        <Can
+          perform="dashboard:filter"
+          yes={() => (
+            <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
+              <FontAwesomeIcon icon={faFilter} />
+              Filtros
+            </SmallButtonSecondary>
+          )}
+        />
       </div>
     </HeadingSC>
   );

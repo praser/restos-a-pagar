@@ -1,4 +1,15 @@
-export const unidade = { value: null, label: 'Todas as GIGOV/REGOV' };
+export const unidade = ({
+  physicalLotationId,
+  physicalLotationAbbreviation,
+  role,
+}) => {
+  const value = role === 'attendance' ? physicalLotationId : null;
+  const label =
+    role === 'attendance'
+      ? physicalLotationAbbreviation
+      : 'Todas as GIGOV/REGOV';
+  return { value, label };
+};
 
 export const gestor = { value: null, label: 'Todos os gestores' };
 

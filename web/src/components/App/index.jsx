@@ -41,8 +41,6 @@ const App = () => {
   const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
 
-  console.log(currentUser);
-
   useEffect(() => {
     dispatch({ type: 'SET_JWT', payload: getToken() });
   }, []);
@@ -125,7 +123,7 @@ const App = () => {
             <PrivateRoute
               component={UpdateCommitment}
               path={paths.updateCommitmentPath}
-              perform="commitment:update"
+              perform="commitment:create"
               exact
             />
             <PrivateRoute
