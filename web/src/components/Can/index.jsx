@@ -21,7 +21,14 @@ const check = (role, action, data) => {
 };
 
 const Can = ({ perform, data, yes, no }) => {
-  const { role } = useCurrentUser();
+  const currentUser = useCurrentUser();
+  let role;
+  if (currentUser) {
+    role = currentUser.role;
+  } else {
+    role = 'visitor';
+  }
+
   return check(role, perform, data) ? yes() : no();
 };
 

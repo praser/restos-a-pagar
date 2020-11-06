@@ -14,16 +14,26 @@ import {
 } from './styles';
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { removeToken } from '~/utils/jwt';
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
   const dispatch = useContext(Context)[1];
-  const { firstName, avatar } = useCurrentUser();
+  const currentUser = useCurrentUser();
   const [expanded, setExpanded] = useState(false);
+  const history = useHistory();
+
+  let firstName, avatar;
+
+  if (currentUser) {
+    firstName = currentUser.firstName;
+    avatar = currentUser.avatar;
+  }
 
   const handleLogout = event => {
     event.preventDefault();
     removeToken();
     dispatch({ type: 'SET_JWT', payload: null });
+    history.push('/');
   };
 
   const handleClick = event => {

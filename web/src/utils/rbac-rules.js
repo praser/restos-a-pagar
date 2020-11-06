@@ -36,6 +36,10 @@ const rules = {
       'dashboard:filter:situacao',
     ],
   },
+
+  visitor: {
+    static: ['session:login'],
+  },
 };
 
 export default rules;
