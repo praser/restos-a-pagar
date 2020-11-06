@@ -131,7 +131,7 @@ class AlterVwEstitisticasPreBloqueio extends AbstractMigration
                 a.quantidade_notas_empenho,
                 a.saldo_notas_empenho,
                 1 AS tipoInformacaoId,
-                'Todas as opera��es' AS tipoInformacaoDescricao,
+                'Todas as operações' AS tipoInformacaoDescricao,
                 a.created_at,
                 a.updated_at
             FROM estatisticas_cte a
@@ -158,7 +158,7 @@ class AlterVwEstitisticasPreBloqueio extends AbstractMigration
                 a.quantidade_notas_empenho_cumpriram_criterios,
                 a.saldo_notas_empenho_cumpriram_criterios,
                 2 AS tipoInformacaoId,
-                'Opera��es que j� cumpriram os crit�rios de desbloqueio' AS tipoInformacaoDescricao,
+                'Operações que já cumpriram os critérios de desbloqueio' AS tipoInformacaoDescricao,
                 a.created_at,
                 a.updated_at
             FROM estatisticas_cte a
@@ -185,7 +185,7 @@ class AlterVwEstitisticasPreBloqueio extends AbstractMigration
                 a.quantidade_notas_empenho_nao_cumpriram_criterios,
                 a.saldo_notas_empenho_nao_cumpriram_criterios,
                 3 AS tipoInformacaoId,
-                'Opera��es que ainda n�o cumpriram os crit�rios de desbloqueio' AS tipoInformacaoDescricao,
+                'Operações que ainda não cumpriram os critérios de desbloqueio' AS tipoInformacaoDescricao,
                 a.created_at,
                 a.updated_at
             FROM estatisticas_cte a
