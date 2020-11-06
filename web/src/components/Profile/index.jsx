@@ -22,11 +22,11 @@ const Profile = () => {
   const [expanded, setExpanded] = useState(false);
   const history = useHistory();
 
-  let firstName, avatar;
+  let firstName, photo;
 
   if (currentUser) {
     firstName = currentUser.firstName;
-    avatar = currentUser.avatar;
+    photo = currentUser.photo;
   }
 
   const handleLogout = event => {
@@ -45,7 +45,7 @@ const Profile = () => {
     <Container>
       <Button onClick={handleClick}>
         <Name>{firstName}</Name>
-        <Avatar src={avatar || avatarImg} />
+        <Avatar src={photo || avatarImg} />
       </Button>
       <Collapsable expanded={expanded}>
         <CollapsableLink onClick={handleLogout}>
