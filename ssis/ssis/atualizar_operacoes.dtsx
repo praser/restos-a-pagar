@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="2/28/2020 11:57:07 AM"
@@ -7,64 +7,98 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{B1BA9DFF-3C24-4BC1-ACB1-DA2886EAA2E9}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{FDFCC3F0-F61F-454B-9268-BB7D33E80F9C}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{46C716A4-C738-49E7-BB66-75DC78144723}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DF7436SR464.DB5469_BD_GESTORES.s546909]"
+      DTS:refId="Package.ConnectionManagers[BD_GESTORES]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{5A3F5BFE-DCCE-4206-8FA0-4CA1396DB129}"
-      DTS:ObjectName="DF7436SR464.DB5469_BD_GESTORES.s546909">
+      DTS:ObjectName="BD_GESTORES">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546909;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          DTS:ConnectionString="Data Source=192.168.0.56;User ID=sa;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADsIeZB40Xitb63HPs1rINYAAAAAASAAACgAAAAEAAAAEbhSjp/uwciUedzjL5d6bgoAAAA4jJ9HhcLTEeF1apzzn66VhfzeEfzHXI3LglF0AVpyb06ZNxnm8oI6BQAAADZoLH9uM/TTuDs1VYbpVbsWINE1A</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADtrUdW0sChsxD1XwcFcWIQUNk2t4G5EgT3/BuJG1JICQAAAAAOgAAAAAIAACAAAAAl1SmAzDumK2XC7w67ydfedjqDDj8jOOd/g5FVKqrgoSAAAADzdbggUhs85BnJ9KseJaDfLXtauLjiznnRvx9EDtezIEAAAAB9fy6DX2seMXDScZ1D+e+6KNl5m8naQytRM7vG6qPiTDXVLYl9hP63LiD9/onHtyFElYNpXs4HNHM2brOnnNvL</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D10A5771-C176-437E-A423-2E49609B1F63}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="criterioDesbloqueio">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D851272-ECEA-4DC6-84BF-F7624F2FEB37}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;UPDATE a SET a.dataCumprimentoCriteriosDesbloqueio = b.dataCumprimentoCriteriosDesbloqueio FROM operacoes AS a JOIN ( &quot; + @[User::criterioDesbloqueio]  + &quot; ) AS b ON a.operacao = b.operacao&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="queryMarcacaoCumprimentoCriterios">
+      <DTS:VariableValue
+        DTS:DataType="8">UPDATE a SET a.dataCumprimentoCriteriosDesbloqueio = b.dataCumprimentoCriteriosDesbloqueio FROM operacoes AS a JOIN (  ) AS b ON a.operacao = b.operacao</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{3189DDB4-98D4-4CEC-93E5-AE1C627C232E}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:refId="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4238E858-4163-4338-B90F-A52463D8AA58}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)"
-      DTS:ThreadHint="0">
+      DTS:ObjectName="Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva">
       <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-          SQLTask:SqlStatementSource="UPDATE a SET&#xA;&#x9;a.dataPrimeiroPercentualFisico = b.DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;a.dataRetiradaSuspensiva = b.DATA_RETIRADA_SUSPENSIVA,&#xA;&#x9;a.dataCumprimentoCriteriosDesbloqueio = b.DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO&#xA;FROM operacoes a&#xA;JOIN (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*,&#xA;&#x9;&#x9;CASE&#xA;&#x9;&#x9;WHEN DATA_AIO IS NULL OR DATA_VRPL IS NULL OR DATA_PRIMEIRO_PERCENTUAL_FISICO IS NULL OR DATA_RETIRADA_SUSPENSIVA IS NULL THEN NULL&#xA;&#x9;&#x9;WHEN DATA_AIO &gt;= DATA_VRPL AND DATA_AIO &gt;= DATA_PRIMEIRO_PERCENTUAL_FISICO AND DATA_AIO &gt;= DATA_RETIRADA_SUSPENSIVA THEN DATA_AIO&#xA;&#x9;&#x9;WHEN DATA_VRPL &gt;= DATA_AIO AND DATA_VRPL &gt;= DATA_PRIMEIRO_PERCENTUAL_FISICO AND DATA_VRPL &gt;= DATA_RETIRADA_SUSPENSIVA THEN DATA_VRPL&#xA;&#x9;&#x9;WHEN DATA_PRIMEIRO_PERCENTUAL_FISICO &gt;= DATA_AIO AND DATA_PRIMEIRO_PERCENTUAL_FISICO &gt;= DATA_VRPL AND DATA_PRIMEIRO_PERCENTUAL_FISICO &gt;= DATA_RETIRADA_SUSPENSIVA THEN DATA_PRIMEIRO_PERCENTUAL_FISICO&#xA;&#x9;&#x9;WHEN DATA_RETIRADA_SUSPENSIVA &gt;= DATA_AIO AND DATA_RETIRADA_SUSPENSIVA &gt;= DATA_VRPL AND DATA_RETIRADA_SUSPENSIVA &gt;= DATA_PRIMEIRO_PERCENTUAL_FISICO THEN DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;END DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;a.OPERACAO,&#xA;&#x9;&#x9;&#x9;a.DATA_AIO,&#xA;&#x9;&#x9;&#x9;a.DATA_VRPL,&#xA;&#x9;&#x9;&#x9;CAST(b.ANO_MES_PRIMEIRO_PERCENTUAL + '01' AS DATE) AS DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;&#x9;&#x9;CASE&#xA;&#x9;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') NOT LIKE '%SUSPENSIVA%'  AND c.DATA_RETIRADA_SUSPENSIVA IS NULL THEN a.DATA_ASSINATURA&#xA;&#x9;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') LIKE '%SUSPENSIVA%' THEN NULL&#xA;&#x9;&#x9;&#x9;ELSE c.DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;&#x9;END AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.dadosBasicos AS a&#xA;&#x9;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;&#x9;MIN(ANO_MES_PERCENTUAL) AS ANO_MES_PRIMEIRO_PERCENTUAL&#xA;&#x9;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.historicoExecucaoFisica&#xA;&#x9;&#x9;&#x9;WHERE PERCENTUAL_REALIZADO &gt; 0&#xA;&#x9;&#x9;&#x9;GROUP BY OPERACAO&#xA;&#x9;&#x9;) b&#xA;&#x9;&#x9;ON a.OPERACAO = b.OPERACAO&#xA;&#x9;&#x9;AND a.PERCENTUAL_FISICO_AFERIDO &gt; 0&#xA;&#x9;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA_PREV) AS DATA_PREVISTA_RETIRADA_SUSPENSIVA,&#xA;&#x9;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA) AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;&#x9;FROM DF7436SR438.GELEV.dbo.DADOS_GERAIS&#xA;&#x9;&#x9;&#x9;WHERE SUSPENSIVA_RETIRADA_PREV IS NOT NULL&#xA;&#x9;&#x9;) AS c&#xA;&#x9;&#x9;ON a.OPERACAO = c.OPERACAO&#xA;&#x9;&#x9;WHERE a.SITUACAO_CONTRATO = 'CONTRATADA'&#xA;&#x9;&#x9;AND a.ENQUADRAMENTO_LEGISLACAO &lt;&gt; 'PAC'&#xA;&#x9;) AS criterios_desbloqueio&#xA;) b&#xA;ON a.operacao = b.OPERACAO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Atualiza o cumprimento dos critérios de desbloqueio (PAC)"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{6563c387-4bb7-4e77-9d13-48280413cff5}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Atualiza o cumprimento dos critérios de desbloqueio (PAC)"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-          SQLTask:SqlStatementSource="UPDATE a SET&#xA;&#x9;a.dataPrimeiroPercentualFisico = b.DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;a.dataRetiradaSuspensiva = b.DATA_RETIRADA_SUSPENSIVA,&#xA;&#x9;a.dataCumprimentoCriteriosDesbloqueio = b.DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO&#xA;FROM operacoes a&#xA;JOIN (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*,&#xA;&#x9;&#x9;CASE&#xA;&#x9;&#x9;WHEN DATA_AIO IS NULL OR DATA_PRIMEIRO_PERCENTUAL_FISICO IS NULL OR DATA_RETIRADA_SUSPENSIVA IS NULL THEN NULL&#xA;&#x9;&#x9;WHEN DATA_AIO &gt;= DATA_PRIMEIRO_PERCENTUAL_FISICO AND DATA_AIO &gt;= DATA_RETIRADA_SUSPENSIVA THEN DATA_AIO&#xA;&#x9;&#x9;WHEN DATA_PRIMEIRO_PERCENTUAL_FISICO &gt;= DATA_AIO AND DATA_PRIMEIRO_PERCENTUAL_FISICO &gt;= DATA_RETIRADA_SUSPENSIVA THEN DATA_PRIMEIRO_PERCENTUAL_FISICO&#xA;&#x9;&#x9;WHEN DATA_RETIRADA_SUSPENSIVA &gt;= DATA_AIO AND DATA_RETIRADA_SUSPENSIVA &gt;= DATA_PRIMEIRO_PERCENTUAL_FISICO THEN DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;END DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;a.OPERACAO,&#xA;&#x9;&#x9;&#x9;a.DATA_AIO,&#xA;&#x9;&#x9;&#x9;CAST(b.ANO_MES_PRIMEIRO_PERCENTUAL + '01' AS DATE) AS DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;&#x9;&#x9;CASE&#xA;&#x9;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') NOT LIKE '%SUSPENSIVA%'  AND c.DATA_RETIRADA_SUSPENSIVA IS NULL THEN a.DATA_ASSINATURA&#xA;&#x9;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') LIKE '%SUSPENSIVA%' THEN NULL&#xA;&#x9;&#x9;&#x9;ELSE c.DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;&#x9;END AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.dadosBasicos AS a&#xA;&#x9;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;&#x9;MIN(ANO_MES_PERCENTUAL) AS ANO_MES_PRIMEIRO_PERCENTUAL&#xA;&#x9;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.historicoExecucaoFisica&#xA;&#x9;&#x9;&#x9;WHERE PERCENTUAL_REALIZADO &gt; 0&#xA;&#x9;&#x9;&#x9;GROUP BY OPERACAO&#xA;&#x9;&#x9;) b&#xA;&#x9;&#x9;ON a.OPERACAO = b.OPERACAO&#xA;&#x9;&#x9;AND a.PERCENTUAL_FISICO_AFERIDO &gt; 0&#xA;&#x9;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA_PREV) AS DATA_PREVISTA_RETIRADA_SUSPENSIVA,&#xA;&#x9;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA) AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;&#x9;FROM DF7436SR438.GELEV.dbo.DADOS_GERAIS&#xA;&#x9;&#x9;&#x9;WHERE SUSPENSIVA_RETIRADA_PREV IS NOT NULL&#xA;&#x9;&#x9;) AS c&#xA;&#x9;&#x9;ON a.OPERACAO = c.OPERACAO&#xA;&#x9;&#x9;WHERE a.SITUACAO_CONTRATO = 'CONTRATADA'&#xA;&#x9;&#x9;AND a.ENQUADRAMENTO_LEGISLACAO = 'PAC'&#xA;&#x9;) AS criterios_desbloqueio&#xA;) b&#xA;ON a.operacao = b.OPERACAO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva\Operacoes nao pac"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{3189DDB4-98D4-4CEC-93E5-AE1C627C232E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Operacoes nao pac"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="UPDATE a SET&#xA;&#x9;a.dataPrimeiroPercentualFisico = b.DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;a.dataRetiradaSuspensiva = b.DATA_RETIRADA_SUSPENSIVA&#xA;FROM operacoes a&#xA;JOIN (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;a.OPERACAO,&#xA;&#x9;&#x9;CAST(b.ANO_MES_PRIMEIRO_PERCENTUAL + '01' AS DATE) AS DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;&#x9;CASE&#xA;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') NOT LIKE '%SUSPENSIVA%'  AND c.DATA_RETIRADA_SUSPENSIVA IS NULL THEN a.DATA_ASSINATURA&#xA;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') LIKE '%SUSPENSIVA%' THEN NULL&#xA;&#x9;&#x9;ELSE c.DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;END AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.dadosBasicos AS a&#xA;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;MIN(ANO_MES_PERCENTUAL) AS ANO_MES_PRIMEIRO_PERCENTUAL&#xA;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.historicoExecucaoFisica&#xA;&#x9;&#x9;WHERE PERCENTUAL_REALIZADO &gt; 0&#xA;&#x9;&#x9;GROUP BY OPERACAO&#xA;&#x9;) b&#xA;&#x9;ON a.OPERACAO = b.OPERACAO&#xA;&#x9;AND a.PERCENTUAL_FISICO_AFERIDO &gt; 0&#xA;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA_PREV) AS DATA_PREVISTA_RETIRADA_SUSPENSIVA,&#xA;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA) AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;FROM DF7436SR438.GELEV.dbo.DADOS_GERAIS&#xA;&#x9;&#x9;WHERE SUSPENSIVA_RETIRADA_PREV IS NOT NULL&#xA;&#x9;) AS c&#xA;&#x9;ON a.OPERACAO = c.OPERACAO&#xA;&#x9;WHERE a.SITUACAO_CONTRATO = 'CONTRATADA'&#xA;&#x9;AND a.ENQUADRAMENTO_LEGISLACAO &lt;&gt; 'PAC'&#xA;) b&#xA;ON a.operacao = b.OPERACAO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva\Operacoes PAC"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{6563c387-4bb7-4e77-9d13-48280413cff5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Operacoes PAC"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="UPDATE a SET&#xA;&#x9;a.dataPrimeiroPercentualFisico = b.DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;a.dataRetiradaSuspensiva = b.DATA_RETIRADA_SUSPENSIVA&#xA;FROM operacoes a&#xA;JOIN (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;a.OPERACAO,&#xA;&#x9;&#x9;CAST(b.ANO_MES_PRIMEIRO_PERCENTUAL + '01' AS DATE) AS DATA_PRIMEIRO_PERCENTUAL_FISICO,&#xA;&#x9;&#x9;CASE&#xA;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') NOT LIKE '%SUSPENSIVA%'  AND c.DATA_RETIRADA_SUSPENSIVA IS NULL THEN a.DATA_ASSINATURA&#xA;&#x9;&#x9;WHEN ISNULL(a.SITUACAO_CONTRATO_COMPLEMENTO, '') LIKE '%SUSPENSIVA%' THEN NULL&#xA;&#x9;&#x9;ELSE c.DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;END AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.dadosBasicos AS a&#xA;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;MIN(ANO_MES_PERCENTUAL) AS ANO_MES_PRIMEIRO_PERCENTUAL&#xA;&#x9;&#x9;FROM DF7436SR464.DB5469_BD_GESTORES.dbo.historicoExecucaoFisica&#xA;&#x9;&#x9;WHERE PERCENTUAL_REALIZADO &gt; 0&#xA;&#x9;&#x9;GROUP BY OPERACAO&#xA;&#x9;) b&#xA;&#x9;ON a.OPERACAO = b.OPERACAO&#xA;&#x9;AND a.PERCENTUAL_FISICO_AFERIDO &gt; 0&#xA;&#x9;LEFT JOIN (&#xA;&#x9;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;&#x9;OPERACAO,&#xA;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA_PREV) AS DATA_PREVISTA_RETIRADA_SUSPENSIVA,&#xA;&#x9;&#x9;&#x9;CONVERT(DATE, SUSPENSIVA_RETIRADA) AS DATA_RETIRADA_SUSPENSIVA&#xA;&#x9;&#x9;FROM DF7436SR438.GELEV.dbo.DADOS_GERAIS&#xA;&#x9;&#x9;WHERE SUSPENSIVA_RETIRADA_PREV IS NOT NULL&#xA;&#x9;) AS c&#xA;&#x9;ON a.OPERACAO = c.OPERACAO&#xA;&#x9;WHERE a.SITUACAO_CONTRATO = 'CONTRATADA'&#xA;&#x9;AND a.ENQUADRAMENTO_LEGISLACAO = 'PAC'&#xA;) b&#xA;ON a.operacao = b.OPERACAO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Atualiza operações"
@@ -120,67 +154,119 @@
           DTS:To="Package\Atualiza operações\Importa novos registros" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Verifica o cumprimento dos critérios para o desbloqueio"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{70C991A8-28A5-4A0E-9FCE-2AF44CD037C2}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Verifica o cumprimento dos critérios para o desbloqueio">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Verifica o cumprimento dos critérios para o desbloqueio\Atualiza a data do cumprimento do critério de desbloqueio"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0E48ADD2-9E14-4E8B-8CE3-6E882C212603}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Atualiza a data do cumprimento do critério de desbloqueio"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::queryMarcacaoCumprimentoCriterios" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Verifica o cumprimento dos critérios para o desbloqueio\Obtém critétios para o desbloqueio"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4017689A-C13C-421E-AE01-EA11CF1B77A8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Obtém critétios para o desbloqueio"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="SELECT&#xA;&#x9;b.query&#xA;FROM parametros AS a&#xA;JOIN parametros_criterios_desbloqueio AS b&#xA;ON a.id = b.parametroId&#xA;AND b.fimVigencia IS NULL&#xA;WHERE a.anoExecucao = YEAR(GETDATE())"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::criterioDesbloqueio" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Verifica o cumprimento dos critérios para o desbloqueio.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{6B403EF4-F1EC-41DA-83C5-A32421CBBAB6}"
+          DTS:From="Package\Verifica o cumprimento dos critérios para o desbloqueio\Obtém critétios para o desbloqueio"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Verifica o cumprimento dos critérios para o desbloqueio\Atualiza a data do cumprimento do critério de desbloqueio" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{BEF87FF5-90E8-483E-A271-1903CD047A5D}"
+      DTS:DTSID="{A6B61232-1CB3-4253-A8F8-1B474A5FB485}"
       DTS:From="Package\Atualiza operações"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição"
-      DTS:To="Package\Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)" />
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{A8F4100F-73CA-46ED-B12C-7EAC09E973DA}"
-      DTS:From="Package\Atualiza operações"
+      DTS:DTSID="{1C2E5D97-1AED-4081-A293-C5D00E4A9EE3}"
+      DTS:From="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição 1"
-      DTS:To="Package\Atualiza o cumprimento dos critérios de desbloqueio (PAC)" />
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Verifica o cumprimento dos critérios para o desbloqueio" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
-<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
-<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="sql11">
-  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="377,42"
-          Id="Package\Atualiza o cumprimento dos critérios de desbloqueio (Não PAC)"
-          TopLeft="5.50000000000006,313.5" />
-        <NodeLayout
-          Size="355,42"
-          Id="Package\Atualiza o cumprimento dos critérios de desbloqueio (PAC)"
-          TopLeft="443.5,313.5" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="210,42"
           Id="Package\Atualiza operações\Atualiza registros existentes"
-          TopLeft="5.50000000000001,5.5" />
+          TopLeft="41.5,20.5" />
         <NodeLayout
           Size="191,42"
           Id="Package\Atualiza operações\Importa novos registros"
-          TopLeft="15,107.5" />
+          TopLeft="49,93.5" />
         <EdgeLayout
           Id="Package\Atualiza operações.PrecedenceConstraints[Restrição]"
-          TopLeft="110.5,47.5">
+          TopLeft="145.5,62.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,31"
               Start="0,0"
-              End="0,52.5">
+              End="0,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -192,36 +278,39 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="221,205"
-          Size="221,248"
+          PanelSize="291,180"
+          Size="291,223"
           Id="Package\Atualiza operações"
-          TopLeft="285.5,8.49999999999989" />
+          TopLeft="110.5,49.4999999999999" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva\Operacoes PAC"
+          TopLeft="247.5,19.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva\Operacoes nao pac"
+          TopLeft="31.5,19.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="438,89"
+          Size="438,133"
+          Id="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva"
+          TopLeft="39,338" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="360.5,256.5">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="257,272.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-166.5,57"
+              EndConnector="0,65.5000000000001"
               Start="0,0"
-              End="-166.5,49.5">
+              End="0,58.0000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.0458221024259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.0458221024259"
-                    Point2="0,23.0458221024259"
-                    Point3="-4,23.0458221024259" />
-                  <mssgle:LineSegment
-                    End="-162.5,23.0458221024259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-162.5,23.0458221024259"
-                    Point2="-166.5,23.0458221024259"
-                    Point3="-166.5,27.0458221024259" />
-                  <mssgle:LineSegment
-                    End="-166.5,49.5" />
+                    End="0,58.0000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -230,32 +319,57 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Verifica o cumprimento dos critérios para o desbloqueio\Obtém critétios para o desbloqueio"
+          TopLeft="63.5,25.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="431.5,256.5">
+          Id="Package\Verifica o cumprimento dos critérios para o desbloqueio.PrecedenceConstraints[Constraint 1]"
+          TopLeft="183.5,67.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="189.5,57"
+              EndConnector="0,30"
               Start="0,0"
-              End="189.5,49.5">
+              End="0,22.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.0458221024259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.0458221024259"
-                    Point2="0,23.0458221024259"
-                    Point3="4,23.0458221024259" />
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Verifica o cumprimento dos critérios para o desbloqueio\Atualiza a data do cumprimento do critério de desbloqueio"
+          TopLeft="54.5,97.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="364,175"
+          Size="364,218"
+          Id="Package\Verifica o cumprimento dos critérios para o desbloqueio"
+          TopLeft="70,534" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="255,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="185.5,23.0458221024259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="185.5,23.0458221024259"
-                    Point2="189.5,23.0458221024259"
-                    Point3="189.5,27.0458221024259" />
-                  <mssgle:LineSegment
-                    End="189.5,49.5" />
+                    End="0,55.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
