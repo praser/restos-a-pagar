@@ -14,6 +14,7 @@ export const Heading = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  flex: 1;
 `;
 
 export const Row = styled.div`

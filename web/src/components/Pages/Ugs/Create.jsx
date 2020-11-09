@@ -2,7 +2,7 @@ import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from './Form';
 import Layout from '../../Layout/Internal';
-import { Heading } from '../../Layout';
+import { Heading, Row } from '../../Layout';
 import { Card, CardBody, CardHeader } from '../../Card';
 import { useApiRap, useXHR } from '~/hooks';
 import { createUgFail as alertProps, createUgSuccess } from '~/utils/messages';
@@ -63,15 +63,19 @@ const Create = () => {
 
   return (
     <Layout>
-      <Heading>
-        <PageTitle>Cadastrar Unidade Gestora</PageTitle>
-      </Heading>
-      <Card>
-        <CardHeader>Dados da unidade gestora</CardHeader>
-        <CardBody>
-          <Form initialValues={initialValues} onSubmit={handleSubmit} />
-        </CardBody>
-      </Card>
+      <Row>
+        <Heading>
+          <PageTitle>Cadastrar Unidade Gestora</PageTitle>
+        </Heading>
+      </Row>
+      <Row>
+        <Card>
+          <CardHeader>Dados da unidade gestora</CardHeader>
+          <CardBody>
+            <Form initialValues={initialValues} onSubmit={handleSubmit} />
+          </CardBody>
+        </Card>
+      </Row>
     </Layout>
   );
 };

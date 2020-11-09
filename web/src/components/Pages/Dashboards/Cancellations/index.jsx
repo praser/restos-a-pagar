@@ -93,14 +93,19 @@ const Cancellations = () => {
         visible={state.showFilters}
         setState={setState}
       />
-      <Heading
-        data={dataState.operacoesCsv}
-        headers={csvHeaders}
-        setState={setState}
-      >
-        Cancelamentos da safra {budgetYear} - {physicalLotationAbbreviation}
-      </Heading>
+
+      <Row>
+        <Heading
+          data={dataState.operacoesCsv}
+          headers={csvHeaders}
+          setState={setState}
+        >
+          Cancelamentos da safra {budgetYear} - {physicalLotationAbbreviation}
+        </Heading>
+      </Row>
+
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
+
       <Row>
         <Highlight
           title="quantidade de operações"

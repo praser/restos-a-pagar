@@ -12,7 +12,7 @@ import {
   SmallButtonSecondary,
 } from '../../Button';
 import { Card, CardBody, CardHeader } from '../../Card';
-import { Heading } from '../../Layout';
+import { Heading, Row } from '../../Layout';
 import Layout from '../../Layout/Internal';
 import Table from '../../Table';
 import { PageTitle } from '../../Tipography';
@@ -146,43 +146,47 @@ const Ugs = () => {
         onCancel={handlePromptCancel}
         onConfirm={handlePromptConfirm}
       />
-      <Heading>
-        <PageTitle>Unidades Gestoras</PageTitle>
-        <div>
-          <Can
-            perform="ugs:create"
-            yes={() => (
-              <SmallButtonPrimary as={Link} to={createUgPath}>
-                <FontAwesomeIcon icon={faPlusCircle} />
-                Cadastrar UG
-              </SmallButtonPrimary>
-            )}
-          />
-        </div>
-      </Heading>
-      <Card>
-        <CardHeader>
-          Lista de unidades gestoras cadastradas nos sistema
-        </CardHeader>
-        <CardBody>
-          <Table
-            data={state.ugs}
-            columns={columns}
-            pagination
-            paginationComponentOptions={{
-              rowsPerPageText: 'Resultados por página:',
-              rangeSeparatorText: 'de',
-              noRowsPerPage: false,
-              selectAllRowsItem: false,
-              selectAllRowsItemText: 'Todos',
-            }}
-            noHeader
-            striped
-            highlightOnHover
-            noDataComponent="Ainda não tenho nada para mostrar aqui..."
-          />
-        </CardBody>
-      </Card>
+      <Row>
+        <Heading>
+          <PageTitle>Unidades Gestoras</PageTitle>
+          <div>
+            <Can
+              perform="ugs:create"
+              yes={() => (
+                <SmallButtonPrimary as={Link} to={createUgPath}>
+                  <FontAwesomeIcon icon={faPlusCircle} />
+                  Cadastrar UG
+                </SmallButtonPrimary>
+              )}
+            />
+          </div>
+        </Heading>
+      </Row>
+      <Row>
+        <Card>
+          <CardHeader>
+            Lista de unidades gestoras cadastradas nos sistema
+          </CardHeader>
+          <CardBody>
+            <Table
+              data={state.ugs}
+              columns={columns}
+              pagination
+              paginationComponentOptions={{
+                rowsPerPageText: 'Resultados por página:',
+                rangeSeparatorText: 'de',
+                noRowsPerPage: false,
+                selectAllRowsItem: false,
+                selectAllRowsItemText: 'Todos',
+              }}
+              noHeader
+              striped
+              highlightOnHover
+              noDataComponent="Ainda não tenho nada para mostrar aqui..."
+            />
+          </CardBody>
+        </Card>
+      </Row>
     </Layout>
   );
 };

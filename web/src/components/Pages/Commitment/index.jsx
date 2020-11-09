@@ -8,13 +8,16 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { CSVReader } from 'react-papaparse';
+import { v4 as uuidv4 } from 'uuid';
+import { isNull, first } from 'lodash';
+import { useHistory } from 'react-router-dom';
 import { SmallButtonPrimary, SmallButtonWarning } from '../../Button';
 import { Card, CardBody, CardHeader } from '../../Card';
 import { Field, FormGroup, FormRow, Input, Label } from '../../Form';
-import { Heading } from '../../Layout';
+import { Heading, Row } from '../../Layout';
 import Layout from '../../Layout/Internal';
 import { PageTitle } from '../../Tipography';
-import { CSVReader } from 'react-papaparse';
 import { parseDate, getYear, formatAsISO, formatISO } from '~/utils/dates';
 import { formatCurrency, parseNumber } from '~/utils/numbers';
 import {
@@ -22,9 +25,7 @@ import {
   parseNumeroContratoRepasse,
   parseConvenio,
 } from '~/utils/string';
-import { v4 as uuidv4 } from 'uuid';
-import { useCurrentUser } from '~/hooks';
-import { isNull, first } from 'lodash';
+import { useCurrentUser, useApiRap, useXHR } from '~/hooks';
 import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
 import { Context } from '../../Store';
 import {
@@ -33,8 +34,6 @@ import {
   createNeBalanceSuccess,
 } from '~/utils/messages';
 import Table from '~/components/Table';
-import { useApiRap, useXHR } from '~/hooks';
-import { useHistory } from 'react-router-dom';
 
 const initialValues = {
   fileDate: new Date(),
@@ -222,100 +221,106 @@ const Create = () => {
 
   return (
     <Layout>
-      <Heading>
-        <PageTitle>Atualiza saldo das notas de empenho</PageTitle>
-      </Heading>
-      <Card>
-        <CardHeader>Enviar arquivo de saldo</CardHeader>
-        <CardBody>
-          <form onSubmit={Formik.handleSubmit}>
-            <FormRow>
-              <Field
-                formik={Formik}
-                label="Data do arquivo"
-                name="fileDate"
-                width="192px"
-              >
-                <DatePicker
-                  ref={dataRef}
-                  selected={Formik.values.fileDate}
-                  maxDate={new Date()}
-                  dateFormat="dd/MM/yyyy"
-                  onBlur={Formik.handleBlur}
-                  value={Formik.values.fileDate}
-                  onChange={date => Formik.setFieldValue('fileDate', date)}
-                  customInput={
-                    <Input id="fileDate" name="fileDate" type="text" />
-                  }
-                />
-              </Field>
-              <FormGroup>
-                <Label>Arquivo.</Label>
-                <CSVReader
-                  accept={['text/csv', '.csv', 'text/txt', '.txt']}
-                  ref={buttonRef}
-                  onFileLoad={handleOnFileLoad}
-                  onFileError={handleOnError}
-                  noClick
-                  noDrag
-                  config={{
-                    header: true,
-                    transformHeader,
-                    skipEmptyLines: 'greedy',
-                  }}
-                  style={{}}
-                  onRemoveFile={handleOnRemoveFile}
-                >
-                  {({ file }) => (
-                    <UploadFile>
-                      <FindFile type="button" onClick={handleOpenDialog}>
-                        <FontAwesomeIcon icon={faFolderOpen} />
-                      </FindFile>
-                      <FileName onClick={handleOpenDialog}>
-                        {file ? file.name : 'Selecione um arquivo'}
-                      </FileName>
-                      <RemoveFile
-                        type="button"
-                        onClick={handleRemoveFile}
-                        disabled={isNull(state.data)}
-                      >
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </RemoveFile>
-                    </UploadFile>
-                  )}
-                </CSVReader>
-              </FormGroup>
-            </FormRow>
-            <FormRow>
-              <SmallButtonPrimary type="submit" disabled={isNull(state.data)}>
-                <FontAwesomeIcon icon={faSave} /> Salvar
-              </SmallButtonPrimary>
-            </FormRow>
-          </form>
-        </CardBody>
-      </Card>
-      {state.data && (
+      <Row>
+        <Heading>
+          <PageTitle>Atualiza saldo das notas de empenho</PageTitle>
+        </Heading>
+      </Row>
+      <Row>
         <Card>
-          <CardHeader>Pré-visualização dos dados</CardHeader>
+          <CardHeader>Enviar arquivo de saldo</CardHeader>
           <CardBody>
-            <Table
-              data={state.data.slice(0, 50)}
-              columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
-              noHeader
-              striped
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
-            />
+            <form onSubmit={Formik.handleSubmit}>
+              <FormRow>
+                <Field
+                  formik={Formik}
+                  label="Data do arquivo"
+                  name="fileDate"
+                  width="192px"
+                >
+                  <DatePicker
+                    ref={dataRef}
+                    selected={Formik.values.fileDate}
+                    maxDate={new Date()}
+                    dateFormat="dd/MM/yyyy"
+                    onBlur={Formik.handleBlur}
+                    value={Formik.values.fileDate}
+                    onChange={date => Formik.setFieldValue('fileDate', date)}
+                    customInput={
+                      <Input id="fileDate" name="fileDate" type="text" />
+                    }
+                  />
+                </Field>
+                <FormGroup>
+                  <Label>Arquivo.</Label>
+                  <CSVReader
+                    accept={['text/csv', '.csv', 'text/txt', '.txt']}
+                    ref={buttonRef}
+                    onFileLoad={handleOnFileLoad}
+                    onFileError={handleOnError}
+                    noClick
+                    noDrag
+                    config={{
+                      header: true,
+                      transformHeader,
+                      skipEmptyLines: 'greedy',
+                    }}
+                    style={{}}
+                    onRemoveFile={handleOnRemoveFile}
+                  >
+                    {({ file }) => (
+                      <UploadFile>
+                        <FindFile type="button" onClick={handleOpenDialog}>
+                          <FontAwesomeIcon icon={faFolderOpen} />
+                        </FindFile>
+                        <FileName onClick={handleOpenDialog}>
+                          {file ? file.name : 'Selecione um arquivo'}
+                        </FileName>
+                        <RemoveFile
+                          type="button"
+                          onClick={handleRemoveFile}
+                          disabled={isNull(state.data)}
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </RemoveFile>
+                      </UploadFile>
+                    )}
+                  </CSVReader>
+                </FormGroup>
+              </FormRow>
+              <FormRow>
+                <SmallButtonPrimary type="submit" disabled={isNull(state.data)}>
+                  <FontAwesomeIcon icon={faSave} /> Salvar
+                </SmallButtonPrimary>
+              </FormRow>
+            </form>
           </CardBody>
         </Card>
+      </Row>
+      {state.data && (
+        <Row>
+          <Card>
+            <CardHeader>Pré-visualização dos dados</CardHeader>
+            <CardBody>
+              <Table
+                data={state.data.slice(0, 50)}
+                columns={columns}
+                pagination
+                paginationComponentOptions={{
+                  rowsPerPageText: 'Resultados por página:',
+                  rangeSeparatorText: 'de',
+                  noRowsPerPage: false,
+                  selectAllRowsItem: false,
+                  selectAllRowsItemText: 'Todos',
+                }}
+                noHeader
+                striped
+                highlightOnHover
+                noDataComponent="Ainda não tenho nada para mostrar aqui..."
+              />
+            </CardBody>
+          </Card>
+        </Row>
       )}
     </Layout>
   );

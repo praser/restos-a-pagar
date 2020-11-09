@@ -2,7 +2,7 @@ import React, { useCallback, useState, useContext, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Form from './Form';
 import Layout from '../../Layout/Internal';
-import { Heading } from '../../Layout';
+import { Heading, Row } from '../../Layout';
 import { Card, CardBody, CardHeader } from '../../Card';
 import { useApiRap, useXHR } from '~/hooks';
 import { updateUgFail as alertProps, updateUgSuccess } from '~/utils/messages';
@@ -88,15 +88,17 @@ const Update = () => {
 
   return (
     <Layout>
-      <Heading>
-        <PageTitle>Cadastrar Unidade Gestora</PageTitle>
-      </Heading>
-      <Card>
-        <CardHeader>Dados da unidade gestora</CardHeader>
-        <CardBody>
-          <Form initialValues={initialValues} onSubmit={handleSubmit} />
-        </CardBody>
-      </Card>
+      <Row>
+        <Heading>
+          <PageTitle>Cadastrar Unidade Gestora</PageTitle>
+        </Heading>
+        <Card>
+          <CardHeader>Dados da unidade gestora</CardHeader>
+          <CardBody>
+            <Form initialValues={initialValues} onSubmit={handleSubmit} />
+          </CardBody>
+        </Card>
+      </Row>
     </Layout>
   );
 };
