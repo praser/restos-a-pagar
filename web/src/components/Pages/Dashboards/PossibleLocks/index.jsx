@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { first, isUndefined } from 'lodash';
+import { first, isNull, isUndefined } from 'lodash';
 import Layout from '~/components/Layout/Internal';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
@@ -17,7 +17,12 @@ import { LineChart, BarChart } from '../../../Chart';
 import { lineChartData } from './lineChart';
 import { barChartData } from './barChart';
 import { Context } from '../../../Store';
-import { parseISO } from '~/utils/dates';
+import { formatDate, parseISO } from '~/utils/dates';
+import Table from '~/components/Table';
+import { formatPercent, formatCurrency, formatProposta } from '~/utils/numbers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { primary, danger } from '~/utils/colors';
 
 const PossibleLocks = () => {
   const currentUser = useCurrentUser();
@@ -73,17 +78,141 @@ const PossibleLocks = () => {
 
   const { estatisticas } = state;
 
+  const columns = [
+    { name: 'Operação', selector: 'operacao', sortable: true },
+    {
+      name: 'Proposta',
+      selector: 'proposta',
+      sortable: true,
+      grow: 2,
+      format: row => formatProposta(row.proposta),
+    },
+    { name: 'Convênio', selector: 'convenio', sortable: true },
+    {
+      name: 'Apta desbloqueio',
+      selector: 'dataCumprimentoCriteriosDesbloqueio',
+      sortable: true,
+      grow: 2,
+      center: true,
+      format: row => {
+        const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
+        const thumbsDown = (
+          <FontAwesomeIcon icon={faThumbsDown} color={danger} />
+        );
+        if (isNull(row.dataCumprimentoCriteriosDesbloqueio)) return thumbsDown;
+        return thumbsUp;
+      },
+    },
+    { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
+    {
+      name: 'Retirada da suspensiva',
+      selector: 'dataRetiradaSuspensiva',
+      sortable: true,
+      grow: 2,
+      format: row => formatDate(row.dataRetiradaSuspensiva),
+    },
+    { name: 'GIGOV', selector: 'gigovNome', sortable: true },
+    {
+      name: 'Valor repasse',
+      selector: 'valorRepasse',
+      sortable: true,
+      format: row => formatCurrency(row.valorDesembolsado),
+    },
+    {
+      name: 'Valor desembolsado',
+      selector: 'valorDesembolsado',
+      sortable: true,
+      format: row => formatCurrency(row.valorDesembolsado),
+    },
+    {
+      name: 'Proponente',
+      selector: 'proponente',
+      sortable: true,
+      grow: 3,
+      format: row => `${row.proponente}/${row.uf}`,
+    },
+    {
+      name: 'Gestor',
+      selector: 'nomeGestor',
+      sortable: true,
+      grow: 3,
+      format: row => `${row.siglaGestor} - ${row.nomeGestor}`,
+    },
+    {
+      name: 'Legislação',
+      selector: 'enquadramentoLegislacao',
+      sortable: true,
+      grow: 2,
+    },
+    {
+      name: 'Legislação complemento',
+      selector: 'enquadramentoLegislacaoComplemento',
+      grow: 6,
+      sortable: true,
+    },
+    { name: 'Situação', selector: 'situacaoContrato', sortable: true, grow: 2 },
+    {
+      name: 'Situação complemento',
+      selector: 'situacaoContratoComplemento',
+      sortable: true,
+      grow: 3,
+    },
+    {
+      name: '% físico aferido',
+      selector: 'percentualFisicoAferido',
+      sortable: true,
+      format: row => formatPercent(row.percentualFisicoAferido),
+    },
+    {
+      name: '% financeiro desbloqueado',
+      selector: 'percentualFinanceiroDesbloqueado',
+      sortable: true,
+      format: row => formatPercent(row.percentualFinanceiroDesbloqueado),
+    },
+    {
+      name: 'Início vigência',
+      selector: 'dataVigencia',
+      sortable: true,
+      grow: 2,
+      format: row => formatDate(row.dataVigencia),
+    },
+    {
+      name: 'SPA',
+      selector: 'dataSPA',
+      sortable: true,
+      grow: 2,
+      format: row => formatDate(row.dataSPA),
+    },
+    {
+      name: 'VRPL',
+      selector: 'dataVRPL',
+      sortable: true,
+      grow: 2,
+      format: row => formatDate(row.dataVRPL),
+    },
+    {
+      name: 'AIO',
+      selector: 'dataAIO',
+      sortable: true,
+      grow: 2,
+      format: row => formatDate(row.dataAIO),
+    },
+    { name: 'Objeto', selector: 'objeto', sortable: true, grow: 10 },
+  ];
+
   return (
     <Layout>
       <RightTab visible={state.showFilters} setState={setState} />
 
-      <Heading
-        data={dataState.operacoesCsv}
-        headers={csvHeaders}
-        setState={setState}
-      >
-        Prévia dos bloqueios da safra {budgetYear} - {lotation}
-      </Heading>
+      <Row>
+        <Heading
+          data={dataState.operacoesCsv}
+          headers={csvHeaders}
+          setState={setState}
+        >
+          Prévia dos bloqueios da safra {budgetYear} - {lotation}
+        </Heading>
+      </Row>
 
       <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
 
@@ -109,7 +238,24 @@ const PossibleLocks = () => {
       <Row>
         <Card>
           <CardHeader>Dados analíticos</CardHeader>
-          <CardBody>Tabela maneira</CardBody>
+          <CardBody>
+            <Table
+              data={dataState.operacoes}
+              columns={columns}
+              pagination
+              paginationComponentOptions={{
+                rowsPerPageText: 'Resultados por página:',
+                rangeSeparatorText: 'de',
+                noRowsPerPage: false,
+                selectAllRowsItem: false,
+                selectAllRowsItemText: 'Todos',
+              }}
+              noHeader
+              striped
+              highlightOnHover
+              noDataComponent="Ainda não tenho nada para mostrar aqui..."
+            />
+          </CardBody>
         </Card>
       </Row>
     </Layout>
