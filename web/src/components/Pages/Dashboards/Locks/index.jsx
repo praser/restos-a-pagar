@@ -8,8 +8,8 @@ import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { locks as alertProps } from '~/utils/messages';
 import { calcExecutionYear } from '../RightTab/utils';
 import RightTab from '../RightTab';
-import { csvHeaders } from '../utils';
-import { initialState } from './utils';
+import { csvHeaders, operacoesColumns } from '../utils';
+import { initialState, dataInitialState } from './utils';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
@@ -22,18 +22,23 @@ import { dougnutChartData } from './doughnutChart';
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
+  const [dataState, setDataState] = useState(dataInitialState);
   const [context] = useContext(Context);
   const { budgetYear } = useParams();
   const { physicalLotationAbbreviation } = useCurrentUser();
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
+  const columns = [...operacoesColumns];
 
   useEffect(() => {
     apiRap.then(api => {
       const success = res => {
         const { estatisticas } = res[0].data;
         const { estatisticas: snapshots } = res[1].data;
+        const operacoes = api.formatters.operacoes(res[2].data);
+        const operacoesCsv = api.formatters.operacoesCsv(res[2].data);
+        setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
         setState(prev => ({
           ...prev,
           estatisticas: api.formatters.estatisticasBloqueio(estatisticas),
@@ -41,24 +46,19 @@ const Locks = () => {
         }));
       };
 
-      const anoExecucao = calcExecutionYear(budgetYear);
-      const unidadeId = unidade.value || '';
-      const siglaGestor = gestor.value || '';
+      const args = {
+        tipoInfo: tipoInfo.value,
+        anoExecucao: calcExecutionYear(budgetYear),
+        unidadeId: unidade.value || '',
+        siglaGestor: gestor.value || '',
+      };
 
       const requests = [
-        api.requests.getEstatisticasBloqueio({
-          anoExecucao,
-          tipoInfo: tipoInfo.value,
-          unidadeId,
-          siglaGestor,
-        }),
-        api.requests.getEstatisticasBloqueioSnapshot({
-          anoExecucao,
-          tipoInfo: tipoInfo.value,
-          unidadeId,
-          siglaGestor,
-        }),
+        api.requests.getEstatisticasBloqueio(args),
+        api.requests.getEstatisticasBloqueioSnapshot(args),
+        api.requests.getOperacoesBloqueio(args),
       ];
+
       doAllXhrRequest({
         alertProps,
         requests,
@@ -81,8 +81,7 @@ const Locks = () => {
         setState={setState}
       />
       <Heading
-        // data={dataState.operacoesCsv}
-        data={[[]]}
+        data={dataState.operacoesCsv}
         headers={csvHeaders}
         setState={setState}
       >
@@ -119,7 +118,22 @@ const Locks = () => {
         <Card>
           <CardHeader>Dados analíticos</CardHeader>
           <CardBody>
-            <Table />
+            <Table
+              data={dataState.operacoes}
+              columns={columns}
+              pagination
+              paginationComponentOptions={{
+                rowsPerPageText: 'Resultados por página:',
+                rangeSeparatorText: 'de',
+                noRowsPerPage: false,
+                selectAllRowsItem: false,
+                selectAllRowsItemText: 'Todos',
+              }}
+              noHeader
+              striped
+              highlightOnHover
+              noDataComponent="Ainda não tenho nada para mostrar aqui..."
+            />
           </CardBody>
         </Card>
       </Row>

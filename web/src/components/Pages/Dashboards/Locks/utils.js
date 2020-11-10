@@ -33,3 +33,8 @@ export const initialState = {
     },
   ],
 };
+
+export const dataInitialState = {
+  operacoes: [{}],
+  operacoesCsv: [{}],
+};

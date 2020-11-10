@@ -49,6 +49,13 @@ const requests = async () => {
     return client.get(`${path}${query}`);
   };
 
+  const getOperacoesBloqueio = async args => {
+    const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
+    const path = `/operacoes/${anoExecucao}/bloqueio`;
+    const query = search({ unidadeId, siglaGestor, tipoInfo });
+    return client.get(`${path}${query}`);
+  };
+
   const getUgs = async () => client.get('/ug');
 
   const postUg = async args => {
@@ -75,6 +82,7 @@ const requests = async () => {
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,
     getGestores,
+    getOperacoesBloqueio,
     getOperacoesPreBloqueio,
     getParams,
     getStatus,
