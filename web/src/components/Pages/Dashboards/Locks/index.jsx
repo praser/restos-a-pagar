@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { isUndefined } from 'lodash';
+import { isUndefined, isNull } from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
@@ -18,6 +20,7 @@ import { DoughnutChart, LineChart } from '../../../Chart';
 import { lineChartData } from './lineChart';
 import { Context } from '../../../Store';
 import { parseISO } from '~/utils/dates';
+import { primary, danger } from '~/utils/colors';
 import { dougnutChartData } from './doughnutChart';
 
 const Locks = () => {
@@ -30,6 +33,36 @@ const Locks = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
   const columns = [...operacoesColumns];
+
+  const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
+  const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
+  columns.splice(
+    3,
+    0,
+    ...[
+      {
+        name: 'Apta desbloqueio',
+        selector: 'aptaDesbloqueio',
+        sortable: true,
+        center: true,
+        format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
+      },
+      {
+        name: 'Desbloqueio solicitada',
+        selector: 'desbloqueioSolicitado',
+        sortable: true,
+        center: true,
+        format: row => (row.desbloqueioSolicitado ? thumbsUp : thumbsDown),
+      },
+      {
+        name: 'Desbloquedo',
+        selector: 'desbloqueado',
+        sortable: true,
+        center: true,
+        format: row => (row.desbloqueado ? thumbsUp : thumbsDown),
+      },
+    ],
+  );
 
   useEffect(() => {
     apiRap.then(api => {
