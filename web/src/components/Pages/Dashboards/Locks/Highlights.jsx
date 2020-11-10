@@ -28,7 +28,6 @@ const Highlights = ({
     saldoDesbloqueado,
     saldoAguardandoDesbloqueio,
   } = last(estatisticas);
-  console.log(snapshot);
 
   return (
     <>

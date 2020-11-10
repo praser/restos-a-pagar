@@ -12,7 +12,7 @@ import { CSVReader } from 'react-papaparse';
 import { v4 as uuidv4 } from 'uuid';
 import { isNull, first } from 'lodash';
 import { useHistory } from 'react-router-dom';
-import { SmallButtonPrimary, SmallButtonWarning } from '../../Button';
+import { SmallButtonPrimary } from '../../Button';
 import { Card, CardBody, CardHeader } from '../../Card';
 import { Field, FormGroup, FormRow, Input, Label } from '../../Form';
 import { Heading, Row } from '../../Layout';
@@ -46,17 +46,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const Create = () => {
-  const onSubmit = () => {
-    const payload = getPayload();
-    sendRequest({ payload });
-  };
-
-  const Formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
-
   const initialState = { data: null, headers: null, isSending: false };
   const dispatch = useContext(Context)[1];
   const { id: matricula } = useCurrentUser();
@@ -68,46 +57,12 @@ const Create = () => {
   const { isSending } = state;
   const history = useHistory();
 
-  const handleOpenDialog = e => {
-    if (buttonRef.current) {
-      buttonRef.current.open(e);
-    }
-  };
-
-  const handleOnFileLoad = data => {
-    try {
-      const headers = first(data).meta.fields;
-      const d = data.map(item => formatBalance(item.data));
-      setState({ headers, data: d });
-    } catch (error) {
-      dispatch({
-        type: 'SET_ALERT',
-        payload: { visible: true, ...wrongBalanceFile },
-      });
-      setState(initialState);
-    }
-  };
-
-  const handleOnError = (err, file, inputElem, reason) => {
-    console.log('handleOnError:', err, file, inputElem, reason);
-  };
-
-  const handleOnRemoveFile = data => {
-    setState({ data });
-  };
-
-  const handleRemoveFile = e => {
-    if (buttonRef.current) {
-      buttonRef.current.removeFile(e);
-    }
-  };
-
   const formatBalance = data => {
-    const pcaspConta = parseInt(data.pcaspConta);
-    const ugCodigo = parseInt(data.ugCodigo);
+    const pcaspConta = parseInt(data.pcaspConta, 10);
+    const ugCodigo = parseInt(data.ugCodigo, 10);
     const convenio = parseConvenio(data.convenio);
     const operacao = parseNumeroContratoRepasse(data.convenio);
-    const tipoResultadoPrimarioId = parseInt(data.tipoResultadoPrimarioId);
+    const tipoResultadoPrimarioId = parseInt(data.tipoResultadoPrimarioId, 10);
     const anoOrcamentario = getYear(parseDate(data.dataEmissao));
     const saldoContaContabil = parseNumber(data.saldoContaContabil);
     const dataEmissao = formatAsISO(parseDate(data.dataEmissao));
@@ -219,6 +174,47 @@ const Create = () => {
     [isSending],
   );
 
+  const onSubmit = () => {
+    const payload = getPayload();
+    sendRequest({ payload });
+  };
+
+  const Formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+  const handleOpenDialog = e => {
+    if (buttonRef.current) {
+      buttonRef.current.open(e);
+    }
+  };
+
+  const handleOnFileLoad = data => {
+    try {
+      const headers = first(data).meta.fields;
+      const d = data.map(item => formatBalance(item.data));
+      setState({ headers, data: d });
+    } catch (error) {
+      dispatch({
+        type: 'SET_ALERT',
+        payload: { visible: true, ...wrongBalanceFile },
+      });
+      setState(initialState);
+    }
+  };
+
+  const handleOnRemoveFile = data => {
+    setState({ data });
+  };
+
+  const handleRemoveFile = e => {
+    if (buttonRef.current) {
+      buttonRef.current.removeFile(e);
+    }
+  };
+
   return (
     <Layout>
       <Row>
@@ -257,7 +253,6 @@ const Create = () => {
                     accept={['text/csv', '.csv', 'text/txt', '.txt']}
                     ref={buttonRef}
                     onFileLoad={handleOnFileLoad}
-                    onFileError={handleOnError}
                     noClick
                     noDrag
                     config={{

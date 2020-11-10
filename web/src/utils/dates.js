@@ -45,8 +45,8 @@ export const monthNameShort = date => {
   return format(date, 'MMM', { locale: ptBR });
 };
 
-export const parseDate = (dateString, format = dateFormat) => {
-  return parse(dateString, format, new Date());
+export const parseDate = (dateString, formatStr = dateFormat) => {
+  return parse(dateString, formatStr, new Date());
 };
 
 export const getYear = date => getYearDateFns(date);

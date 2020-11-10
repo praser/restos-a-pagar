@@ -1,3 +1,4 @@
+import { isAfter } from 'date-fns';
 import { monthNameShort } from '~/utils/dates';
 import {
   danger,
@@ -7,7 +8,6 @@ import {
   warning,
   warningOp20,
 } from '~/utils/colors';
-import { isAfter } from 'date-fns';
 
 const datasetDef = {
   fill: true,

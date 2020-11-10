@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router-dom';
 import { useCurrentUser } from '~/hooks';
 import { Context } from '../Store';
 
@@ -14,7 +15,6 @@ import {
 } from './styles';
 import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
 import { removeToken } from '~/utils/jwt';
-import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
   const dispatch = useContext(Context)[1];
@@ -22,7 +22,8 @@ const Profile = () => {
   const [expanded, setExpanded] = useState(false);
   const history = useHistory();
 
-  let firstName, photo;
+  let firstName;
+  let photo;
 
   if (currentUser) {
     firstName = currentUser.firstName;

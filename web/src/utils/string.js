@@ -15,11 +15,11 @@ export const splitDocumento = documento => {
 export const parseNumeroContratoRepasse = str => {
   const regex = /^(?:(?:CR)|(?:TC))\.NR\.(\d*)(?:-.{2})?$/g;
   const cr = getRegexGroups(regex.exec(str));
-  return cr ? parseInt(cr) : cr;
+  return cr ? parseInt(cr, 10) : cr;
 };
 
 export const parseConvenio = str => {
   const regex = /^(\d{6})$/;
   const convenio = getRegexGroups(regex.exec(str));
-  return convenio ? parseInt(convenio) : convenio;
+  return convenio ? parseInt(convenio, 10) : convenio;
 };

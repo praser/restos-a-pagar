@@ -1,6 +1,6 @@
-import React from 'react';
 import rules from '~/utils/rbac-rules';
 import useCurrentUser from '~/hooks/useCurrentUser';
+
 const check = (role, action, data) => {
   const permissions = rules[role];
   if (!permissions) return false;
