@@ -2,6 +2,7 @@ import React from 'react';
 import { last } from 'lodash';
 import {
   faCalendarAlt,
+  faCameraRetro,
   faFileContract,
   faHourglassHalf,
   faLock,
@@ -11,10 +12,15 @@ import {
 import { Row } from '~/components/Layout';
 import Highlight from '../../../Highlight';
 import Progressbar from '../../../Progressbar';
-import { percentElapsedTime, remainingDays } from '~/utils/dates';
+import { formatDate, percentElapsedTime, remainingDays } from '~/utils/dates';
 import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
 
-const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
+const Highlights = ({
+  estatisticas,
+  dataCancelamento,
+  dataBloqueio,
+  snapshot,
+}) => {
   const {
     quantidadeOperacoes,
     quantidadeDocumentos,
@@ -22,6 +28,7 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
     saldoDesbloqueado,
     saldoAguardandoDesbloqueio,
   } = last(estatisticas);
+  console.log(snapshot);
 
   return (
     <>
@@ -60,12 +67,12 @@ const Highlights = ({ estatisticas, dataCancelamento, dataBloqueio }) => {
       </Row>
       <Row>
         <Highlight
-          icon={faLock}
+          icon={faCameraRetro}
           siblings={4}
-          title="Bloqueado em 14/11/2020"
+          title={`Bloqueado em ${formatDate(dataBloqueio)}`}
           variant="info"
         >
-          {formatCurrencyShort(1390000)}
+          {formatCurrencyShort(snapshot.saldoBloqueado)}
         </Highlight>
         <Highlight
           icon={faLock}

@@ -22,4 +22,14 @@ export const initialState = {
       saldoAguardandoDesbloqueio: 0,
     },
   ],
+  snapshots: [
+    {
+      data: null,
+      quantidadeOperacoes: 0,
+      quantidadeDocumentos: 0,
+      saldoBloqueado: 0,
+      saldoDesbloqueado: 0,
+      saldoAguardandoDesbloqueio: 0,
+    },
+  ],
 };

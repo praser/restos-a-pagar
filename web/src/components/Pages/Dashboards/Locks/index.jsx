@@ -33,18 +33,30 @@ const Locks = () => {
     apiRap.then(api => {
       const success = res => {
         const { estatisticas } = res[0].data;
+        const { estatisticas: snapshots } = res[1].data;
         setState(prev => ({
           ...prev,
           estatisticas: api.formatters.estatisticasBloqueio(estatisticas),
+          snapshots: api.formatters.estatisticasBloqueio(snapshots),
         }));
       };
 
+      const anoExecucao = calcExecutionYear(budgetYear);
+      const unidadeId = unidade.value || '';
+      const siglaGestor = gestor.value || '';
+
       const requests = [
         api.requests.getEstatisticasBloqueio({
-          anoExecucao: calcExecutionYear(budgetYear),
+          anoExecucao,
           tipoInfo: tipoInfo.value,
-          unidadeId: unidade.value || '',
-          siglaGestor: gestor.value || '',
+          unidadeId,
+          siglaGestor,
+        }),
+        api.requests.getEstatisticasBloqueioSnapshot({
+          anoExecucao,
+          tipoInfo: tipoInfo.value,
+          unidadeId,
+          siglaGestor,
         }),
       ];
       doAllXhrRequest({
@@ -55,7 +67,7 @@ const Locks = () => {
     });
   }, [tipoInfo, unidade, gestor]);
 
-  const { estatisticas } = state;
+  const { estatisticas, snapshots } = state;
   const { params } = context;
   const [param] = params.filter(
     item => item.anoOrcamentario === parseInt(budgetYear, 10),
@@ -81,6 +93,7 @@ const Locks = () => {
 
       <Highlights
         estatisticas={estatisticas}
+        snapshot={snapshots[0]}
         dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
         dataCancelamento={
           !isUndefined(param) && parseISO(param.dataCancelamento)
