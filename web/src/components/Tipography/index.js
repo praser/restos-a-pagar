@@ -49,3 +49,13 @@ export const PillWarning = styled(Pill)`
   color: #fff;
   background-color: #f6c23e;
 `;
+
+export const Paragraph = styled.p`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  line-height: 1.2;
+  color: rgb(58, 59, 69);
+  text-align: left;
+  background-color: transparent;
+`;

@@ -85,3 +85,14 @@ export const createNeBalanceSuccess = getMessage({
   text:
     'O arquivo foi enviado com sucesso. Você será avisado por e-mail quando os dados forem processados.',
 });
+
+export const unlocksFail = getMessage({
+  text:
+    'Houve um erro ao carregar as operações que estão aptas ao desbloqueio. Por favor tente novamente.',
+});
+
+export const createUnlockSuccess = ({ lote, quantidade, ce }) =>
+  getMessage({
+    title: 'Legal!',
+    text: `O lote de desbloqueio ${lote} contendo ${quantidade} notas de empenho foi gerado com sucesso e a área financeira foi notificada através da CE ${ce}. Aguarde o processamento do lote.`,
+  });

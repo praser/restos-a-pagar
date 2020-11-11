@@ -10,11 +10,12 @@ import { PageTitle } from '~/components/Tipography';
 import { handleVisibility } from './RightTab/handlers';
 import Can from '~/components/Can';
 
-function Heading({ children, data, headers, setState }) {
+function Heading({ children, data, headers, setState, buttons }) {
   return (
     <HeadingSC>
       <PageTitle>{children}</PageTitle>
       <div>
+        {buttons && buttons.map(button => button)}
         <Can
           perform="dashboard:download"
           yes={() => (

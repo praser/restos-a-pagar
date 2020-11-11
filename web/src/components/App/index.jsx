@@ -29,6 +29,7 @@ import { Context } from '../Store';
 import { getToken } from '~/utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import Create from '../Pages/Unlocks/Create';
 
 registerLocale('pt-BR', ptBR);
 setDefaultLocale('pt-BR');
@@ -136,6 +137,12 @@ const App = () => {
               component={Cancellations}
               path={paths.cancellationsPath}
               perform="dashboards:show"
+              exact
+            />
+            <PrivateRoute
+              component={Create}
+              path={paths.createUnlockPath}
+              perform="unlock:create"
               exact
             />
             <Route

@@ -23,3 +23,6 @@ export const parseConvenio = str => {
   const convenio = getRegexGroups(regex.exec(str));
   return convenio ? parseInt(convenio, 10) : convenio;
 };
+
+export const formatNumeroLoteDesbloqueio = (sequencial, ano) =>
+  `${`000${sequencial}`.substr(-3)}/${ano}`;

@@ -9,6 +9,7 @@ export const possibleLocksPath = '/safras/:budgetYear/previa-bloqueio';
 export const ugPath = '/ugs';
 export const updateCommitmentPath = '/notas-empenho/saldo/novo';
 export const updateUgPath = '/ugs/editar/:id';
+export const createUnlockPath = '/safras/:budgetYear/desbloqueios/novo';
 
 const replaceParams = (path, from, to) => {
   let result = path.repeat(1);

@@ -56,6 +56,13 @@ const requests = async () => {
     return client.get(`${path}${query}`);
   };
 
+  const getNotasEmpenhoBloqueio = async args => {
+    const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
+    const path = `/notas-empenho/${anoExecucao}/bloqueio`;
+    const query = search({ unidadeId, siglaGestor, tipoInfo });
+    return client.get(`${path}${query}`);
+  };
+
   const getUgs = async () => client.get('/ug');
 
   const postUg = async args => {
@@ -76,6 +83,11 @@ const requests = async () => {
     return client.post('/notas-empenho/saldo', { ...payload });
   };
 
+  const postLoteDesbloqueio = async args => {
+    const { payload } = args;
+    return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
+  };
+
   return {
     deleteUg,
     getEstatisticasPreBloqueio,
@@ -84,6 +96,7 @@ const requests = async () => {
     getGestores,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,
+    getNotasEmpenhoBloqueio,
     getParams,
     getStatus,
     getTiposInformacoes,
@@ -91,6 +104,7 @@ const requests = async () => {
     getUgs,
     getUnidades,
     postUg,
+    postLoteDesbloqueio,
     postSaldoNe,
     putUg,
   };

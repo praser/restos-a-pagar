@@ -13,6 +13,7 @@ const rules = {
       'dashboard:filter:unidade',
       'dashboard:filter:gestor',
       'dashboard:filter:situacao',
+      'unlock:create',
     ],
   },
 

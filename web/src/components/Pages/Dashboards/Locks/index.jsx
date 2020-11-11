@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { isUndefined, isNull } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faThumbsDown,
+  faThumbsUp,
+  faUnlock,
+} from '@fortawesome/free-solid-svg-icons';
 import ContextInfo from '../../../ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
@@ -22,6 +26,9 @@ import { Context } from '../../../Store';
 import { parseISO } from '~/utils/dates';
 import { primary, danger } from '~/utils/colors';
 import { dougnutChartData } from './doughnutChart';
+import { SmallButtonWarning } from '~/components/Button';
+import Can from '~/components/Can';
+import { createUnlockPath, joinPath } from '~/utils/paths';
 
 const Locks = () => {
   const [state, setState] = useState(initialState);
@@ -106,6 +113,21 @@ const Locks = () => {
     item => item.anoOrcamentario === parseInt(budgetYear, 10),
   );
 
+  const solicitarDesbloqueioButton = (
+    <Can
+      perform="unlock:create"
+      yes={() => (
+        <SmallButtonWarning
+          as={Link}
+          to={joinPath(createUnlockPath, [budgetYear])}
+        >
+          <FontAwesomeIcon icon={faUnlock} />
+          Gerar lote de desbloqueio
+        </SmallButtonWarning>
+      )}
+    />
+  );
+
   return (
     <Layout>
       <RightTab
@@ -117,6 +139,7 @@ const Locks = () => {
         data={dataState.operacoesCsv}
         headers={csvHeaders}
         setState={setState}
+        buttons={[solicitarDesbloqueioButton]}
       >
         Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
       </Heading>

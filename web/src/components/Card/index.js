@@ -29,7 +29,7 @@ export const CardHeader = styled.div`
   margin-bottom: 0;
   background-color: #f8f9fc;
   border-bottom: 1px solid #e3e6f0;
-  color: #4e73df;
+  color: #5a5c69;
   font-weight: 700;
 `;
 
