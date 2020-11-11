@@ -1,15 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import Layout from '../../Layout/Internal';
-import { Heading, Row } from '../../Layout';
-import { Card, CardBody, CardHeader } from '../../Card';
-import { PageTitle, Paragraph } from '../../Tipography';
 import { useHistory, useParams } from 'react-router-dom';
-import { useApiRap, useXHR } from '~/hooks';
-import {
-  unlocksFail as alertProps,
-  createUnlockSuccess,
-} from '~/utils/messages';
-import { calcExecutionYear } from '../Dashboards/RightTab/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLongArrowAltLeft,
@@ -17,20 +7,24 @@ import {
   faThumbsDown,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { operacoesColumns } from '../Dashboards/utils';
+import { isEmpty } from 'lodash';
+import Layout from '../../Layout/Internal';
+import { Heading, Row } from '../../Layout';
+import { Card, CardBody, CardHeader } from '../../Card';
+import { PageTitle, Paragraph } from '../../Tipography';
+import { useApiRap, useXHR } from '~/hooks';
+import {
+  unlocksFail as alertProps,
+  createUnlockSuccess,
+} from '~/utils/messages';
+import { calcExecutionYear } from '../Dashboards/RightTab/utils';
 import Table from '~/components/Table';
 import { primary, danger } from '~/utils/colors';
 import { formatCurrency, formatProposta } from '~/utils/numbers';
-import { formatDate } from '~/utils/dates';
-import { parseISO } from '~/utils/dates';
-import {
-  ButtonDanger,
-  ButtonPrimary,
-  SmallButtonPrimary,
-  SmallButtonWarning,
-} from '~/components/Button';
+import { formatDate, parseISO } from '~/utils/dates';
+
+import { SmallButtonPrimary, SmallButtonWarning } from '~/components/Button';
 import { FormRow } from '~/components/Form';
-import { isEmpty } from 'lodash';
 import { formatNumeroLoteDesbloqueio } from '~/utils/string';
 import { Context } from '~/components/Store';
 import { Prompt } from '~/components/Modal';
@@ -165,11 +159,10 @@ const Create = () => {
     apiRap.then(api => {
       setIsPromptShowing(false);
       const success = res => {
-        console.log(res[0].data);
-        const { sequencial, ano, ce, notasEmpenho } = res[0].data;
+        const { sequencial, ano, ce, notasEmpenho: empenhos } = res[0].data;
         const args = {
           lote: formatNumeroLoteDesbloqueio(sequencial, ano),
-          quantidade: notasEmpenho.length,
+          quantidade: empenhos.length,
           ce,
         };
 

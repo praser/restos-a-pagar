@@ -1,4 +1,4 @@
-import { faEraser, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { SearchClear, SearchField } from './styles';
