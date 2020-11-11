@@ -14,7 +14,8 @@ import { Card, CardBody, CardHeader } from '../../Card';
 import { PageTitle, Paragraph } from '../../Tipography';
 import { useApiRap, useXHR } from '~/hooks';
 import {
-  unlocksFail as alertProps,
+  unlocksFail,
+  createUnlockError,
   createUnlockSuccess,
 } from '~/utils/messages';
 import { calcExecutionYear } from '../Dashboards/RightTab/utils';
@@ -148,7 +149,7 @@ const Create = () => {
       const requests = [api.requests.getNotasEmpenhoBloqueio(args)];
 
       doAllXhrRequest({
-        alertProps,
+        alertProps: unlocksFail,
         requests,
         success,
       });
@@ -178,7 +179,7 @@ const Create = () => {
         }),
       ];
       doAllXhrRequest({
-        alertProps,
+        alertProps: createUnlockError,
         requests,
         success,
       });

@@ -96,3 +96,8 @@ export const createUnlockSuccess = ({ lote, quantidade, ce }) =>
     title: 'Legal!',
     text: `O lote de desbloqueio ${lote} contendo ${quantidade} notas de empenho foi gerado com sucesso e a área financeira foi notificada através da CE ${ce}. Aguarde o processamento do lote.`,
   });
+
+export const createUnlockError = getMessage({
+  text:
+    'Houve um erro ao gerar o lote de desbloqueio. Por favor tente novamente.',
+});
