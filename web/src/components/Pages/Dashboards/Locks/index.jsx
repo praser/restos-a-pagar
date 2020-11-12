@@ -54,20 +54,6 @@ const Locks = () => {
         center: true,
         format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
       },
-      {
-        name: 'Desbloqueio solicitada',
-        selector: 'desbloqueioSolicitado',
-        sortable: true,
-        center: true,
-        format: row => (row.desbloqueioSolicitado ? thumbsUp : thumbsDown),
-      },
-      {
-        name: 'Desbloquedo',
-        selector: 'desbloqueado',
-        sortable: true,
-        center: true,
-        format: row => (row.desbloqueado ? thumbsUp : thumbsDown),
-      },
     ],
   );
 

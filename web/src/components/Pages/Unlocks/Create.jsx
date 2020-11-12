@@ -99,7 +99,7 @@ const Create = () => {
         const { notasEmpenho: data } = res[0].data;
         const aptas = data.filter(d => {
           const { operacao } = d;
-          return operacao.aptaDesbloqueio && !operacao.desbloqueioSolicitado;
+          return operacao.aptaDesbloqueio && !data.desbloqueioSolicitado;
         });
 
         const empenhos = aptas.map(ne => {

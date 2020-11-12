@@ -13,13 +13,24 @@ class OperacaoDao extends DaoBase
     protected const TABLE = 'operacoes';
     protected $domain = OperacaoDomain::class;
 
-    public function operacoesComNotasEmpenhosPassiveisBloqueio(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
+    public function operacoesComNotasEmpenhoPassiveisBloqueio(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
     {
-            try {
-            // TODO: Os parâmetros desta consulta devem se tornar dinâmicos em uma implementação futura
+        $table = 'cache.operacoes_com_ne_passiveis_de_bloqueio';
+        return $this->queryOperacoesCache($table, $tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
+    }
+
+    public function operacoesComNotasEmpenhoBloqueadas(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
+    {
+        $table = 'cache.operacoes_com_ne_passiveis_de_bloqueio';
+        return $this->queryOperacoesCache($table, $tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
+    }
+
+    private function queryOperacoesCache(string $table, int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
+    {
+        try {
             $qb = $this->getQueryBuilder();
             $query = $qb
-                ->select('cache.operacoes_com_ne_passiveis_de_bloqueio')
+                ->select($table)
                 ->where()
                 ->equals(OperacaoDomain::ANO_EXECUCAO, $anoExecucao);
 

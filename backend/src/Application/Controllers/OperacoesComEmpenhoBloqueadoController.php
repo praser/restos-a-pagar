@@ -2,14 +2,13 @@
 
 namespace App\Application\Controllers;
 
-use App\Domain\EstatisticasPreBloqueioDomain;
 use App\Domain\OperacaoDomain;
 use App\Persistence\OperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class OperacoesComEmpenhoPassivelBloqueioController extends ControllerBase
+class OperacoesComEmpenhoBloqueadoController extends ControllerBase
 {
     private $dao;
 

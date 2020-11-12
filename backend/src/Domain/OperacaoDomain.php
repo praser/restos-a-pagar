@@ -38,6 +38,7 @@ class OperacaoDomain extends DomainBase
     public const VALOR_REPASE = 'valorRepasse';
     public const OBJETO = 'objeto';
     public const VALOR_DESEMBOLSADO = 'valorDesembolsado';
+    PUBLIC const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
 
     private $anoExecucao;
     private $anoOrcamentario;
@@ -68,6 +69,7 @@ class OperacaoDomain extends DomainBase
     private $valorRepasse;
     private $objeto;
     private $valorDesembolsado;
+    private $aptaDesbloqueio;
 
     public function __construct(array $params = [])
     {
@@ -101,6 +103,7 @@ class OperacaoDomain extends DomainBase
         $this->valorRepasse = (float) $this->setAttribute(self::VALOR_REPASE, $params);
         $this->objeto = (string) $this->setAttribute(self::OBJETO, $params);
         $this->valorDesembolsado = (float) $this->setAttribute(self::VALOR_DESEMBOLSADO, $params);
+        $this->aptaDesbloqueio = (bool) $this->setAttribute(self::APTA_DESBLOQUEIO, $params);
     }
 
     public function getAnoExecucao(): ?int
@@ -248,6 +251,11 @@ class OperacaoDomain extends DomainBase
         return $this->valorDesembolsado;
     }
 
+    public function getAptaDesbloqueio(): ?bool
+    {
+        return $this->aptaDesbloqueio;
+    }
+
     public function jsonSerialize(): array
     {
         $serializarion = [
@@ -280,6 +288,7 @@ class OperacaoDomain extends DomainBase
             self::VALOR_REPASE => $this->getValorRepasse(),
             self::OBJETO => $this->getObjeto(),
             self::VALOR_DESEMBOLSADO => $this->getValorDesembolsado(),
+            self::APTA_DESBLOQUEIO => $this->getAptaDesbloqueio(),
         ];
 
         return array_merge(parent::jsonSerialize(), $serializarion);

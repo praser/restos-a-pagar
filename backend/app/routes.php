@@ -8,6 +8,7 @@ use App\Application\Controllers\EstatisticasPreBloqueioController;
 use App\Application\Controllers\EstatisticasBloqueioController;
 use App\Application\Controllers\EstatisticasBloqueioSnapshotController;
 use App\Application\Controllers\OperacoesComEmpenhoPassivelBloqueioController;
+use App\Application\Controllers\OperacoesComEmpenhoBloqueadoController;
 use App\Application\Controllers\TipoInformacaoController;
 use App\Application\Controllers\UgController;
 use App\Application\Controllers\SaldoNotaEmpenhoController;
@@ -42,6 +43,7 @@ return function (App $app) {
 
     $app->group('/operacoes/{anoExecucao}', function (Group $group) {
         $group->get('/passiveis-bloqueio', OperacoesComEmpenhoPassivelBloqueioController::class . ':index');
+        $group->get('/bloqueio', OperacoesComEmpenhoBloqueadoController::class . ':index');
     });
 
     $app->group('/estatisticas/{anoExecucao}', function(Group $group) {
