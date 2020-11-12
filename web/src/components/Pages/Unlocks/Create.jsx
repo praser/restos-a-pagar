@@ -29,6 +29,8 @@ import { FormRow } from '~/components/Form';
 import { formatNumeroLoteDesbloqueio } from '~/utils/string';
 import { Context } from '~/components/Store';
 import { Prompt } from '~/components/Modal';
+import { getYear } from 'date-fns';
+import { Error } from '..';
 
 const Create = () => {
   const { budgetYear } = useParams();
@@ -62,7 +64,7 @@ const Create = () => {
       format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
     },
     { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
-    { name: 'Documento', selector: 'documento', sortable: true },
+    { name: 'Documento', selector: 'documento', sortable: true, grow: 2 },
     {
       name: 'Data emissão',
       selector: 'dataEmissao',
