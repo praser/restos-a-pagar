@@ -6,6 +6,7 @@ declare(strict_types=1);
 use Tuupola\Middleware\JwtAuthentication;
 use Slim\App;
 use Psr\Log\LoggerInterface;
+use Firebase\JWT\JWT;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -33,9 +34,15 @@ return function (App $app) {
             return $response
                 ->withHeader("Content-Type", "application/json")
                 ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-        }
-
+        },
     ]));
+
+    $app->add(function($request, $handler) {
+        $jwt = $request->getHeader('X-Token')[0];
+        $decoded = JWT::decode($jwt, 'secret', array('HS256'));
+        $req = $request->withAttribute('user', json_encode($decoded->user));
+        return $handler->handle($req);
+    });
 
     $app->addErrorMiddleware(true, true, true, $logger);
 };

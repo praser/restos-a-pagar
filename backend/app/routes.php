@@ -17,6 +17,7 @@ use App\Application\Controllers\UgGestoresController;
 use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
 use App\Application\Controllers\InfoController;
+use App\Application\Controllers\LotesDesbloqueioController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -41,6 +42,7 @@ return function (App $app) {
     $app->group('/notas-empenho', function (Group $group) {
         $group->post('/saldo', SaldoNotaEmpenhoController::class . ':create');
         $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
+        $group->post('/lotes-desbloqueio', LotesDesbloqueioController::class . ':create');
     });
 
     $app->group('/operacoes/{anoExecucao}', function (Group $group) {

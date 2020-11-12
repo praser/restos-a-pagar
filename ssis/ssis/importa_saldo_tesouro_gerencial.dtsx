@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="3/21/2020 5:43:22 PM"
@@ -7,12 +7,12 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{77D70D4B-7FFF-4BB4-94A2-1DE3AFFC17F4}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1046"
   DTS:ObjectName="importa_saldo_tesouro_gerencial"
   DTS:PackageType="5"
-  DTS:VersionBuild="98"
-  DTS:VersionGUID="{2EB8CF09-FBFB-4ADF-9D6B-5E44A9DEF71B}">
+  DTS:VersionBuild="103"
+  DTS:VersionGUID="{E862FFFD-E181-4CA9-9BE4-222EF0CA81EE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -466,6 +466,34 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Atualiza os snapshots"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{8303308D-D4B1-4D8C-A36F-6CDB69DAE77A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualiza os snapshots">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza os snapshots\estatisticas_bloqueio"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A2C02113-2DC1-4743-844F-C2B01B71FD8E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="estatisticas_bloqueio"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('snapshot.estatisticas_bloqueio','U') IS NOT NULL&#xA;DROP TABLE snapshot.estatisticas_bloqueio;&#xA;&#xA;&#xA;SELECT&#xA;&#x9;a.*&#xA;INTO snapshot.estatisticas_bloqueio&#xA;FROM vw_estatisticas_bloqueio AS a&#xA;JOIN parametros b&#xA;ON a.anoOrcamentario = b.anoOrcamentario&#xA;AND a.anoExecucao = b.anoExecucao&#xA;AND a.data = b.dataBloqueio" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Atualiza tabelas de cache"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Contêiner da Sequência"
@@ -503,7 +531,7 @@
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
               DTS:LocaleID="-1"
               DTS:ObjectName="Executa consulta"
-              DTS:ThreadHint="0">
+              DTS:ThreadHint="2">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
@@ -536,12 +564,12 @@
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Prepara as consultas para gerar o cache"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-              SQLTask:SqlStatementSource="DECLARE @CACHE_SCHEMA AS VARCHAR(5) = 'cache';&#xA;DECLARE @VIEW_PREFIX AS VARCHAR(3) = 'vw_';&#xA;WITH CTE(view_name, cache_table) AS (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;name as view_name,&#xA;&#x9;&#x9;&#x9;CONCAT(@CACHE_SCHEMA, '.', REPLACE(name, @VIEW_PREFIX, '')) AS cache_table&#xA;&#x9;&#x9;FROM sys.views&#xA;&#x9;) a&#xA;)&#xA;&#xA;SELECT &#xA;&#x9;CONCAT('IF OBJECT_ID(''', cache_table,''', ''U'') IS NOT NULL DROP TABLE ', cache_table) AS sql_command&#xA;FROM CTE&#xA;&#xA;UNION &#xA;&#xA;SELECT &#xA;&#x9;CONCAT('SELECT * INTO ', cache_table, ' FROM ', view_name) create_command&#xA;FROM CTE"
+              SQLTask:SqlStatementSource="DECLARE @CACHE_SCHEMA AS VARCHAR(5) = 'cache';&#xA;DECLARE @VIEW_PREFIX AS VARCHAR(3) = 'vw_';&#xA;WITH CTE(view_name, cache_table, create_date) AS (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;name as view_name,&#xA;&#x9;&#x9;&#x9;CONCAT(@CACHE_SCHEMA, '.', REPLACE(name, @VIEW_PREFIX, '')) AS cache_table,&#xA;&#x9;&#x9;&#x9;create_date&#xA;&#x9;&#x9;FROM sys.views&#xA;&#x9;) a&#xA;)&#xA;&#xA;SELECT &#xA;&#x9;CONCAT('IF OBJECT_ID(''', cache_table,''', ''U'') IS NOT NULL DROP TABLE ', cache_table) AS sql_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;&#xA;UNION &#xA;&#xA;SELECT &#xA;&#x9;CONCAT('SELECT * INTO ', cache_table, ' FROM ', view_name) create_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;ORDER BY create_date ASC"
               SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="0"
@@ -587,7 +615,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Remove tabela temporária"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -710,8 +738,8 @@
                       <connections>
                         <connection
                           refId="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario\Destino OLE DB.Connections[OleDbConnection]"
-                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                          connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                           description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                           name="OleDbConnection" />
                       </connections>
@@ -842,8 +870,8 @@ ORDER BY 1 ASC</property>
                       <connections>
                         <connection
                           refId="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario\Origem OLE DB.Connections[OleDbConnection]"
-                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                          connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                           description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                           name="OleDbConnection" />
                       </connections>
@@ -1007,8 +1035,8 @@ ORDER BY 1 ASC</property>
                       <connections>
                         <connection
                           refId="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Insere dados na tabela saldoContaContabil\Destino OLE DB.Connections[OleDbConnection]"
-                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                          connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                           description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                           name="OleDbConnection" />
                       </connections>
@@ -1284,8 +1312,8 @@ WHERE a.validacao = 1</property>
                       <connections>
                         <connection
                           refId="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Insere dados na tabela saldoContaContabil\Origem OLE DB.Connections[OleDbConnection]"
-                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                          connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                           description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                           name="OleDbConnection" />
                       </connections>
@@ -1624,8 +1652,8 @@ WHERE a.validacao = 1</property>
           <DTS:ObjectData>
             <ScriptProject
               Name="ST_4f2ba7590a0b49ac82abb207f6e7b248"
-              VSTAMajorVersion="2"
-              VSTAMinorVersion="2"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::corpo_email_alerta_rejeicao_parseado,User::corpo_email_sucesso,User::nome_arquivo_rejeicoes,User::qnt_rejeitados,$Package::smtp_destinatarios,$Package::smtp_from_email,$Package::smtp_from_nome,$Package::smtp_porta,$Package::smtp_server">
               <ProjectItem
@@ -1849,7 +1877,7 @@ namespace ST_4f2ba7590a0b49ac82abb207f6e7b248
 		<msb:CodeName>ST_4f2ba7590a0b49ac82abb207f6e7b248</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_4f2ba7590a0b49ac82abb207f6e7b248</msb:DisplayName>
-		<msb:ProjectId>{375DA28A-AB6D-462F-A47A-1A5E391B399F}</msb:ProjectId>
+		<msb:ProjectId>{A8C4521B-68FE-473B-896E-0A58DACE0E7A}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_4f2ba7590a0b49ac82abb207f6e7b248.csproj"/>
@@ -1935,8 +1963,8 @@ using System.Runtime.CompilerServices;
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -1971,7 +1999,7 @@ using System.Runtime.CompilerServices;
         <ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
         <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex=""></Host>
         <ProjectClient>
-          <HostIdentifier>SSIS_ST130</HostIdentifier>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -2057,7 +2085,7 @@ namespace ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties {
               <BinaryItem
                 Name="ST_4f2ba7590a0b49ac82abb207f6e7b248.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAHewpV8AAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAzjQA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIOCrF8AAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAzjQA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHw0AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2096,8 +2124,8 @@ AIEAGAZfABEB8AQQAAwAcQBuAPkAdQB0ANkAVAYBAIkAigA/ACEBiwZ6AHEA8AQGAKEA8AQGADEB
 vQCBADEBpAaKAKkA8ASQAMkA8AQGAAgAFACqAAgAGACvACkAcwAXAS4ACwDvAC4AEwD4AC4AGwAX
 AS4AIwAgAS4AKwBJAS4AMwBJAS4AOwBJAS4AQwAgAS4ASwBPAS4AUwBJAS4AWwBmAUMAYwCvAEkA
 cwAXAWEAewCvAGMAawCvABsAAwABAAQAAwAAAOAE4AAAABwB5QAAAD8G6gACAAQAAwACAAUABQAB
-AAYABQACAAcABwBlAASAAAABAAAAvx0jegAAAAAAABQAAAAEAAAAAAAAAAAAAACYAGgAAAAAAA0A
-AAAAAAAAAAAAAKEAPwMAAAAABAAAAAAAAAAAAAAAmAAsBAAAAAANAAAAAAAAAAAAAAChAEEAAAAA
+AAYABQACAAcABwBlAASAAAABAAAAxB1plwAAAAAAABQAAAAEAAAAAAAAAAAAAACYAGgAAAAAAAsA
+AAAAAAAAAAAAAKEAPwMAAAAABAAAAAAAAAAAAAAAmAAsBAAAAAALAAAAAAAAAAAAAAChAEEAAAAA
 AAQAAAAAAAAAAAAAAJgA2QUAAAAAAAAAAAEAAABBBQAABQACAAAAAAAAQ29sbGVjdGlvbmAxAElu
 dDMyAFNUXzRmMmJhNzU5MGEwYjQ5YWM4MmFiYjIwN2Y2ZTdiMjQ4ADxNb2R1bGU+AE1pY3Jvc29m
 dC5TcWxTZXJ2ZXIuTWFuYWdlZERUUwB2YWx1ZV9fAG1zY29ybGliAEFkZABTZW5kAGRlZmF1bHRJ
@@ -2144,8 +2172,8 @@ aABvAACAnVsAUgBBAFAAXQBbAFMAdQBjAGUAcwBzAG8AXQAgAFAAcgBvAGMAZQBzAHMAYQBtAGUA
 bgB0AG8AIABkAGUAIABhAHIAcQB1AGkAdgBvAHMAIABkAGUAIABjAGEAcgBnAGEAIABkAGUAIABz
 AGEAbABkAG8AIABkAGUAIABuAG8AdABhAHMAIABkAGUAIABlAG0AcABlAG4AaABvAABxUwBUAF8A
 NABmADIAYgBhADcANQA5ADAAYQAwAGIANAA5AGEAYwA4ADIAYQBiAGIAMgAwADcAZgA2AGUANwBi
-ADIANAA4AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAA0F8RH+30
-dUmLQRBoo59gigAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERXQ8HCw4ODgIODg4IDhI9EkEEIAAS
+ADIANAA4AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAyJhashHV
+VEKBs6850iF28wAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERXQ8HCw4ODgIODg4IDhI9EkEEIAAS
 bQQgABJxBSABEnUcAyAAHAMgAA4EAAEIDgQgAQECBSACAQ4OBSABARI9BSAAEoCBBSAAEoCFCBUS
 gI0BEoCJBSABARMABSABARJBBgABEYCVDggAARKAmRGAnQUgABKAoQcgAgEOEoChCLd6XFYZNOCJ
 CImEXc2AgMyRBAAAAAAEAQAAAAMGElUDBhJZAwYSEAIGCAMGERQEAAASVQQAABJZBQABARJZBAAA
@@ -2165,14 +2193,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQAjer8dAAABACN6vx0/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQBpl8QdAAABAGmXxB0/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAw
 ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
 eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
 AFMAVABfADQAZgAyAGIAYQA3ADUAOQAwAGEAMABiADQAOQBhAGMAOAAyAGEAYgBiADIAMAA3AGYA
 NgBlADcAYgAyADQAOAAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA3
-ADYAMQA1AC4AMwAxADIANgA3AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
+ADYAMgAwAC4AMwA4ADcANgAxAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
 VABfADQAZgAyAGIAYQA3ADUAOQAwAGEAMABiADQAOQBhAGMAOAAyAGEAYgBiADIAMAA3AGYANgBl
 ADcAYgAyADQAOAAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAA
 QwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMgAwAAAAKgABAAEATABlAGcAYQBsAFQAcgBh
@@ -2181,8 +2209,8 @@ bQBlAAAAUwBUAF8ANABmADIAYgBhADcANQA5ADAAYQAwAGIANAA5AGEAYwA4ADIAYQBiAGIAMgAw
 ADcAZgA2AGUANwBiADIANAA4AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUA
 AAAAAFMAVABfADQAZgAyAGIAYQA3ADUAOQAwAGEAMABiADQAOQBhAGMAOAAyAGEAYgBiADIAMAA3
 AGYANgBlADcAYgAyADQAOAAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEA
-LgAwAC4ANwA2ADEANQAuADMAMQAyADYANwAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
-AHIAcwBpAG8AbgAAADEALgAwAC4ANwA2ADEANQAuADMAMQAyADYANwAAAAAAAAAAAAAAAAAAAAAA
+LgAwAC4ANwA2ADIAMAAuADMAOAA3ADYAMQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
+AHIAcwBpAG8AbgAAADEALgAwAC4ANwA2ADIAMAAuADMAOAA3ADYAMQAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2226,8 +2254,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               <DTS:ObjectData>
                 <ScriptProject
                   Name="ST_ccc3127afa404d6cac27389a49be00bf"
-                  VSTAMajorVersion="2"
-                  VSTAMinorVersion="2"
+                  VSTAMajorVersion="3"
+                  VSTAMinorVersion="0"
                   Language="CSharp"
                   ReadOnlyVariables="User::nome_arquivo_rejeicoes">
                   <ProjectItem
@@ -2274,8 +2302,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -2310,7 +2338,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
         <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex=""></Host>
         <ProjectClient>
-          <HostIdentifier>SSIS_ST130</HostIdentifier>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -2502,7 +2530,7 @@ namespace ST_ccc3127afa404d6cac27389a49be00bf
 		<msb:CodeName>ST_ccc3127afa404d6cac27389a49be00bf</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_ccc3127afa404d6cac27389a49be00bf</msb:DisplayName>
-		<msb:ProjectId>{B5CE49D8-5424-4F3B-9F2D-793BBED69775}</msb:ProjectId>
+		<msb:ProjectId>{B50BA3EC-6A6F-4D7C-B99D-FC2A89CA8561}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_ccc3127afa404d6cac27389a49be00bf.csproj"/>
@@ -2624,7 +2652,7 @@ namespace ST_ccc3127afa404d6cac27389a49be00bf.Properties {
                   <BinaryItem
                     Name="ST_ccc3127afa404d6cac27389a49be00bf.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAHmwpV8AAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAADi4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIOCrF8AAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAADi4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAALwtAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2653,8 +2681,8 @@ ANEAygIrAHkAGAMvANkAFQEzAOkADwEGAMEAZgUBAHEATAQGAHkATAQGAPEAbwA5APEAdQVAAJEA
 TARGALEATAQGAAgAFABgAAgAGABlACkAcwDNAC4ACwClAC4AEwCuAC4AGwDNAC4AIwDWAC4AKwD/
 AC4AMwD/AC4AOwD/AC4AQwDWAC4ASwAFAS4AUwD/AC4AWwAcAUMAYwBlAEkAcwDNAGEAewBlAGMA
 awBlAAMAAQAEAAMAAAA8BJYAAADTAJsAAABeBaAAAgAEAAMAAgAFAAUAAQAGAAUAAgAHAAcABIAA
-AAEAAAC/HSR6AAAAAAAA2gIAAAQAAAAAAAAAAAAAAE4AOwAAAAAADQAAAAAAAAAAAAAAVwAhAwAA
-AAAEAAAAAAAAAAAAAABOAM0DAAAAAA0AAAAAAAAAAAAAAFcAFAAAAAAAAAAAAAEAAACdBAAABQAC
+AAEAAADEHWmXAAAAAAAA2gIAAAQAAAAAAAAAAAAAAE4AOwAAAAAACwAAAAAAAAAAAAAAVwAhAwAA
+AAAEAAAAAAAAAAAAAABOAM0DAAAAAAsAAAAAAAAAAAAAAFcAFAAAAAAAAAAAAAEAAACdBAAABQAC
 AAAAADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFs
 dWVfXwBtc2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5kbGUA
 R2V0VHlwZUZyb21IYW5kbGUARmlsZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFR5
@@ -2682,8 +2710,8 @@ cwBnZXRfVmFyaWFibGVzAFNldHRpbmdzAFN1Y2Nlc3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAE9i
 amVjdABnZXRfRGVmYXVsdABzZXRfVGFza1Jlc3VsdABnZXRfQXNzZW1ibHkAAAAAOVUAcwBlAHIA
 OgA6AG4AbwBtAGUAXwBhAHIAcQB1AGkAdgBvAF8AcgBlAGoAZQBpAGMAbwBlAHMAAHFTAFQAXwBj
 AGMAYwAzADEAMgA3AGEAZgBhADQAMAA0AGQANgBjAGEAYwAyADcAMwA4ADkAYQA0ADkAYgBlADAA
-MABiAGYALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAAAM/dflS4
-6LFJriRBPX7T27EABCABAQgDIAABBSABARERBCABAQ4FIAEBEVEEIAASYQQgABJlBSABEmkcAyAA
+MABiAGYALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAAADthV70o
+QItPvjxclmG6nyUABCABAQgDIAABBSABARERBCABAQ4FIAEBEVEEIAASYQQgABJlBSABEmkcAyAA
 HAMgAA4FAAEScQ4GAAESeRF9BSAAEoCBByACAQ4SgIEIt3pcVhk04IkIiYRdzYCAzJEEAAAAAAQB
 AAAAAwYSSQMGEk0DBhIQAgYIAwYRFAQAABJJBAAAEk0FAAEBEk0EAAASEAMAAAEECAASSQQIABJN
 BAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEA
@@ -2705,14 +2733,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQAker8dAAABACR6vx0/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQBpl8QdAAABAGmXxB0/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAA
 MAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABh
 AG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4A
 AAAAAFMAVABfAGMAYwBjADMAMQAyADcAYQBmAGEANAAwADQAZAA2AGMAYQBjADIANwAzADgAOQBh
 ADQAOQBiAGUAMAAwAGIAZgAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAA
-LgA3ADYAMQA1AC4AMwAxADIANgA4AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
+LgA3ADYAMgAwAC4AMwA4ADcANgAxAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAA
 AFMAVABfAGMAYwBjADMAMQAyADcAYQBmAGEANAAwADQAZAA2AGMAYQBjADIANwAzADgAOQBhADQA
 OQBiAGUAMAAwAGIAZgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0
 AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMgAwAAAAKgABAAEATABlAGcAYQBsAFQA
@@ -2721,8 +2749,8 @@ AGEAbQBlAAAAUwBUAF8AYwBjAGMAMwAxADIANwBhAGYAYQA0ADAANABkADYAYwBhAGMAMgA3ADMA
 OAA5AGEANAA5AGIAZQAwADAAYgBmAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBt
 AGUAAAAAAFMAVABfAGMAYwBjADMAMQAyADcAYQBmAGEANAAwADQAZAA2AGMAYQBjADIANwAzADgA
 OQBhADQAOQBiAGUAMAAwAGIAZgAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAA
-ADEALgAwAC4ANwA2ADEANQAuADMAMQAyADYAOAAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
-VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANwA2ADEANQAuADMAMQAyADYAOAAAAAAAAAAAAAAAAAAA
+ADEALgAwAC4ANwA2ADIAMAAuADMAOAA3ADYAMQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAA
+VgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANwA2ADIAMAAuADMAOAA3ADYAMQAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2980,8 +3008,8 @@ WHERE validacao = 0</property>
                       <connections>
                         <connection
                           refId="Package\Varre todos os arquivos da pasta\Gera arquivo de rejeição\Insere dados no arquivo de rejeições\Origem OLE DB.Connections[OleDbConnection]"
-                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                          connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                           description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                           name="OleDbConnection" />
                       </connections>
@@ -3381,8 +3409,8 @@ WHERE validacao = 0</property>
                   <connections>
                     <connection
                       refId="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial\Destino OLE DB.Connections[OleDbConnection]"
-                      connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
-                      connectionManagerRefId="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:invalid"
+                      connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
                       description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                       name="OleDbConnection" />
                   </connections>
@@ -4082,8 +4110,8 @@ WHERE validacao = 0</property>
               <DTS:ObjectData>
                 <ScriptProject
                   Name="ST_83c6911ea559415aba5b100a6eac033a"
-                  VSTAMajorVersion="2"
-                  VSTAMinorVersion="2"
+                  VSTAMajorVersion="3"
+                  VSTAMinorVersion="0"
                   Language="CSharp"
                   ReadOnlyVariables="User::corpo_email_erro,User::nome_arquivo_erro,$Package::smtp_destinatarios,$Package::smtp_from_email,$Package::smtp_from_nome,$Package::smtp_porta,$Package::smtp_server">
                   <ProjectItem
@@ -4335,8 +4363,8 @@ namespace ST_83c6911ea559415aba5b100a6eac033a
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -4371,7 +4399,7 @@ namespace ST_83c6911ea559415aba5b100a6eac033a
         <ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
         <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex=""></Host>
         <ProjectClient>
-          <HostIdentifier>SSIS_ST130</HostIdentifier>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -4385,7 +4413,7 @@ namespace ST_83c6911ea559415aba5b100a6eac033a
 		<msb:CodeName>ST_83c6911ea559415aba5b100a6eac033a</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_83c6911ea559415aba5b100a6eac033a</msb:DisplayName>
-		<msb:ProjectId>{40C2060E-B3F7-4AD0-B282-D5570D0EE9E7}</msb:ProjectId>
+		<msb:ProjectId>{9A3EF047-EBCB-4B26-AC3E-B2E813359A3E}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_83c6911ea559415aba5b100a6eac033a.csproj"/>
@@ -4507,7 +4535,7 @@ namespace ST_83c6911ea559415aba5b100a6eac033a.Properties {
                   <BinaryItem
                     Name="ST_83c6911ea559415aba5b100a6eac033a.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAHuwpV8AAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAOjMA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAISCrF8AAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAOjMA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOgyAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -4544,8 +4572,8 @@ AC8GEACBAJsGEACBABgGXQARAfAEEAAMAHEAbAD5AHUAcgDZAFQGAQCJAIoAPQAhAYsGeABxAPAE
 BgChAPAEBgAxAb0AfwAxAaQGiACpAPAEjgDJAPAEBgAIABQAqAAIABgArQApAHMAFQEuAAsA7QAu
 ABMA9gAuABsAFQEuACMAHgEuACsARwEuADMARwEuADsARwEuAEMAHgEuAEsATQEuAFMARwEuAFsA
 ZAFDAGMArQBJAHMAFQFhAHsArQBjAGsArQAbAAMAAQAEAAMAAADgBN4AAAAcAeMAAAA/BugAAgAE
-AAMAAgAFAAUAAQAGAAUAAgAHAAcAYwAEgAAAAQAAAL8dJXoAAAAAAABEAAAABAAAAAAAAAAAAAAA
-lgBoAAAAAAANAAAAAAAAAAAAAACfAD8DAAAAAAQAAAAAAAAAAAAAAJYALAQAAAAADQAAAAAAAAAA
+AAMAAgAFAAUAAQAGAAUAAgAHAAcAYwAEgAAAAQAAAMQdapcAAAAAAABEAAAABAAAAAAAAAAAAAAA
+lgBoAAAAAAALAAAAAAAAAAAAAACfAD8DAAAAAAQAAAAAAAAAAAAAAJYALAQAAAAACwAAAAAAAAAA
 AAAAnwAdAAAAAAAEAAAAAAAAAAAAAACWANkFAAAAAAAAAAABAAAAQQUAAAUAAgAAAAAAAENvbGxl
 Y3Rpb25gMQBJbnQzMgA8TW9kdWxlPgBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFs
 dWVfXwBTVF84M2M2OTExZWE1NTk0MTVhYmE1YjEwMGE2ZWFjMDMzYQBtc2NvcmxpYgBBZGQAU2Vu
@@ -4587,8 +4615,8 @@ oVsAUgBBAFAAXQBbAEUAcgByAG8AXQAgAEUAcgByAG8AIABhAG8AIABwAHIAbwBjAGUAcwBzAGEA
 cgBhACAAbwAgAGEAcgBxAHUAaQB2AG8AIABkAGUAIABjAGEAcgBnAGEAIABkAGUAIABzAGEAbABk
 AG8AcwAgAGQAYQBzACAAbgBvAHQAYQBzACAAZABlACAAZQBtAHAAZQBuAGgAbwAAcVMAVABfADgA
 MwBjADYAOQAxADEAZQBhADUANQA5ADQAMQA1AGEAYgBhADUAYgAxADAAMABhADYAZQBhAGMAMAAz
-ADMAYQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAABU984wF6j2
-RISPlfd/25vjAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdDQcJDg4ODg4IDhI9EkEEIAASbQQg
+ADMAYQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAAAqLs90xEH6
+Ronak7RwPHFTAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdDQcJDg4ODg4IDhI9EkEEIAASbQQg
 ABJxBSABEnUcAyAAHAMgAA4EAAEIDgQgAQECBSACAQ4OBSABARI9BSAAEoCBBSAAEoCFCBUSgI0B
 EoCJBSABARMABSABARJBBgABEYCVDggAARKAmRGAnQUgABKAoQcgAgEOEoChCLd6XFYZNOCJCImE
 Xc2AgMyRBAAAAAAEAQAAAAMGElUDBhJZAwYSEAIGCAMGERQEAAASVQQAABJZBQABARJZBAAAEhAD
@@ -4606,14 +4634,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
 SAAAAFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAJXq/HQAAAQAler8dPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAAAvQTv/gAAAQAAAAEAapfEHQAAAQBql8QdPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
 AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
 AAAAAAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAA
 MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
 AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
 AABTAFQAXwA4ADMAYwA2ADkAMQAxAGUAYQA1ADUAOQA0ADEANQBhAGIAYQA1AGIAMQAwADAAYQA2
 AGUAYQBjADAAMwAzAGEAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
-NwA2ADEANQAuADMAMQAyADYAOQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABT
+NwA2ADIAMAAuADMAOAA3ADYAMgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABT
 AFQAXwA4ADMAYwA2ADkAMQAxAGUAYQA1ADUAOQA0ADEANQBhAGIAYQA1AGIAMQAwADAAYQA2AGUA
 YQBjADAAMwAzAGEALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAA
 AEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIA
@@ -4622,8 +4650,8 @@ AG0AZQAAAFMAVABfADgAMwBjADYAOQAxADEAZQBhADUANQA5ADQAMQA1AGEAYgBhADUAYgAxADAA
 MABhADYAZQBhAGMAMAAzADMAYQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBl
 AAAAAABTAFQAXwA4ADMAYwA2ADkAMQAxAGUAYQA1ADUAOQA0ADEANQBhAGIAYQA1AGIAMQAwADAA
 YQA2AGUAYQBjADAAMwAzAGEAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAx
-AC4AMAAuADcANgAxADUALgAzADEAMgA2ADkAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYA
-ZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANgAxADUALgAzADEAMgA2ADkAAAAAAAAAAAAAAAAAAAAA
+AC4AMAAuADcANgAyADAALgAzADgANwA2ADIAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYA
+ZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANgAyADAALgAzADgANwA2ADIAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -4689,6 +4717,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD28FE93-9422-4BD1-B3D5-65E9629EEF2B}"
+      DTS:From="Package\Varre todos os arquivos da pasta"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Atualiza os snapshots" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:CreationName=""
       DTS:DTSID="{C9E31D87-76EE-48F2-B8C8-326000D93EF4}"
@@ -4714,12 +4750,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:To="Package\Atualiza tabelas de cache" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
-<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
-<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="sql11">
-  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
@@ -4768,7 +4804,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           PanelSize="375,325"
           Size="375,368"
           Id="Package\Atualiza tabelas de cache"
-          TopLeft="901,1117" />
+          TopLeft="362,1095" />
         <NodeLayout
           Size="184,42"
           Id="Package\Cria tabela temporária"
@@ -4776,7 +4812,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="203,42"
           Id="Package\Remove tabela temporária"
-          TopLeft="306.5,1110.5" />
+          TopLeft="106.5,1091.5" />
         <NodeLayout
           Size="272,42"
           Id="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario"
@@ -5132,18 +5168,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="404.25,1011.5">
+          TopLeft="328,1011.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,99"
+              EndConnector="-120,80"
               Start="0,0"
-              End="0,91.5">
+              End="-120,72.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,91.5" />
+                    End="0,22.8281604844815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8281604844815"
+                    Point2="0,26.8281604844815"
+                    Point3="-4,26.8281604844815" />
+                  <mssgle:LineSegment
+                    End="-116,26.8281604844815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116,26.8281604844815"
+                    Point2="-120,26.8281604844815"
+                    Point3="-120,30.8281604844815" />
+                  <mssgle:LineSegment
+                    End="-120,72.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5154,30 +5202,63 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 2]"
-          TopLeft="690.5,1011.5">
+          TopLeft="547.5,1011.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="398,105.5"
+              EndConnector="0,83.5"
               Start="0,0"
-              End="398,98">
+              End="0,76">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.3151432469304" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,38.3151432469304"
-                    Point2="0,42.3151432469304"
-                    Point3="4,42.3151432469304" />
+                    End="0,76" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Atualiza os snapshots\estatisticas_bloqueio"
+          TopLeft="20,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,116"
+          Size="205,159"
+          Id="Package\Atualiza os snapshots"
+          TopLeft="803,1096" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="763,1011.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.5,84.5"
+              Start="0,0"
+              End="142.5,77">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="394,42.3151432469304" />
+                    End="0,24.3372445117335" />
                   <mssgle:CubicBezierSegment
-                    Point1="394,42.3151432469304"
-                    Point2="398,42.3151432469304"
-                    Point3="398,46.3151432469304" />
+                    Point1="0,24.3372445117335"
+                    Point2="0,28.3372445117335"
+                    Point3="4,28.3372445117335" />
                   <mssgle:LineSegment
-                    End="398,98" />
+                    End="138.5,28.3372445117335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.5,28.3372445117335"
+                    Point2="142.5,28.3372445117335"
+                    Point3="142.5,32.3372445117335" />
+                  <mssgle:LineSegment
+                    End="142.5,77" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5233,7 +5314,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="152,42"
           Id="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario\Origem OLE DB"
@@ -5261,9 +5342,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5273,7 +5352,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Insere dados na tabela saldoContaContabil">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,42"
           Id="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Insere dados na tabela saldoContaContabil\Origem OLE DB"
@@ -5301,7 +5380,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5380,7 +5461,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="153,42"
           Id="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial\Destino OLE DB"
@@ -5408,7 +5489,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -122,18 +122,20 @@ const Create = () => {
           payload: { visible: true, ...message },
         });
       };
+
       const requests = [
         api.requests.postLoteDesbloqueio({
-          payload: { notasEmpenho: notasEmpenhoSelecionadas },
+          payload: { ...notasEmpenhoSelecionadas },
         }),
       ];
+
       doAllXhrRequest({
         alertProps: createUnlockError,
         requests,
         success,
       });
     });
-  }, []);
+  }, [notasEmpenhoSelecionadas]);
 
   const handleGoBack = event => {
     event.preventDefault();
