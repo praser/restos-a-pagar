@@ -21,7 +21,7 @@ class OperacaoDao extends DaoBase
 
     public function operacoesComNotasEmpenhoBloqueadas(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
     {
-        $table = 'cache.operacoes_com_ne_passiveis_de_bloqueio';
+        $table = 'cache.operacoes_com_ne_bloqueadas';
         return $this->queryOperacoesCache($table, $tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
     }
 
@@ -35,9 +35,9 @@ class OperacaoDao extends DaoBase
                 ->equals(OperacaoDomain::ANO_EXECUCAO, $anoExecucao);
 
             if ($tipoInformacaoId === 2) {
-                $query->isNotNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
+                $query->equals(OperacaoDomain::APTA_DESBLOQUEIO, true);
             } elseif ($tipoInformacaoId === 3) {
-                $query->isNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
+                $query->equals(OperacaoDomain::APTA_DESBLOQUEIO, false);
             }
 
             if ($unidadeId) {

@@ -61,20 +61,6 @@ const Create = () => {
       center: true,
       format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
     },
-    {
-      name: 'Desbloqueio solicitado',
-      selector: 'desbloqueioSolicitado',
-      sortable: true,
-      center: true,
-      format: row => (row.desbloqueioSolicitado ? thumbsUp : thumbsDown),
-    },
-    {
-      name: 'Desbloquedo',
-      selector: 'desbloqueado',
-      sortable: true,
-      center: true,
-      format: row => (row.desbloqueado ? thumbsUp : thumbsDown),
-    },
     { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
     { name: 'Documento', selector: 'documento', sortable: true },
     {
@@ -99,7 +85,7 @@ const Create = () => {
         const { notasEmpenho: data } = res[0].data;
         const aptas = data.filter(d => {
           const { operacao } = d;
-          return operacao.aptaDesbloqueio && !data.desbloqueioSolicitado;
+          return operacao.aptaDesbloqueio;
         });
 
         const empenhos = aptas.map(ne => {

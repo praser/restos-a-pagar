@@ -25,7 +25,7 @@ class OperacoesComEmpenhoBloqueadoController extends ControllerBase
         $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
         $siglaGestor = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
 
-        $operacoes = $this->dao->operacoesComNotasEmpenhoPassiveisBloqueio($tipoInformacaoId, $anoExecucao, $unidadeId, $siglaGestor);
+        $operacoes = $this->dao->operacoesComNotasEmpenhoBloqueadas($tipoInformacaoId, $anoExecucao, $unidadeId, $siglaGestor);
         if ($operacoes) {
             $res->getBody()->write(json_encode($operacoes, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_OK);
