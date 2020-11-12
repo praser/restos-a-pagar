@@ -78,12 +78,12 @@ const Navigation = () => {
 
         <Divider />
 
-        {params.map(param => (
+        {params.map((param, i) => (
           <Can
+            key={i}
             perform="dashboards:show"
             yes={() => (
               <Collapse
-                key={param.anoOrcamentario}
                 label={`Safra ${param.anoOrcamentario}`}
                 icon={faFileSignature}
                 collapsables={mountCollapsables(param)}

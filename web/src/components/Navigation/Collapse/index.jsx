@@ -29,12 +29,9 @@ const Collapse = ({ label, icon, collapsables }) => {
         <Collapsable>
           {collapsables.map(item => (
             <Can
+              key={item.label}
               perform={item.perform}
-              yes={() => (
-                <Collapselink to={item.to} key={item.label}>
-                  {item.label}
-                </Collapselink>
-              )}
+              yes={() => <Collapselink to={item.to}>{item.label}</Collapselink>}
             />
           ))}
         </Collapsable>
