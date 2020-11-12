@@ -5,9 +5,11 @@ declare(strict_types=1);
 
 use Tuupola\Middleware\JwtAuthentication;
 use Slim\App;
+use Psr\Log\LoggerInterface;
 
 return function (App $app) {
     $container = $app->getContainer();
+    $logger = $container->get(LoggerInterface::class);
     
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
@@ -35,5 +37,5 @@ return function (App $app) {
 
     ]));
 
-    $app->addErrorMiddleware(true, true, true);
+    $app->addErrorMiddleware(true, true, true, $logger);
 };
