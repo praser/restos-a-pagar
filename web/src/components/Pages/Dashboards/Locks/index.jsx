@@ -115,6 +115,7 @@ const Locks = () => {
 
   const solicitarDesbloqueioButton = (
     <Can
+      key={1}
       perform="unlock:create"
       yes={() => (
         <SmallButtonWarning
