@@ -82,57 +82,18 @@ const Create = () => {
   useEffect(() => {
     apiRap.then(api => {
       const success = res => {
-        const { notasEmpenho: data } = res[0].data;
-        const aptas = data.filter(d => {
-          const { operacao } = d;
-          return operacao.aptaDesbloqueio;
-        });
-
-        const empenhos = aptas.map(ne => {
-          const {
-            documento,
-            anoOrcamentario,
-            dataEmissao,
-            saldoContaContabil,
-            operacao: op,
-          } = ne;
-
-          const {
-            id: operacaoId,
-            operacao,
-            proposta,
-            convenio,
-            aptaDesbloqueio,
-            desbloqueioSolicitado,
-            desbloqueado,
-          } = op;
-
-          return {
-            operacaoId,
-            operacao,
-            proposta,
-            convenio,
-            aptaDesbloqueio,
-            desbloqueioSolicitado,
-            desbloqueado,
-            documento,
-            anoOrcamentario,
-            dataEmissao,
-            saldoContaContabil,
-          };
-        });
-
-        setNotasEmpenho(empenhos);
+        const { data } = res[0];
+        setNotasEmpenho(data);
       };
 
       const args = {
         tipoInfo: 5,
-        anoExecucao: calcExecutionYear(budgetYear),
+        anoOrcamentario: budgetYear,
         unidadeId: '',
         siglaGestor: '',
       };
 
-      const requests = [api.requests.getNotasEmpenhoBloqueio(args)];
+      const requests = [api.requests.getNotasEmpenhoAptasDesbloqueio(args)];
 
       doAllXhrRequest({
         alertProps: unlocksFail,

@@ -56,11 +56,10 @@ const requests = async () => {
     return client.get(`${path}${query}`);
   };
 
-  const getNotasEmpenhoBloqueio = async args => {
-    const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
-    const path = `/notas-empenho/${anoExecucao}/bloqueio`;
-    const query = search({ unidadeId, siglaGestor, tipoInfo });
-    return client.get(`${path}${query}`);
+  const getNotasEmpenhoAptasDesbloqueio = async args => {
+    const { anoOrcamentario } = args;
+    const path = `/notas-empenho/${anoOrcamentario}/aptas-desbloqueio`;
+    return client.get(path);
   };
 
   const getUgs = async () => client.get('/ug');
@@ -96,7 +95,7 @@ const requests = async () => {
     getGestores,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,
-    getNotasEmpenhoBloqueio,
+    getNotasEmpenhoAptasDesbloqueio,
     getParams,
     getStatus,
     getTiposInformacoes,

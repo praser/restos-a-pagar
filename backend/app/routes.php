@@ -12,6 +12,7 @@ use App\Application\Controllers\OperacoesComEmpenhoBloqueadoController;
 use App\Application\Controllers\TipoInformacaoController;
 use App\Application\Controllers\UgController;
 use App\Application\Controllers\SaldoNotaEmpenhoController;
+use App\Application\Controllers\SaldoNotasEmpenhoAptasDesbloqueioController;
 use App\Application\Controllers\UgGestoresController;
 use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
@@ -37,8 +38,9 @@ return function (App $app) {
         $group->get('/distintas/{anoExecucao}', UgController::class . ':distintas');
     });
 
-    $app->group('/notas-empenho/saldo', function (Group $group) {
-        $group->post('', SaldoNotaEmpenhoController::class . ':create');
+    $app->group('/notas-empenho', function (Group $group) {
+        $group->post('/saldo', SaldoNotaEmpenhoController::class . ':create');
+        $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
     });
 
     $app->group('/operacoes/{anoExecucao}', function (Group $group) {
