@@ -13,27 +13,42 @@ use App\Persistence\LoteDesbloqueioOperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Exception;
+use App\Services\ExpedienteGovService;
+
 
 class LotesDesbloqueioController extends ControllerBase
 {
     private $dao;
     private $loteDesbloqueioOperacaoDao;
+    private $expedienteGovService;
 
     public function __construct(Container $container)
     {
         parent::__construct($container);
         $this->dao = new LoteDesbloqueioDao($container);
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
+        $this->expedienteGovService = new ExpedienteGovService($container);
     }
 
     public function create(Request $req, Response $res, array $args): Response
     {
-        $user = new UserDomain(json_decode($req->getAttribute('user'), true));
+        $currentUser = $req->getAttributes('user')['user'];
+        $jwt = $currentUser['token'];
+        $user = new UserDomain(json_decode($currentUser['attributes'], true));
+
         $params = $req->getParsedBody();
+        $expediente = $this->expedienteGovService->create($jwt, array(
+            "expediente" => array(
+                "co_tipo" => "CE",
+                "tx_assunto" => "SOLICITACAO_EMPENHO_PAC",
+                "co_classificacao" => 2,
+                "co_grupo" => 10,
+                "tx_destino" => "SUAFI"
+            ),
+        ));
         $lote = new LoteDesbloqueioDomain();
         $lote
-          ->setCe('CE GEOTR 9999/2020')
+          ->setCe($expediente['tx_identificacao'])
           ->setResponsavelId($user->getRegistration())
           ->setResponsavelNome($user->getName())
           ->setResponsavelUnidadeId($user->getPhysicalLotationId())

@@ -36,6 +36,9 @@ return function (ContainerBuilder $containerBuilder) {
                 'password' => getenv("DB_PASSWORD{$suffix}"),
                 'charset' => getenv("DB_CHARSET{$suffix}") ?: DEFAULT_DB_CHARSET
             ],
+            'urls' => [
+                'apiExpedientesGov' => getenv("URL_API_EXPEDIENTES_GOV"),
+            ]
         ],
     ]);
 };
