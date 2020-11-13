@@ -12,6 +12,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use PHPMailer\PHPMailer\PHPMailer as Mailer; 
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -45,5 +46,19 @@ return function (ContainerBuilder $containerBuilder) {
         'queryBuilder' => static function(): GenericBuilder {
             return new GenericBuilder();
         },
+        'mailer' => static function(ContainerInterface $c): Mailer {
+            $settings = $c->get('settings')['smtp'];
+            $mail = new Mailer(true);
+
+            $mail->SMTPDebug = $settings['debug'];
+            $mail->isSMTP();
+            $mail->Host = $settings['host'];
+            $mail->SMTPAuth = false;
+            $mail->Port = $settings['port'];
+            $mail->setFrom($settings['fromEmail'], $settings['fromName']);
+            $mail->addBCC('rubens.junior@caixa.gov.br');
+
+            return $mail;
+        }
     ]);
 };

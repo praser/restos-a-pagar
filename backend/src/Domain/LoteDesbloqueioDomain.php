@@ -126,6 +126,16 @@ class LoteDesbloqueioDomain extends DomainBase
     return $this;
   }
 
+  public function numero(): string
+  {
+    return substr("000{$this->getSequencial()}/{$this->getAno()}", -8);
+  }
+
+  public function quantidadeNotasEmpenho(): int
+  {
+    return count($this->notasEmpenho);
+  }
+
   public function isValid(): bool
   {
       $v = $this->validator;
