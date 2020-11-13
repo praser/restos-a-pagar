@@ -174,8 +174,8 @@ class SaldoNotaEmpenhoDomain extends DomainBase
         $v->setName(self::ANO_ORCAMENTARIO)->setValue($this->getAnoOrcamentario())->required();
         $v->setName(self::ANO_ORCAMENTARIO)->isInt($this->getAnoOrcamentario());
         $v->setName(self::DOCUMENTO)->setValue($this->getDocumento())->customPattern('\d{4}NE\d{6}')->required();
-        $v->setName(self::PTRES)->setValue($this->getOperacaoId())->required();
-        $v->setName(self::PTRES)->isInt($this->getOperacaoId());
+        $v->setName(self::PTRES)->setValue($this->getPtres())->required();
+        $v->setName(self::PTRES)->isInt($this->getPtres());
         $v->setName(self::DATA_EMISSAO)->setValue($this->getDataEmissao())->required();
         $v->setName(self::DATA_EMISSAO)->isInstanceOf($this->getDataEmissao(), DateTime::class);
         $v->setName(self::SALDO)->setValue($this->getSaldo())->required();

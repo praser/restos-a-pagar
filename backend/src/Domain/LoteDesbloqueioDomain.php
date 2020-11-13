@@ -23,18 +23,19 @@ class LoteDesbloqueioDomain extends DomainBase
   private $responsavelUnidadeId;
   private $responsavelUnidadeSigla;
   private $situacao;
+  public $notasEmpenho = [];
 
   public function __construct(array $params = [])
   {
     parent::__construct($params);
-    $this->sequencial = (int) $this->setAttribute(self::SEQUENCIAL, $params);
-    $this->ano = (int) $this->setAttribute(self::ANO, $params);
-    $this->ce = (string) $this->setAttribute(self::CE, $params);
-    $this->responsavelId = (string) $this->setAttribute(self::RESPONSAVEL_ID, $params);
-    $this->responsavelNome = (string) $this->setAttribute(self::RESPONSAVEL_NOME, $params);
-    $this->responsavelUnidadeId = (int) $this->setAttribute(self::RESPONSAVEL_UNIDADE_ID, $params);
-    $this->responsavelUnidadeSigla = (string) $this->setAttribute(self::RESPONSAVEL_UNIDADE_SIGLA, $params);
-    $this->situacao = (string) $this->setAttribute(self::SITUACAO, $params);
+    $this->sequencial = $this->setAttribute(self::SEQUENCIAL, $params);
+    $this->ano = $this->setAttribute(self::ANO, $params);
+    $this->ce = $this->setAttribute(self::CE, $params);
+    $this->responsavelId = $this->setAttribute(self::RESPONSAVEL_ID, $params);
+    $this->responsavelNome = $this->setAttribute(self::RESPONSAVEL_NOME, $params);
+    $this->responsavelUnidadeId = $this->setAttribute(self::RESPONSAVEL_UNIDADE_ID, $params);
+    $this->responsavelUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_UNIDADE_SIGLA, $params);
+    $this->situacao = $this->setAttribute(self::SITUACAO, $params);
   }
 
   public function getSequencial() : ?int
@@ -128,17 +129,14 @@ class LoteDesbloqueioDomain extends DomainBase
   public function isValid(): bool
   {
       $v = $this->validator;
-      $v->setName(self::SEQUENCIAL)->setValue($this->getSequencial())->required();
       $v->setName(self::SEQUENCIAL)->isInt($this->getSequencial());
-      $v->setName(self::ANO)->setValue($this->getAno())->required();
+      $v->setName(self::ANO)->isInt($this->getAno());
       $v->setName(self::CE)->setValue($this->getCe())->required();
-      $v->setName(self::CE)->isInstanceOf($this->getCe(), DateTime::class);
       $v->setName(self::RESPONSAVEL_ID)->setValue($this->getResponsavelId())->required();
       $v->setName(self::RESPONSAVEL_NOME)->setValue($this->getResponsavelNome())->required();
       $v->setName(self::RESPONSAVEL_UNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
       $v->setName(self::RESPONSAVEL_UNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
       $v->setName(self::RESPONSAVEL_UNIDADE_SIGLA)->setValue($this->getResponsavelUnidadeSigla())->required();
-      $v->setName(self::SITUACAO)->setValue($this->getSituacao())->required();
       return $v->isSuccess();
   }
 
@@ -153,6 +151,7 @@ class LoteDesbloqueioDomain extends DomainBase
       self::RESPONSAVEL_UNIDADE_ID => $this->getResponsavelUnidadeId(),
       self::RESPONSAVEL_UNIDADE_SIGLA => $this->getResponsavelUnidadeSigla(),
       self::SITUACAO => $this->getSituacao(),
+      'notasEmpenho' => $this->notasEmpenho,
     ];
 
     return array_merge(parent::jsonSerialize(), $serialization);

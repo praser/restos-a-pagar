@@ -8,8 +8,10 @@ namespace App\Persistence;
 use App\Domain\SaldoNotaEmpenhoDomain;
 use Exception;
 
-class SaldoNotaEmpenhoDao extends DaoBase
+class SaldoNotaEmpenhoAptaDesbloqueioDao extends SaldoNotaEmpenhoDao
 {
-    protected const TABLE = 'saldos_notas_empenhos';
+    use Traits\FindByAnoOrcamentarioTrait;
+
+    protected const TABLE = 'cache.saldo_notas_empenho_aptas_desbloqueio';
     protected $domain = SaldoNotaEmpenhoDomain::class;
 }
