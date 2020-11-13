@@ -8,7 +8,7 @@ class addAptaDesbloqueiotoOperacoes extends AbstractMigration
     {
         $this
             ->table('operacoes')
-            ->addColumn('aptaDesbloqueio', 'boolean', ['comment' => 'Flag informando se uma operação está apta para o desbloqueio no ano corrent', 'default' => false])
+            ->addColumn('aptaDesbloqueio', 'boolean', ['default' => false, 'null' => true, 'comment' => 'Flag informando se uma operação está apta para o desbloqueio no ano corrent'])
             ->update();
     }
 }

@@ -6,6 +6,9 @@ class CreateVwSaldoNotasEmpenhoAptasDesbloqueio extends AbstractMigration
 {
     public function up(): void
     {
+        $this->execute('SELECT * INTO cache.saldos_notas_empenhos FROM vw_saldos_notas_empenhos');
+        $this->execute('SELECT * INTO cache.operacoes_com_ne_bloqueadas FROM vw_operacoes_com_ne_bloqueadas');
+
         $query = <<<SQL
             CREATE VIEW vw_saldo_notas_empenho_aptas_desbloqueio AS
             SELECT
@@ -44,6 +47,8 @@ class CreateVwSaldoNotasEmpenhoAptasDesbloqueio extends AbstractMigration
         SQL;
 
         $this->execute($query);
+        $this->execute('DROP TABLE cache.saldos_notas_empenhos');
+        $this->execute('DROP TABLE cache.operacoes_com_ne_bloqueadas');
     }
 
     public function down(): void
