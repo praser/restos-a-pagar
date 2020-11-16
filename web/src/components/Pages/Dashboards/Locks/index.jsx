@@ -31,11 +31,12 @@ import Can from '~/components/Can';
 import { createUnlockPath, joinPath } from '~/utils/paths';
 
 const Locks = () => {
-  const [state, setState] = useState(initialState);
+  const currentUser = useCurrentUser();
+  const [state, setState] = useState(initialState(currentUser));
   const [dataState, setDataState] = useState(dataInitialState);
   const [context] = useContext(Context);
   const { budgetYear } = useParams();
-  const { physicalLotationAbbreviation } = useCurrentUser();
+  const { physicalLotationAbbreviation } = currentUser;
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
