@@ -15,6 +15,10 @@ const initialState = {
       dataCancelamento: null,
     },
   ],
+  status: {
+    databaseLastUpdate: null,
+    databasePosition: null,
+  },
 };
 
 const Store = ({ children }) => {

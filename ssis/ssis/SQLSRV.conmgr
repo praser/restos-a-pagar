@@ -5,10 +5,10 @@
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=192.168.0.56;User ID=sa;Initial Catalog=restos-a-pagar-des;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=192.168.0.56;User ID=sa;Initial Catalog=restos-a-pagar-cenario-novo;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAACAAAAAAAQZgAAAAEAACAAAACxmm7MyyO26Tkf9WdniCQ83nwWa8U8brmtYFa8r29BuAAAAAAOgAAAAAIAACAAAAD+ncxMw/aCx6FPfyOQXwI+HZpP6P17xev3g39XYsIw7IAAAACLi539K8jjPXJbwMDxCINCNKVbb3Y1Toq0kzUvyC4wOi1tsW0Gt5g0PzYPYwBzcblfiVWgqyYm9Ad92sJL3WZAT+9dI1Zcxxbfp7tuDGj+oaUBxBFrXO+2K7mRgIUTLZuWkeWrGtRizRH0xoU/LMgKlV1lOMCiu23g5c6c9mo4/kAAAACwtrVFxhMekqbbfTU736AXDSjmo2e1pZ458qZoVEz0oGjaGC49RkPY+bVM5GZ5VxneiXLiKmgZLx+Dv/VUyC6r</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAACAAAAAAAQZgAAAAEAACAAAAAPPRxsUG0yvHNb47gXZdIOhdnBZ6PTNTQqW1xl6OwyXAAAAAAOgAAAAAIAACAAAACFubufVFwjaoV5l4kzy4MrKiFIl0giR5UKwkggU0lg1oAAAAAMQ4SFJ1fuF8uD1BQIt/u6DiyBptb1RFXzgV+YwGxJhndBbkd8t/qSGC7Gd43oMzeXjFyRiV+T9J3T0KnXv8pCnut5D4n4QjN1uHjGoAsEn4UtjI2+S5CwyxeKg5NkCtfD0LKxxXJzZp5cgmU8oQXQER0HClyK7N7rSDxaEJn/A0AAAAB9v3+BduZrft4kXJ5KaM5xbUCUM7Gm08yU0RZKVmtqeXyjk1cE0F0XgFCfLOviLRDv8Q1Us3VdhoQ3RVFmrORt</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

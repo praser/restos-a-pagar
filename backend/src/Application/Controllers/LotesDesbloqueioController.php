@@ -105,7 +105,7 @@ class LotesDesbloqueioController extends ControllerBase
                 );
 
                 $this->mail->isHTML(true);                                  // Set email format to HTML
-                $this->mail->Subject = "{$expediente['tx_identificacao']} - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
+                $this->mail->Subject = "{$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
                 $this->mail->Body = <<<HTML
                     À
                     <br>{$this->gerentes['gerenciaExecutivaFinanceira']}
@@ -136,7 +136,7 @@ class LotesDesbloqueioController extends ControllerBase
 
                 $this->mail->send();
 
-                $connection->rollback();
+                $connection->commit();
             }
             
             $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));

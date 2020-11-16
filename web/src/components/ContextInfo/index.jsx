@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   faBan,
   faDatabase,
@@ -26,32 +26,13 @@ export const initialState = {
   },
 };
 
-const handleSuccess = (key, res, formatter, setState) => {
-  const data = {};
-  data[key] = formatter(res.data);
-  setState(prev => ({ ...prev, ...data }));
-};
-
-const ContextInfo = ({ tipoInfo, unidade, gestor }) => {
-  const [state, setState] = useState(initialState);
+const ContextInfo = ({ tipoInfo, unidade, gestor, status }) => {
   const [context] = useContext(Context);
   const { budgetYear } = useParams();
-  const apiRap = useApiRap();
-  const { status } = state;
   const { params } = context;
   const param = first(
     params.filter(item => item.anoOrcamentario === parseInt(budgetYear, 10)),
   );
-
-  useEffect(() => {
-    apiRap.then(api => {
-      api.requests
-        .getStatus()
-        .then(res =>
-          handleSuccess('status', res, api.formatters.status, setState),
-        );
-    });
-  }, []);
 
   return (
     <Row direction="column">

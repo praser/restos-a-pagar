@@ -9,7 +9,7 @@ const Search = ({ filterText, onFilter, onClear }) => {
       <SearchField
         id="search"
         type="text"
-        placeholder="Operação, proposta ou convênio"
+        placeholder="Pesquisar operação ou convênio"
         aria-label="Search Input"
         value={filterText}
         onChange={onFilter}

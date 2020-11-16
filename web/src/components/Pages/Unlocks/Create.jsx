@@ -18,10 +18,9 @@ import {
   createUnlockError,
   createUnlockSuccess,
 } from '~/utils/messages';
-import { calcExecutionYear } from '../Dashboards/RightTab/utils';
 import Table from '~/components/Table';
 import { primary, danger } from '~/utils/colors';
-import { formatCurrency, formatProposta } from '~/utils/numbers';
+import { formatCurrency } from '~/utils/numbers';
 import { formatDate, parseISO } from '~/utils/dates';
 
 import { SmallButtonPrimary, SmallButtonWarning } from '~/components/Button';
@@ -29,8 +28,6 @@ import { FormRow } from '~/components/Form';
 import { formatNumeroLoteDesbloqueio } from '~/utils/string';
 import { Context } from '~/components/Store';
 import { Prompt } from '~/components/Modal';
-import { getYear } from 'date-fns';
-import { Error } from '..';
 
 const Create = () => {
   const { budgetYear } = useParams();
@@ -48,13 +45,6 @@ const Create = () => {
   const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
   const columns = [
     { name: 'Operação', selector: 'operacao', sortable: true },
-    {
-      name: 'Proposta',
-      selector: 'proposta',
-      sortable: true,
-      grow: 2,
-      format: row => formatProposta(row.proposta),
-    },
     { name: 'Convênio', selector: 'convenio', sortable: true },
     {
       name: 'Apta desbloqueio',

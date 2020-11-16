@@ -20,6 +20,7 @@ const Highlights = ({
   dataCancelamento,
   dataBloqueio,
   snapshot,
+  posicaoBase,
 }) => {
   const {
     quantidadeOperacoes,
@@ -68,7 +69,7 @@ const Highlights = ({
         <Highlight
           icon={faCameraRetro}
           siblings={4}
-          title={`Bloqueado em ${formatDate(dataBloqueio)}`}
+          title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
           variant="info"
         >
           {formatCurrencyShort(snapshot.saldoBloqueado)}
@@ -76,7 +77,7 @@ const Highlights = ({
         <Highlight
           icon={faLock}
           siblings={4}
-          title="Bloqueado"
+          title={`Bloqueado até ${formatDate(posicaoBase)}`}
           variant="danger"
         >
           {formatCurrencyShort(saldoBloqueado)}
@@ -85,7 +86,7 @@ const Highlights = ({
         <Highlight
           icon={faLockOpen}
           siblings={4}
-          title="Desbloqueado"
+          title={`Desbloqueado até ${formatDate(posicaoBase)}`}
           variant="success"
         >
           {formatCurrencyShort(saldoDesbloqueado)}

@@ -23,7 +23,7 @@ import Highlights from './Highlights';
 import { DoughnutChart, LineChart } from '../../../Chart';
 import { lineChartData } from './lineChart';
 import { Context } from '../../../Store';
-import { parseISO } from '~/utils/dates';
+import { formatDate, parseISO } from '~/utils/dates';
 import { primary, danger } from '~/utils/colors';
 import { dougnutChartData } from './doughnutChart';
 import { SmallButtonWarning } from '~/components/Button';
@@ -40,6 +40,7 @@ const Locks = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
   const columns = [...operacoesColumns];
+  const { status } = context;
 
   const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
   const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
@@ -131,7 +132,12 @@ const Locks = () => {
         Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
       </Heading>
 
-      <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
+      <ContextInfo
+        tipoInfo={tipoInfo}
+        unidade={unidade}
+        gestor={gestor}
+        status={status}
+      />
 
       <Highlights
         estatisticas={estatisticas}
@@ -140,6 +146,7 @@ const Locks = () => {
         dataCancelamento={
           !isUndefined(param) && parseISO(param.dataCancelamento)
         }
+        posicaoBase={status.databasePosition}
       />
 
       <Row>
@@ -151,7 +158,9 @@ const Locks = () => {
         </Card>
 
         <Card width="33%">
-          <CardHeader>Distribuição do saldo bloqueado</CardHeader>
+          <CardHeader>{`Distribuição do saldo bloqueado em ${formatDate(
+            status.databasePosition,
+          )}`}</CardHeader>
           <CardBody>
             <DoughnutChart data={dougnutChartData(estatisticas)} />
           </CardBody>

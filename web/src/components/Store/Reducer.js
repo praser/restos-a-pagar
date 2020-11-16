@@ -20,6 +20,11 @@ const Reducer = (state, action) => {
         ...state,
         params: action.payload,
       };
+    case 'SET_STATUS':
+      return {
+        ...state,
+        status: action.payload,
+      };
     default:
       return state;
   }

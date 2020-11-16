@@ -6,14 +6,11 @@ export const csvHeaders = [
   { key: 'anoOrcamentario', label: 'anoOrcamentario' },
   { key: 'operacao', label: 'operacao' },
   { key: 'dv', label: 'dv' },
-  { key: 'proposta', label: 'proposta' },
-  { key: 'anoProposta', label: 'anoProposta' },
   {
     key: 'anoOrcamentarioProposta',
     label: 'anoOrcamentarioProposta',
   },
   { key: 'convenio', label: 'convenio' },
-  { key: 'gigovId', label: 'gigovId' },
   { key: 'gigovNome', label: 'gigovNome' },
   { key: 'proponente', label: 'proponente' },
   { key: 'uf', label: 'uf' },
@@ -23,11 +20,6 @@ export const csvHeaders = [
     key: 'enquadramentoLegislacao',
     label: 'enquadramentoLegislacao',
   },
-  {
-    key: 'enquadramentoLegislacaoComplemento',
-    label: 'enquadramentoLegislacaoComplemento',
-  },
-  { key: 'situacaoContrato', label: 'situacaoContrato' },
   {
     key: 'situacaoContratoComplemento',
     label: 'situacaoContratoComplemento',
@@ -55,13 +47,6 @@ export const csvHeaders = [
 
 export const operacoesColumns = [
   { name: 'Operação', selector: 'operacao', sortable: true },
-  {
-    name: 'Proposta',
-    selector: 'proposta',
-    sortable: true,
-    grow: 2,
-    format: row => formatProposta(row.proposta),
-  },
   { name: 'Convênio', selector: 'convenio', sortable: true },
   { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
   {
@@ -104,13 +89,6 @@ export const operacoesColumns = [
     sortable: true,
     grow: 2,
   },
-  {
-    name: 'Legislação complemento',
-    selector: 'enquadramentoLegislacaoComplemento',
-    grow: 6,
-    sortable: true,
-  },
-  { name: 'Situação', selector: 'situacaoContrato', sortable: true, grow: 2 },
   {
     name: 'Situação complemento',
     selector: 'situacaoContratoComplemento',

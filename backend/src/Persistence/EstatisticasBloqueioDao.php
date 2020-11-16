@@ -24,7 +24,7 @@ class EstatisticasBloqueioDao extends DaoBase
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             return $this->inflateDomains($statment);
         } catch(Exception $ex) {
-            $this->exceptionHander($ex);
+            $this->exceptionHandler($ex);
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   faDollarSign,
   faFileContract,
@@ -19,6 +19,7 @@ import Highlight from '../../../Highlight';
 import { Card, CardBody, CardHeader } from '../../../Card';
 import Table from '../../../Table';
 import Heading from '../Heading';
+import { Context } from '~/components/Store';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],
@@ -61,6 +62,8 @@ const Cancellations = () => {
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
+  const [context] = useContext(Context);
+  const { status } = context;
 
   useEffect(() => {
     apiRap.then(api => {
@@ -104,7 +107,12 @@ const Cancellations = () => {
         </Heading>
       </Row>
 
-      <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
+      <ContextInfo
+        tipoInfo={tipoInfo}
+        unidade={unidade}
+        gestor={gestor}
+        status={status}
+      />
 
       <Row>
         <Highlight

@@ -37,6 +37,7 @@ const PossibleLocks = () => {
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
+  const { status } = context;
 
   const executionYear = calcExecutionYear(budgetYear);
   const reqArgs = {
@@ -51,19 +52,16 @@ const PossibleLocks = () => {
       const success = res => {
         const operacoes = api.formatters.operacoes(res[0].data);
         const operacoesCsv = api.formatters.operacoesCsv(res[0].data);
-        const statusData = api.formatters.status(res[1].data);
-        const estatisticas = res[2].data;
+        const estatisticas = res[1].data;
         setDataState(prev => ({ ...prev, operacoes, operacoesCsv }));
         setState(prev => ({
           ...prev,
-          status: statusData,
           estatisticas,
         }));
       };
 
       const requests = [
         api.requests.getOperacoesPreBloqueio(reqArgs),
-        api.requests.getStatus(),
         api.requests.getEstatisticasPreBloqueio(reqArgs),
       ];
       doAllXhrRequest({
@@ -110,7 +108,12 @@ const PossibleLocks = () => {
         </Heading>
       </Row>
 
-      <ContextInfo tipoInfo={tipoInfo} unidade={unidade} gestor={gestor} />
+      <ContextInfo
+        tipoInfo={tipoInfo}
+        unidade={unidade}
+        gestor={gestor}
+        status={status}
+      />
 
       <Highlights
         estatisticas={estatisticas}
