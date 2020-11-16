@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { isUndefined } from 'lodash';
+import { isUndefined, last } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faThumbsDown,
@@ -142,7 +142,7 @@ const Locks = () => {
 
       <Highlights
         estatisticas={estatisticas}
-        snapshot={snapshots[0]}
+        snapshot={last(snapshots)}
         dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
         dataCancelamento={
           !isUndefined(param) && parseISO(param.dataCancelamento)

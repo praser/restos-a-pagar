@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DF5385NB215</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAACAAAAAAAQZgAAAAEAACAAAAB7dL7kV72KPBkmEkTUBKfmFVq2sXKY8WJzR2OL+WV65wAAAAAOgAAAAAIAACAAAADKx0kR6LoRpMwMGCa+0tK7XlpfENT8SSS0vVrKS1XYuJAAAAD6gvmSUceeGcLSvvmvzX5J375pgGcPKOcj1zELbH6gXdmFcfwsPH+Mjv7oVAkxZmaLvhFJ7lzw1wtlYmHF5KNuO1Q5d0qgXJhF9SAM+/mV0InfJ2gB5kvbI36FNhzP9Qg+dUp4X/udwqzn9P+ynYICejGfhhtmnuVB2VLjzCVhVa8ovew7KFrJ8nXqOJAxZgNAAAAAbV8HjePVqD/JwCl8M+chMI/Z/ww8YbxpwE5xuw8iq1EAg2Mh+eTBBg+xTKB4bFmSaLFj3lJg5sdy6tpovSgL5g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAACAAAAAAAQZgAAAAEAACAAAAB6pq3SGbrTwVviOJsKJvvLVaAxvuOcFLFpYIqbSfpixQAAAAAOgAAAAAIAACAAAACjk+Of6s0w3mYmZuMcRja9QUgsZYyF1owu2L0gvnRnhpAAAABIkTvNrG1VVocX6ooMggNUfFE3Q/eBbqWCIwiVge713acMMA0r3CkNchKjTucmkAj8bipnhdl3IGWhiIa6n75EJxZYZv6gySb6k21FOUleJqXoFJbiFgjC5SahpNDIbRG8Omch6+V0XMZ1cafx6/ECO9vl4A0qHqq12MrGWktAhJgVmHklG2i+1EoJoy5nV0NAAAAAUkhqIErxSnz3Q9kJ1JazbqR+1Shd5YaRUf8Zd9jskeObdqWQw9bw5F1m9cwPGg/dx0Aq4P1xkXeoSrgZCiJePQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -52,7 +52,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=192.168.0.56;User ID=sa;Initial Catalog=restos-a-pagar-des;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=192.168.0.56;User ID=sa;Initial Catalog=restos-a-pagar-cenario-novo;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -67,7 +67,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">restos-a-pagar-des</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">restos-a-pagar-cenario-novo</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -273,11 +273,11 @@
                 <SSIS:Property SSIS:Name="Name">importa_saldo_tesouro_gerencial</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">98</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">105</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{735A267F-7387-4E6B-9EC6-1BE3AC5D11A8}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4125E41F-73C2-4365-A5E7-2EEA3260BD44}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
@@ -292,7 +292,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\inetpub\wwwroot\api-restos-a-pagar\var\upload\saldos-notas-empenhos</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Z:\restos-a-pagar\backend\var\upload\saldos-notas-empenhos</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -344,7 +344,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">25</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">2500</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -357,7 +357,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">localhost</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">192.168.0.56</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -493,6 +493,8 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">
+                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -658,6 +660,8 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">
+                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -699,10 +703,10 @@
                 <SSIS:Property SSIS:Name="Name">atualizar_operacoes</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">36</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{448FF24B-CEDA-4C53-B1EF-3F6947E57487}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F3AE7A99-8533-41B0-BF05-6611A5628DC2}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

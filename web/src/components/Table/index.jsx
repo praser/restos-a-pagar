@@ -19,6 +19,8 @@ const Table = ({ data, ...rest }) => {
         `${item.convenio}`.toLowerCase().includes(filterText.toLowerCase())),
   );
 
+  console.log(data);
+
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
       if (filterText) {
