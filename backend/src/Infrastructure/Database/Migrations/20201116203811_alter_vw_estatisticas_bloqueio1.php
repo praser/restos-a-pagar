@@ -4,7 +4,7 @@ use Phinx\Migration\AbstractMigration;
 
 class AlterVwEstatisticasBloqueio1 extends AbstractMigration
 {
-    public function down(): void
+    public function up(): void
     {
         $query = <<<SQL
             ALTER VIEW [dbo].[vw_estatisticas_bloqueio] AS
@@ -197,7 +197,7 @@ class AlterVwEstatisticasBloqueio1 extends AbstractMigration
         $this->execute($query);
     }
 
-    public function up(): void
+    public function down(): void
     {
         $query = <<<SQL
             ALTER VIEW [dbo].[vw_estatisticas_bloqueio] AS 

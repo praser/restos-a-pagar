@@ -35,9 +35,9 @@ class OperacaoDao extends DaoBase
                 ->equals(OperacaoDomain::ANO_EXECUCAO, $anoExecucao);
 
             if ($tipoInformacaoId === 2) {
-                $query->equals(OperacaoDomain::APTA_DESBLOQUEIO, true);
+                $query->isNotNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
             } elseif ($tipoInformacaoId === 3) {
-                $query->equals(OperacaoDomain::APTA_DESBLOQUEIO, false);
+                $query->isNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
             }
 
             if ($unidadeId) {

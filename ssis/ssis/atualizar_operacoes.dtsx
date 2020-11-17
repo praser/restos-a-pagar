@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{F3AE7A99-8533-41B0-BF05-6611A5628DC2}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{C24F862B-C717-47DE-9D08-A0105039083C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADI3LkApBHkRn1xBuIFj6g2qfrYcHiIgAP7mfJ3TGIjFwAAAAAOgAAAAAIAACAAAABFrgNmuzbUHNaktpULsnHnRhxw8Axx43oLnzvYC7+IuCAAAAC18RvRu2nzrLqBZKL9DHE9QT6VjrXZ6juCfuoi0VXCQ0AAAADiRXIQ+AeMX2TABPy3lUY6GprXACM/9cke7pD+3JUZ8bnjIRS3e5UPW/xrXzY+MBB4YR0zSXq5Oh1OzsBmeWOl</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADry5L711eZ1XCDI593lz8v/cy+55t7VhqyzIVij39DNQAAAAAOgAAAAAIAACAAAAAN2Y7hqP/aKjtQuh69e9lq1lhrToAAbD9Y0WV/pb50dCAAAAAAfO96haWSNLhp18bt8nXJYSmIRvZUSX/mlJk88xowHUAAAAAEnWDyO9YB+YFLy8tlz1Od658ZebvSRr+JJ9Cvonvg/UtR5kSklI4bCtZbg5D9rKmPlDvd3KRYydAPrbbN09Wq</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -61,6 +61,7 @@
       DTS:refId="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
+      DTS:Disabled="True"
       DTS:DTSID="{4238E858-4163-4338-B90F-A52463D8AA58}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -105,6 +106,7 @@
       DTS:refId="Package\Atualiza operações"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Contêiner da Sequência"
+      DTS:Disabled="True"
       DTS:DTSID="{65D1663F-1B4D-44D0-8870-F4FFE1EA6416}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -334,7 +336,7 @@
           PanelSize="364,175"
           Size="364,218"
           Id="Package\Verifica o cumprimento dos critérios para o desbloqueio"
-          TopLeft="70,534" />
+          TopLeft="75,532" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="257,272.5">
@@ -359,18 +361,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="255,471">
+          TopLeft="257.5,471">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63"
+              EndConnector="0,61"
               Start="0,0"
-              End="0,55.5">
+              End="0,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.5" />
+                    End="0,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
