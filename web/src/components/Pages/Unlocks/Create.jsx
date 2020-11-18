@@ -112,6 +112,8 @@ const Create = () => {
           type: 'SET_ALERT',
           payload: { visible: true, ...message },
         });
+        history.push('/temp');
+        history.goBack();
       };
 
       const requests = [
