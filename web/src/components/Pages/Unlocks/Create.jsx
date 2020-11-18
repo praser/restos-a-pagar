@@ -181,6 +181,7 @@ const Create = () => {
               onSelectedRowsChange={state =>
                 setNotasEmpenhoSelecionadas(state.selectedRows)
               }
+              searchable
             />
             <FormRow>
               <SmallButtonPrimary
