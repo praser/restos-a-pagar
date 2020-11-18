@@ -24,7 +24,7 @@ import * as paths from '../../utils/paths';
 import Dashboard from '../Dashboard';
 import Navigation from '../Navigation';
 import { Container } from '../Layout';
-import { useCurrentUser, useApiRap } from '../../hooks';
+import { useCurrentUser } from '../../hooks';
 import { Context } from '../Store';
 import { getToken } from '~/utils/jwt';
 
@@ -38,29 +38,12 @@ defaults.global.defaultFontFamily =
   'Nunito,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 defaults.global.defaultFontColor = '#858796';
 
-const handleSuccess = (key, res, formatter, dispatch) => {
-  const data = {};
-  data[key] = formatter(res.data);
-  dispatch({ type: 'SET_STATUS', payload: data.status });
-};
-
 const App = () => {
   const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
-  const apiRap = useApiRap();
 
   useEffect(() => {
     dispatch({ type: 'SET_JWT', payload: getToken() });
-  }, []);
-
-  useEffect(() => {
-    apiRap.then(api => {
-      api.requests
-        .getStatus()
-        .then(res =>
-          handleSuccess('status', res, api.formatters.status, dispatch),
-        );
-    });
   }, []);
 
   const handleAlertConfirm = event => {
