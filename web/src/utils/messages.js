@@ -101,3 +101,9 @@ export const createUnlockError = getMessage({
   text:
     'Houve um erro ao gerar o lote de desbloqueio. Por favor tente novamente.',
 });
+
+export const promptGerarLote = getMessage({
+  title: 'Tem certeza?',
+  text:
+    'Esta ação não poderá ser desfeita e gerará uma CE solicitando que a área financeira faça o desbloqueio das notas de empenho selecionadas. Deseja prosseguir?',
+});

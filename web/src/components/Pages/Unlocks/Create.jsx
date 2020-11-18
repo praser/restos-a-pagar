@@ -17,6 +17,7 @@ import {
   unlocksFail,
   createUnlockError,
   createUnlockSuccess,
+  promptGerarLote,
 } from '~/utils/messages';
 import Table from '~/components/Table';
 import { primary, danger } from '~/utils/colors';
@@ -135,8 +136,8 @@ const Create = () => {
   return (
     <Layout>
       <Prompt
-        title="Tem certeza?"
-        text="Esta ação não poderá ser desfeita e gererá uma CE solicitando que a área financeira faça o desbloqueio das notas de empenho selecionadas. Deseja prosseguir?"
+        title={promptGerarLote.title}
+        text={promptGerarLote.text}
         onConfirm={handleSubmit}
         onCancel={() => setIsPromptShowing(false)}
         visible={isPromptShowing}
