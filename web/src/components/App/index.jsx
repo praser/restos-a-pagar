@@ -93,7 +93,7 @@ const App = () => {
         onConfirm={handleAlertConfirm}
       />
       <Container>
-        <Router>
+        <Router basename={process.env.REACT_APP_ROUTER_BASE}>
           {navigation()}
           <Switch>
             <PublicRoute
