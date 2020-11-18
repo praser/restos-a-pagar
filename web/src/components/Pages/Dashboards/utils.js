@@ -56,6 +56,13 @@ export const operacoesColumns = [
     grow: 2,
     format: row => formatDate(parseISO(row.dataRetiradaSuspensiva)),
   },
+  {
+    name: 'Fim vigência',
+    selector: 'dataVigencia',
+    sortable: true,
+    grow: 2,
+    format: row => formatDate(row.dataVigencia),
+  },
   { name: 'GIGOV', selector: 'gigovNome', sortable: true },
   {
     name: 'Valor repasse',
@@ -106,13 +113,6 @@ export const operacoesColumns = [
     selector: 'percentualFinanceiroDesbloqueado',
     sortable: true,
     format: row => formatPercent(row.percentualFinanceiroDesbloqueado),
-  },
-  {
-    name: 'Início vigência',
-    selector: 'dataVigencia',
-    sortable: true,
-    grow: 2,
-    format: row => formatDate(row.dataVigencia),
   },
   {
     name: 'SPA',
