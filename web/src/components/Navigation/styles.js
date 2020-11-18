@@ -12,9 +12,7 @@ export const Divider = styled.hr`
 
 export const Navbar = styled.ul`
   width: 14rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 `;
 
 export const Content = styled.div`
