@@ -121,18 +121,22 @@ const PossibleLocks = () => {
       />
 
       <Row>
-        <Card width="65%">
+        <Card width={estatisticas.estatisticasPorGestor ? '65%' : '100%'}>
           <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
-          <CardBody>
-            <LineChart data={lineChartData(estatisticas.estatisticas)} />
-          </CardBody>
+          <CardBody />
+          <LineChart data={lineChartData(estatisticas.estatisticas)} />
         </Card>
-        <Card width="33%">
-          <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
-          <CardBody>
-            <BarChart data={barChartData(estatisticas.estatisticasPorGestor)} />
-          </CardBody>
-        </Card>
+
+        {estatisticas.estatisticasPorGestor && (
+          <Card width="33%">
+            <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
+            <CardBody>
+              <BarChart
+                data={barChartData(estatisticas.estatisticasPorGestor)}
+              />
+            </CardBody>
+          </Card>
+        )}
       </Row>
       <Row>
         <Card>

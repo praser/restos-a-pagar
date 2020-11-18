@@ -22,12 +22,7 @@ export const initialState = currentUser => ({
         saldo_notas_empenho: null,
       },
     ],
-    estatisticasPorGestor: [
-      {
-        siglaGestor: '',
-        saldo_notas_empenho: 0,
-      },
-    ],
+    estatisticasPorGestor: null,
   },
 });
 
