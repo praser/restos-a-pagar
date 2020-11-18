@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import { SmallButtonSecondary } from '../Button';
 
 export const DTable = styled(DataTable)`
-  display: block;
+  width: calc(${window.innerWidth}px - 20.5rem);
 `;
 
 export const SearchField = styled.input`
