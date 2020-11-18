@@ -7,12 +7,12 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{B1BA9DFF-3C24-4BC1-ACB1-DA2886EAA2E9}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{C24F862B-C717-47DE-9D08-A0105039083C}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{D53B7FC9-4EB8-4253-B817-41F45FFE3283}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,11 +23,11 @@
       DTS:ObjectName="BD_GESTORES">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=192.168.0.56;User ID=sa;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546901;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+bOTxfPE+0G6N3Hijhd3uAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADry5L711eZ1XCDI593lz8v/cy+55t7VhqyzIVij39DNQAAAAAOgAAAAAIAACAAAAAN2Y7hqP/aKjtQuh69e9lq1lhrToAAbD9Y0WV/pb50dCAAAAAAfO96haWSNLhp18bt8nXJYSmIRvZUSX/mlJk88xowHUAAAAAEnWDyO9YB+YFLy8tlz1Od658ZebvSRr+JJ9Cvonvg/UtR5kSklI4bCtZbg5D9rKmPlDvd3KRYydAPrbbN09Wq</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD3ULb9/b+pqdxTng9mzIqxAAAAAASAAACgAAAAEAAAAHnoQKQQUskP7qHS30m402sYAAAAOFVdcUnjbdY8UFiahkjHW0p2jZWEGnOHFAAAAE/df34ThfOzMys+0+Zm3OS9JCbE</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -61,7 +61,6 @@
       DTS:refId="Package\Atualiza data do primeiro percentual de obra e a data da retirada da suspensiva"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{4238E858-4163-4338-B90F-A52463D8AA58}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -106,7 +105,6 @@
       DTS:refId="Package\Atualiza operações"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Contêiner da Sequência"
-      DTS:Disabled="True"
       DTS:DTSID="{65D1663F-1B4D-44D0-8870-F4FFE1EA6416}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -142,7 +140,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-              SQLTask:SqlStatementSource="INSERT INTO dbo.operacoes&#xA;SELECT DISTINCT&#xA;&#x9;CONVERT(INT, a.OPERACAO) AS operacao,&#xA;&#x9;CONVERT(INT, a.DV) AS dv,&#xA;&#x9;CASE CONVERT(INT, a.PROPOSTA)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.PROPOSTA)&#xA;&#x9;END AS proposta,&#xA;&#x9;CASE CONVERT(INT, a.ANO_PROPOSTA)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.ANO_PROPOSTA)&#xA;&#x9;END AS anoProposta,&#xA;&#x9;CASE CONVERT(INT, a.CONVENIO_SIAFI)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.CONVENIO_SIAFI)&#xA;&#x9;END AS convenio,&#xA;&#x9;CONVERT(INT, a.ANO_ORCAMENTARIO) AS anoOrcamentario,&#xA;&#x9;GETDATE() AS created_at,&#xA;&#x9;NULL AS updated_at,&#xA;&#x9;CONVERT(INT, b.GIGOV_NU) AS gigovId,&#xA;&#x9;CONVERT(NVARCHAR(255), b.GIGOV_NO) AS gigovNome,&#xA;&#x9;a.PROPONENTE AS proponente,&#xA;&#x9;a.UF AS uf,&#xA;&#x9;a.CONCEDENTE AS gestor,&#xA;&#x9;CONVERT(NVARCHAR(36), a.ENQUADRAMENTO_LEGISLACAO) AS enquadramentoLegislacao,&#xA;&#x9;CONVERT(NVARCHAR(62), a.COMPLEMENTO_ENQUADRAMENTO) AS enquadramentoLegislacaoComplemento,&#xA;&#x9;CONVERT(NVARCHAR(255), a.SITUACAO_CONTRATO) AS situacaoContrato,&#xA;&#x9;CONVERT(NVARCHAR(255), a.SITUACAO_CONTRATO_COMPLEMENTO) AS situacaoContratoComplemento,&#xA;&#x9;a.PERCENTUAL_FISICO_AFERIDO AS percentualFisicoAferido,&#xA;&#x9;a.PERCENTUAL_FINANCEIRO_DESBLOQUEADO AS percentualFinanceiroDesbloqueado,&#xA;&#x9;a.DATA_VIGENCIA AS dataVigencia,&#xA;&#x9;a.DATA_SPA_HOMOLOGACAO AS dataSPA,&#xA;&#x9;a.DATA_VRPL AS dataVRPL,&#xA;&#x9;a.DATA_AIO AS dataAIO,&#xA;&#x9;a.VALOR_REPASSE AS valorRepasse,&#xA;&#x9;a.OBJETO AS objeto,&#xA;&#x9;null,&#xA;&#x9;null,&#xA;&#x9;null,&#xA;&#x9;a.VALOR_DESEMBOLSADO as valorDesembolsado&#xA;FROM [DF7436SR464].[DB5469_BD_GESTORES].[dbo].[dadosBasicos] a&#xA;JOIN [DF7436SR438].[GELEV].[dbo].[DADOS_GERAIS] b&#xA;ON a.OPERACAO = b.OPERACAO&#xA;LEFT JOIN dbo.operacoes c&#xA;ON a.operacao = c.OPERACAO&#xA;WHERE c.operacao IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO dbo.operacoes&#xA;SELECT DISTINCT&#xA;&#x9;CONVERT(INT, a.OPERACAO) AS operacao,&#xA;&#x9;CONVERT(INT, a.DV) AS dv,&#xA;&#x9;CASE CONVERT(INT, a.PROPOSTA)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.PROPOSTA)&#xA;&#x9;END AS proposta,&#xA;&#x9;CASE CONVERT(INT, a.ANO_PROPOSTA)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.ANO_PROPOSTA)&#xA;&#x9;END AS anoProposta,&#xA;&#x9;CASE CONVERT(INT, a.CONVENIO_SIAFI)&#xA;&#x9;WHEN 0 THEN NULL&#xA;&#x9;ELSE CONVERT(INT, a.CONVENIO_SIAFI)&#xA;&#x9;END AS convenio,&#xA;&#x9;CONVERT(INT, a.ANO_ORCAMENTARIO) AS anoOrcamentario,&#xA;&#x9;GETDATE() AS created_at,&#xA;&#x9;NULL AS updated_at,&#xA;&#x9;CONVERT(INT, b.GIGOV_NU) AS gigovId,&#xA;&#x9;CONVERT(NVARCHAR(255), b.GIGOV_NO) AS gigovNome,&#xA;&#x9;a.PROPONENTE AS proponente,&#xA;&#x9;a.UF AS uf,&#xA;&#x9;a.CONCEDENTE AS gestor,&#xA;&#x9;CONVERT(NVARCHAR(36), a.ENQUADRAMENTO_LEGISLACAO) AS enquadramentoLegislacao,&#xA;&#x9;CONVERT(NVARCHAR(62), a.COMPLEMENTO_ENQUADRAMENTO) AS enquadramentoLegislacaoComplemento,&#xA;&#x9;CONVERT(NVARCHAR(255), a.SITUACAO_CONTRATO) AS situacaoContrato,&#xA;&#x9;CONVERT(NVARCHAR(255), a.SITUACAO_CONTRATO_COMPLEMENTO) AS situacaoContratoComplemento,&#xA;&#x9;a.PERCENTUAL_FISICO_AFERIDO AS percentualFisicoAferido,&#xA;&#x9;a.PERCENTUAL_FINANCEIRO_DESBLOQUEADO AS percentualFinanceiroDesbloqueado,&#xA;&#x9;a.DATA_VIGENCIA AS dataVigencia,&#xA;&#x9;a.DATA_SPA_HOMOLOGACAO AS dataSPA,&#xA;&#x9;a.DATA_VRPL AS dataVRPL,&#xA;&#x9;a.DATA_AIO AS dataAIO,&#xA;&#x9;a.VALOR_REPASSE AS valorRepasse,&#xA;&#x9;a.OBJETO AS objeto,&#xA;&#x9;null,&#xA;&#x9;null,&#xA;&#x9;null,&#xA;&#x9;a.VALOR_DESEMBOLSADO as valorDesembolsado,&#xA;&#x9;null&#xA;FROM [DF7436SR464].[DB5469_BD_GESTORES].[dbo].[dadosBasicos] a&#xA;JOIN [DF7436SR438].[GELEV].[dbo].[DADOS_GERAIS] b&#xA;ON a.OPERACAO = b.OPERACAO&#xA;LEFT JOIN dbo.operacoes c&#xA;ON a.operacao = c.OPERACAO&#xA;WHERE c.operacao IS NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>

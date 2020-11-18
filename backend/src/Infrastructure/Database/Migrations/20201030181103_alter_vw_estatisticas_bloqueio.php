@@ -17,8 +17,6 @@ class AlterVwEstatisticasBloqueio extends AbstractMigration
                 FROM saldos_notas_empenhos
                 GROUP BY dataReferencia
             )
-
-
             SELECT
                 MAX(a.id) AS id
                 ,c.ano AS anoExecucao
@@ -74,9 +72,7 @@ class AlterVwEstatisticasBloqueio extends AbstractMigration
                 ,d.gigovNome
                 ,f.sigla
                 ,f.nome
-
             UNION
-
             SELECT
                 MAX(a.id) AS id
                 ,c.ano AS anoExecucao
@@ -133,9 +129,7 @@ class AlterVwEstatisticasBloqueio extends AbstractMigration
                 ,d.gigovNome
                 ,f.sigla
                 ,f.nome
-
             UNION
-
             SELECT
                 MAX(a.id) AS id
                 ,c.ano AS anoExecucao
@@ -192,9 +186,7 @@ class AlterVwEstatisticasBloqueio extends AbstractMigration
                 ,d.gigovNome
                 ,f.sigla
                 ,f.nome
-
             UNION
-            
             SELECT
                 MAX(a.id) AS id
                 ,c.ano AS anoExecucao
@@ -251,9 +243,7 @@ class AlterVwEstatisticasBloqueio extends AbstractMigration
                 ,f.sigla
                 ,f.nome
             HAVING SUM(a.saldoContaContabil) - ISNULL(SUM(h.saldo), 0) > 0
-
             UNION
-
             SELECT
                 MAX(a.id) AS id
                 ,c.ano AS anoExecucao
