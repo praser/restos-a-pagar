@@ -22,8 +22,6 @@ const Highlights = ({
   snapshot,
   posicaoBase,
 }) => {
-  console.log(snapshot);
-
   const {
     quantidadeOperacoes,
     quantidadeDocumentos,
