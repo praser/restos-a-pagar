@@ -1,4 +1,4 @@
-import { formatDate } from '~/utils/dates';
+import { formatDate, parseISO } from '~/utils/dates';
 import { formatPercent, formatCurrency } from '~/utils/numbers';
 
 export const csvHeaders = [
@@ -54,7 +54,10 @@ export const operacoesColumns = [
     selector: 'dataRetiradaSuspensiva',
     sortable: true,
     grow: 2,
-    format: row => formatDate(row.dataRetiradaSuspensiva),
+    format: row => {
+      console.log(row);
+      return formatDate(parseISO(row.dataRetiradaSuspensiva));
+    },
   },
   { name: 'GIGOV', selector: 'gigovNome', sortable: true },
   {
