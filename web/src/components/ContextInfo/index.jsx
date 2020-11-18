@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   faBan,
   faDatabase,
@@ -14,7 +14,6 @@ import {
   PillSuccess,
   PillWarning,
 } from '~/components/Tipography';
-import { useApiRap } from '~/hooks';
 import { formatDate, parseISO } from '~/utils/dates';
 import { Row } from '../Layout';
 import { Context } from '../Store';

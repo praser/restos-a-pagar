@@ -1,5 +1,5 @@
 import { formatDate } from '~/utils/dates';
-import { formatPercent, formatCurrency, formatProposta } from '~/utils/numbers';
+import { formatPercent, formatCurrency } from '~/utils/numbers';
 
 export const csvHeaders = [
   { key: 'anoExecucao', label: 'anoExecucao' },
