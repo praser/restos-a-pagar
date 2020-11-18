@@ -1,0 +1,447 @@
+{
+    "source": "mockoon:1.10.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "api-mail",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 2000,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "Envia e-mails",
+                        "method": "post",
+                        "endpoint": "send",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"result\": \"error\",\n  \"message\": \"Invalid request\"\n}",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"result\": \"success\",\n  \"message\": \"The message has been sent\",\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Api-Key",
+                                        "value": "^(?!.*bad).*$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "from.email",
+                                        "value": "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "to",
+                                        "value": "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "message.subject",
+                                        "value": ".*",
+                                        "isRegex": true
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "message.body",
+                                        "value": ".*",
+                                        "isRegex": true
+                                    }
+                                ],
+                                "rulesOperator": "AND",
+                                "disableTemplating": false
+                            },
+                            {
+                                "uuid": "",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Api-Key",
+                                        "value": "",
+                                        "isRegex": true
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        },
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "api-restos-a-pagar",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 2001,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "info",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"name\": \"Restos a Pagar\",\n  \"description\": \"API REST que fornece dados relativos aos restos a pagar dos contratos de repasse sob gestão da GEOTR\",\n  \"documentation\": \"http://docs.com\",\n  \"source\": \"http://github.com\",\n  \"uptime\": 23424323,\n  \"databasePosition\": \"2020-09-15\",\n  \"databaseLastUpdate\": \"2020-09-26 11:30:00\"\n}\n",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "parametros",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n  {\n    \"anoExecucao\": 2019,\n    \"anoOrcamentario\": 2017,\n    \"dataBloqueio\": \"2019-06-30\",\n    \"dataCancelamento\": \"2019-12-31\"\n  },\n  {\n    \"anoExecucao\": 2020,\n    \"anoOrcamentario\": 2018,\n    \"dataBloqueio\": \"2020-11-14\",\n    \"dataCancelamento\": \"2020-11-30\"\n  }\n]",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "parametros/:anoOrcamentario",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"anoExecucao\": 2020,\n  \"anoOrcamentario\": {{urlParam 'anoOrcamentario'}},\n  \"dataBloqueio\": \"2020-11-14\",\n  \"dataCancelamento\": \"2020-12-31\"\n  }",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "estatisticas/:anoExecucao/bloqueio/snapshot",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"estatisticas\": [\n    {\n      \"anoExecucao\":2020,\n      \"anoOrcamentario\":2018,\n      \"data\":\"2020-07-31 17:19:04.000\",\n      \"gigovId\":0,\n      \"gigovNome\":\"\",\n      \"siglaGestor\":\"\",\n      \"nomeGestor\":\"\",\n      \"quantidadeOperacoes\":1,\n      \"quantidadeDocumentos\":1,\n      \"saldoBloqueado\":123456.78,\n      \"saldoDesbloqueado\":0,\n      \"saldoAguardandoDesbloqueio\":0,\n      \"tipoInformacaoId\":3,\n      \"tipoInformacaoDescricao\": \"Operaçoes que ainda não cumpriram os critérios de desbloqueio\"\n    },\n    {\n      \"anoExecucao\":2020,\n      \"anoOrcamentario\":2018,\n      \"data\":\"2020-08-31 17:19:04.000\",\n      \"gigovId\":0,\n      \"gigovNome\":\"\",\n      \"siglaGestor\":\"\",\n      \"nomeGestor\":\"\",\n      \"quantidadeOperacoes\":1,\n      \"quantidadeDocumentos\":1,\n      \"saldoBloqueado\":123456.78,\n      \"saldoDesbloqueado\":0,\n      \"saldoAguardandoDesbloqueio\":0,\n      \"tipoInformacaoId\":3,\n      \"tipoInformacaoDescricao\":\"Operações que ainda não cumpriram os critérios de desbloqueio\"\n    },\n    {\n      \"anoExecucao\":2020,\n      \"anoOrcamentario\":2018,\n      \"data\":\"2020-09-29 17:19:04.000\",\n      \"gigovId\":0,\n      \"gigovNome\":\"\",\n      \"siglaGestor\":\"\",\n      \"nomeGestor\":\"\",\n      \"quantidadeOperacoes\":1,\n      \"quantidadeDocumentos\":1,\n      \"saldoBloqueado\":123456.78,\n      \"saldoDesbloqueado\":0,\n      \"saldoAguardandoDesbloqueio\":0,\n      \"tipoInformacaoId\":3,\n      \"tipoInformacaoDescricao\":\"Operações que ainda não cumpriram os critérios de desbloqueio\"\n    },\n    {\n      \"anoExecucao\":2020,\n      \"anoOrcamentario\":2018,\n      \"data\":\"2020-10-30 17:19:04.000\",\n      \"gigovId\":0,\n      \"gigovNome\":\"\",\n      \"siglaGestor\":\"\",\n      \"nomeGestor\":\"\",\n      \"quantidadeOperacoes\":1,\n      \"quantidadeDocumentos\":1,\n      \"saldoBloqueado\":123456.78,\n      \"saldoDesbloqueado\":0,\n      \"saldoAguardandoDesbloqueio\":0,\n      \"tipoInformacaoId\":3,\n      \"tipoInformacaoDescricao\":\"Operações que ainda não cumpriram os critérios de desbloqueio\"\n    },\n    {\n      \"anoExecucao\":2020,\n      \"anoOrcamentario\":2018,\n      \"data\":\"2020-11-06 17:19:04.000\",\n      \"gigovId\":0,\n      \"gigovNome\":\"\",\n      \"siglaGestor\":\"\",\n      \"nomeGestor\":\"\",\n      \"quantidadeOperacoes\":1,\n      \"quantidadeDocumentos\":1,\n      \"saldoBloqueado\":123456.78,\n      \"saldoDesbloqueado\":0,\n      \"saldoAguardandoDesbloqueio\":0,\n      \"tipoInformacaoId\":3,\n      \"tipoInformacaoDescricao\":\"Operações que ainda não cumpriram os critérios de desbloqueio\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "operacoes/:anoExecucao/bloqueio",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[{\n\t\t\"id\": 38561,\n\t\t\"created_at\": \"2020-04-02 17:10:26.317\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1048388,\n\t\t\"dv\": 30,\n\t\t\"proposta\": 511942017,\n\t\t\"anoProposta\": 2017,\n\t\t\"anoOrcamentarioProposta\": 2017,\n\t\t\"convenio\": 863517,\n\t\t\"gigovId\": 7129,\n\t\t\"gigovNome\": \"GIGOV/FO\",\n\t\t\"proponente\": \"MUNICIPIO DE PEDRA BRANCA\",\n\t\t\"uf\": \"CE\",\n\t\t\"siglaGestor\": \"MC\",\n\t\t\"nomeGestor\": \"Ministério da Cidadania\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA E LIMINAR\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2021-04-02 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 731250,\n\t\t\"objeto\": \"construção de uma praça esportiva no municipio de pedra branca-ce.\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38562,\n\t\t\"created_at\": \"2020-04-02 17:10:31.667\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1054460,\n\t\t\"dv\": 56,\n\t\t\"proposta\": 384302018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 868562,\n\t\t\"gigovId\": 7132,\n\t\t\"gigovNome\": \"GIGOV/ME\",\n\t\t\"proponente\": \"MUNICIPIO DE RIO LARGO\",\n\t\t\"uf\": \"AL\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"NIVEL III Obras e serviços de engenharia\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2022-12-31 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 14850000,\n\t\t\"objeto\": \"implantação de passeios, ciclovias, passarelas e sinalização viária com requalificação do espaço público, no município de rio largo/al.\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t}, {\n\t\t\"id\": 38563,\n\t\t\"created_at\": \"2020-04-02 17:10:35.100\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1056987,\n\t\t\"dv\": 57,\n\t\t\"proposta\": 384412018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 876628,\n\t\t\"gigovId\": 7720,\n\t\t\"gigovNome\": \"GIGOV/VR\",\n\t\t\"proponente\": \"MUNICIPIO DE ENGENHEIRO PAULO DE FRONTIN\",\n\t\t\"uf\": \"RJ\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2020-12-31 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 651428.51,\n\t\t\"objeto\": \"recapeamento de rua no centro de engenheiro paulo de frontin\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38564,\n\t\t\"created_at\": \"2020-04-02 17:10:35.113\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1056996,\n\t\t\"dv\": 45,\n\t\t\"proposta\": 387852018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 880500,\n\t\t\"gigovId\": 7135,\n\t\t\"gigovNome\": \"GIGOV/PM\",\n\t\t\"proponente\": \"MUNICIPIO DE LAGOA DO TOCANTINS\",\n\t\t\"uf\": \"TO\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2022-12-28 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 222857.14,\n\t\t\"objeto\": \"pavimentação de vias no município de lagoa do tocantins \\u001a to\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38565,\n\t\t\"created_at\": \"2020-04-02 17:10:35.367\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1057157,\n\t\t\"dv\": 67,\n\t\t\"proposta\": 411182018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 874794,\n\t\t\"gigovId\": 7689,\n\t\t\"gigovNome\": \"REGOV/AN\",\n\t\t\"proponente\": \"MUNICIPIO DE MARA ROSA\",\n\t\t\"uf\": \"GO\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2022-12-31 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 270476.19,\n\t\t\"objeto\": \"construção de calçadas no município de mara rosa-go.\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38566,\n\t\t\"created_at\": \"2020-04-02 17:10:35.540\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1057261,\n\t\t\"dv\": 64,\n\t\t\"proposta\": 352018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 864732,\n\t\t\"gigovId\": 7124,\n\t\t\"gigovNome\": \"GIGOV/BR\",\n\t\t\"proponente\": \"MUNICIPIO DE SAO DOMINGOS\",\n\t\t\"uf\": \"GO\",\n\t\t\"siglaGestor\": \"MTUR\",\n\t\t\"nomeGestor\": \"CEF/MINISTERIO DO TURISMO/MTUR\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível II – Obras serviços de engenharia\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2020-10-30 18:11:02.000\",\n\t\t\"dataSPA\": \"2020-06-26 18:11:02.000\",\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 1295019.16,\n\t\t\"objeto\": \"apoio a projeto de infraestrutura turística - construção e reforma na orla do lago de são domingos/go.\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38567,\n\t\t\"created_at\": \"2020-04-02 17:10:37.843\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1058610,\n\t\t\"dv\": 94,\n\t\t\"proposta\": 423672018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 870198,\n\t\t\"gigovId\": 7130,\n\t\t\"gigovNome\": \"GIGOV/GO\",\n\t\t\"proponente\": \"MUNICIPIO DE OUVIDOR\",\n\t\t\"uf\": \"GO\",\n\t\t\"siglaGestor\": \"MTUR\",\n\t\t\"nomeGestor\": \"CEF/MINISTERIO DO TURISMO/MTUR\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2021-11-30 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 308571.43,\n\t\t\"objeto\": \"apoio a projetos de infraestrutura turística - reforma da praça do bosque no município de ouvidor-go/2ª etapa\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38568,\n\t\t\"created_at\": \"2020-04-02 17:08:56.600\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 402325,\n\t\t\"dv\": 23,\n\t\t\"proposta\": 0,\n\t\t\"anoProposta\": 0,\n\t\t\"anoOrcamentarioProposta\": 2012,\n\t\t\"convenio\": 678856,\n\t\t\"gigovId\": 7138,\n\t\t\"gigovNome\": \"GIGOV/RJ\",\n\t\t\"proponente\": \"MUNICIPIO DE RIO DE JANEIRO - RJ\",\n\t\t\"uf\": \"RJ\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PAC\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"N/A\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA PARCIAL\",\n\t\t\"percentualFisicoAferido\": 17.34,\n\t\t\"percentualFinanceiroDesbloqueado\": 17.14,\n\t\t\"dataVigencia\": \"2021-08-19 18:11:02.000\",\n\t\t\"dataSPA\": \"2013-12-06 18:11:02.000\",\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": \"2014-03-21 18:11:02.000\",\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 83490000,\n\t\t\"objeto\": \"EXECUCAO DE OBRAS DE CONTENCAO DE ENCOSTAS EM 19 SETORES DE ALTO RISCO - ALEMAO E PENHA\",\n\t\t\"valorDesembolsado\": 15032400.07,\n\t\t\"aptaDesbloqueio\": false\n\t},\n\t{\n\t\t\"id\": 38569,\n\t\t\"created_at\": \"2020-04-02 17:10:31.680\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1054465,\n\t\t\"dv\": 63,\n\t\t\"proposta\": 387092018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 868585,\n\t\t\"gigovId\": 7695,\n\t\t\"gigovNome\": \"GIGOV/CA\",\n\t\t\"proponente\": \"MUNICIPIO DE FEIRA NOVA\",\n\t\t\"uf\": \"PE\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2023-11-20 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 222857.14,\n\t\t\"objeto\": \"recapeamento asfaltico em diversas ruas do município de feira nova/pe\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t},\n\t{\n\t\t\"id\": 38510,\n\t\t\"created_at\": \"2020-04-02 17:10:35.147\",\n\t\t\"updated_at\": \"2020-11-05 10:00:02.750\",\n\t\t\"anoExecucao\": 2020,\n\t\t\"anoOrcamentario\": 2018,\n\t\t\"operacao\": 1057032,\n\t\t\"dv\": 15,\n\t\t\"proposta\": 393532018,\n\t\t\"anoProposta\": 2018,\n\t\t\"anoOrcamentarioProposta\": 2018,\n\t\t\"convenio\": 881073,\n\t\t\"gigovId\": 7701,\n\t\t\"gigovNome\": \"GIGOV/FS\",\n\t\t\"proponente\": \"MUNICIPIO DE BONINAL\",\n\t\t\"uf\": \"BA\",\n\t\t\"siglaGestor\": \"MDR\",\n\t\t\"nomeGestor\": \"Ministério do Desenvolvimento Regional\",\n\t\t\"enquadramentoLegislacao\": \"PI nº 424/2016\",\n\t\t\"enquadramentoLegislacaoComplemento\": \"Nível I – Obras e serviços de engenharia (Regime Simplificado)\",\n\t\t\"situacaoContrato\": \"CONTRATADA\",\n\t\t\"situacaoContratoComplemento\": \"SUSPENSIVA\",\n\t\t\"percentualFisicoAferido\": 0,\n\t\t\"percentualFinanceiroDesbloqueado\": 0,\n\t\t\"dataVigencia\": \"2022-05-05 18:11:02.000\",\n\t\t\"dataSPA\": null,\n\t\t\"dataVRPL\": null,\n\t\t\"dataAIO\": null,\n\t\t\"dataRetiradaSuspensiva\": null,\n\t\t\"dataCumprimentoCriteriosDesbloqueio\": null,\n\t\t\"valorRepasse\": 274290,\n\t\t\"objeto\": \"reforma e revitalização de canteiros centrais das ruas aurélio josé de souza e rua josé de souza guedes, na cidade de boninal, bahia.\",\n\t\t\"valorDesembolsado\": 0,\n\t\t\"aptaDesbloqueio\": true\n\t}\n]",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "notas-empenho/:anoOrcamentario/aptas-desbloqueio",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n  {\n    \"documento\": \"2018NE0001\",\n    \"anoOrcamentario\": 2018,\n    \"dataEmissao\": \"2018-02-23\",\n    \"saldoContaContabil\": 50000.00,\n    \"operacaoId\": 38561,\n  \t\"operacao\": 1048388,\n  \t\"proposta\": 511942017,\n  \t\"convenio\": 863517\n  }\n]",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "notas-empenho/lotes-desbloqueio",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"sequencial\": 1,\n  \"ano\": 2020,\n  \"ce\": \"CE GEOTR 035/2020\",\n  \"matricula\": \"c091800\",\n  \"nome\": \"Rubens Praser Júnior\",\n  \"unidadeId\": 5385,\n  \"uniodadeSigla\": \"GEOTR\",\n  \"notasEmpenho\": [\n    \"2018NE0001\"\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": false
+                    }
+                ],
+                "proxyMode": true,
+                "proxyHost": "http://localhost:3000",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Methods",
+                        "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Headers",
+                        "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With, X-Token"
+                    }
+                ],
+                "proxyReqHeaders": [],
+                "proxyResHeaders": []
+            }
+        },
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "api-expedientes-governo",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 2002,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "expedientes",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"co_expediente\": {{faker 'random.number'}},\n  \"co_unidade\": \"5385\",\n  \"co_tipo\": \"{{body 'expediente.co_tipo'}}\",\n  \"co_usuario\": \"c091800\" ,\n  \"nu_expediente\": {{faker 'random.number'}},\n  \"dh_inclusao\": \"2020-11-13\",\n  \"tx_observacao\": \"{{faker 'lorem.paragraph'}}\",\n  \"tx_assunto\": \"{{body 'expediente.tx_assunto'}}\",\n  \"co_classificacao\": {{body 'expediente.co_classificacao'}},\n  \"co_grupo\": \"{{body 'expediente.co_grupo'}}\",\n  \"tx_destino\": \"{{body 'expediente.tx_destino'}}\",\n  \"ic_excluido\": false,\n  \"co_usuario_alt\": null,\n  \"dh_alteracao\": null,\n  \"aa_expediente\": \"2020\",\n  \"tx_identificacao\": \"CE GEOTR {{faker 'random.number'}}/2020 #CONFIDENCIAL {{body 'expediente.co_grupo'}}\",\n  \"sg_unidade\": \"GEOTR\"\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
