@@ -77,7 +77,7 @@ const Highlights = ({
         <Highlight
           icon={faLock}
           siblings={4}
-          title={`Bloqueado até ${formatDate(posicaoBase)}`}
+          title={`Bloqueado em ${formatDate(posicaoBase)}`}
           variant="danger"
         >
           {formatCurrencyShort(saldoBloqueado)}
