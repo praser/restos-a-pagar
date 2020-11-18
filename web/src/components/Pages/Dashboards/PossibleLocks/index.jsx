@@ -153,6 +153,7 @@ const PossibleLocks = () => {
               striped
               highlightOnHover
               noDataComponent="Ainda não tenho nada para mostrar aqui..."
+              searchable
             />
           </CardBody>
         </Card>

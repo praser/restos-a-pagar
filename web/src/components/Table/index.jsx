@@ -3,7 +3,7 @@ import { formatProposta } from '~/utils/numbers';
 import Search from './Search';
 import { DTable } from './styles';
 
-const Table = ({ data, ...rest }) => {
+const Table = ({ data, searchable, ...rest }) => {
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
@@ -18,8 +18,6 @@ const Table = ({ data, ...rest }) => {
       (item.convenio &&
         `${item.convenio}`.toLowerCase().includes(filterText.toLowerCase())),
   );
-
-  console.log(data);
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
@@ -43,7 +41,8 @@ const Table = ({ data, ...rest }) => {
       {...rest}
       data={filteredItems}
       subHeader
-      subHeaderComponent={subHeaderComponentMemo}
+      subHeaderComponent={searchable && subHeaderComponentMemo}
+      responsive
     />
   );
 };
