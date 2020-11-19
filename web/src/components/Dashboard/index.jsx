@@ -1,7 +1,7 @@
 import { getYear, isBefore, isWithinInterval } from 'date-fns';
 import { parseISO } from 'date-fns/esm';
 import { first } from 'lodash';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Layout from '~/components/Layout/Internal';
 import {
@@ -11,7 +11,6 @@ import {
   possibleLocksPath,
 } from '~/utils/paths';
 import { useApiRap } from '../../hooks';
-import { Context } from '../Store';
 
 const currYearparam = params => {
   const currYear = getYear(new Date());
@@ -53,30 +52,13 @@ const getLink = params => {
   return joinPath(cancellationsPath, [anoOrcamentario]);
 };
 
-const handleSuccess = (key, res, formatter, dispatch) => {
-  const data = {};
-  data[key] = formatter(res.data);
-  dispatch({ type: 'SET_STATUS', payload: data.status });
-};
-
 const Dashboard = () => {
   const [destiny, setDestiny] = useState();
-  const dispatch = useContext(Context)[1];
   const apiRap = useApiRap();
 
   useEffect(() => {
     apiRap.then(api => {
       api.requests.getParams().then(res => setDestiny(getLink(res.data)));
-    });
-  }, []);
-
-  useEffect(() => {
-    apiRap.then(api => {
-      api.requests
-        .getStatus()
-        .then(res =>
-          handleSuccess('status', res, api.formatters.status, dispatch),
-        );
     });
   }, []);
 

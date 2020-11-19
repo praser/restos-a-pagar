@@ -177,7 +177,7 @@ const Create = () => {
               noDataComponent="Ainda não tenho nada para mostrar aqui..."
               contextMessage={{
                 singular: 'nota de empenho',
-                plural: 'notas de emepenho',
+                plural: 'notas de empenho',
                 message: 'para incluir no lote',
               }}
               onSelectedRowsChange={state =>

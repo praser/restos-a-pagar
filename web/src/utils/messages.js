@@ -94,7 +94,7 @@ export const unlocksFail = getMessage({
 export const createUnlockSuccess = ({ lote, quantidade, ce }) =>
   getMessage({
     title: 'Legal!',
-    text: `O lote de desbloqueio ${lote} contendo ${quantidade} notas de empenho foi gerado com sucesso e a área financeira foi notificada através da CE ${ce}. Aguarde o processamento do lote.`,
+    text: `O lote de desbloqueio ${lote} contendo ${quantidade} notas de empenho foi gerado com sucesso e a área financeira foi notificada através da ${ce}. Aguarde o processamento do lote.`,
   });
 
 export const createUnlockError = getMessage({

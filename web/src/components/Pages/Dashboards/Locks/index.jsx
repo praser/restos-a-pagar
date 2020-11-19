@@ -21,7 +21,7 @@ import Table from '../../../Table';
 import Heading from '../Heading';
 import Highlights from './Highlights';
 import { DoughnutChart, LineChart } from '../../../Chart';
-import { lineChartData } from './lineChart';
+import { lineChartData, lineChartOptions } from './lineChart';
 import { Context } from '../../../Store';
 import { formatDate, parseISO } from '~/utils/dates';
 import { primary, danger } from '~/utils/colors';
@@ -154,7 +154,10 @@ const Locks = () => {
         <Card width="65%">
           <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
           <CardBody>
-            <LineChart data={lineChartData(estatisticas)} />
+            <LineChart
+              data={lineChartData(estatisticas)}
+              {...lineChartOptions}
+            />
           </CardBody>
         </Card>
 

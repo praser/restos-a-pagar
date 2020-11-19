@@ -1,5 +1,7 @@
 import { isAfter } from 'date-fns';
-import { monthNameShort } from '~/utils/dates';
+import { formatDate } from '~/utils/dates';
+import { formatCurrency } from '~/utils/numbers';
+import { options } from '~/components/Chart/utils';
 import {
   danger,
   dangerOp20,
@@ -72,18 +74,25 @@ const extractData = data => {
         data: saldoAguardandoDesbloqueio,
       },
       {
-        label: 'Saldo bloquado',
+        label: 'Saldo bloqueado',
         data: saldoBloqueado,
       },
     ],
   };
 };
 
+const lineChartOptions = { ...options };
+
+lineChartOptions.tooltips.callbacks.label = (tooltipItem, data) =>
+  `${data.datasets[tooltipItem.datasetIndex].label}: ${formatCurrency(
+    tooltipItem.yLabel,
+  )}`;
+
+lineChartOptions.scales.xAxes[0].ticks.display = false;
+
 export const lineChartData = data => {
   const stats = extractData(data);
-  const labels = stats.labels.map(item =>
-    `${monthNameShort(item)}`.toUpperCase(),
-  );
+  const labels = stats.labels.map(item => `${formatDate(item)}`.toUpperCase());
   const dataArray = { labels, datasets: [] };
 
   stats.datasets.map((item, index) => {
@@ -97,3 +106,5 @@ export const lineChartData = data => {
   });
   return dataArray;
 };
+
+export { lineChartOptions };

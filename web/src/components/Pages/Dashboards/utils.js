@@ -2,47 +2,30 @@ import { formatDate, parseISO } from '~/utils/dates';
 import { formatPercent, formatCurrency } from '~/utils/numbers';
 
 export const csvHeaders = [
-  { key: 'anoExecucao', label: 'anoExecucao' },
-  { key: 'anoOrcamentario', label: 'anoOrcamentario' },
-  { key: 'operacao', label: 'operacao' },
-  { key: 'dv', label: 'dv' },
-  {
-    key: 'anoOrcamentarioProposta',
-    label: 'anoOrcamentarioProposta',
-  },
-  { key: 'convenio', label: 'convenio' },
-  { key: 'gigovNome', label: 'gigovNome' },
-  { key: 'proponente', label: 'proponente' },
-  { key: 'uf', label: 'uf' },
-  { key: 'siglaGestor', label: 'siglaGestor' },
-  { key: 'nomeGestor', label: 'nomeGestor' },
-  {
-    key: 'enquadramentoLegislacao',
-    label: 'enquadramentoLegislacao',
-  },
-  {
-    key: 'situacaoContratoComplemento',
-    label: 'situacaoContratoComplemento',
-  },
-  {
-    key: 'percentualFisicoAferido',
-    label: 'percentualFisicoAferido',
-  },
-  {
-    key: 'percentualFinanceiroDesbloqueado',
-    label: 'percentualFinanceiroDesbloqueado',
-  },
-  { key: 'dataVigencia', label: 'dataVigencia' },
-  { key: 'dataSPA', label: 'dataSPA' },
-  { key: 'dataVRPL', label: 'dataVRPL' },
-  { key: 'dataAIO', label: 'dataAIO' },
-  {
-    key: 'dataCumprimentoCriteriosDesbloqueio',
-    label: 'dataCumprimentoCriteriosDesbloqueio',
-  },
-  { key: 'valorRepasse', label: 'valorRepasse' },
-  { key: 'objeto', label: 'objeto' },
-  { key: 'valorDesembolsado', label: 'valorDesembolsado' },
+  { key: 'anoExecucao' },
+  { key: 'anoOrcamentario' },
+  { key: 'operacao' },
+  { key: 'dv' },
+  { key: 'anoOrcamentarioProposta' },
+  { key: 'convenio' },
+  { key: 'dataCumprimentoCriteriosDesbloqueio' },
+  { key: 'aptaDesbloqueio' },
+  { key: 'gigovNome' },
+  { key: 'proponente' },
+  { key: 'uf' },
+  { key: 'siglaGestor' },
+  { key: 'nomeGestor' },
+  { key: 'enquadramentoLegislacao' },
+  { key: 'situacaoContratoComplemento' },
+  { key: 'percentualFisicoAferido' },
+  { key: 'percentualFinanceiroDesbloqueado' },
+  { key: 'dataVigencia' },
+  { key: 'dataSPA' },
+  { key: 'dataVRPL' },
+  { key: 'dataAIO' },
+  { key: 'valorRepasse' },
+  { key: 'objeto' },
+  { key: 'valorDesembolsado' },
 ];
 
 export const operacoesColumns = [
@@ -68,7 +51,9 @@ export const operacoesColumns = [
     name: 'Valor repasse',
     selector: 'valorRepasse',
     sortable: true,
-    format: row => formatCurrency(row.valorDesembolsado),
+    format: row => {
+      return formatCurrency(row.valorDesembolsado);
+    },
   },
   {
     name: 'Valor desembolsado',
