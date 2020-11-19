@@ -27,7 +27,7 @@ class ExpedienteGovService
       'X-Token' => $jwt,
     );
 
-    $response = $this->client->request('POST', '/expedientes', array(
+    $response = $this->client->request('POST', 'expedientes', array(
       'headers' => $headers,
       'body' => json_encode($data, JSON_THROW_ON_ERROR, 512)),
     );
