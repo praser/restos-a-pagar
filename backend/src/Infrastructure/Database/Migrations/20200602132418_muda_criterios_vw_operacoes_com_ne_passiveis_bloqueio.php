@@ -90,7 +90,7 @@ class MudaCriteriosVwOperacoesComNePassiveisBloqueio extends AbstractMigration
                 a.gigovNome,
                 a.proponente,
                 a.uf,
-                a.gestor,
+                a.siglaGestor,
                 a.enquadramentoLegislacao,
                 a.enquadramentoLegislacaoComplemento,
                 a.situacaoContrato,

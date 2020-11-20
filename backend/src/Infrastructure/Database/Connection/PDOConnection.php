@@ -40,5 +40,8 @@ class PDOConnection implements ConnectionInterface
         return $this->connection->rollBack();
     }
 
-
+    public function lastInsertId(): ?int
+    {
+        return (int) $this->connection->lastInsertId();
+    }
 }

@@ -36,6 +36,26 @@ return function (ContainerBuilder $containerBuilder) {
                 'password' => getenv("DB_PASSWORD{$suffix}"),
                 'charset' => getenv("DB_CHARSET{$suffix}") ?: DEFAULT_DB_CHARSET
             ],
+            'urls' => [
+                'apiExpedientesGov' => getenv('URL_API_EXPEDIENTES_GOV'),
+            ],
+            'smtp' => [
+                'debug' => getenv('SMPT_DEBUG'),
+                'host' => getenv('SMTP_HOST'),
+                'port' => getenv('SMTP_PORT'),
+                'fromEmail' => getenv('SMTP_FROM_EMAIL'),
+                'fromName' => getenv('SMTP_FROM_NAME'),
+            ],
+            'managers' => [
+                'gerenciaNacionalOperacao' => getenv('GERENCIA_NACIONAL_OPERACAO'),
+                'gerenciaNacionalOperacaoEmail' => getEnv('GERENCIA_NACIONAL_OPERACAO_EMAIL'),
+                'gerenteNacionalOperacao' => getenv('GERENTE_NACIONAL_OPERACAO'),
+                'gerenciaExecutivaOperacao' => getenv('GERENCIA_EXECUTIVA_OPERACAO'),
+                'gerenciaExecutivaOperacaoEmail' => getEnv('GERENCIA_EXECUTIVA_OPERACAO_EMAIL'),
+                'gerenteExecutivoOperacao' => getenv('GERENTE_EXECUTIVO_OPERACAO'),
+                'gerenciaExecutivaFinanceira' => getenv('GERENCIA_EXECUTIVA_FINANCEIRA'),
+                'gerenciaExecutivaFinanceiraEmail' => getEnv('GERENCIA_EXECUTIVA_FINANCEIRA_EMAIL'),
+            ],
         ],
     ]);
 };

@@ -33,10 +33,12 @@ class OperacaoDomain extends DomainBase
     public const DATA_SPA = 'dataSPA';
     public const DATA_VRPL = 'dataVRPL';
     public const DATA_AIO = 'dataAIO';
-    public const DATA_CUNPRIMENTO_CRITERIOS_DESBLOQUEIO = 'dataCumprimentoCriteriosDesbloqueio';
+    public const DATA_RETIRADA_SUSPENSIVA = 'dataRetiradaSuspensiva';
+    public const DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO = 'dataCumprimentoCriteriosDesbloqueio';
     public const VALOR_REPASE = 'valorRepasse';
     public const OBJETO = 'objeto';
     public const VALOR_DESEMBOLSADO = 'valorDesembolsado';
+    PUBLIC const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
 
     private $anoExecucao;
     private $anoOrcamentario;
@@ -62,10 +64,12 @@ class OperacaoDomain extends DomainBase
     private $dataSPA;
     private $dataVRPL;
     private $dataAIO;
+    private $dataRetiradaSsuspensiva;
     private $dataCumprimentoCriteriosDesbloqueio;
     private $valorRepasse;
     private $objeto;
     private $valorDesembolsado;
+    private $aptaDesbloqueio;
 
     public function __construct(array $params = [])
     {
@@ -94,10 +98,12 @@ class OperacaoDomain extends DomainBase
         $this->dataSPA = $this->parseDateTime($params[self::DATA_SPA], self::DATE_Y_M_D);
         $this->dataVRPL = $this->parseDateTime($params[self::DATA_VRPL], self::DATE_Y_M_D);
         $this->dataAIO = $this->parseDateTime($params[self::DATA_AIO], self::DATE_Y_M_D);
-        $this->dataCumprimentoCriteriosDesbloqueio = $this->parseDateTime($params[self::DATA_CUNPRIMENTO_CRITERIOS_DESBLOQUEIO], self::DATE_Y_M_D);
+        $this->dataRetiradaSuspensiva = $this->parseDateTime($params[self::DATA_RETIRADA_SUSPENSIVA], self::DATE_Y_M_D);
+        $this->dataCumprimentoCriteriosDesbloqueio = $this->parseDateTime($params[self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO], self::DATE_Y_M_D);
         $this->valorRepasse = (float) $this->setAttribute(self::VALOR_REPASE, $params);
         $this->objeto = (string) $this->setAttribute(self::OBJETO, $params);
         $this->valorDesembolsado = (float) $this->setAttribute(self::VALOR_DESEMBOLSADO, $params);
+        $this->aptaDesbloqueio = (bool) $this->setAttribute(self::APTA_DESBLOQUEIO, $params);
     }
 
     public function getAnoExecucao(): ?int
@@ -220,6 +226,11 @@ class OperacaoDomain extends DomainBase
         return $this->dataAIO;
     }
 
+    public function getDataRetiradaSuspensiva(): ?DateTime
+    {
+        return $this->dataRetiradaSuspensiva;
+    }
+
     public function getDataCumprimentoCriteriosDesbloqueio(): ?DateTime
     {
         return $this->dataCumprimentoCriteriosDesbloqueio;
@@ -238,6 +249,11 @@ class OperacaoDomain extends DomainBase
     public function getValorDesembolsado(): ?float
     {
         return $this->valorDesembolsado;
+    }
+
+    public function getAptaDesbloqueio(): ?bool
+    {
+        return $this->aptaDesbloqueio;
     }
 
     public function jsonSerialize(): array
@@ -267,10 +283,12 @@ class OperacaoDomain extends DomainBase
             self::DATA_SPA => $this->dateTimeToString($this->getDataSPA()),
             self::DATA_VRPL => $this->dateTimeToString($this->getDataVRPL()),
             self::DATA_AIO => $this->dateTimeToString($this->getDataAIO()),
-            self::DATA_CUNPRIMENTO_CRITERIOS_DESBLOQUEIO => $this->dateTimeToString($this->getDataCumprimentoCriteriosDesbloqueio()),
+            self::DATA_RETIRADA_SUSPENSIVA => $this->dateTimeToString($this->getDataRetiradaSuspensiva()),
+            self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO => $this->dateTimeToString($this->getDataCumprimentoCriteriosDesbloqueio()),
             self::VALOR_REPASE => $this->getValorRepasse(),
             self::OBJETO => $this->getObjeto(),
             self::VALOR_DESEMBOLSADO => $this->getValorDesembolsado(),
+            self::APTA_DESBLOQUEIO => $this->getAptaDesbloqueio(),
         ];
 
         return array_merge(parent::jsonSerialize(), $serializarion);

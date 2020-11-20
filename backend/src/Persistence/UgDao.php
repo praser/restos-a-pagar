@@ -10,7 +10,7 @@ use Exception;
 
 class UgDao extends DaoBase
 {
-    protected const TABLE = 'ugs';
+    protected const TABLE = 'cache.ugs';
     protected $domain = UgDomain::class;
 
     public function ugsAtivas(int $anoExecucao): ?array
