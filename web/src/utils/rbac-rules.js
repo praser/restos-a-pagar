@@ -14,6 +14,8 @@ const rules = {
       'dashboard:filter:gestor',
       'dashboard:filter:situacao',
       'unlock:create',
+      'judicialInjunction:list',
+      'judicialInjunction:create',
     ],
   },
 

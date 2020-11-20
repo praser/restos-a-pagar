@@ -19,6 +19,7 @@ import {
   updateCommitmentPath,
   ugPath,
   joinPath,
+  createJudicialInjunction,
 } from '~/utils/paths';
 import { useApiRap } from '~/hooks';
 import Can from '../Can';
@@ -91,6 +92,23 @@ const Navigation = () => {
             )}
           />
         ))}
+
+        <Can
+          perform="judicialInjunction:list"
+          yes={() => (
+            <Collapse
+              label="Liminares Judiciais"
+              icon={faBuilding}
+              collapsables={[
+                {
+                  label: 'Cadastrar',
+                  to: createJudicialInjunction,
+                  perform: 'judicialInjunction:create',
+                },
+              ]}
+            />
+          )}
+        />
 
         <Divider />
 

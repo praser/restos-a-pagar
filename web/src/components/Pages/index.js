@@ -9,10 +9,13 @@ import {
   Create as UgCreate,
   Update as UgUpdate,
 } from '~/components/Pages/Ugs';
+import { Create as UnlockCreate } from '~/components/Pages/Unlocks';
+import { Create as JudicialInjunctionCreate } from '~/components/Pages/JudicialInjunction';
 
 export {
   Cancellations,
   Error,
+  JudicialInjunctionCreate,
   Login,
   Locks,
   PossibleLocks,
@@ -20,4 +23,5 @@ export {
   UgList,
   UgUpdate,
   UpdateCommitment,
+  UnlockCreate,
 };
