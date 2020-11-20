@@ -116,7 +116,10 @@ abstract class DaoBase implements DaoInterface
             $queryBuilder = $this->getQueryBuilder();
             $query = $queryBuilder->insert(static::TABLE)->setValues($params);
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
-            return $statment->execute($queryBuilder->getValues());
+            $result =  $statment->execute($queryBuilder->getValues());
+            $lastInsertId = $this->getConnection()->lastInsertId();
+            $domain->setId($lastInsertId);
+            return $result;
         } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }

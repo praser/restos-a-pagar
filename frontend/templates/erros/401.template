@@ -1,6 +1,0 @@
-<div class="text-center">
-  <div class="error mx-auto" data-text="401">401</div>
-  <p class="lead text-gray-800 mb-5">Acesso negado</p>
-  <p class="text-gray-500 mb-0">Parece que você não tem permissão par acessar este conteúdo...</p>
-  <a href="<%= routes.dashboard.path %>">&larr; Voltar para o Dashboard</a>
-</div>

@@ -1,11 +1,11 @@
 version: "3"
-networks: 
+networks:
   restos-a-pagar-net:
     driver: bridge
 services:
   database:
     container_name: database
-    environment: 
+    environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: S3cr3t00
     image: microsoft/mssql-server-linux
@@ -16,54 +16,32 @@ services:
     restart: always
     volumes:
       - "./database:/var/opt/database"
-  php:
-    build: 
-      context: ./php
-    container_name: php
-    depends_on: 
-      - database
-    networks:
-      - restos-a-pagar-net
-    ports:
-      - 9000:9000
-    volumes:
-      - "./backend:/var/www/html"
   backend:
+    image: praser/api-restos-a-pagar
+    build:
+      context: ./backend
     container_name: backend
     depends_on:
-      - php
-    image: nginx:1.13
+      - database
     networks:
       - restos-a-pagar-net
     ports:
       - 3000:80
     volumes:
       - "./backend:/var/www/html"
-      - "./nginx/nginx.backend.conf:/etc/nginx/nginx.conf"
   auth_api:
     container_name: auth-api
-    environment: 
+    environment:
+      APP_PATH: ""
+      AUTH_DRIVER: "inMemory"
       AUTH_SECRET: secret
       AUTH_EXPIRATION: 21600
       AUTH_ISSUER: SUDEP
     image: praser/api-autenticacao
     networks:
-        - restos-a-pagar-net
-    ports:
-        - 3001:3000
-  frontend:
-    container_name: frontend
-    depends_on:
-      - backend
-      - auth_api
-    image: nginx:1.13
-    networks:
       - restos-a-pagar-net
     ports:
-      - 80:80
-    volumes:
-      - "./frontend:/var/www/html"
-      - "./nginx/nginx.frontend.conf:/etc/nginx/nginx.conf"
+      - 3001:3000
   smtp:
     container_name: smtp
     image: marcopas/docker-mailslurper

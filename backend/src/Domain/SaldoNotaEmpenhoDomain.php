@@ -11,18 +11,25 @@ class SaldoNotaEmpenhoDomain extends DomainBase
     protected const PCASP_ID = 'pcaspId';
     protected const UG_ID = 'ugId';
     public const OPERACAO_ID = 'operacaoId';
+    protected const OPERACAO = 'operacao';
+    protected const PROPOSTA = 'proposta';
+    protected const CONVENIO = 'convenio';
     protected const TIPO_RESULTADO_PRIMARIO_ID = 'tipoResultadoPrimarioId';
-    protected const ANO_ORCAMENTARIO = 'anoOrcamentario';
+    public const ANO_ORCAMENTARIO = 'anoOrcamentario';
     protected const DOCUMENTO = 'documento';
     protected const PTRES = 'ptres';
     protected const DATA_EMISSAO = 'dataEmissao';
     protected const SALDO = 'saldoContaContabil';
     protected const CONTROLE_ARQUIVO_ID = 'controleArquivoId';
     protected const DATA_REFERENCIA = 'dataReferencia';
+    protected const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
 
     private $pcaspId;
     private $ugId;
     private $operacaoId;
+    private $operacao;
+    private $proposta;
+    private $convenio;
     private $tipoResultadoPrimarioId;
     private $anoOrcamentario;
     private $documento;
@@ -31,6 +38,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
     private $saldo;
     private $controleArquivoId;
     private $dataReferencia;
+    private $aptaDesbloqueio;
 
     public function __construct(array $params = [])
     {
@@ -38,6 +46,9 @@ class SaldoNotaEmpenhoDomain extends DomainBase
         $this->pcaspId = (int) $this->setAttribute(self::PCASP_ID, $params);
         $this->ugId = (int) $this->setAttribute(self::UG_ID, $params);
         $this->operacaoId = (int) $this->setAttribute(self::OPERACAO_ID, $params);
+        $this->operacao = (int) $this->setAttribute(self::OPERACAO, $params);
+        $this->proposta = (int) $this->setAttribute(self::PROPOSTA, $params);
+        $this->convenio = (int) $this->setAttribute(self::CONVENIO, $params);
         $this->tipoResultadoPrimarioId = (int) $this->setAttribute(self::TIPO_RESULTADO_PRIMARIO_ID, $params);
         $this->anoOrcamentario = (int) $this->setAttribute(self::ANO_ORCAMENTARIO, $params);
         $this->documento = (string) $this->setAttribute(self::DOCUMENTO, $params);
@@ -46,6 +57,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
         $this->saldo = (float) $this->setAttribute(self::SALDO, $params);
         $this->controleArquivoId = (int) $this->setAttribute(self::CONTROLE_ARQUIVO_ID, $params);
         $this->dataReferencia = $this->parseDateTime($params[self::DATA_REFERENCIA], self::DATE_Y_M_D);
+        $this->aptaDesbloqueio = (bool) $this->setAttribute(self::APTA_DESBLOQUEIO, $params);
     }
 
     public function getPcaspId(): ?int
@@ -76,6 +88,21 @@ class SaldoNotaEmpenhoDomain extends DomainBase
     public function setOperacao(DomainInterface $operacao): void
     {
         !$operacao ?: $this->operacaoId = $operacao->getId();
+    }
+
+    public function getOperacao(): ?int
+    {
+        return $this->operacao;
+    }
+
+    public function getProposta(): ?int
+    {
+        return $this->proposta;
+    }
+
+    public function getConvenio(): ?int
+    {
+        return $this->convenio;
     }
 
     public function getTipoResultadoPrimarioId(): int
@@ -128,6 +155,11 @@ class SaldoNotaEmpenhoDomain extends DomainBase
         return $this->dataReferencia;
     }
 
+    public function getAptaDesbloqueio(): ?bool
+    {
+        return $this->aptaDesbloqueio;
+    }
+
     public function isValid(): bool
     {
         $v = $this->validator;
@@ -142,8 +174,8 @@ class SaldoNotaEmpenhoDomain extends DomainBase
         $v->setName(self::ANO_ORCAMENTARIO)->setValue($this->getAnoOrcamentario())->required();
         $v->setName(self::ANO_ORCAMENTARIO)->isInt($this->getAnoOrcamentario());
         $v->setName(self::DOCUMENTO)->setValue($this->getDocumento())->customPattern('\d{4}NE\d{6}')->required();
-        $v->setName(self::PTRES)->setValue($this->getOperacaoId())->required();
-        $v->setName(self::PTRES)->isInt($this->getOperacaoId());
+        $v->setName(self::PTRES)->setValue($this->getPtres())->required();
+        $v->setName(self::PTRES)->isInt($this->getPtres());
         $v->setName(self::DATA_EMISSAO)->setValue($this->getDataEmissao())->required();
         $v->setName(self::DATA_EMISSAO)->isInstanceOf($this->getDataEmissao(), DateTime::class);
         $v->setName(self::SALDO)->setValue($this->getSaldo())->required();
@@ -158,6 +190,9 @@ class SaldoNotaEmpenhoDomain extends DomainBase
             self::PCASP_ID => $this->getPcaspId(),
             self::UG_ID => $this->getUgId(),
             self::OPERACAO_ID => $this->getOperacaoId(),
+            self::OPERACAO => $this->getOperacao(),
+            self::PROPOSTA => $this->getProposta(),
+            self::CONVENIO => $this->getConvenio(),
             self::TIPO_RESULTADO_PRIMARIO_ID => $this->getTipoResultadoPrimarioId(),
             self::ANO_ORCAMENTARIO => $this->getAnoOrcamentario(),
             self::DOCUMENTO => $this->getDocumento(),
@@ -171,6 +206,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
                 ->format(DomainBase::DATE_Y_M_D_H_I_S) : null,
             self::CONTROLE_ARQUIVO_ID => $this->getControleArquivoId(),
             self::DATA_REFERENCIA => $this->dateTimeToString($this->getDataReferencia()),
+            self::APTA_DESBLOQUEIO => $this->getAptaDesbloqueio(),
         ];
 
         return array_merge(parent::jsonSerialize(), $serialization);

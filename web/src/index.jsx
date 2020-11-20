@@ -1,25 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Reset } from 'styled-reset';
-import { createGlobalStyle } from 'styled-components';
+import replaceAll from 'string.prototype.replaceall';
 import * as serviceWorker from './serviceWorker';
+import App from '~/components/App';
+import Store from '~/components/Store';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 
-import { Login } from './components/login';
-
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-  body {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'
-  }
-`;
+replaceAll.shim();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Reset />
-    <GlobalStyles />
-    <Login />
-  </React.StrictMode>,
+  <Store>
+    <App />
+  </Store>,
   document.getElementById('root'),
 );
 

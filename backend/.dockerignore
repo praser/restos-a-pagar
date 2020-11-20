@@ -1,0 +1,11 @@
+.coveralls.yml
+.DS_Store
+.env
+.gitignore
+*.md
+logs
+phpcs.xml
+phpunit.xml
+var/cache/*
+var/upload/*
+vendor
