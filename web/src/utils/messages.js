@@ -107,3 +107,17 @@ export const promptGerarLote = getMessage({
   text:
     'Esta ação não poderá ser desfeita e gerará uma CE solicitando que a área financeira faça o desbloqueio das notas de empenho selecionadas. Deseja prosseguir?',
 });
+
+export const loadOperacoes = getMessage({
+  text:
+    'Houve um problema ao carregar a lista de operações. Por favor tente novamente.',
+});
+
+export const createLiminarSuccess = getMessage({
+  title: 'Lega!',
+  text: 'A liminar foi cadastrada com sucesso.',
+});
+
+export const createLiminarFail = getMessage({
+  text: 'Houve um erro ao cadastrar a liminar. Por favor tente novamente',
+});

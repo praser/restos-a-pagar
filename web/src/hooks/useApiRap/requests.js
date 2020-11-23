@@ -1,4 +1,5 @@
 import { isNull, pickBy } from 'lodash';
+
 import getXhrClient from '~/utils/xhrClient';
 
 const search = params => {
@@ -41,6 +42,11 @@ const requests = async () => {
   };
 
   const getUnidades = async () => client.get('/unidades');
+
+  const getOperacoes = async => {
+    const path = '/operacoes';
+    return client.get(path);
+  };
 
   const getOperacoesPreBloqueio = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
@@ -87,12 +93,18 @@ const requests = async () => {
     return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
   };
 
+  const postLiminar = async args => {
+    const { payload } = args;
+    return client.post('/liminares', { ...payload });
+  };
+
   return {
     deleteUg,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,
     getGestores,
+    getOperacoes,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,
     getNotasEmpenhoAptasDesbloqueio,
@@ -102,9 +114,10 @@ const requests = async () => {
     getUg,
     getUgs,
     getUnidades,
-    postUg,
+    postLiminar,
     postLoteDesbloqueio,
     postSaldoNe,
+    postUg,
     putUg,
   };
 };

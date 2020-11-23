@@ -4,6 +4,7 @@ import {
   faBuilding,
   faDollarSign,
   faFileSignature,
+  faGavel,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Brand from './Brand';
@@ -98,7 +99,7 @@ const Navigation = () => {
           yes={() => (
             <Collapse
               label="Liminares Judiciais"
-              icon={faBuilding}
+              icon={faGavel}
               collapsables={[
                 {
                   label: 'Cadastrar',

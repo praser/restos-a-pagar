@@ -219,7 +219,7 @@ const Create = () => {
     <Layout>
       <Row>
         <Heading>
-          <PageTitle>Atualiza saldo das notas de empenho</PageTitle>
+          <PageTitle>Atualizar saldo das notas de empenho</PageTitle>
         </Heading>
       </Row>
       <Row>
