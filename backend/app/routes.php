@@ -7,6 +7,7 @@ declare(strict_types=1);
 use App\Application\Controllers\EstatisticasPreBloqueioController;
 use App\Application\Controllers\EstatisticasBloqueioController;
 use App\Application\Controllers\EstatisticasBloqueioSnapshotController;
+use App\Application\Controllers\OperacoesController;
 use App\Application\Controllers\OperacoesComEmpenhoPassivelBloqueioController;
 use App\Application\Controllers\OperacoesComEmpenhoBloqueadoController;
 use App\Application\Controllers\TipoInformacaoController;
@@ -44,6 +45,8 @@ return function (App $app) {
         $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
         $group->post('/lotes-desbloqueio', LotesDesbloqueioController::class . ':create');
     });
+
+    $app->get('/operacoes', OperacoesController::class . ':index');
 
     $app->group('/operacoes/{anoExecucao}', function (Group $group) {
         $group->get('/passiveis-bloqueio', OperacoesComEmpenhoPassivelBloqueioController::class . ':index');
