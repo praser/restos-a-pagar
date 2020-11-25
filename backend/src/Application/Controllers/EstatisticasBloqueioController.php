@@ -25,6 +25,10 @@ class EstatisticasBloqueioController extends ControllerBase
         $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
         $gestorSigla = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
 
+        $tipoInformacaoId = $tipoInformacaoId === 0 ? 3 : $tipoInformacaoId;
+        $unidadeId = $unidadeId === 0 ? NULL : $unidadeId;
+        $gestorSigla = $gestorSigla === '' ? NULL : $gestorSigla;
+
         $estatisticas = $this->dao->findByAnoExecucao($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
 
         if($estatisticas) {

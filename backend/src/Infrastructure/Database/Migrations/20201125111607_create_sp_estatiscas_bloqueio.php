@@ -16,7 +16,7 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
 
             DECLARE @datas AS TABLE(data DATE, dataReferencia DATE);
             DECLARE @bloqueios AS TABLE(dataReferencia DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldoBloqueado FLOAT);
-            DECLARE @solictacoes AS TABLE(data DATE, saldo FLOAT);
+            DECLARE @solicitacoes AS TABLE(data DATE, saldo FLOAT);
             DECLARE @desbloqueios AS TABLE(data DATE, saldo FLOAT);
 
             INSERT INTO @datas
@@ -69,7 +69,7 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
             )
             AND (
-                (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
                 OR (@siglaGestor IS NOT NULL AND f.sigla = @siglaGestor)
             )
             AND YEAR(a.dataReferencia) = @anoExecucao
@@ -81,7 +81,7 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
             GROUP BY
                 a.dataReferencia
 
-            INSERT INTO @solictacoes
+            INSERT INTO @solicitacoes
             SELECT 
                 dataSolicitacao,
                 SUM(saldo) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS saldo
@@ -115,7 +115,7 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                     OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                 )
                 AND (
-                    (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                    (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
                     OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                 )
                 AND YEAR(a.created_at) = @anoExecucao
@@ -164,7 +164,7 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                         OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                     )
                     AND (
-                        (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                        (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
                         OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                     )
                     AND YEAR(a.updated_at) = @anoExecucao
@@ -177,36 +177,54 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.updated_at)
             ) AS a
-
+            
             SELECT
-                ROW_NUMBER() OVER (ORDER BY a.data) AS id,
-                c.anoExecucao,
-                c.anoOrcamentario,
-                a.data,
-                d.gigovId,
-                d.gigovNome,
-                e.sigla AS siglaGestor,
-                e.nome AS nomeGestor,
-                ISNULL(b.quantidadeOperacoes, 0) AS quantidadeOperacoes,
-                ISNULL(b.quantidadeDocumentos, 0) AS quantidadeDocumentos,
-                ISNULL(b.saldoBloqueado, 0) AS saldoBloqueado,
-                ISNULL((SELECT TOP 1 b.saldo FROM @solictacoes AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueioSolicitado,
-                ISNULL((SELECT TOP 1 b.saldo FROM @desbloqueios AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueado,
-                @tipoInformacao AS tipoInformacaoId,
-                CASE @tipoInformacao
-                WHEN 1 THEN 'Todas as operações'
-                WHEN 2 THEN 'Operações que já cumpriram os critéreios de desbloqueio'
-                WHEN 3 THEN 'Operações que ainda não cumpriram os critérios de desbloqueio'
-                END AS tipoInformacaoDescricao
-            FROM @datas AS a
-            LEFT JOIN @bloqueios AS b
-            ON a.dataReferencia = b.dataReferencia
-            JOIN parametros AS c
-            ON YEAR(a.data) = c.anoExecucao
-            LEFT JOIN (SELECT DISTINCT gigovId, gigovNome FROM operacoes) AS d
-            ON @unidadeId = d.gigovId
-            JOIN ministerios AS e
-            ON @siglaGestor = e.sigla
+                id,
+                anoExecucao,
+                anoOrcamentario,
+                data,
+                gigovId,
+                gigovNome,
+                siglaGestor,
+                nomeGestor,
+                quantidadeOperacoes,
+                quantidadeDocumentos,
+                saldoBloqueado,
+                saldoDesbloqueioSolicitado - saldoDesbloqueado AS saldoAguardandoDesbloqueio,
+                saldoDesbloqueado,
+                tipoInformacaoId,
+                tipoInformacaoDescricao
+            FROM (
+                SELECT
+                    ROW_NUMBER() OVER (ORDER BY a.data) AS id,
+                    c.anoExecucao,
+                    c.anoOrcamentario,
+                    a.data,
+                    d.gigovId,
+                    d.gigovNome,
+                    e.sigla AS siglaGestor,
+                    e.nome AS nomeGestor,
+                    ISNULL(b.quantidadeOperacoes, 0) AS quantidadeOperacoes,
+                    ISNULL(b.quantidadeDocumentos, 0) AS quantidadeDocumentos,
+                    ISNULL(b.saldoBloqueado, 0) AS saldoBloqueado,
+                    ISNULL((SELECT TOP 1 b.saldo FROM @solicitacoes AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueioSolicitado,
+                    ISNULL((SELECT TOP 1 b.saldo FROM @desbloqueios AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueado,
+                    @tipoInformacao AS tipoInformacaoId,
+                    CASE @tipoInformacao
+                    WHEN 1 THEN CONVERT(NVARCHAR(255), 'Todas as operações')
+                    WHEN 2 THEN CONVERT(NVARCHAR(255), 'Operações que já cumpriram os critéreios de desbloqueio')
+                    WHEN 3 THEN CONVERT(NVARCHAR(255), 'Operações que ainda não cumpriram os critérios de desbloqueio')
+                    END AS tipoInformacaoDescricao
+                FROM @datas AS a
+                LEFT JOIN @bloqueios AS b
+                ON a.dataReferencia = b.dataReferencia
+                JOIN parametros AS c
+                ON YEAR(a.data) = c.anoExecucao
+                LEFT JOIN (SELECT DISTINCT gigovId, gigovNome FROM operacoes) AS d
+                ON @unidadeId = d.gigovId
+                LEFT JOIN ministerios AS e
+                ON @siglaGestor = e.sigla
+            ) AS a
 
             RETURN
         SQL;
