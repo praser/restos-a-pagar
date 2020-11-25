@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="importa_saldo_tesouro_gerencial"
   DTS:PackageType="5"
-  DTS:VersionBuild="113"
-  DTS:VersionGUID="{0806CCE2-4621-4A44-A58B-E0A5A41A66EB}">
+  DTS:VersionBuild="123"
+  DTS:VersionGUID="{B6F1F466-472A-4001-9905-6404269AABC2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -332,6 +332,15 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{4C8AA640-B8FF-4C67-B078-4553B748D155}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="anoExecucao">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{EB25D156-D9C2-4F3A-83B8-30AFE3F92041}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
@@ -398,6 +407,46 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{AE34FE66-052C-48C7-AA0A-33AAE2171CD9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="dataExecucao">
+      <DTS:VariableValue
+        DTS:DataType="7">11/25/2020 11:07:34 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB22DAEA-B017-47E7-8CE6-30FDBC9C963D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec SP_ESTATISTICAS_BLOQUEIO &quot; +  (DT_WSTR, 255) @[User::anoExecucao] + &quot;, &quot; +  (DT_WSTR, 255) @[User::tipoInformacaoId] + &quot;, &quot; +  (DT_WSTR, 255) @[User::gigovId] + &quot;, '&quot; +  (DT_WSTR, 255) @[User::siglaGestor] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="estatisticasBloqueioQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">exec SP_ESTATISTICAS_BLOQUEIO 2020, 1, 7121, 'MDR'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1CE016FB-D7FF-4252-A2E7-7F7DC4C63470}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="executarSnapshotBloqueio">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19B929DA-00E4-415C-940D-A1914CE0E7A2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="gigovId">
+      <DTS:VariableValue
+        DTS:DataType="3">7121</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{9DB6BFE5-C8D2-4A81-B54F-920F104083D5}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -444,12 +493,48 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{26814657-78E7-4848-BEBF-A8F4823D52B3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="parametrosSnapshotBloqueios">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{3E8ACCE6-740F-4CD1-A776-CD11DA87FF8D}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="qnt_rejeitados">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8DD77EF7-BE7F-4B90-AF9C-ED00CF8BA44A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="siglaGestor">
+      <DTS:VariableValue
+        DTS:DataType="8">MDR</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{617C9C8F-35BB-4A6C-A327-DA6B3D7A1141}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="tipoInformacaoId">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -466,6 +551,7 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+<<<<<<< HEAD
       DTS:refId="Package\Cria tabela temporária"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Tarefa Executar SQL"
@@ -484,11 +570,15 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Processamentos após a importação"
+=======
+      DTS:refId="Package\Atualiza o snapshot de bloqueios"
+>>>>>>> develop
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{A30CADE8-E8B1-499C-B93F-AAFB1D3951FB}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
+<<<<<<< HEAD
       DTS:ObjectName="Processamentos após a importação">
       <DTS:Variables />
       <DTS:Executables>
@@ -521,6 +611,889 @@
             </DTS:Executable>
           </DTS:Executables>
         </DTS:Executable>
+=======
+      DTS:ObjectName="Atualiza o snapshot de bloqueios">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza o snapshot de bloqueios\Coleta parametros"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C87885DD-2299-4E27-8858-3E964B4650EB}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Coleta parametros"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="SELECT TOP 1&#xA;&#x9;a.*,&#xA;&#x9;b.tipoInformacaoId&#xA;FROM (&#xA;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;b.anoExecucao,&#xA;&#x9;&#x9;d.gigovId,&#xA;&#x9;&#x9;f.sigla&#xA;&#x9;FROM saldos_notas_empenhos AS a&#xA;&#x9;JOIN parametros AS b&#xA;&#x9;ON YEAR(a.dataReferencia) = b.anoExecucao&#xA;&#x9;AND a.dataReferencia = b.dataBloqueio&#xA;&#x9;JOIN pcasp AS c&#xA;&#x9;ON a.pcaspId = c.id&#xA;&#x9;AND b.anoExecucao = c.ano&#xA;&#x9;AND b.pcaspClasse = c.classe&#xA;&#x9;AND b.pcaspGrupo = c.grupo&#xA;&#x9;AND b.pcaspSubgrupo = c.subgrupo&#xA;&#x9;AND b.pcaspTituloBloqueio = c.titulo&#xA;&#x9;JOIN operacoes AS d&#xA;&#x9;ON a.operacaoId = d.id&#xA;&#x9;JOIN ugs AS e&#xA;&#x9;ON a.ugId = e.id&#xA;&#x9;JOIN ministerios AS f&#xA;&#x9;ON e.ministerioId = f.id&#xA;&#x9;WHERE b.anoExecucao = YEAR(?)&#xA;) AS a&#xA;JOIN (&#xA;&#x9;SELECT 1 AS tipoInformacaoId&#xA;&#x9;UNION&#xA;&#x9;SELECT 2 AS tipoInformacaoId&#xA;&#x9;UNION&#xA;&#x9;SELECT 3 AS tipoInformacaoId&#xA;) AS b&#xA;ON 1 = 1"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::parametrosSnapshotBloqueios" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::dataExecucao"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{B099F9B0-F45D-4408-8E45-9753955E16FE}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Itera sobre os parametros">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+            DTS:DTSID="{3AAC1B40-9210-4798-9B53-F399EEE4041E}"
+            DTS:ObjectName="{3AAC1B40-9210-4798-9B53-F399EEE4041E}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::parametrosSnapshotBloqueios" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot"
+              DTS:CreationName="SSIS.Pipeline.3"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{F90B15EA-6EF3-4EA8-9FF2-1F8F4DD6D239}"
+              DTS:ExecutableType="SSIS.Pipeline.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Insere os dados no snapshot"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split"
+                      componentClassID="DTSTransform.ConditionalSplit.3"
+                      contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                      name="Conditional Split"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input]"
+                          description="Input to the Conditional Split Transformation"
+                          name="Conditional Split Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input].Columns[data]"
+                              cachedDataType="dbDate"
+                              cachedName="data"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[data bloqueio]"
+                          description="Output 1 of the Conditional Split Transformation"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="data bloqueio"
+                          synchronousInputId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input]"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                              name="Expression">#{Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]} == @[User::dataExecucao]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the friendly version of the expression. This expression version uses column names."
+                              expressionType="Notify"
+                              name="FriendlyExpression">data == @[User::dataExecucao]</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                              name="EvaluationOrder">0</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Default Output]"
+                          description="Default Output of the Conditional Split Transformation"
+                          exclusionGroup="1"
+                          name="Conditional Split Default Output"
+                          synchronousInputId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input]">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              name="IsDefaultOut">true</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Error Output]"
+                          description="Error Output of the Conditional Split Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Conditional Split Error Output"
+                          synchronousInputId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination"
+                      componentClassID="DTSAdapter.OLEDBDestination.3"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DB Destination"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[snapshot_estatisticas_bloqueio]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Connections[OleDbConnection]"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[anoExecucao]"
+                              cachedDataType="i4"
+                              cachedName="anoExecucao"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anoExecucao]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoExecucao]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[anoOrcamentario]"
+                              cachedDataType="i4"
+                              cachedName="anoOrcamentario"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anoOrcamentario]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoOrcamentario]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[data]"
+                              cachedDataType="dbDate"
+                              cachedName="data"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[data]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[gigovId]"
+                              cachedDataType="i4"
+                              cachedName="gigovId"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[gigovId]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovId]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[gigovNome]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="gigovNome"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[gigovNome]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovNome]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[siglaGestor]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="siglaGestor"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[siglaGestor]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[siglaGestor]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nomeGestor]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="nomeGestor"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nomeGestor]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[nomeGestor]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[quantidadeOperacoes]"
+                              cachedDataType="i4"
+                              cachedName="quantidadeOperacoes"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoes]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[quantidadeDocumentos]"
+                              cachedDataType="i4"
+                              cachedName="quantidadeDocumentos"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentos]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[saldoBloqueado]"
+                              cachedDataType="r8"
+                              cachedName="saldoBloqueado"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoBloqueado]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoBloqueado]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[saldoDesbloqueado]"
+                              cachedDataType="r8"
+                              cachedName="saldoDesbloqueado"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoDesbloqueado]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoDesbloqueado]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[tipoInformacaoId]"
+                              cachedDataType="i4"
+                              cachedName="tipoInformacaoId"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tipoInformacaoId]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoId]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[tipoInformacaoDescricao]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="tipoInformacaoDescricao"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tipoInformacaoDescricao]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoDescricao]" />
+                            <inputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[saldoAguardandoDesbloqueio]"
+                              cachedDataType="r8"
+                              cachedName="saldoAguardandoDesbloqueio"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoAguardandoDesbloqueio]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoAguardandoDesbloqueio]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                              dataType="i4"
+                              name="id" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anoExecucao]"
+                              dataType="i4"
+                              name="anoExecucao" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[anoOrcamentario]"
+                              dataType="i4"
+                              name="anoOrcamentario" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[data]"
+                              dataType="dbDate"
+                              name="data" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[gigovId]"
+                              dataType="i4"
+                              name="gigovId" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[gigovNome]"
+                              dataType="wstr"
+                              length="255"
+                              name="gigovNome" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[siglaGestor]"
+                              dataType="wstr"
+                              length="255"
+                              name="siglaGestor" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nomeGestor]"
+                              dataType="wstr"
+                              length="255"
+                              name="nomeGestor" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoes]"
+                              dataType="i4"
+                              name="quantidadeOperacoes" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentos]"
+                              dataType="i4"
+                              name="quantidadeDocumentos" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoBloqueado]"
+                              dataType="r8"
+                              name="saldoBloqueado" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoDesbloqueado]"
+                              dataType="r8"
+                              name="saldoDesbloqueado" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoAguardandoDesbloqueio]"
+                              dataType="r8"
+                              name="saldoAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tipoInformacaoId]"
+                              dataType="i4"
+                              name="tipoInformacaoId" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tipoInformacaoDescricao]"
+                              dataType="wstr"
+                              length="255"
+                              name="tipoInformacaoDescricao" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source"
+                      componentClassID="DTSAdapter.OLEDBSource.3"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="OLE DB Source"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable">User::estatisticasBloqueioQuery</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Connections[OleDbConnection]"
+                          connectionManagerID="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[SQLSRV]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                              dataType="i8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                              name="id"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoExecucao]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anoExecucao]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoExecucao]"
+                              name="anoExecucao"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoOrcamentario]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anoOrcamentario]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[anoOrcamentario]"
+                              name="anoOrcamentario"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[data]"
+                              name="data"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovId]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gigovId]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovId]"
+                              name="gigovId"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovNome]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gigovNome]"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[gigovNome]"
+                              name="gigovNome"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[siglaGestor]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[siglaGestor]"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[siglaGestor]"
+                              name="siglaGestor"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[nomeGestor]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nomeGestor]"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[nomeGestor]"
+                              name="nomeGestor"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoes]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]"
+                              name="quantidadeOperacoes"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentos]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]"
+                              name="quantidadeDocumentos"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoBloqueado]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoBloqueado]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoBloqueado]"
+                              name="saldoBloqueado"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoDesbloqueado]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoDesbloqueado]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoDesbloqueado]"
+                              name="saldoDesbloqueado"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoId]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tipoInformacaoId]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoId]"
+                              name="tipoInformacaoId"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoDescricao]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tipoInformacaoDescricao]"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[tipoInformacaoDescricao]"
+                              name="tipoInformacaoDescricao"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoAguardandoDesbloqueio]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoAguardandoDesbloqueio]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoAguardandoDesbloqueio]"
+                              name="saldoAguardandoDesbloqueio"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                              dataType="i8"
+                              name="id" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anoExecucao]"
+                              dataType="i4"
+                              name="anoExecucao" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[anoOrcamentario]"
+                              dataType="i4"
+                              name="anoOrcamentario" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[data]"
+                              dataType="dbDate"
+                              name="data" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gigovId]"
+                              dataType="i4"
+                              name="gigovId" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gigovNome]"
+                              dataType="wstr"
+                              length="255"
+                              name="gigovNome" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[siglaGestor]"
+                              dataType="wstr"
+                              length="255"
+                              name="siglaGestor" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nomeGestor]"
+                              dataType="wstr"
+                              length="255"
+                              name="nomeGestor" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoes]"
+                              dataType="i4"
+                              name="quantidadeOperacoes" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentos]"
+                              dataType="i4"
+                              name="quantidadeDocumentos" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoBloqueado]"
+                              dataType="r8"
+                              name="saldoBloqueado" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoDesbloqueado]"
+                              dataType="r8"
+                              name="saldoDesbloqueado" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tipoInformacaoId]"
+                              dataType="i4"
+                              name="tipoInformacaoId" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[tipoInformacaoDescricao]"
+                              dataType="wstr"
+                              length="255"
+                              name="tipoInformacaoDescricao" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoAguardandoDesbloqueio]"
+                              dataType="r8"
+                              name="saldoAguardandoDesbloqueio" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                              dataType="i8"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                              name="id" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anoExecucao]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anoExecucao]"
+                              name="anoExecucao" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anoOrcamentario]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[anoOrcamentario]"
+                              name="anoOrcamentario" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                              dataType="dbDate"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[data]"
+                              name="data" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gigovId]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gigovId]"
+                              name="gigovId" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gigovNome]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gigovNome]"
+                              name="gigovNome" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[siglaGestor]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[siglaGestor]"
+                              name="siglaGestor" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nomeGestor]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nomeGestor]"
+                              name="nomeGestor" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoes]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoes]"
+                              name="quantidadeOperacoes" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentos]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentos]"
+                              name="quantidadeDocumentos" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoBloqueado]"
+                              dataType="r8"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoBloqueado]"
+                              name="saldoBloqueado" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoAguardandoDesbloqueio]"
+                              dataType="r8"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoAguardandoDesbloqueio]"
+                              name="saldoAguardandoDesbloqueio" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoDesbloqueado]"
+                              dataType="r8"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoDesbloqueado]"
+                              name="saldoDesbloqueado" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tipoInformacaoId]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tipoInformacaoId]"
+                              name="tipoInformacaoId" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tipoInformacaoDescricao]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[tipoInformacaoDescricao]"
+                              name="tipoInformacaoDescricao" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[data bloqueio]"
+                      endId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      name="data bloqueio"
+                      startId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Outputs[data bloqueio]" />
+                    <path
+                      refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[OLE DB Source Output]"
+                      endId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split.Inputs[Conditional Split Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{A57E41E3-0539-41C2-89AF-B1DF7AE0279F}"
+              DTS:ObjectName="{A57E41E3-0539-41C2-89AF-B1DF7AE0279F}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::anoExecucao" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{213FBFDB-A18C-4077-8C5A-F0D8A380B7AA}"
+              DTS:ObjectName="{213FBFDB-A18C-4077-8C5A-F0D8A380B7AA}"
+              DTS:ValueIndex="1"
+              DTS:VariableName="User::gigovId" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{CEBCF9C9-3271-44D8-9D33-68680537E0F6}"
+              DTS:ObjectName="{CEBCF9C9-3271-44D8-9D33-68680537E0F6}"
+              DTS:ValueIndex="2"
+              DTS:VariableName="User::siglaGestor" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{53A88BB7-2E17-4E3E-9F8E-D30328D49D2A}"
+              DTS:ObjectName="{53A88BB7-2E17-4E3E-9F8E-D30328D49D2A}"
+              DTS:ValueIndex="3"
+              DTS:VariableName="User::tipoInformacaoId" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Atualiza o snapshot de bloqueios\Verifica se o snapshot deve ser executado"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E4C5C7DD-7A24-49F9-94FF-2EB4A066B2B7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Verifica se o snapshot deve ser executado"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+              SQLTask:SqlStatementSource="SELECT CONVERT(BIT, COUNT(*)) FROM parametros WHERE dataBloqueio = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::executarSnapshotBloqueio" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::dataExecucao"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Atualiza o snapshot de bloqueios.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{23E25F8E-8221-462D-8562-9017B3389C51}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::executarSnapshotBloqueio]"
+          DTS:From="Package\Atualiza o snapshot de bloqueios\Verifica se o snapshot deve ser executado"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Atualiza o snapshot de bloqueios\Coleta parametros" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Atualiza o snapshot de bloqueios.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{9C91F6BA-5191-4E95-A5BD-4018A74199F5}"
+          DTS:From="Package\Atualiza o snapshot de bloqueios\Coleta parametros"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Atualiza tabelas de cache"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{84282A09-4BC3-4CB5-872C-AF41608DF3A8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualiza tabelas de cache">
+      <DTS:Variables />
+      <DTS:Executables>
+>>>>>>> develop
         <DTS:Executable
           DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache"
           DTS:CreationName="STOCK:SEQUENCE"
@@ -4752,7 +5725,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:From="Package\Varre todos os arquivos da pasta"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
+<<<<<<< HEAD
       DTS:To="Package\Processamentos após a importação" />
+=======
+      DTS:To="Package\Atualiza o snapshot de bloqueios" />
+>>>>>>> develop
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:CreationName=""
@@ -4775,6 +5752,125 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+<<<<<<< HEAD
+=======
+          Size="277,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Verifica se o snapshot deve ser executado"
+          TopLeft="30,14" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Coleta parametros"
+          TopLeft="86,106" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot"
+          TopLeft="28,20" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="269,127"
+          Size="269,170"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros"
+          TopLeft="36,192" />
+        <EdgeLayout
+          Id="Package\Atualiza o snapshot de bloqueios.PrecedenceConstraints[Constraint 1]"
+          TopLeft="169.5,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Atualiza o snapshot de bloqueios.PrecedenceConstraints[Constraint]"
+          TopLeft="168.5,56">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,13.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="337,420"
+          Size="337,463"
+          Id="Package\Atualiza o snapshot de bloqueios"
+          TopLeft="803,1096" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Atualiza tabelas de cache\Percorrer as consultas\Executa consulta"
+          TopLeft="32,34" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="241,126"
+          Size="241,169"
+          Id="Package\Atualiza tabelas de cache\Percorrer as consultas"
+          TopLeft="81,100" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
+          TopLeft="61,27" />
+        <EdgeLayout
+          Id="Package\Atualiza tabelas de cache.PrecedenceConstraints[Restrição]"
+          TopLeft="198.25,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="375,325"
+          Size="375,368"
+          Id="Package\Atualiza tabelas de cache"
+          TopLeft="362,1095" />
+        <NodeLayout
+>>>>>>> develop
           Size="184,42"
           Id="Package\Cria tabela temporária"
           TopLeft="460,44" />
@@ -5110,6 +6206,43 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Id="Package\Varre todos os arquivos da pasta"
           TopLeft="106.5,117.5" />
         <EdgeLayout
+<<<<<<< HEAD
+=======
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="763,1011.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="208.5,84.5"
+              Start="0,0"
+              End="208.5,77">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3372445117335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.3372445117335"
+                    Point2="0,28.3372445117335"
+                    Point3="4,28.3372445117335" />
+                  <mssgle:LineSegment
+                    End="204.5,28.3372445117335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="204.5,28.3372445117335"
+                    Point2="208.5,28.3372445117335"
+                    Point3="208.5,32.3372445117335" />
+                  <mssgle:LineSegment
+                    End="208.5,77" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+>>>>>>> develop
           Id="Package.PrecedenceConstraints[Restrição]"
           TopLeft="548.75,86">
           <EdgeLayout.Curve>
@@ -5457,6 +6590,93 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source"
+          TopLeft="184,69" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split"
+          TopLeft="183,159" />
+        <EdgeLayout
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[OLE DB Source Output]"
+          TopLeft="259.75,111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination"
+          TopLeft="175,252" />
+        <EdgeLayout
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[data bloqueio]"
+          TopLeft="260.5,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.636640625,15.9453125,61.27328125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
