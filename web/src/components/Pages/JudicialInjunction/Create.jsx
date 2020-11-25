@@ -62,7 +62,7 @@ const Create = () => {
 
   const handleSubmit = values => {
     const {
-      code: processo,
+      code: numeroProcesso,
       name: requerente,
       issuanceDate,
       injunctionDigitalization: liminar,
@@ -72,7 +72,7 @@ const Create = () => {
     } = values;
 
     const payload = {
-      processo,
+      numeroProcesso,
       requerente,
       dataDecisao: formatAsISO(issuanceDate),
       liminar,

@@ -25,8 +25,8 @@ import { loadOperacoes } from '~/utils/messages';
 import { Row } from '~/components/Layout';
 
 const validationSchema = Yup.object().shape({
-  code: Yup.number()
-    .integer('Deve ser um número inteiro')
+  code: Yup.string()
+    .max(255, 'Deve possuir no máximo 255 caractéres')
     .required('Obrigatório'),
   name: Yup.string()
     .max(255, 'Deve possuir no máximo 255 caractéres')
@@ -88,7 +88,6 @@ const Form = ({ initialValues, onSubmit }) => {
           formik={formik}
           label="Número do processo"
           name="code"
-          type="number"
           width="20%"
         />
         <Field formik={formik} label="Requerente" name="name" />
@@ -131,7 +130,7 @@ const Form = ({ initialValues, onSubmit }) => {
               <FontAwesomeIcon icon={faFolderOpen} />
             </FindFile>
             <FileName ref={fileNameRef}>Selecione um arquivo</FileName>
-            <RemoveFile type="button" disabled={true}>
+            <RemoveFile type="button" disabled>
               <FontAwesomeIcon icon={faTrashAlt} />
             </RemoveFile>
             <input
