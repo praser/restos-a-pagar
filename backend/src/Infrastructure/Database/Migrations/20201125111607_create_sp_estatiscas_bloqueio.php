@@ -1,0 +1,221 @@
+<?php
+
+use Phinx\Migration\AbstractMigration;
+
+class CreateSpEstatiscasBloqueio extends AbstractMigration
+{
+    public function up(): void
+    {
+        $query = <<<SQL
+            CREATE PROCEDURE SP_ESTATISTICAS_BLOQUEIO
+                @anoExecucao AS INT,
+                @tipoInformacao AS INT,
+                @unidadeId AS INT,
+                @siglaGestor AS VARCHAR(10)
+            AS
+
+            DECLARE @datas AS TABLE(data DATE, dataReferencia DATE);
+            DECLARE @bloqueios AS TABLE(dataReferencia DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldoBloqueado FLOAT);
+            DECLARE @solictacoes AS TABLE(data DATE, saldo FLOAT);
+            DECLARE @desbloqueios AS TABLE(data DATE, saldo FLOAT);
+
+            INSERT INTO @datas
+            SELECT
+                *,
+                (
+                    SELECT DISTINCT TOP 1
+                        dataReferencia
+                    FROM saldos_notas_empenhos
+                    WHERE dataReferencia <= datas.data
+                    ORDER by dataReferencia DESC
+                ) AS dataReferencia
+            FROM (
+                SELECT
+                    DATEADD(DAY,number, b.dataBloqueio) AS data
+                FROM master..spt_values AS a
+                JOIN parametros AS b
+                ON YEAR(DATEADD(DAY,number, b.dataBloqueio)) = b.anoExecucao
+                WHERE type = 'P'
+                AND DATEADD(DAY, a.number, b.dataBloqueio) <= GETDATE()
+            ) AS datas
+
+
+            INSERT INTO @bloqueios
+            SELECT
+                a.dataReferencia,
+                COUNT(DISTINCT a.operacaoId) AS quantidadeOperacoes,
+                COUNT(*) AS quantidadeDocumentos,
+                SUM(a.saldoContaContabil) AS saldoBloqueado
+            FROM saldos_notas_empenhos AS a
+            JOIN parametros AS b
+            ON YEAR(a.dataReferencia) = b.anoExecucao
+            AND a.dataReferencia >= b.dataBloqueio
+            JOIN pcasp AS c
+            ON a.pcaspId = c.id
+            AND b.anoExecucao = c.ano
+            AND b.pcaspClasse = c.classe
+            AND b.pcaspGrupo = c.grupo
+            AND b.pcaspSubgrupo = c.subgrupo
+            AND	b.pcaspTituloBloqueio = c.titulo
+            JOIN operacoes AS d
+            ON a.operacaoId = d.id
+            AND d.situacaoContrato = 'CONTRATADA'
+            JOIN ugs AS e
+            ON e.id = a.ugId
+            JOIN ministerios AS f
+            ON e.ministerioId = f.id
+            WHERE (
+                (@unidadeId IS NULL AND gigovId IS NOT NULL)
+                OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
+            )
+            AND (
+                (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                OR (@siglaGestor IS NOT NULL AND f.sigla = @siglaGestor)
+            )
+            AND YEAR(a.dataReferencia) = @anoExecucao
+            AND (
+                (@tipoInformacao = 1 AND d.aptaDesbloqueio IS NOT NULL)
+                OR (@tipoInformacao = 2 AND d.aptaDesbloqueio = 1)
+                OR (@tipoInformacao = 3 AND d.aptaDesbloqueio = 0)
+            )
+            GROUP BY
+                a.dataReferencia
+
+            INSERT INTO @solictacoes
+            SELECT 
+                dataSolicitacao,
+                SUM(saldo) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS saldo
+            FROM (
+                SELECT
+                    CONVERT(DATE, a.created_at) AS dataSolicitacao,
+                    SUM(saldo) AS saldo
+                FROM lote_desbloqueio_operacoes AS a
+                JOIN parametros AS b
+                ON YEAR(a.created_at) = b.anoExecucao
+                JOIN saldos_notas_empenhos AS c
+                ON a.operacaoId = c.operacaoId
+                AND a.documento = c.documento
+                AND b.dataBloqueio = c.dataReferencia
+                JOIN pcasp AS d
+                ON b.anoExecucao = d.ano
+                AND b.pcaspClasse = d.classe
+                AND b.pcaspGrupo = d.grupo
+                AND b.pcaspSubgrupo = d.subgrupo
+                AND b.pcaspTituloBloqueio = d.titulo
+                AND c.pcaspId = d.id
+                JOIN operacoes AS e
+                ON a.operacaoId = e.id
+                AND e.situacaoContrato = 'CONTRATADA'
+                JOIN ugs AS f
+                ON c.ugId = f.id
+                JOIN ministerios AS g
+                ON f.ministerioId = g.id
+                WHERE (
+                    (@unidadeId IS NULL AND gigovId IS NOT NULL)
+                    OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
+                )
+                AND (
+                    (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                    OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
+                )
+                AND YEAR(a.created_at) = @anoExecucao
+                AND (
+                    (@tipoInformacao = 1 AND e.aptaDesbloqueio IS NOT NULL)
+                    OR (@tipoInformacao = 2 AND e.aptaDesbloqueio = 1)
+                    OR (@tipoInformacao = 3 AND e.aptaDesbloqueio = 0)
+                )
+                GROUP BY
+                    CONVERT(DATE, a.created_at)
+            ) AS a
+
+            INSERT INTO @desbloqueios
+            SELECT 
+                dataDesbloqueio,
+                SUM(saldo) OVER (ORDER BY dataDesbloqueio ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS saldo
+            FROM (
+                SELECT
+                    CONVERT(DATE, a.updated_at) AS dataDesbloqueio,
+                    SUM(a.saldo) AS saldo
+                FROM lote_desbloqueio_operacoes AS a
+                JOIN parametros AS b
+                ON YEAR(a.created_at) = b.anoExecucao
+                JOIN saldos_notas_empenhos AS c
+                ON a.operacaoId = c.operacaoId
+                AND a.documento = c.documento
+                AND b.dataBloqueio = c.dataReferencia
+                JOIN pcasp AS d
+                ON b.anoExecucao = d.ano
+                AND b.pcaspClasse = d.classe
+                AND b.pcaspGrupo = d.grupo
+                AND b.pcaspSubgrupo = d.subgrupo
+                AND b.pcaspTituloBloqueio = d.titulo
+                AND c.pcaspId = d.id
+                JOIN operacoes AS e
+                ON a.operacaoId = e.id
+                AND e.situacaoContrato = 'CONTRATADA'
+                JOIN ugs AS f
+                ON c.ugId = f.id
+                JOIN ministerios AS g
+                ON f.ministerioId = g.id
+                WHERE a.desbloqueado = 1
+                AND (
+                    (
+                        (@unidadeId IS NULL AND gigovId IS NOT NULL)
+                        OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
+                    )
+                    AND (
+                        (@siglaGestor IS NULL AND @siglaGestor IS NOT NULL)
+                        OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
+                    )
+                    AND YEAR(a.updated_at) = @anoExecucao
+                    AND (
+                        (@tipoInformacao = 1 AND e.aptaDesbloqueio IS NOT NULL)
+                        OR (@tipoInformacao = 2 AND e.aptaDesbloqueio = 1)
+                        OR (@tipoInformacao = 3 AND e.aptaDesbloqueio = 0)
+                    )
+                )
+                GROUP BY
+                    CONVERT(DATE, a.updated_at)
+            ) AS a
+
+            SELECT
+                ROW_NUMBER() OVER (ORDER BY a.data) AS id,
+                c.anoExecucao,
+                c.anoOrcamentario,
+                a.data,
+                d.gigovId,
+                d.gigovNome,
+                e.sigla AS siglaGestor,
+                e.nome AS nomeGestor,
+                ISNULL(b.quantidadeOperacoes, 0) AS quantidadeOperacoes,
+                ISNULL(b.quantidadeDocumentos, 0) AS quantidadeDocumentos,
+                ISNULL(b.saldoBloqueado, 0) AS saldoBloqueado,
+                ISNULL((SELECT TOP 1 b.saldo FROM @solictacoes AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueioSolicitado,
+                ISNULL((SELECT TOP 1 b.saldo FROM @desbloqueios AS b WHERE b.data <= a.data ORDER BY b.data DESC), 0) AS saldoDesbloqueado,
+                @tipoInformacao AS tipoInformacaoId,
+                CASE @tipoInformacao
+                WHEN 1 THEN 'Todas as operações'
+                WHEN 2 THEN 'Operações que já cumpriram os critéreios de desbloqueio'
+                WHEN 3 THEN 'Operações que ainda não cumpriram os critérios de desbloqueio'
+                END AS tipoInformacaoDescricao
+            FROM @datas AS a
+            LEFT JOIN @bloqueios AS b
+            ON a.dataReferencia = b.dataReferencia
+            JOIN parametros AS c
+            ON YEAR(a.data) = c.anoExecucao
+            LEFT JOIN (SELECT DISTINCT gigovId, gigovNome FROM operacoes) AS d
+            ON @unidadeId = d.gigovId
+            JOIN ministerios AS e
+            ON @siglaGestor = e.sigla
+
+            RETURN
+        SQL;
+
+        $this->execute($query);
+    }
+
+    public function down(): void
+    {
+        $this->execute('DROP PROCEDURE SP_ESTATISTICAS_BLOQUEIO');
+    }
+}
