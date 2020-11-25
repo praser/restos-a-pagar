@@ -21,6 +21,6 @@ class ParametrosCriteriosDesbloqueio extends AbstractMigration
             ->addIndex(['parametroId', 'inicioVigencia'], ['unique' => true])
             ->addIndex(['parametroId', 'fimVigencia'], ['unique' => true])
             ->addIndex(['parametroId', 'query'], ['unique' => true])
-            ->save();
+            ->create();
     }
 }

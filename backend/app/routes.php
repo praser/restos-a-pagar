@@ -19,6 +19,7 @@ use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
 use App\Application\Controllers\InfoController;
 use App\Application\Controllers\LotesDesbloqueioController;
+use App\Application\Controllers\LiminaresController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -72,6 +73,11 @@ return function (App $app) {
     $app->group('/parametros', function (Group $group) {
         $group->get('', ParametrosController::class . ':index');
         $group->get('/{anoOrcamentario}', ParametrosController::class . ':show');
+    });
+
+
+    $app->group('/liminares', function(Group $group) {
+        $group->post('', LiminaresController::class . ':create');
     });
 
     $app->get('/info', InfoController::class . ':index');
