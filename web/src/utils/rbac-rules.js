@@ -16,6 +16,7 @@ const rules = {
       'unlock:create',
       'judicialInjunction:list',
       'judicialInjunction:create',
+      'judicialInjunction:check',
     ],
   },
 

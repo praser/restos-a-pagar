@@ -93,10 +93,21 @@ const requests = async () => {
     return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
   };
 
+  const postLoteDesbloqueioLiminar = async args => {
+    const { payload } = args;
+    return client.post('/notas-empenho/lotes-desbloqueio/liminar-judicial', {
+      ...payload,
+    });
+  };
+
   const postLiminar = async args => {
     const { payload } = args;
     return client.post('/liminares', { ...payload });
   };
+
+  const getLiminares = async () => client.get('/liminares');
+  const putLiminarCheck = async liminarId =>
+    client.put(`/liminares-judiciais/${liminarId}/check`);
 
   return {
     deleteUg,
@@ -104,6 +115,7 @@ const requests = async () => {
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,
     getGestores,
+    getLiminares,
     getOperacoes,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,
@@ -116,8 +128,10 @@ const requests = async () => {
     getUnidades,
     postLiminar,
     postLoteDesbloqueio,
+    postLoteDesbloqueioLiminar,
     postSaldoNe,
     postUg,
+    putLiminarCheck,
     putUg,
   };
 };

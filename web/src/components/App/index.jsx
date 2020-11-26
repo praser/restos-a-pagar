@@ -11,6 +11,7 @@ import {
   Cancellations,
   Error,
   JudicialInjunctionCreate,
+  JudicialInjunctionList,
   Locks,
   Login,
   PossibleLocks,
@@ -150,6 +151,12 @@ const App = () => {
               component={JudicialInjunctionCreate}
               path={paths.createJudicialInjunction}
               perform="judicialInjunction:create"
+              exact
+            />
+            <PrivateRoute
+              component={JudicialInjunctionList}
+              path={paths.listJudicialInjunction}
+              perform="judicialInjunction:list"
               exact
             />
             <Route

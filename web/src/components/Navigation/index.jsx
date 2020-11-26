@@ -21,6 +21,7 @@ import {
   ugPath,
   joinPath,
   createJudicialInjunction,
+  listJudicialInjunction,
 } from '~/utils/paths';
 import { useApiRap } from '~/hooks';
 import Can from '../Can';
@@ -105,6 +106,11 @@ const Navigation = () => {
                   label: 'Cadastrar',
                   to: createJudicialInjunction,
                   perform: 'judicialInjunction:create',
+                },
+                {
+                  label: 'Listar',
+                  to: listJudicialInjunction,
+                  perform: 'judicialInjunction:list',
                 },
               ]}
             />

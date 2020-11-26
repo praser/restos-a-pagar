@@ -8,17 +8,23 @@ const Table = ({ data, searchable, noDataText, ...rest }) => {
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-  const filteredItems = data.filter(
-    item =>
-      (item.operacao &&
-        `${item.operacao}`.toLowerCase().includes(filterText.toLowerCase())) ||
-      (item.proposta &&
-        `${formatProposta(item.proposta)}`
-          .toLowerCase()
-          .includes(filterText.toLowerCase())) ||
-      (item.convenio &&
-        `${item.convenio}`.toLowerCase().includes(filterText.toLowerCase())),
-  );
+  const filteredItems = searchable
+    ? data.filter(
+        item =>
+          (item.operacao &&
+            `${item.operacao}`
+              .toLowerCase()
+              .includes(filterText.toLowerCase())) ||
+          (item.proposta &&
+            `${formatProposta(item.proposta)}`
+              .toLowerCase()
+              .includes(filterText.toLowerCase())) ||
+          (item.convenio &&
+            `${item.convenio}`
+              .toLowerCase()
+              .includes(filterText.toLowerCase())),
+      )
+    : data;
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
