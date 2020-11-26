@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import DataTable from 'react-data-table-component';
+
 import { SmallButtonSecondary } from '../Button';
 
 export const DTable = styled(DataTable)`
@@ -35,4 +37,9 @@ export const SearchClear = styled(SmallButtonSecondary)`
   margin-left: 0;
   padding: 0.375rem 0.75rem;
   height: 2.4rem;
+`;
+
+export const NoDataImage = styled.img`
+  height: 120px;
+  margin-right: 50px;
 `;

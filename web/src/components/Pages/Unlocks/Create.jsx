@@ -162,19 +162,8 @@ const Create = () => {
               title="Notas de empenho aptas ao desbloqueio"
               data={notasEmpenho}
               columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
-              striped
               selectableRows
               selectableRowsHighlight
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
               contextMessage={{
                 singular: 'nota de empenho',
                 plural: 'notas de empenho',

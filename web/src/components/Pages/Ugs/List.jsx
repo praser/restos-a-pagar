@@ -168,22 +168,7 @@ const Ugs = () => {
             Lista de unidades gestoras cadastradas nos sistema
           </CardHeader>
           <CardBody>
-            <Table
-              data={state.ugs}
-              columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
-              noHeader
-              striped
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
-            />
+            <Table data={state.ugs} columns={columns} noHeader />
           </CardBody>
         </Card>
       </Row>

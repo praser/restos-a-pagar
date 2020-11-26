@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { formatProposta } from '~/utils/numbers';
 import Search from './Search';
+import NoData from './NoData';
 import { DTable } from './styles';
 
-const Table = ({ data, searchable, ...rest }) => {
+const Table = ({ data, searchable, noDataText, ...rest }) => {
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
@@ -43,6 +44,17 @@ const Table = ({ data, searchable, ...rest }) => {
       subHeader
       subHeaderComponent={searchable && subHeaderComponentMemo}
       responsive
+      pagination
+      paginationComponentOptions={{
+        rowsPerPageText: 'Resultados por página:',
+        rangeSeparatorText: 'de',
+        noRowsPerPage: false,
+        selectAllRowsItem: false,
+        selectAllRowsItemText: 'Todos',
+      }}
+      striped
+      highlightOnHover
+      noDataComponent={<NoData text={noDataText} />}
     />
   );
 };

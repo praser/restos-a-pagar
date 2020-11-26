@@ -5,19 +5,19 @@ import { useHistory } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFolderOpen,
+  // faFolderOpen,
   faLongArrowAltLeft,
   faSave,
-  faTrashAlt,
+  // faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { ErrorMesssage, Field, FormRow, Input } from '../../Form';
 import { SmallButtonPrimary, SmallButtonWarning } from '../../Button';
-import {
-  FileName,
-  FindFile,
-  RemoveFile,
-  UploadFile,
-} from '../Commitment/styles';
+// import {
+//   FileName,
+//   FindFile,
+//   RemoveFile,
+//   UploadFile,
+// } from '../Commitment/styles';
 import Table from '~/components/Table';
 import { operacoesColumns as columns } from '../Dashboards/utils';
 import { useApiRap, useXHR } from '~/hooks';
@@ -176,19 +176,8 @@ const Form = ({ initialValues, onSubmit }) => {
           title="Selecione as operações alcançadas pela liminar judicial"
           data={operacoes}
           columns={columns}
-          pagination
-          paginationComponentOptions={{
-            rowsPerPageText: 'Resultados por página:',
-            rangeSeparatorText: 'de',
-            noRowsPerPage: false,
-            selectAllRowsItem: false,
-            selectAllRowsItemText: 'Todos',
-          }}
-          striped
           selectableRows
           selectableRowsHighlight
-          highlightOnHover
-          noDataComponent="Ainda não tenho nada para mostrar aqui..."
           contextMessage={{
             singular: 'operação',
             plural: 'operações',

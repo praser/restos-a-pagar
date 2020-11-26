@@ -145,18 +145,7 @@ const PossibleLocks = () => {
             <Table
               data={dataState.operacoes}
               columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
               noHeader
-              striped
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
               searchable
             />
           </CardBody>
