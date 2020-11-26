@@ -22,7 +22,7 @@ class OperacoesController extends ControllerBase
     public function index(Request $req, Response $res, array $args): Response
     {
         $seachParams = [['COLUMN' => 'situacaoContrato', 'VALUE' => 'CONTRATADA']];
-        $operacoes = $this->dao->findBy($seachParams);
+        $operacoes = $this->dao->findAllBy($seachParams);
         $res->getBody()->write(json_encode($operacoes, JSON_THROW_ON_ERROR, 512));
         return $res->withStatus(self::HTTP_OK);
     }
