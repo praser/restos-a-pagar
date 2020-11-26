@@ -551,67 +551,12 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-<<<<<<< HEAD
-      DTS:refId="Package\Cria tabela temporária"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{E34F8AA0-F034-4D62-BE15-E1981241769E}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Cria tabela temporária"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('tmp.arquivo_saldo_tesouro_gerencial', 'U') IS NOT NULL&#xA;DROP TABLE tmp.arquivo_saldo_tesouro_gerencial;&#xA;&#xA;CREATE TABLE [tmp].[arquivo_saldo_tesouro_gerencial](&#xA;&#x9;[id] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[pcaspConta] [nvarchar](4000) NOT NULL,&#xA;&#x9;[ugCodigo] [nvarchar](4000) NOT NULL,&#xA;&#x9;[convenio] [nvarchar](4000) NOT NULL,&#xA;&#x9;[operacao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[ptres] [nvarchar](4000) NOT NULL,&#xA;&#x9;[tipoResultadoPrimarioId] [nvarchar](4000) NOT NULL,&#xA;&#x9;[tipoResultadoPrimarioDescricao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[anoOrcamentario] [nvarchar](4000) NOT NULL,&#xA;&#x9;[documento] [nvarchar](4000) NOT NULL,&#xA;&#x9;[dataEmissao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[saldoContaContabil] [nvarchar](4000) NOT NULL,&#xA;&#x9;[validacao] [bit] DEFAULT 1,&#xA; CONSTRAINT [PK_tmp_arquivo_saldo_tesouro_gerencial] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[id] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Processamentos após a importação"
-=======
       DTS:refId="Package\Atualiza o snapshot de bloqueios"
->>>>>>> develop
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{A30CADE8-E8B1-499C-B93F-AAFB1D3951FB}"
+      DTS:DTSID="{8303308D-D4B1-4D8C-A36F-6CDB69DAE77A}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-<<<<<<< HEAD
-      DTS:ObjectName="Processamentos após a importação">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Processamentos após a importação\Atualiza os snapshots"
-          DTS:CreationName="STOCK:SEQUENCE"
-          DTS:Description="Sequence Container"
-          DTS:DTSID="{8303308D-D4B1-4D8C-A36F-6CDB69DAE77A}"
-          DTS:ExecutableType="STOCK:SEQUENCE"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Atualiza os snapshots">
-          <DTS:Variables />
-          <DTS:Executables>
-            <DTS:Executable
-              DTS:refId="Package\Processamentos após a importação\Atualiza os snapshots\estatisticas_bloqueio"
-              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:Description="Execute SQL Task"
-              DTS:Disabled="True"
-              DTS:DTSID="{A2C02113-2DC1-4743-844F-C2B01B71FD8E}"
-              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:LocaleID="-1"
-              DTS:ObjectName="estatisticas_bloqueio"
-              DTS:ThreadHint="0">
-              <DTS:Variables />
-              <DTS:ObjectData>
-                <SQLTask:SqlTaskData
-                  SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-                  SQLTask:SqlStatementSource="IF OBJECT_ID('snapshot.estatisticas_bloqueio','U') IS NOT NULL&#xA;DROP TABLE snapshot.estatisticas_bloqueio;&#xA;&#xA;&#xA;SELECT&#xA;&#x9;a.*&#xA;INTO snapshot.estatisticas_bloqueio&#xA;FROM vw_estatisticas_bloqueio AS a&#xA;JOIN parametros b&#xA;ON a.anoOrcamentario = b.anoOrcamentario&#xA;AND a.anoExecucao = b.anoExecucao&#xA;AND a.data = b.dataBloqueio" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-              </DTS:ObjectData>
-            </DTS:Executable>
-          </DTS:Executables>
-        </DTS:Executable>
-=======
       DTS:ObjectName="Atualiza o snapshot de bloqueios">
       <DTS:Variables />
       <DTS:Executables>
@@ -1493,137 +1438,125 @@
       DTS:ObjectName="Atualiza tabelas de cache">
       <DTS:Variables />
       <DTS:Executables>
->>>>>>> develop
         <DTS:Executable
-          DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache"
-          DTS:CreationName="STOCK:SEQUENCE"
-          DTS:Description="Contêiner da Sequência"
-          DTS:DTSID="{84282A09-4BC3-4CB5-872C-AF41608DF3A8}"
-          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:refId="Package\Atualiza tabelas de cache\Percorrer as consultas"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Contêiner do Loop Foreach"
+          DTS:DTSID="{740FE3DA-079D-4A89-BACA-C31D671842D4}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Atualiza tabelas de cache">
+          DTS:ObjectName="Percorrer as consultas">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+            DTS:DTSID="{FCA9BB7A-9E58-47A5-AF10-70064A3F6C3C}"
+            DTS:ObjectName="{FCA9BB7A-9E58-47A5-AF10-70064A3F6C3C}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::cache_queries" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
           <DTS:Variables />
           <DTS:Executables>
             <DTS:Executable
-              DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache\Percorrer as consultas"
-              DTS:CreationName="STOCK:FOREACHLOOP"
-              DTS:Description="Contêiner do Loop Foreach"
-              DTS:DTSID="{740FE3DA-079D-4A89-BACA-C31D671842D4}"
-              DTS:ExecutableType="STOCK:FOREACHLOOP"
-              DTS:LocaleID="-1"
-              DTS:ObjectName="Percorrer as consultas">
-              <DTS:ForEachEnumerator
-                DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-                DTS:DTSID="{FCA9BB7A-9E58-47A5-AF10-70064A3F6C3C}"
-                DTS:ObjectName="{FCA9BB7A-9E58-47A5-AF10-70064A3F6C3C}">
-                <DTS:ObjectData>
-                  <FEEADO
-                    EnumType="EnumerateRowsInFirstTable"
-                    VarName="User::cache_queries" />
-                </DTS:ObjectData>
-              </DTS:ForEachEnumerator>
-              <DTS:Variables />
-              <DTS:Executables>
-                <DTS:Executable
-                  DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache\Percorrer as consultas\Executa consulta"
-                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-                  DTS:Description="Tarefa Executar SQL"
-                  DTS:DTSID="{05AC85CB-B913-434C-86B8-2F6F1A35E3C5}"
-                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-                  DTS:LocaleID="-1"
-                  DTS:ObjectName="Executa consulta"
-                  DTS:ThreadHint="1">
-                  <DTS:Variables />
-                  <DTS:ObjectData>
-                    <SQLTask:SqlTaskData
-                      SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-                      SQLTask:SqlStatementSource="EXEC sp_executesql ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-                      <SQLTask:ParameterBinding
-                        SQLTask:ParameterName="0"
-                        SQLTask:DtsVariableName="User::cache_query_atual"
-                        SQLTask:ParameterDirection="Input"
-                        SQLTask:DataType="130"
-                        SQLTask:ParameterSize="-1" />
-                    </SQLTask:SqlTaskData>
-                  </DTS:ObjectData>
-                </DTS:Executable>
-              </DTS:Executables>
-              <DTS:ForEachVariableMappings>
-                <DTS:ForEachVariableMapping
-                  DTS:CreationName=""
-                  DTS:DTSID="{7283BCDF-2E89-48F3-A086-F0F04512315E}"
-                  DTS:ObjectName="{7283BCDF-2E89-48F3-A086-F0F04512315E}"
-                  DTS:ValueIndex="0"
-                  DTS:VariableName="User::cache_query_atual" />
-              </DTS:ForEachVariableMappings>
-            </DTS:Executable>
-            <DTS:Executable
-              DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
+              DTS:refId="Package\Atualiza tabelas de cache\Percorrer as consultas\Executa consulta"
               DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
               DTS:Description="Tarefa Executar SQL"
-              DTS:DTSID="{CDD733CC-E997-4A92-BD84-CE689A5F2E1D}"
+              DTS:DTSID="{05AC85CB-B913-434C-86B8-2F6F1A35E3C5}"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
               DTS:LocaleID="-1"
-              DTS:ObjectName="Prepara as consultas para gerar o cache"
+              DTS:ObjectName="Executa consulta"
               DTS:ThreadHint="1">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-                  SQLTask:SqlStatementSource="DECLARE @CACHE_SCHEMA AS VARCHAR(5) = 'cache';&#xA;DECLARE @VIEW_PREFIX AS VARCHAR(3) = 'vw_';&#xA;WITH CTE(view_name, cache_table, create_date) AS (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;name as view_name,&#xA;&#x9;&#x9;&#x9;CONCAT(@CACHE_SCHEMA, '.', REPLACE(name, @VIEW_PREFIX, '')) AS cache_table,&#xA;&#x9;&#x9;&#x9;create_date&#xA;&#x9;&#x9;FROM sys.views&#xA;&#x9;) a&#xA;)&#xA;&#xA;SELECT &#xA;&#x9;CONCAT('IF OBJECT_ID(''', cache_table,''', ''U'') IS NOT NULL DROP TABLE ', cache_table) AS sql_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;&#xA;UNION &#xA;&#xA;SELECT &#xA;&#x9;CONCAT('SELECT * INTO ', cache_table, ' FROM ', view_name) create_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;ORDER BY create_date ASC"
-                  SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-                  <SQLTask:ResultBinding
-                    SQLTask:ResultName="0"
-                    SQLTask:DtsVariableName="User::cache_queries" />
+                  SQLTask:SqlStatementSource="EXEC sp_executesql ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::cache_query_atual"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
-          <DTS:PrecedenceConstraints>
-            <DTS:PrecedenceConstraint
-              DTS:refId="Package\Processamentos após a importação\Atualiza tabelas de cache.PrecedenceConstraints[Restrição]"
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{49D07E96-6339-4648-A35C-7A8CC40F3C44}"
-              DTS:From="Package\Processamentos após a importação\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
-              DTS:LogicalAnd="True"
-              DTS:ObjectName="Restrição"
-              DTS:To="Package\Processamentos após a importação\Atualiza tabelas de cache\Percorrer as consultas" />
-          </DTS:PrecedenceConstraints>
+              DTS:DTSID="{7283BCDF-2E89-48F3-A086-F0F04512315E}"
+              DTS:ObjectName="{7283BCDF-2E89-48F3-A086-F0F04512315E}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::cache_query_atual" />
+          </DTS:ForEachVariableMappings>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Processamentos após a importação\Marca desbloqueios realizados"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{CC09ED38-D16D-4663-AF30-A133B158C669}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Marca desbloqueios realizados"
-          DTS:ThreadHint="3">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-              SQLTask:SqlStatementSource="DECLARE @data AS DATE = (SELECT MAX(dataReferencia) FROM saldos_notas_empenhos)&#xA;&#xA;UPDATE a SET&#xA;&#x9;a.desbloqueado = 1,&#xA;&#x9;a.updated_at = @data&#xA;FROM lote_desbloqueio_operacoes AS a&#xA;JOIN (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*&#xA;&#x9;FROM lote_desbloqueio_operacoes&#xA;&#x9;WHERE desbloqueado IS NULL&#xA;&#xA;&#x9;EXCEPT&#xA;&#xA;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;a.*&#xA;&#x9;FROM lote_desbloqueio_operacoes AS a&#xA;&#x9;JOIN lotes_desbloqueio AS b&#xA;&#x9;ON a.loteDesbloqueioId = b.id&#xA;&#x9;JOIN parametros AS c&#xA;&#x9;ON b.ano = c.anoExecucao&#xA;&#x9;JOIN pcasp AS d&#xA;&#x9;ON d.ano = c.anoExecucao&#xA;&#x9;AND d.classe = c.pcaspClasse&#xA;&#x9;AND d.grupo = c.pcaspGrupo&#xA;&#x9;AND d.subgrupo = c.pcaspSubgrupo&#xA;&#x9;AND d.titulo = c.pcaspTituloBloqueio&#xA;&#x9;JOIN saldos_notas_empenhos AS e&#xA;&#x9;ON e.dataReferencia = @data&#xA;&#x9;AND e.operacaoId = a.operacaoId&#xA;&#x9;AND e.documento = a.documento&#xA;&#x9;AND e.pcaspId = d.id&#xA;&#x9;WHERE a.desbloqueado IS NULL&#xA;) b&#xA;ON a.id = b.id" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Processamentos após a importação\Remove tabela temporária"
+          DTS:refId="Package\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Tarefa Executar SQL"
-          DTS:DTSID="{32A87F45-1C1E-4BD6-A5B9-86A6693B41BF}"
+          DTS:DTSID="{CDD733CC-E997-4A92-BD84-CE689A5F2E1D}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Remove tabela temporária"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ObjectName="Prepara as consultas para gerar o cache"
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-              SQLTask:SqlStatementSource="DROP TABLE tmp.arquivo_saldo_tesouro_gerencial;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DECLARE @CACHE_SCHEMA AS VARCHAR(5) = 'cache';&#xA;DECLARE @VIEW_PREFIX AS VARCHAR(3) = 'vw_';&#xA;WITH CTE(view_name, cache_table, create_date) AS (&#xA;&#x9;SELECT&#xA;&#x9;&#x9;*&#xA;&#x9;FROM (&#xA;&#x9;&#x9;SELECT&#xA;&#x9;&#x9;&#x9;name as view_name,&#xA;&#x9;&#x9;&#x9;CONCAT(@CACHE_SCHEMA, '.', REPLACE(name, @VIEW_PREFIX, '')) AS cache_table,&#xA;&#x9;&#x9;&#x9;create_date&#xA;&#x9;&#x9;FROM sys.views&#xA;&#x9;) a&#xA;)&#xA;&#xA;SELECT &#xA;&#x9;CONCAT('IF OBJECT_ID(''', cache_table,''', ''U'') IS NOT NULL DROP TABLE ', cache_table) AS sql_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;&#xA;UNION &#xA;&#xA;SELECT &#xA;&#x9;CONCAT('SELECT * INTO ', cache_table, ' FROM ', view_name) create_command,&#xA;&#x9;create_date&#xA;FROM CTE&#xA;ORDER BY create_date ASC"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::cache_queries" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Atualiza tabelas de cache.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{49D07E96-6339-4648-A35C-7A8CC40F3C44}"
+          DTS:From="Package\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\Atualiza tabelas de cache\Percorrer as consultas" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cria tabela temporária"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{E34F8AA0-F034-4D62-BE15-E1981241769E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cria tabela temporária"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('tmp.arquivo_saldo_tesouro_gerencial', 'U') IS NOT NULL&#xA;DROP TABLE tmp.arquivo_saldo_tesouro_gerencial;&#xA;&#xA;CREATE TABLE [tmp].[arquivo_saldo_tesouro_gerencial](&#xA;&#x9;[id] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[pcaspConta] [nvarchar](4000) NOT NULL,&#xA;&#x9;[ugCodigo] [nvarchar](4000) NOT NULL,&#xA;&#x9;[convenio] [nvarchar](4000) NOT NULL,&#xA;&#x9;[operacao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[ptres] [nvarchar](4000) NOT NULL,&#xA;&#x9;[tipoResultadoPrimarioId] [nvarchar](4000) NOT NULL,&#xA;&#x9;[tipoResultadoPrimarioDescricao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[anoOrcamentario] [nvarchar](4000) NOT NULL,&#xA;&#x9;[documento] [nvarchar](4000) NOT NULL,&#xA;&#x9;[dataEmissao] [nvarchar](4000) NOT NULL,&#xA;&#x9;[saldoContaContabil] [nvarchar](4000) NOT NULL,&#xA;&#x9;[validacao] [bit] DEFAULT 1,&#xA; CONSTRAINT [PK_tmp_arquivo_saldo_tesouro_gerencial] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[id] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove tabela temporária"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{32A87F45-1C1E-4BD6-A5B9-86A6693B41BF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove tabela temporária"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
+          SQLTask:SqlStatementSource="DROP TABLE tmp.arquivo_saldo_tesouro_gerencial;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Varre todos os arquivos da pasta"
@@ -5721,15 +5654,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{133647B4-E255-424E-A835-198088CBE667}"
+      DTS:DTSID="{DD28FE93-9422-4BD1-B3D5-65E9629EEF2B}"
       DTS:From="Package\Varre todos os arquivos da pasta"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-<<<<<<< HEAD
-      DTS:To="Package\Processamentos após a importação" />
-=======
       DTS:To="Package\Atualiza o snapshot de bloqueios" />
->>>>>>> develop
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:CreationName=""
@@ -5738,6 +5667,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
       DTS:To="Package\Varre todos os arquivos da pasta" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{85D37028-8678-423F-8D66-608F14F6C0B0}"
+      DTS:From="Package\Varre todos os arquivos da pasta"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Remove tabela temporária" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8960EC7F-C06A-4ACA-9D5E-3E3961F48C22}"
+      DTS:From="Package\Varre todos os arquivos da pasta"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 2"
+      DTS:To="Package\Atualiza tabelas de cache" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -5752,8 +5697,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-<<<<<<< HEAD
-=======
           Size="277,42"
           Id="Package\Atualiza o snapshot de bloqueios\Verifica se o snapshot deve ser executado"
           TopLeft="30,14" />
@@ -5870,10 +5813,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Id="Package\Atualiza tabelas de cache"
           TopLeft="362,1095" />
         <NodeLayout
->>>>>>> develop
           Size="184,42"
           Id="Package\Cria tabela temporária"
           TopLeft="460,44" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Remove tabela temporária"
+          TopLeft="106.5,1091.5" />
         <NodeLayout
           Size="272,42"
           Id="Package\Varre todos os arquivos da pasta\Atualiza banco tabelas\Atualiza a tabela tipo_resultado_primario"
@@ -6198,6 +6144,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="x"
+          ParentId="Package\Varre todos os arquivos da pasta"
+          FontInfo="{assembly:Null}"
+          Size="35,40"
+          Id="35338a7f-0bf3-41cc-96d1-ab89465b2818"
+          TopLeft="535,690" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -6206,8 +6159,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Id="Package\Varre todos os arquivos da pasta"
           TopLeft="106.5,117.5" />
         <EdgeLayout
-<<<<<<< HEAD
-=======
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="763,1011.5">
           <EdgeLayout.Curve>
@@ -6242,7 +6193,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
->>>>>>> develop
           Id="Package.PrecedenceConstraints[Restrição]"
           TopLeft="548.75,86">
           <EdgeLayout.Curve>
@@ -6264,50 +6214,32 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="221,42"
-          Id="Package\Processamentos após a importação\Marca desbloqueios realizados"
-          TopLeft="37,12" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Processamentos após a importação\Atualiza os snapshots\estatisticas_bloqueio"
-          TopLeft="20,15" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="205,116"
-          Size="205,159"
-          Id="Package\Processamentos após a importação\Atualiza os snapshots"
-          TopLeft="41,71" />
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Processamentos após a importação\Atualiza tabelas de cache\Percorrer as consultas\Executa consulta"
-          TopLeft="32,34" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="241,126"
-          Size="241,169"
-          Id="Package\Processamentos após a importação\Atualiza tabelas de cache\Percorrer as consultas"
-          TopLeft="81,100" />
-        <NodeLayout
-          Size="268,42"
-          Id="Package\Processamentos após a importação\Atualiza tabelas de cache\Prepara as consultas para gerar o cache"
-          TopLeft="61,27" />
         <EdgeLayout
-          Id="Package\Processamentos após a importação\Atualiza tabelas de cache.PrecedenceConstraints[Restrição]"
-          TopLeft="198.25,69">
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="328,1011.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31"
+              EndConnector="-120,80"
               Start="0,0"
-              End="0,23.5">
+              End="-120,72.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
+                    End="0,22.8281604844815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8281604844815"
+                    Point2="0,26.8281604844815"
+                    Point3="-4,26.8281604844815" />
+                  <mssgle:LineSegment
+                    End="-116,26.8281604844815" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116,26.8281604844815"
+                    Point2="-120,26.8281604844815"
+                    Point3="-120,30.8281604844815" />
+                  <mssgle:LineSegment
+                    End="-120,72.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6316,38 +6248,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="375,325"
-          Size="375,368"
-          Id="Package\Processamentos após a importação\Atualiza tabelas de cache"
-          TopLeft="285.5,20" />
-        <NodeLayout
-          Size="203,42"
-          Id="Package\Processamentos após a importação\Remove tabela temporária"
-          TopLeft="44.5,252.5" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="689,414"
-          Size="689,457"
-          Id="Package\Processamentos após a importação"
-          TopLeft="198,1086" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="544,1011.5">
+          Id="Package.PrecedenceConstraints[Restrição 2]"
+          TopLeft="547.5,1011.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,74.5"
+              EndConnector="0,83.5"
               Start="0,0"
-              End="0,67">
+              End="0,76">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,67" />
+                    End="0,76" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
