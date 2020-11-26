@@ -15,7 +15,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 
-
 class LotesDesbloqueioController extends ControllerBase
 {
     private $dao;
