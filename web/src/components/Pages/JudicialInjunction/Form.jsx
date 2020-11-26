@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
   issuanceDate: Yup.date()
     .max(new Date(), 'Não pode ser uma data no futuro')
     .required('Obrigatório'),
-  injunctionDigitalization: Yup.string().required('Obrigatório'),
+  // injunctionDigitalization: Yup.string().required('Obrigatório'),
   siarg: Yup.number()
     .integer('Deve ser um número inteiro')
     .required('Obrigatório'),
@@ -48,7 +48,7 @@ const validationSchema = Yup.object().shape({
 const Form = ({ initialValues, onSubmit }) => {
   const history = useHistory();
   const issuanceDateRef = useRef();
-  const fileNameRef = useRef();
+  // const fileNameRef = useRef();
   const [operacoes, setOperacoes] = useState([]);
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
@@ -110,9 +110,16 @@ const Form = ({ initialValues, onSubmit }) => {
             }
           />
         </Field>
+        <Field
+          formik={formik}
+          label="Número SIARG"
+          name="siarg"
+          width="192px"
+          type="number"
+        />
       </FormRow>
 
-      <FormRow>
+      {/* <FormRow>
         <Field
           formik={formik}
           label="Digitalização da liminar"
@@ -152,7 +159,7 @@ const Form = ({ initialValues, onSubmit }) => {
           width="192px"
           type="number"
         />
-      </FormRow>
+      </FormRow> */}
 
       <FormRow>
         <Field
