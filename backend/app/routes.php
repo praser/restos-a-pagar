@@ -14,6 +14,7 @@ use App\Application\Controllers\TipoInformacaoController;
 use App\Application\Controllers\UgController;
 use App\Application\Controllers\SaldoNotaEmpenhoController;
 use App\Application\Controllers\SaldoNotasEmpenhoAptasDesbloqueioController;
+use App\Application\Controllers\SaldoNotaEmpenhoLiminarController;
 use App\Application\Controllers\UgGestoresController;
 use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
@@ -46,6 +47,7 @@ return function (App $app) {
     $app->group('/notas-empenho', function (Group $group) {
         $group->post('/saldo', SaldoNotaEmpenhoController::class . ':create');
         $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
+        $group->get('/liminar/{id}', SaldoNotaEmpenhoLiminarController::class . ':index');
         $group->group('/lotes-desbloqueio', function (Group $subgroup) {
             $subgroup->post('', LotesDesbloqueioController::class . ':create');
             $subgroup->post('/liminar', LotesDesbloqueioLiminarController::class . ':create');

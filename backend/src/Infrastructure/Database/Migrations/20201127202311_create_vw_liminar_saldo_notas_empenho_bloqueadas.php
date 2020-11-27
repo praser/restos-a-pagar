@@ -9,6 +9,11 @@ class CreateVwLiminarSaldoNotasEmpenhoBloqueadas extends AbstractMigration
         $query = <<<SQL
             CREATE VIEW vw_liminares_saldo_notas_empenho_bloqueadas AS
             SELECT
+                b.liminarId,
+                f.operacao,
+                f.proposta,
+                f.convenio,
+                f.aptaDesbloqueio,
                 e.*
             FROM liminares AS a
             JOIN dbo.liminar_operacoes AS b
@@ -25,6 +30,8 @@ class CreateVwLiminarSaldoNotasEmpenhoBloqueadas extends AbstractMigration
             ON b.operacaoId = e.operacaoId
             AND e.dataReferencia = (SELECT MAX(dataReferencia) FROM saldos_notas_empenhos)
             AND e.pcaspId = d.id
+            JOIN operacoes AS f
+            ON b.operacaoId = f.id
         SQL;
 
         $this->execute($query);
