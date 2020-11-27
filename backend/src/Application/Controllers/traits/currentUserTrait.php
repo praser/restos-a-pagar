@@ -9,10 +9,10 @@ use App\Domain\UserDomain;
 
 trait CurrentUserTrait
 {
-  public function getCurrentUser(Request $req): UserDomain
-  {
-    $currentUser = $req->getAttributes('user')['user'];
-    $jwt = $currentUser['token'];
-    return new UserDomain(json_decode($currentUser['attributes'], true));
-  }
+    public function getCurrentUser(Request $req): UserDomain
+    {
+        $currentUser = $req->getAttributes('user')['user'];
+        $jwt = $currentUser['token'];
+        return new UserDomain(json_decode($currentUser['attributes'], true));
+    }
 }

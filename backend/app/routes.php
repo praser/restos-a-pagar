@@ -19,6 +19,7 @@ use App\Application\Controllers\UnidadesController;
 use App\Application\Controllers\ParametrosController;
 use App\Application\Controllers\InfoController;
 use App\Application\Controllers\LotesDesbloqueioController;
+use App\Application\Controllers\LotesDesbloqueioLiminarController;
 use App\Application\Controllers\LiminaresController;
 use App\Application\Controllers\LiminaresAtesteController;
 use Slim\App;
@@ -45,7 +46,10 @@ return function (App $app) {
     $app->group('/notas-empenho', function (Group $group) {
         $group->post('/saldo', SaldoNotaEmpenhoController::class . ':create');
         $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
-        $group->post('/lotes-desbloqueio', LotesDesbloqueioController::class . ':create');
+        $group->group('/lotes-desbloqueio', function (Group $subgroup) {
+            $subgroup->post('', LotesDesbloqueioController::class . ':create');
+            $subgroup->post('/liminar', LotesDesbloqueioLiminarController::class . ':create');
+        });
     });
 
     $app->get('/operacoes', OperacoesController::class . ':index');

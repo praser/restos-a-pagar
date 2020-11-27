@@ -68,7 +68,7 @@ class LiminarDomain extends DomainBase
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA,
             $params
         );
-        $this->dataAteste = $this->parseDateTime($params[self::DATA_ATESTE], self::DATE_Y_M_D);
+        $this->dataAteste = $this->parseDateTime($params[self::DATA_ATESTE], self::DATE_Y_M_D_H_I_S);
         $this->responsavelAtesteId = $this->setAttribute(self::RESPONSAVEL_ATESTE_ID, $params);
         $this->responsavelAtesteNome = $this->setAttribute(self::RESPONSAVEL_ATESTE_NOME, $params);
         $this->responsavelAtesteUnidadeId = (int) $this->setAttribute(self::RESPONSAVEL_ATESTE_UNIDADE_ID, $params);
@@ -252,7 +252,7 @@ class LiminarDomain extends DomainBase
             self::RESPONSAVEL_CADASTRAMENTO_NOME => $this->getResponsavelCadastramentoNome(),
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D => $this->getResponsavelCadastramentoUnidadeId(),
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA => $this->getResponsavelCadastramentoUnidadeSigla(),
-            self::DATA_ATESTE => $this->getDataAteste(),
+            self::DATA_ATESTE => $this->dateTimeToString($this->getDataAteste()),
             self::RESPONSAVEL_ATESTE_ID => $this->getResponsavelAtesteId(),
             self::RESPONSAVEL_ATESTE_NOME => $this->getResponsavelAtesteNome(),
             self::RESPONSAVEL_ATESTE_UNIDADE_ID => $this->getResponsavelAtesteUnidadeId(),

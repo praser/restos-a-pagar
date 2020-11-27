@@ -70,15 +70,17 @@ abstract class DaoBase implements DaoInterface
         return null;
     }
 
-    final public function findAllBy(array $params, array $orderBy = ['id', OrderBy::ASC]): ?array
+    final public function findAllBy(array $params, array $orderBy = ['id', OrderBy::ASC], $table = null): ?array
     {
+        $t = $table ? $table : static::TABLE;
         try {
             $queryBuilder = $this->getQueryBuilder();
-            $query = $queryBuilder->select(static::TABLE);
+            $query = $queryBuilder->select($t);
             foreach ($params as $param) {
                 $query->where()->equals($param[DaoInterface::COLUMN_KEY], $param[DaoInterface::VALUE_KEY]);
             }
             $query->orderBy(...$orderBy);
+            
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             $statment->execute($queryBuilder->getValues());
             return $this->inflateDomains($statment);
