@@ -43,3 +43,34 @@ export const NoDataImage = styled.img`
   height: 120px;
   margin-right: 50px;
 `;
+
+export const Table = styled.table`
+  font-size: 13px;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+export const THead = styled.thead`
+  & > tr {
+    background-color: rgba(186, 200, 243, 0.5);
+  }
+`;
+
+export const TBody = styled.tbody`
+  & > tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: rgba(186, 200, 243, 0.1);
+  }
+`;
+
+export const Th = styled.th`
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+`;
+
+export const Td = styled.td`
+  padding: 10px;
+`;
+
+export const Tr = styled.tr``;
