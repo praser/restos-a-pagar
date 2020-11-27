@@ -26,6 +26,13 @@ class LiminaresController extends ControllerBase
         $this->dao = new LiminarDao($this->container);
     }
 
+    public function index(Request $req, Response $res, array $args): Response
+    {
+        $liminares = $this->dao->all(['id', 'ASC'], 'vw_liminares');
+        $res->getBody()->write(json_encode($liminares, JSON_THROW_ON_ERROR, 512));
+        return $res->withStatus(self::HTTP_OK);
+    }
+
     public function create(Request $req, Response $res, array $args): Response
     {
         $currentUser = $this->getCurrentUser($req);

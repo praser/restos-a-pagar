@@ -56,10 +56,11 @@ abstract class DaoBase implements DaoInterface
         throw new RuntimeException('Dao exeception');
     }
 
-    final public function all(array $orderBy = ['id', OrderBy::ASC]): ?array {
+    final public function all(array $orderBy = ['id', OrderBy::ASC], $table = null): ?array {
         try {
             $queryBuilder = $this->getQueryBuilder();
-            $query = $queryBuilder->select(static::TABLE)->orderBy(...$orderBy);
+            $t = $table ? $table : static::TABLE;
+            $query = $queryBuilder->select($t)->orderBy(...$orderBy);
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             $statment->execute();
             return $this->inflateDomains($statment);

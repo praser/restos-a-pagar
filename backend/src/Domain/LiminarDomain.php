@@ -17,11 +17,17 @@ class LiminarDomain extends DomainBase
     private const RESPONSAVEL_CADASTRAMENTO_NOME = 'responsavelCadastramentoNome';
     private const RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D = 'responsavelCadastramentoUnidadeId';
     private const RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA = 'responsavelCadastramentoUnidadeSigla';
+    private const DATA_ATESTE = 'dataAteste';
     private const RESPONSAVEL_ATESTE_ID = 'responsavelAtesteId';
     private const RESPONSAVEL_ATESTE_NOME = 'responsavelAtesteNome';
-    private const RESPONSAVEL_ATESTEUNIDADE_ID = 'responsavelAtesteUnidadeId';
-    private const RESPONSAVEL_ATESTEUNIDADE_SIGLA = 'responsavelAtesteUnidadeSigla';
+    private const RESPONSAVEL_ATESTE_UNIDADE_ID = 'responsavelAtesteUnidadeId';
+    private const RESPONSAVEL_ATESTE_UNIDADE_SIGLA = 'responsavelAtesteUnidadeSigla';
+    private const RESPONSAVEL_FIM_VIGENCIA_ID = 'responsavelFimVigenciaId';
+    private const RESPONSAVEL_FIM_VIGENCIA_NOME = 'responsavelFimVigenciaNome';
+    private const RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID = 'responsavelFimVigenciaUnidadeId';
+    private const RESPONSAVEL_FIM_VIGENCIA_UNIDADE_SIGLA = 'responsavelFimVigenciaUnidadeSigla';
     private const FIM_VIGENCIA = 'fimVigencia';
+    private const EMPENHOS_BLOQUEADOS = 'empenhosBloqueados';
 
     private $numeroProcesso;
     private $requerente;
@@ -32,11 +38,17 @@ class LiminarDomain extends DomainBase
     private $responsavelCadastramentoNome;
     private $responsavelCadastramentoUnidadeId;
     private $responsavelCadastramentoUnidadeSigla;
+    private $dataAteste;
     private $responsavelAtesteId;
     private $responsavelAtesteNome;
     private $responsavelAtesteUnidadeId;
     private $responsavelAtesteUnidadeSigla;
     private $fimVigencia;
+    private $responsavelFimVigenciaId;
+    private $responsavelFimVigenciaNome;
+    private $responsavelFimVigenciaUnidadeId;
+    private $responsavelFimVigenciaUnidadeSigla;
+    private $empenhosBloqueados;
   
     public function __construct(array $params = [])
     {
@@ -44,11 +56,11 @@ class LiminarDomain extends DomainBase
         $this->numeroProcesso = $this->setAttribute(self::NUMERO_PROCESSO, $params);
         $this->requerente = $this->setAttribute(self::REQUERENTE, $params);
         $this->dataDecisao = $this->parseDateTime($params[self::DATA_DECISAO], self::DATE_Y_M_D);
-        $this->siarg = $this->setAttribute(self::SIARG, $params);
+        $this->siarg = (int) $this->setAttribute(self::SIARG, $params);
         $this->observacoes = $this->setAttribute(self::OBSERVACOES, $params);
         $this->responsavelCadastramentoId = $this->setAttribute(self::RESPONSAVEL_CADASTRAMENTO_ID, $params);
         $this->responsavelCadastramentoNome = $this->setAttribute(self::RESPONSAVEL_CADASTRAMENTO_NOME, $params);
-        $this->responsavelCadastramentoUnidadeId = $this->setAttribute(
+        $this->responsavelCadastramentoUnidadeId = (int) $this->setAttribute(
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D,
             $params
         );
@@ -56,11 +68,23 @@ class LiminarDomain extends DomainBase
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA,
             $params
         );
+        $this->dataAteste = $this->parseDateTime($params[self::DATA_ATESTE], self::DATE_Y_M_D);
         $this->responsavelAtesteId = $this->setAttribute(self::RESPONSAVEL_ATESTE_ID, $params);
         $this->responsavelAtesteNome = $this->setAttribute(self::RESPONSAVEL_ATESTE_NOME, $params);
-        $this->responsavelAtesteUnidadeId = $this->setAttribute(self::RESPONSAVEL_ATESTEUNIDADE_ID, $params);
-        $this->responsavelAtesteUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_ATESTEUNIDADE_SIGLA, $params);
+        $this->responsavelAtesteUnidadeId = (int) $this->setAttribute(self::RESPONSAVEL_ATESTE_UNIDADE_ID, $params);
+        $this->responsavelAtesteUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_ATESTE_UNIDADE_SIGLA, $params);
         $this->fimVigencia = $this->parseDateTime($params[self::FIM_VIGENCIA], self::DATE_Y_M_D);
+        $this->responsavelFimVigenciaId = $this->setAttribute(self::RESPONSAVEL_FIM_VIGENCIA_ID, $params);
+        $this->responsavelFimVigenciaNome = $this->setAttribute(self::RESPONSAVEL_FIM_VIGENCIA_NOME, $params);
+        $this->responsavelFimVigenciaUnidadeId = (int) $this->setAttribute(
+            self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID,
+            $params
+        );
+        $this->responsavelFimVigenciaUnidadeSigla = $this->setAttribute(
+            self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_SIGLA,
+            $params
+        );
+        $this->empenhosBloqueados = (int) $this->setAttribute(self::EMPENHOS_BLOQUEADOS, $params);
     }
   
     public function getNumeroProcesso(): ?string
@@ -80,7 +104,7 @@ class LiminarDomain extends DomainBase
     
     public function getSiarg(): ?int
     {
-        return $this->siarg;
+        return $this->siarg > 0 ? $this->siarg : null;
     }
     
     public function getObservacoes(): ?string
@@ -100,12 +124,17 @@ class LiminarDomain extends DomainBase
     
     public function getResponsavelCadastramentoUnidadeId(): ?int
     {
-        return $this->responsavelCadastramentoUnidadeId;
+        return $this->responsavelCadastramentoUnidadeId > 0 ? $this->responsavelCadastramentoUnidadeId : null;
     }
     
     public function getResponsavelCadastramentoUnidadeSigla(): ?string
     {
         return $this->responsavelCadastramentoUnidadeSigla;
+    }
+
+    public function getDataAteste(): ?DateTime
+    {
+        return $this->dataAteste;
     }
     
     public function getResponsavelAtesteId(): ?string
@@ -120,7 +149,7 @@ class LiminarDomain extends DomainBase
     
     public function getResponsavelAtesteUnidadeId(): ?int
     {
-        return $this->responsavelAtesteUnidadeId;
+        return $this->responsavelAtesteUnidadeId > 0 ? $this->responsavelAtesteUnidadeId : null;
     }
     
     public function getResponsavelAtesteUnidadeSigla(): ?string
@@ -131,6 +160,31 @@ class LiminarDomain extends DomainBase
     public function getFimVigencia(): ?DateTime
     {
         return $this->fimVigencia;
+    }
+
+    public function getResponsavelFimVigenciaId(): ?string
+    {
+        return $this->responsavelFimVigenciaId;
+    }
+    
+    public function getResponsavelFimVigenciaNome(): ?string
+    {
+        return $this->responsavelFimVigenciaNome;
+    }
+    
+    public function getResponsavelFimVigenciaUnidadeId(): ?int
+    {
+        return $this->responsavelFimVigenciaUnidadeId > 0 ? $this->responsavelFimVigenciaUnidadeId : null;
+    }
+    
+    public function getResponsavelFimVigenciaUnidadeSigla(): ?string
+    {
+        return $this->responsavelFimVigenciaUnidadeSigla;
+    }
+
+    public function getEmpenhosBloqueados(): int
+    {
+        return $this->empenhosBloqueados;
     }
 
     public function setResponsavelCadastramento(UserDomain $user): void
@@ -162,8 +216,11 @@ class LiminarDomain extends DomainBase
         $v->setName(self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA)
             ->setValue($this->getResponsavelCadastramentoUnidadeSigla())
             ->required();
-        $v->setName(self::RESPONSAVEL_ATESTEUNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
-        $v->setName(self::RESPONSAVEL_ATESTEUNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
+        $v->setName(self::DATA_ATESTE)->isInstanceOf($this->getDataAteste(), DateTime::class);
+        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
+        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
+        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
+        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
         $v->setName(self::FIM_VIGENCIA)->isInstanceOf($this->getFimVigencia(), DateTime::class);
         
         return $v->isSuccess();
@@ -172,7 +229,6 @@ class LiminarDomain extends DomainBase
     public function jsonSerialize(): array
     {
         $serialization = [
-
             self::NUMERO_PROCESSO => $this->getNumeroProcesso(),
             self::REQUERENTE => $this->getRequerente(),
             self::DATA_DECISAO => $this->dateTimeToString($this->getDataDecisao()),
@@ -182,11 +238,17 @@ class LiminarDomain extends DomainBase
             self::RESPONSAVEL_CADASTRAMENTO_NOME => $this->getResponsavelCadastramentoNome(),
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D => $this->getResponsavelCadastramentoUnidadeId(),
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA => $this->getResponsavelCadastramentoUnidadeSigla(),
+            self::DATA_ATESTE => $this->getDataAteste(),
             self::RESPONSAVEL_ATESTE_ID => $this->getResponsavelAtesteId(),
             self::RESPONSAVEL_ATESTE_NOME => $this->getResponsavelAtesteNome(),
-            self::RESPONSAVEL_ATESTEUNIDADE_ID => $this->getResponsavelAtesteUnidadeId(),
-            self::RESPONSAVEL_ATESTEUNIDADE_SIGLA => $this->getResponsavelAtesteUnidadeSigla(),
+            self::RESPONSAVEL_ATESTE_UNIDADE_ID => $this->getResponsavelAtesteUnidadeId(),
+            self::RESPONSAVEL_ATESTE_UNIDADE_SIGLA => $this->getResponsavelAtesteUnidadeSigla(),
             self::FIM_VIGENCIA => $this->dateTimeToString($this->getFimVigencia()),
+            self::RESPONSAVEL_FIM_VIGENCIA_ID => $this->getResponsavelFimVigenciaId(),
+            self::RESPONSAVEL_FIM_VIGENCIA_NOME => $this->getResponsavelFimVigenciaNome(),
+            self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID => $this->getResponsavelFimVigenciaUnidadeId(),
+            self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_SIGLA => $this->getResponsavelFimVigenciaUnidadeSigla(),
+            self::EMPENHOS_BLOQUEADOS => $this->getEmpenhosBloqueados(),
         ];
 
         return array_merge(parent::jsonSerialize(), $serialization);

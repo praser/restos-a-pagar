@@ -54,15 +54,15 @@ return function (App $app) {
         $group->get('/bloqueio', OperacoesComEmpenhoBloqueadoController::class . ':index');
     });
 
-    $app->group('/estatisticas/{anoExecucao}', function(Group $group) {
+    $app->group('/estatisticas/{anoExecucao}', function (Group $group) {
         $group->get('/passiveis-bloqueio', EstatisticasPreBloqueioController::class . ':index');
-        $group->group('/bloqueio', function(Group $subgroup) {
+        $group->group('/bloqueio', function (Group $subgroup) {
             $subgroup->get('', EstatisticasBloqueioController::class . ':index');
             $subgroup->get('/snapshot', EstatisticasBloqueioSnapshotController::class . ':index');
         });
     });
 
-    $app->group('/tipos-informacoes/{anoExecucao}', function(Group $group) {
+    $app->group('/tipos-informacoes/{anoExecucao}', function (Group $group) {
         $group->get('', TipoInformacaoController::class . ':index');
     });
 
@@ -76,7 +76,8 @@ return function (App $app) {
     });
 
 
-    $app->group('/liminares', function(Group $group) {
+    $app->group('/liminares', function (Group $group) {
+        $group->get('', LiminaresController::class . ':index');
         $group->post('', LiminaresController::class . ':create');
     });
 
