@@ -4,11 +4,11 @@ import NoData from './NoData';
 import { Table, TBody, THead, Tr, Td, Th } from './styles';
 
 const SimpleTable = ({ data, columns, noDataText }) => {
-  const headers = columns.map(col => <Th>{col.name}</Th>);
+  const headers = columns.map(col => <Th key={col.selector}>{col.name}</Th>);
   const body = data.map(d => (
-    <Tr>
+    <Tr key={d.id}>
       {columns.map(col => (
-        <Td>{d[col.selector]}</Td>
+        <Td key={col.selector}>{d[col.selector]}</Td>
       ))}
     </Tr>
   ));
@@ -24,11 +24,13 @@ const SimpleTable = ({ data, columns, noDataText }) => {
 
   const noDataTable = (
     <Table>
-      <Tr>
-        <Td>
-          <NoData text={noDataText} />
-        </Td>
-      </Tr>
+      <TBody>
+        <Tr>
+          <Td>
+            <NoData text={noDataText} />
+          </Td>
+        </Tr>
+      </TBody>
     </Table>
   );
 
