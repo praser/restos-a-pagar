@@ -130,7 +130,13 @@ abstract class DaoBase implements DaoInterface
     final public function update(DomainInterface $domain): bool {
         try {
             $params = $this->prepareParams($domain->jsonSerialize());
-            $params[self::COL_UPDATED_AT] = date_format(new DateTime(), self::DATE_FORMAT_STR);
+            $params[self::COL_UPDATED_AT] = new DateTime();
+            foreach ($params as $key => $value) {
+                if ($value instanceof DateTime) {
+                    $params[$key] = date_format($value, self::DATE_FORMAT_STR);
+                }
+            }
+            
             $queryBuilder = $this->getQueryBuilder();
             $query = $queryBuilder
                 ->update(static::TABLE)

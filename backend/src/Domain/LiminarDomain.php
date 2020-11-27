@@ -195,6 +195,20 @@ class LiminarDomain extends DomainBase
         $this->responsavelCadastramentoUnidadeSigla = $user->getPhysicalLotationAbbreviation();
     }
 
+    public function setResponsavelAteste(UserDomain $user): void
+    {
+        $this->dataAteste = new DateTime();
+        $this->responsavelAtesteId = $user->getRegistration();
+        $this->responsavelAtesteNome = $user->getName();
+        $this->responsavelAtesteUnidadeId = $user->getPhysicalLotationId();
+        $this->responsavelAtesteUnidadeSigla = $user->getPhysicalLotationAbbreviation();
+    }
+
+    public function unsetEmpenhosBloqueados(): void
+    {
+        unset($this->empenhosBloqueados);
+    }
+
     public function isValid(): bool
     {
         $v = $this->validator;
@@ -248,8 +262,11 @@ class LiminarDomain extends DomainBase
             self::RESPONSAVEL_FIM_VIGENCIA_NOME => $this->getResponsavelFimVigenciaNome(),
             self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID => $this->getResponsavelFimVigenciaUnidadeId(),
             self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_SIGLA => $this->getResponsavelFimVigenciaUnidadeSigla(),
-            self::EMPENHOS_BLOQUEADOS => $this->getEmpenhosBloqueados(),
         ];
+
+        if (isset($this->empenhosBloqueados)) {
+            $serialization[self::EMPENHOS_BLOQUEADOS] = $this->getEmpenhosBloqueados();
+        }
 
         return array_merge(parent::jsonSerialize(), $serialization);
     }

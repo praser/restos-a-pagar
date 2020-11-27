@@ -20,6 +20,7 @@ use App\Application\Controllers\ParametrosController;
 use App\Application\Controllers\InfoController;
 use App\Application\Controllers\LotesDesbloqueioController;
 use App\Application\Controllers\LiminaresController;
+use App\Application\Controllers\LiminaresAtesteController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -79,6 +80,7 @@ return function (App $app) {
     $app->group('/liminares', function (Group $group) {
         $group->get('', LiminaresController::class . ':index');
         $group->post('', LiminaresController::class . ':create');
+        $group->put('/{id}/check', LiminaresAtesteController::class . ':update');
     });
 
     $app->get('/info', InfoController::class . ':index');
