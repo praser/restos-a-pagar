@@ -8,10 +8,10 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { isEmpty } from 'lodash';
-import Layout from '../../Layout/Internal';
-import { Heading, Row } from '../../Layout';
-import { Card, CardBody, CardHeader } from '../../Card';
-import { PageTitle, Paragraph } from '../../Tipography';
+import Layout from '~/components/Layout/Internal';
+import { Heading, Row } from '~/components/Layout';
+import { Card, CardBody, CardHeader } from '~/components/Card';
+import { PageTitle, Paragraph } from '~/components/Tipography';
 import { useApiRap, useXHR } from '~/hooks';
 import {
   unlocksFail,
@@ -19,7 +19,7 @@ import {
   createUnlockSuccess,
   promptGerarLote,
 } from '~/utils/messages';
-import Table from '~/components/Table';
+import { DataTable } from '~/components/Table';
 import { primary, danger } from '~/utils/colors';
 import { formatCurrency } from '~/utils/numbers';
 import { formatDate, parseISO } from '~/utils/dates';
@@ -158,7 +158,7 @@ const Create = () => {
               momento. Selecione na lista abaxo àquelas que deseja incluir neste
               lote.
             </Paragraph>
-            <Table
+            <DataTable
               title="Notas de empenho aptas ao desbloqueio"
               data={notasEmpenho}
               columns={columns}

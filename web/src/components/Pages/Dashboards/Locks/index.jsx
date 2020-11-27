@@ -1,34 +1,43 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { isUndefined, last } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faThumbsDown,
   faThumbsUp,
   faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
-import ContextInfo from '../../../ContextInfo';
-import Layout from '~/components/Layout/Internal';
-import { Row } from '~/components/Layout';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { locks as alertProps } from '~/utils/messages';
-import { calcExecutionYear } from '../RightTab/utils';
-import RightTab from '../RightTab';
-import { csvHeaders, operacoesColumns } from '../utils';
-import { initialState, dataInitialState } from './utils';
-import { Card, CardBody, CardHeader } from '../../../Card';
-import Table from '../../../Table';
-import Heading from '../Heading';
+
+import React, { useContext, useEffect, useState } from 'react';
+
+import { Link, useParams } from 'react-router-dom';
+
+import { isUndefined, last } from 'lodash';
+
+import Heading from '~/components/Pages/Dashboards/Heading';
+
 import Highlights from './Highlights';
-import { DoughnutChart, LineChart } from '../../../Chart';
-import { lineChartData, lineChartOptions } from './lineChart';
-import { Context } from '../../../Store';
-import { formatDate, parseISO } from '~/utils/dates';
-import { primary, danger } from '~/utils/colors';
 import { dougnutChartData } from './doughnutChart';
+import { lineChartData, lineChartOptions } from './lineChart';
+import { initialState, dataInitialState } from './utils';
+
+import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { SmallButtonWarning } from '~/components/Button';
 import Can from '~/components/Can';
+import { Card, CardBody, CardHeader } from '~/components/Card';
+import { DoughnutChart, LineChart } from '~/components/Chart';
+import ContextInfo from '~/components/ContextInfo';
+import { Row } from '~/components/Layout';
+import { Context } from '~/components/Store';
+import { DataTable } from '~/components/Table';
+import { primary, danger } from '~/utils/colors';
+import { formatDate, parseISO } from '~/utils/dates';
+import { locks as alertProps } from '~/utils/messages';
 import { createUnlockPath, joinPath } from '~/utils/paths';
+import Layout from '~/components/Layout/Internal';
+import RightTab from '~/components/Pages/Dashboards/RightTab';
+import {
+  csvHeaders,
+  operacoesColumns,
+} from '~/components/Pages/Dashboards/utils';
+import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
 
 const Locks = () => {
   const currentUser = useCurrentUser();
@@ -174,7 +183,7 @@ const Locks = () => {
         <Card>
           <CardHeader>Dados analíticos</CardHeader>
           <CardBody>
-            <Table
+            <DataTable
               data={dataState.operacoes}
               columns={columns}
               noHeader

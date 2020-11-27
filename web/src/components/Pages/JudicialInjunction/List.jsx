@@ -16,7 +16,7 @@ import Can from '~/components/Can';
 import { Card, CardBody, CardHeader } from '~/components/Card';
 import { Heading, Row } from '~/components/Layout';
 import Layout from '~/components/Layout/Internal';
-import Table from '~/components/Table';
+import { DataTable } from '~/components/Table';
 import { PageTitle } from '~/components/Tipography';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { createJudicialInjunction } from '~/utils/paths';
@@ -228,7 +228,7 @@ const List = () => {
         <Card>
           <CardHeader>Liminares judiciais cadastradas</CardHeader>
           <CardBody>
-            <Table
+            <DataTable
               data={dataState}
               columns={columns}
               noHeader

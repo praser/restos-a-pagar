@@ -33,7 +33,7 @@ import {
   createNeBalanceFail as alertProps,
   createNeBalanceSuccess,
 } from '~/utils/messages';
-import Table from '~/components/Table';
+import { DataTable } from '~/components/Table';
 
 const initialValues = {
   fileDate: new Date(),
@@ -297,7 +297,7 @@ const Create = () => {
           <Card>
             <CardHeader>Pré-visualização dos dados</CardHeader>
             <CardBody>
-              <Table
+              <DataTable
                 data={state.data.slice(0, 50)}
                 columns={columns}
                 noHeader
