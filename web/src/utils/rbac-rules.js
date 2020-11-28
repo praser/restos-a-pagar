@@ -38,6 +38,8 @@ const rules = {
       'dashboard:filter',
       'dashboard:filter:gestor',
       'dashboard:filter:situacao',
+      'judicialInjunction:create',
+      'judicialInjunction:list',
     ],
   },
 
