@@ -10,15 +10,21 @@ use App\Domain\LoteDesbloqueioOperacaoDomain;
 use App\Domain\UserDomain;
 use App\Persistence\LoteDesbloqueioDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
+use App\Persistence\SaldoNotaEmpenhoDao;
+use App\Persistence\LiminarDao;
+use App\Persistence\LiminarOperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 
-class LotesDesbloqueioController extends ControllerBase
+class LotesDesbloqueioLiminarController extends ControllerBase
 {
     private $dao;
     private $loteDesbloqueioOperacaoDao;
+    private $liminarDao;
+    private $liminarOperacaoDao;
+    private $saldoNotaEmpenhoDao;
     private $expedienteGovService;
     private $mail;
     private $gerentes;
@@ -27,7 +33,10 @@ class LotesDesbloqueioController extends ControllerBase
     {
         parent::__construct($container);
         $this->dao = new LoteDesbloqueioDao($container);
+        $this->liminarDao = new LiminarDao($container);
+        $this->liminarOperacaoDao = new LiminarOperacaoDao($container);
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
+        $this->saldoNotaEmpenhoDao = new SaldoNotaEmpenhoDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
         $this->gerentes = $container->get('settings')['managers'];
@@ -39,11 +48,11 @@ class LotesDesbloqueioController extends ControllerBase
         $jwt = $currentUser['token'];
         $user = new UserDomain(json_decode($currentUser['attributes'], true));
 
-        $params = $req->getParsedBody();
+        $argsarams = $req->getParsedBody();
         $expediente = $this->expedienteGovService->create($jwt, array(
             "expediente" => array(
                 "co_tipo" => "CE",
-                "tx_assunto" => "RAP - Lote de desbloqueio",
+                "tx_assunto" => "RAP - Lote de desbloqueio por liminar",
                 "co_classificacao" => 2,
                 "co_grupo" => 10,
                 "tx_destino" => $this->gerentes['gerenciaExecutivaFinanceira']
@@ -61,33 +70,46 @@ class LotesDesbloqueioController extends ControllerBase
         $connection->beginTransaction();
         
         try {
-            if ($lote->isValid()) {    
+            $liminar = $this->liminarDao->find((string) $argsarams['id']);
+            $liminarOperacoes = $this->liminarOperacaoDao->findAllBy([
+                ['COLUMN' => 'liminarId', 'VALUE' => $liminar->getId()],
+            ]);
+            $saldosEmpenhos = [];
+
+            foreach ($liminarOperacoes as $operacao) {
+                $saldoBloqueado = $this->saldoNotaEmpenhoDao->findAllBy(
+                    [['COLUMN' => 'operacaoId', 'VALUE' => $operacao->getOperacaoId()]],
+                    ['id', 'ASC'],
+                    'vw_liminares_saldo_notas_empenho_bloqueadas'
+                );
+                
+                $saldosEmpenhos = array_merge($saldosEmpenhos, $saldoBloqueado);
+            }
+
+            if ($lote->isValid()) {
+                $lote->setLiminarId($liminar->getId());
                 $this->dao->create($lote);
                 $lote = $this->dao->find((string) $lote->getId());
                 
-                $createOperacao = function($param) use($lote): LoteDesbloqueioOperacaoDomain
-                {
-                    $p = array_intersect_key(
-                        $param,
-                        array_flip(
-                            array(
-                                LoteDesbloqueioOperacaoDomain::OPERACAO_ID,
-                                LoteDesbloqueioOperacaoDomain::DOCUMENTO,
-                                'saldoContaContabil',
-                            )
-                        )
-                    );
-                    $operacao = new LoteDesbloqueioOperacaoDomain($p);
+                $createOperacao = function ($saldoEmpenho) use ($lote): LoteDesbloqueioOperacaoDomain {
+                    $args = [
+                        LoteDesbloqueioOperacaoDomain::OPERACAO_ID => $saldoEmpenho->getOperacaoId(),
+                        LoteDesbloqueioOperacaoDomain::DOCUMENTO => $saldoEmpenho->getDocumento(),
+                        'saldoContaContabil' => $saldoEmpenho->getSaldo(),
+                    ];
+
+                    $operacao = new LoteDesbloqueioOperacaoDomain($args);
+                    
                     $operacao
                         ->setLoteDesbloqueioId($lote->getId())
-                        ->setSaldo($p['saldoContaContabil']);
+                        ->setSaldo($args['saldoContaContabil']);
                     
                     $this->loteDesbloqueioOperacaoDao->create($operacao);
                     array_push($lote->notasEmpenho, $operacao->getDocumento());
                     return $operacao;
                 };
 
-                $operacoes = array_map($createOperacao, $params);
+                $operacoes = array_map($createOperacao, $saldosEmpenhos);
 
                 $this->mail->addAddress(
                     $this->gerentes['gerenciaExecutivaFinanceiraEmail'],
@@ -104,7 +126,7 @@ class LotesDesbloqueioController extends ControllerBase
                 );
 
                 $this->mail->isHTML(true);                                  // Set email format to HTML
-                $this->mail->Subject = "{$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
+                $this->mail->Subject = "{$expediente['tx_identificacao']} - RAP LIMINAR - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
                 $this->mail->Body = <<<HTML
                     À
                     <br>{$this->gerentes['gerenciaExecutivaFinanceira']}

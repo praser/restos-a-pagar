@@ -56,10 +56,11 @@ abstract class DaoBase implements DaoInterface
         throw new RuntimeException('Dao exeception');
     }
 
-    final public function all(array $orderBy = ['id', OrderBy::ASC]): ?array {
+    final public function all(array $orderBy = ['id', OrderBy::ASC], $table = null): ?array {
         try {
             $queryBuilder = $this->getQueryBuilder();
-            $query = $queryBuilder->select(static::TABLE)->orderBy(...$orderBy);
+            $t = $table ? $table : static::TABLE;
+            $query = $queryBuilder->select($t)->orderBy(...$orderBy);
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             $statment->execute();
             return $this->inflateDomains($statment);
@@ -69,15 +70,17 @@ abstract class DaoBase implements DaoInterface
         return null;
     }
 
-    final public function findAllBy(array $params, array $orderBy = ['id', OrderBy::ASC]): ?array
+    final public function findAllBy(array $params, array $orderBy = ['id', OrderBy::ASC], $table = null): ?array
     {
+        $t = $table ? $table : static::TABLE;
         try {
             $queryBuilder = $this->getQueryBuilder();
-            $query = $queryBuilder->select(static::TABLE);
+            $query = $queryBuilder->select($t);
             foreach ($params as $param) {
                 $query->where()->equals($param[DaoInterface::COLUMN_KEY], $param[DaoInterface::VALUE_KEY]);
             }
             $query->orderBy(...$orderBy);
+            
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             $statment->execute($queryBuilder->getValues());
             return $this->inflateDomains($statment);
@@ -129,7 +132,13 @@ abstract class DaoBase implements DaoInterface
     final public function update(DomainInterface $domain): bool {
         try {
             $params = $this->prepareParams($domain->jsonSerialize());
-            $params[self::COL_UPDATED_AT] = date_format(new DateTime(), self::DATE_FORMAT_STR);
+            $params[self::COL_UPDATED_AT] = new DateTime();
+            foreach ($params as $key => $value) {
+                if ($value instanceof DateTime) {
+                    $params[$key] = date_format($value, self::DATE_FORMAT_STR);
+                }
+            }
+            
             $queryBuilder = $this->getQueryBuilder();
             $query = $queryBuilder
                 ->update(static::TABLE)

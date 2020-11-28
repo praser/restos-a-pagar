@@ -10,12 +10,12 @@ import {
   SmallButtonDanger,
   SmallButtonPrimary,
   SmallButtonSecondary,
-} from '../../Button';
-import { Card, CardBody, CardHeader } from '../../Card';
-import { Heading, Row } from '../../Layout';
-import Layout from '../../Layout/Internal';
-import Table from '../../Table';
-import { PageTitle } from '../../Tipography';
+} from '~/components/Button';
+import { Card, CardBody, CardHeader } from '~/components/Card';
+import { Heading, Row } from '~/components/Layout';
+import Layout from '~/components/Layout/Internal';
+import { DataTable } from '~/components/Table';
+import { PageTitle } from '~/components/Tipography';
 import { createUgPath, joinPath, updateUgPath } from '~/utils/paths';
 import { useApiRap, useXHR } from '~/hooks';
 import {
@@ -23,7 +23,7 @@ import {
   deleteUgFail,
   deleteUgSucces,
 } from '~/utils/messages';
-import { Prompt } from '../../Modal';
+import { Prompt } from '~/components/Modal';
 import Can from '~/components/Can';
 
 const initialState = {
@@ -168,22 +168,7 @@ const Ugs = () => {
             Lista de unidades gestoras cadastradas nos sistema
           </CardHeader>
           <CardBody>
-            <Table
-              data={state.ugs}
-              columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
-              noHeader
-              striped
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
-            />
+            <DataTable data={state.ugs} columns={columns} noHeader />
           </CardBody>
         </Card>
       </Row>
