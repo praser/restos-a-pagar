@@ -30,6 +30,8 @@ import { Prompt } from '~/components/Modal';
 
 import { Context } from '~/components/Store';
 import { formatNumeroLoteDesbloqueio } from '~/utils/string';
+import InnerList from './InnerList';
+import { formatISO } from '~/utils/dates';
 
 const List = () => {
   const apiRap = useApiRap();
@@ -86,7 +88,7 @@ const List = () => {
     await apiRap.then(api => {
       doAllXhrRequest({
         alertProps: createUnlockError,
-        requests: [api.requests.postLoteDesbloqueioLiminar(payload)],
+        requests: [api.requests.postLoteDesbloqueioLiminar({ payload })],
         success: res => {
           const { sequencial, ano, ce, notasEmpenho: empenhos } = res[0].data;
           const args = {
@@ -110,7 +112,12 @@ const List = () => {
   const columns = [
     { name: 'Número do processo', selector: 'numeroProcesso', sortable: true },
     { name: 'Requerente', selector: 'requerente', sortable: true },
-    { name: 'Data da decisão', selector: 'dataDecisao', sortable: true },
+    {
+      name: 'Data da decisão',
+      selector: 'dataDecisao',
+      sortable: true,
+      format: row => formatISO(row.dataDecisao),
+    },
     { name: 'SIARG', selector: 'siarg', sortable: true },
     {
       name: 'Empenhos bloqueados',
@@ -194,8 +201,6 @@ const List = () => {
         </>
       ),
     },
-    // Operações
-    // Empenhos bloqueados
   ];
 
   return (
@@ -234,7 +239,7 @@ const List = () => {
               noHeader
               noDataText="Ainda não temos nenhuma liminar para mostrar aqui. Que tal começar cadastando uma?"
               expandableRows
-              expandableRowsComponent={<p>Agora vai papai!</p>}
+              expandableRowsComponent={<InnerList />}
               expandableRowDisabled={row => row.empenhosBloqueados === 0}
             />
           </CardBody>

@@ -95,7 +95,7 @@ const requests = async () => {
 
   const postLoteDesbloqueioLiminar = async args => {
     const { payload } = args;
-    return client.post('/notas-empenho/lotes-desbloqueio/liminar-judicial', {
+    return client.post('/notas-empenho/lotes-desbloqueio/liminar', {
       ...payload,
     });
   };
@@ -106,11 +106,16 @@ const requests = async () => {
   };
 
   const getLiminares = async () => client.get('/liminares');
+
+  const getEmpenhosLiminar = async liminarId =>
+    client.get(`/notas-empenho/liminar/${liminarId}`);
+
   const putLiminarCheck = async liminarId =>
-    client.put(`/liminares-judiciais/${liminarId}/check`);
+    client.put(`/liminares/${liminarId}/check`);
 
   return {
     deleteUg,
+    getEmpenhosLiminar,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,

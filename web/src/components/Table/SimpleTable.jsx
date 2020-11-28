@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, isFunction } from 'lodash';
 import React from 'react';
 import NoData from './NoData';
 import { Table, TBody, THead, Tr, Td, Th } from './styles';
@@ -7,9 +7,10 @@ const SimpleTable = ({ data, columns, noDataText }) => {
   const headers = columns.map(col => <Th key={col.selector}>{col.name}</Th>);
   const body = data.map(d => (
     <Tr key={d.id}>
-      {columns.map(col => (
-        <Td key={col.selector}>{d[col.selector]}</Td>
-      ))}
+      {columns.map(col => {
+        const value = isFunction(col.format) ? col.format(d) : d[col.selector];
+        return <Td key={col.selector}>{value}</Td>;
+      })}
     </Tr>
   ));
 
@@ -27,7 +28,9 @@ const SimpleTable = ({ data, columns, noDataText }) => {
       <TBody>
         <Tr>
           <Td>
-            <NoData text={noDataText} />
+            <center>
+              <NoData text={noDataText} />
+            </center>
           </Td>
         </Tr>
       </TBody>
