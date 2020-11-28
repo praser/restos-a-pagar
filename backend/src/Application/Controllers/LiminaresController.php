@@ -40,6 +40,7 @@ class LiminaresController extends ControllerBase
         $params = $req->getParsedBody();
         $liminar = new LiminarDomain($params);
         $liminar->setResponsavelCadastramento($currentUser);
+        $liminar->unsetEmpenhosBloqueados();
         $conn = $this->dao->getConnection();
 
         $conn->beginTransaction();

@@ -110,8 +110,6 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                 };
 
                 $operacoes = array_map($createOperacao, $saldosEmpenhos);
-                var_dump($operacoes);
-                die();
 
                 $this->mail->addAddress(
                     $this->gerentes['gerenciaExecutivaFinanceiraEmail'],
