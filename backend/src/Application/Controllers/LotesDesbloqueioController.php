@@ -15,7 +15,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 
-
 class LotesDesbloqueioController extends ControllerBase
 {
     private $dao;
@@ -44,10 +43,10 @@ class LotesDesbloqueioController extends ControllerBase
         $expediente = $this->expedienteGovService->create($jwt, array(
             "expediente" => array(
                 "co_tipo" => "CE",
-                "tx_assunto" => "SOLICITACAO_EMPENHO_PAC",
+                "tx_assunto" => "RAP - Lote de desbloqueio",
                 "co_classificacao" => 2,
                 "co_grupo" => 10,
-                "tx_destino" => "SUAFI"
+                "tx_destino" => $this->gerentes['gerenciaExecutivaFinanceira']
             ),
         ));
         $lote = new LoteDesbloqueioDomain();

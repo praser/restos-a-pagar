@@ -6,19 +6,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Bar } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
-import ContextInfo from '../../../ContextInfo';
+import ContextInfo from '~/components/ContextInfo';
 import Layout from '~/components/Layout/Internal';
 import { Row } from '~/components/Layout';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { possibleLocks as alertProps } from '~/utils/messages';
-import { calcExecutionYear } from '../RightTab/utils';
-import RightTab from '../RightTab';
-import { csvHeaders } from '../utils';
+import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
+import RightTab from '~/components/Pages/Dashboards/RightTab';
+import { csvHeaders } from '~/components/Pages/Dashboards/utils';
 import { initialState, dataInitialState } from './utils';
-import Highlight from '../../../Highlight';
+import Highlight from '~/components/Highlight';
 import { Card, CardBody, CardHeader } from '../../../Card';
-import Table from '../../../Table';
-import Heading from '../Heading';
+import { DataTable } from '~/components/Table';
+import Heading from '~/components/Pages/Dashboards/Heading';
 import { Context } from '~/components/Store';
 
 const data = {
@@ -161,7 +161,7 @@ const Cancellations = () => {
         <Card>
           <CardHeader>Dados analíticos</CardHeader>
           <CardBody>
-            <Table />
+            <DataTable />
           </CardBody>
         </Card>
       </Row>

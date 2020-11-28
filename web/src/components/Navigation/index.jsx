@@ -4,6 +4,7 @@ import {
   faBuilding,
   faDollarSign,
   faFileSignature,
+  faGavel,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Brand from './Brand';
@@ -19,6 +20,8 @@ import {
   updateCommitmentPath,
   ugPath,
   joinPath,
+  createJudicialInjunction,
+  listJudicialInjunction,
 } from '~/utils/paths';
 import { useApiRap } from '~/hooks';
 import Can from '../Can';
@@ -91,6 +94,28 @@ const Navigation = () => {
             )}
           />
         ))}
+
+        <Can
+          perform="judicialInjunction:list"
+          yes={() => (
+            <Collapse
+              label="Liminares Judiciais"
+              icon={faGavel}
+              collapsables={[
+                {
+                  label: 'Cadastrar',
+                  to: createJudicialInjunction,
+                  perform: 'judicialInjunction:create',
+                },
+                {
+                  label: 'Listar',
+                  to: listJudicialInjunction,
+                  perform: 'judicialInjunction:list',
+                },
+              ]}
+            />
+          )}
+        />
 
         <Divider />
 

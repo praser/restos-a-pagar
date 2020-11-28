@@ -8,7 +8,10 @@ export const initialState = currentUser => ({
   showFilters: false,
   unidade: defUnidade(currentUser),
   gestor: defGestor,
-  tipoInfo: defTipoInfo,
+  tipoInfo: {
+    value: 1,
+    label: 'Todas as operações',
+  },
   status: {
     databasePosition: null,
   },

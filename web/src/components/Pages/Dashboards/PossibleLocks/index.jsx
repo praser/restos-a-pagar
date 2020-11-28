@@ -7,7 +7,7 @@ import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardBody, CardHeader } from '~/components/Card';
 import { Row } from '~/components/Layout';
 import Layout from '~/components/Layout/Internal';
-import Table from '~/components/Table';
+import { DataTable } from '~/components/Table';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { primary, danger } from '~/utils/colors';
 import { parseISO } from '~/utils/dates';
@@ -18,14 +18,17 @@ import Highlights from './Highlights';
 import { initialState, dataInitialState } from './utils';
 import { lineChartData } from './lineChart';
 
-import Heading from '../Heading';
-import RightTab from '../RightTab';
-import { calcExecutionYear } from '../RightTab/utils';
-import { csvHeaders, operacoesColumns } from '../utils';
+import Heading from '~/components/Pages/Dashboards/Heading';
+import RightTab from '~/components/Pages/Dashboards/RightTab';
+import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
+import {
+  csvHeaders,
+  operacoesColumns,
+} from '~/components/Pages/Dashboards/utils';
 
-import { LineChart, BarChart } from '../../../Chart';
-import ContextInfo from '../../../ContextInfo';
-import { Context } from '../../../Store';
+import { LineChart, BarChart } from '~/components/Chart';
+import ContextInfo from '~/components/ContextInfo';
+import { Context } from '~/components/Store';
 
 const PossibleLocks = () => {
   const currentUser = useCurrentUser();
@@ -142,21 +145,10 @@ const PossibleLocks = () => {
         <Card>
           <CardHeader>Dados analíticos</CardHeader>
           <CardBody>
-            <Table
+            <DataTable
               data={dataState.operacoes}
               columns={columns}
-              pagination
-              paginationComponentOptions={{
-                rowsPerPageText: 'Resultados por página:',
-                rangeSeparatorText: 'de',
-                noRowsPerPage: false,
-                selectAllRowsItem: false,
-                selectAllRowsItemText: 'Todos',
-              }}
               noHeader
-              striped
-              highlightOnHover
-              noDataComponent="Ainda não tenho nada para mostrar aqui..."
               searchable
             />
           </CardBody>

@@ -38,7 +38,7 @@ try {
     $response = $app->handle($request);
     $responseEmitter = new ResponseEmitter();
     $responseEmitter->emit($response);
-} catch(Exception $ex) {
+} catch (Exception $ex) {
     echo($ex->getMessage());
     die();
 }

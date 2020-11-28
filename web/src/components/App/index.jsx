@@ -10,12 +10,15 @@ import { Alert, Loading } from '~/components/Modal';
 import {
   Cancellations,
   Error,
+  JudicialInjunctionCreate,
+  JudicialInjunctionList,
   Locks,
   Login,
   PossibleLocks,
   UgCreate,
   UgList,
   UgUpdate,
+  UnlockCreate,
   UpdateCommitment,
 } from '../Pages';
 
@@ -29,7 +32,6 @@ import { Context } from '../Store';
 import { getToken } from '~/utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import Create from '../Pages/Unlocks/Create';
 
 registerLocale('pt-BR', ptBR);
 setDefaultLocale('pt-BR');
@@ -140,9 +142,21 @@ const App = () => {
               exact
             />
             <PrivateRoute
-              component={Create}
+              component={UnlockCreate}
               path={paths.createUnlockPath}
               perform="unlock:create"
+              exact
+            />
+            <PrivateRoute
+              component={JudicialInjunctionCreate}
+              path={paths.createJudicialInjunction}
+              perform="judicialInjunction:create"
+              exact
+            />
+            <PrivateRoute
+              component={JudicialInjunctionList}
+              path={paths.listJudicialInjunction}
+              perform="judicialInjunction:list"
               exact
             />
             <Route

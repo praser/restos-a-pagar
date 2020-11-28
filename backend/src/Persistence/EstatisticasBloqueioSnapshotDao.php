@@ -11,7 +11,7 @@ use NilPortugues\Sql\QueryBuilder\Syntax\OrderBy;
 
 class EstatisticasBloqueioSnapshotDao extends DaoBase
 {
-  protected const TABLE = 'snapshot.estatisticas_bloqueio';
+  protected const TABLE = 'snapshot_estatisticas_bloqueio';
   protected $domain = EstatisticasBloqueioDomain::class;
 
     public function findByAnoExecucao(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array

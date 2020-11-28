@@ -33,7 +33,7 @@ import {
   createNeBalanceFail as alertProps,
   createNeBalanceSuccess,
 } from '~/utils/messages';
-import Table from '~/components/Table';
+import { DataTable } from '~/components/Table';
 
 const initialValues = {
   fileDate: new Date(),
@@ -219,7 +219,7 @@ const Create = () => {
     <Layout>
       <Row>
         <Heading>
-          <PageTitle>Atualiza saldo das notas de empenho</PageTitle>
+          <PageTitle>Atualizar saldo das notas de empenho</PageTitle>
         </Heading>
       </Row>
       <Row>
@@ -297,21 +297,10 @@ const Create = () => {
           <Card>
             <CardHeader>Pré-visualização dos dados</CardHeader>
             <CardBody>
-              <Table
+              <DataTable
                 data={state.data.slice(0, 50)}
                 columns={columns}
-                pagination
-                paginationComponentOptions={{
-                  rowsPerPageText: 'Resultados por página:',
-                  rangeSeparatorText: 'de',
-                  noRowsPerPage: false,
-                  selectAllRowsItem: false,
-                  selectAllRowsItemText: 'Todos',
-                }}
                 noHeader
-                striped
-                highlightOnHover
-                noDataComponent="Ainda não tenho nada para mostrar aqui..."
               />
             </CardBody>
           </Card>

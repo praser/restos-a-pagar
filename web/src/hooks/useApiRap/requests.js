@@ -1,4 +1,5 @@
 import { isNull, pickBy } from 'lodash';
+
 import getXhrClient from '~/utils/xhrClient';
 
 const search = params => {
@@ -41,6 +42,11 @@ const requests = async () => {
   };
 
   const getUnidades = async () => client.get('/unidades');
+
+  const getOperacoes = async => {
+    const path = '/operacoes';
+    return client.get(path);
+  };
 
   const getOperacoesPreBloqueio = async args => {
     const { anoExecucao, tipoInfo, unidadeId, siglaGestor } = args;
@@ -87,12 +93,35 @@ const requests = async () => {
     return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
   };
 
+  const postLoteDesbloqueioLiminar = async args => {
+    const { payload } = args;
+    return client.post('/notas-empenho/lotes-desbloqueio/liminar', {
+      ...payload,
+    });
+  };
+
+  const postLiminar = async args => {
+    const { payload } = args;
+    return client.post('/liminares', { ...payload });
+  };
+
+  const getLiminares = async () => client.get('/liminares');
+
+  const getEmpenhosLiminar = async liminarId =>
+    client.get(`/notas-empenho/liminar/${liminarId}`);
+
+  const putLiminarCheck = async liminarId =>
+    client.put(`/liminares/${liminarId}/check`);
+
   return {
     deleteUg,
+    getEmpenhosLiminar,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,
     getGestores,
+    getLiminares,
+    getOperacoes,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,
     getNotasEmpenhoAptasDesbloqueio,
@@ -102,9 +131,12 @@ const requests = async () => {
     getUg,
     getUgs,
     getUnidades,
-    postUg,
+    postLiminar,
     postLoteDesbloqueio,
+    postLoteDesbloqueioLiminar,
     postSaldoNe,
+    postUg,
+    putLiminarCheck,
     putUg,
   };
 };
