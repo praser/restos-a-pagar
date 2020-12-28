@@ -24,10 +24,10 @@ class InfoDomain extends DomainBase
     public function __construct(array $params = [])
     {
         parent::__construct($params);
-        $this->name = "API Restos a Pagar";
-        $this->descriotion = "API que fornece dados e informações das operações e notas de empenho que possuem saldo inscrito em restos a pagar";
-        $this->docs = "https://anonimous.postman.co/collections/1406279-22655d3a-c6b7-4d0e-8880-49a0534d012d?version=latest&workspace=d72067b3-4f80-4a60-bfa7-2eb279b0cdd8#278e220d-13fe-4545-a137-4b8a2a6de591";
-        $this->source = "https://github.com/praser/restos-a-pagar";
+        $this->name = getenv('API_NAME');
+        $this->description = getenv('API_DESCRIPTION');
+        $this->docs = getenv('API_DOCS_URL');
+        $this->source = getenv('API_SOURCE_URL');
         $this->databasePosition = $params[self::DATABASE_POSITION];
         $this->databaseLastUpdate = $params[self::DATABASE_LAST_UPDATE];
     }

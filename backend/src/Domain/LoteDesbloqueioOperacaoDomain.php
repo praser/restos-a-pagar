@@ -37,7 +37,8 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
         $this->responsavelRetornoId = (string) $this->setAttribute(self::RESPONSAVEL_RETORNO_ID, $params);
         $this->responsavelRetornoNome = (string) $this->setAttribute(self::RESPONSAVEL_RETORNO_NOME, $params);
         $this->responsavelRetornoUnidadeId = (int) $this->setAttribute(self::RESPONSAVEL_RETORNO_UNIDADE_ID, $params);
-        $this->responsavelRetornoUnidadeSigla = (string) $this->setAttribute(self::RESPONSAVEL_RETORNO_UNIDADE_SIGLA, $params);
+        $this->responsavelRetornoUnidadeSigla =
+            (string) $this->setAttribute(self::RESPONSAVEL_RETORNO_UNIDADE_SIGLA, $params);
     }
 
     public function getLoteDesbloqueioId(): ?int
@@ -89,7 +90,7 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
         return (bool) $this->desbloqueado;
     }
 
-    function setDesbloqueado(bool $desbloqueado): LoteDesbloqueioOperacaoDomain
+    public function setDesbloqueado(bool $desbloqueado): LoteDesbloqueioOperacaoDomain
     {
         $this->desbloqueado = $desbloqueado;
         return $this;

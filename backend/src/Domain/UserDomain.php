@@ -26,10 +26,16 @@ class UserDomain extends DomainBase
     {
         parent::__construct($params);
         $this->cpf = (string) $this->setAttribute(self::CPF, $params);
+        
         $this->registration = (string) $this->setAttribute(self::ID, $params);
+        
         $this->name = (string) $this->setAttribute(self::NAME, $params);
+        
         $this->photo = (string) $this->setAttribute(self::PHOTO, $params);
-        $this->physicalLotationAbbreviation = (string) $this->setAttribute(self::PHYSICAL_LOTATION_ABBREVIATION, $params);
+    
+        $this->physicalLotationAbbreviation =
+            (string) $this->setAttribute(self::PHYSICAL_LOTATION_ABBREVIATION, $params);
+        
         $this->phisicalLotationId = (int) $this->setAttribute(self::PHYSICAL_LOTATION_ID, $params);
     }
 
