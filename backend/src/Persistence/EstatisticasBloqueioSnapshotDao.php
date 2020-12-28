@@ -14,10 +14,21 @@ class EstatisticasBloqueioSnapshotDao extends DaoBase
     protected const TABLE = 'snapshot_estatisticas_bloqueio';
     protected $domain = EstatisticasBloqueioDomain::class;
 
-    public function findByAnoExecucao(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
-    {
+    public function findByAnoExecucao(
+        int $anoExecucao,
+        int $tipoInformacaoId = 1,
+        int $unidadeId = null,
+        string $gestorSigla = null,
+        DateTime $data = null
+    ): ?array {
         try {
-            [$queryBuilder, $query ] = $this->getBaseQuery($tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla, $data);
+            [$queryBuilder, $query ] = $this->getBaseQuery(
+                $tipoInformacaoId,
+                $anoExecucao,
+                $unidadeId,
+                $gestorSigla,
+                $data
+            );
 
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             return $this->inflateDomains($statment);
@@ -26,8 +37,14 @@ class EstatisticasBloqueioSnapshotDao extends DaoBase
         }
     }
 
-    private function getBaseQuery(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null, array $columns = []): array
-    {
+    private function getBaseQuery(
+        int $tipoInformacaoId,
+        int $anoExecucao,
+        int $unidadeId = null,
+        string $gestorSigla = null,
+        DateTime $data = null,
+        array $columns = []
+    ): array {
         $outputDateFormat = 'Y-m-d';
         $dt = is_null($data) ? new DateTime() : $data;
         $dataStr = $dt->format($outputDateFormat);
@@ -46,11 +63,31 @@ class EstatisticasBloqueioSnapshotDao extends DaoBase
             ->select()
             ->setTable(self::TABLE)
             ->setColumns($queryColumns)
-            ->setFunctionAsColumn('SUM', [EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES], EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES)
-            ->setFunctionAsColumn('SUM', [EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS], EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS)
-            ->setFunctionAsColumn('SUM', [EstatisticasBloqueioDomain::SALDO_BLOQUEADO], EstatisticasBloqueioDomain::SALDO_BLOQUEADO)
-            ->setFunctionAsColumn('SUM', [EstatisticasBloqueioDomain::SALDO_DESBLOQUEADO], EstatisticasBloqueioDomain::SALDO_DESBLOQUEADO)
-            ->setFunctionAsColumn('SUM', [EstatisticasBloqueioDomain::SALDO_AGUARDANDO_DESBLOQUEIO], EstatisticasBloqueioDomain::SALDO_AGUARDANDO_DESBLOQUEIO)
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES],
+                EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS],
+                EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasBloqueioDomain::SALDO_BLOQUEADO],
+                EstatisticasBloqueioDomain::SALDO_BLOQUEADO
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasBloqueioDomain::SALDO_DESBLOQUEADO],
+                EstatisticasBloqueioDomain::SALDO_DESBLOQUEADO
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasBloqueioDomain::SALDO_AGUARDANDO_DESBLOQUEIO],
+                EstatisticasBloqueioDomain::SALDO_AGUARDANDO_DESBLOQUEIO
+            )
             ->groupBy($queryColumns)
             ->where()
             ->lessThanOrEqual(EstatisticasBloqueioDomain::DATA, $dataStr)

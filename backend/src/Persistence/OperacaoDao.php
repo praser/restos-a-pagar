@@ -12,20 +12,33 @@ class OperacaoDao extends DaoBase
     protected const TABLE = 'operacoes';
     protected $domain = OperacaoDomain::class;
 
-    public function operacoesComNotasEmpenhoPassiveisBloqueio(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
-    {
+    public function operacoesComNotasEmpenhoPassiveisBloqueio(
+        int $tipoInformacaoId,
+        int $anoExecucao,
+        int $unidadeId = null,
+        string $gestorSigla = null
+    ): ?array {
         $table = 'cache.operacoes_com_ne_passiveis_de_bloqueio';
         return $this->queryOperacoesCache($table, $tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
     }
 
-    public function operacoesComNotasEmpenhoBloqueadas(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
-    {
+    public function operacoesComNotasEmpenhoBloqueadas(
+        int $tipoInformacaoId,
+        int $anoExecucao,
+        int $unidadeId = null,
+        string $gestorSigla = null
+    ): ?array {
         $table = 'cache.operacoes_com_ne_bloqueadas';
         return $this->queryOperacoesCache($table, $tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
     }
 
-    private function queryOperacoesCache(string $table, int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null): ?array
-    {
+    private function queryOperacoesCache(
+        string $table,
+        int $tipoInformacaoId,
+        int $anoExecucao,
+        int $unidadeId = null,
+        string $gestorSigla = null
+    ): ?array {
         try {
             $qb = $this->getQueryBuilder();
             $query = $qb

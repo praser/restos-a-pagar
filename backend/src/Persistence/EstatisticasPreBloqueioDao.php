@@ -15,8 +15,13 @@ class EstatisticasPreBloqueioDao extends DaoBase
     protected const TABLE = 'cache.estatisticas_pre_bloqueio';
     protected $domain = EstatisticasPreBloqueioDomain::class;
 
-    public function findSumario(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
-    {
+    public function findSumario(
+        int $anoExecucao,
+        int $tipoInformacaoId = 1,
+        int $unidadeId = null,
+        string $gestorSigla = null,
+        DateTime $data = null
+    ): ?array {
         try {
             [$queryBuilder, $query] = $this->getBaseQuery($tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla);
 
@@ -28,11 +33,23 @@ class EstatisticasPreBloqueioDao extends DaoBase
         return null;
     }
 
-    public function findSumarioPorGestor(int $anoExecucao, int $tipoInformacaoId = 1, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null): ?array
-    {
+    public function findSumarioPorGestor(
+        int $anoExecucao,
+        int $tipoInformacaoId = 1,
+        int $unidadeId = null,
+        string $gestorSigla = null,
+        DateTime $data = null
+    ): ?array {
         try {
             $cols = [EstatisticasPreBloqueioDomain::SIGLA_GESTOR, EstatisticasPreBloqueioDomain::NOME_GESTOR];
-            [$queryBuilder, $query] = $this->getBaseQuery($tipoInformacaoId, $anoExecucao, $unidadeId, $gestorSigla, null, $cols);
+            [$queryBuilder, $query] = $this->getBaseQuery(
+                $tipoInformacaoId,
+                $anoExecucao,
+                $unidadeId,
+                $gestorSigla,
+                null,
+                $cols
+            );
 
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             return $this->inflateDomains($statment);
@@ -45,7 +62,10 @@ class EstatisticasPreBloqueioDao extends DaoBase
     public function findAllTipoInformacao(int $anoExecucao): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
-        $colunas = [EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID, EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_DESCRICAO];
+        $colunas = [
+            EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_ID,
+            EstatisticasPreBloqueioDomain::TIPO_INFORMACAO_DESCRICAO
+        ];
 
         $query = $queryBuilder
             ->select()
@@ -66,8 +86,14 @@ class EstatisticasPreBloqueioDao extends DaoBase
         }
     }
 
-    private function getBaseQuery(int $tipoInformacaoId, int $anoExecucao, int $unidadeId = null, string $gestorSigla = null, DateTime $data = null, array $columns = []): array
-    {
+    private function getBaseQuery(
+        int $tipoInformacaoId,
+        int $anoExecucao,
+        int $unidadeId = null,
+        string $gestorSigla = null,
+        DateTime $data = null,
+        array $columns = []
+    ): array {
         $outputDateFormat = 'Y-m-d';
         $dt = is_null($data) ? new DateTime() : $data;
         $dataStr = $dt->format($outputDateFormat);
@@ -87,11 +113,31 @@ class EstatisticasPreBloqueioDao extends DaoBase
             ->setTable(self::TABLE)
             ->setColumns($queryColumns)
             ->setFunctionAsColumn('MIN', [EstatisticasPreBloqueioDomain::ID], EstatisticasPreBloqueioDomain::ID)
-            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES], EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES)
-            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO], EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO)
-            ->setFunctionAsColumn('SUM', [EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO], EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO)
-            ->setFunctionAsColumn('MIN', [EstatisticasPreBloqueioDomain::CREATED_AT], EstatisticasPreBloqueioDomain::CREATED_AT)
-            ->setFunctionAsColumn('MAX', [EstatisticasPreBloqueioDomain::UPDATED_AT], EstatisticasPreBloqueioDomain::UPDATED_AT)
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES],
+                EstatisticasPreBloqueioDomain::QUANTIDADE_OPERACOES
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO],
+                EstatisticasPreBloqueioDomain::QUANTIDADE_NOTAS_EMPENHO
+            )
+            ->setFunctionAsColumn(
+                'SUM',
+                [EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO],
+                EstatisticasPreBloqueioDomain::SALDO_NOTAS_EMPENHO
+            )
+            ->setFunctionAsColumn(
+                'MIN',
+                [EstatisticasPreBloqueioDomain::CREATED_AT],
+                EstatisticasPreBloqueioDomain::CREATED_AT
+            )
+            ->setFunctionAsColumn(
+                'MAX',
+                [EstatisticasPreBloqueioDomain::UPDATED_AT],
+                EstatisticasPreBloqueioDomain::UPDATED_AT
+            )
             ->groupBy($queryColumns)
             ->where()
             ->lessThanOrEqual(EstatisticasPreBloqueioDomain::DATA, $dataStr)
@@ -116,8 +162,12 @@ class EstatisticasPreBloqueioDao extends DaoBase
         return array($queryBuilder, $query);
     }
 
-    public function findDistribuicaoPorGestor(int $anoExecucao, int $tipoInformacaoId, int $unidadeId = null, string $siglaGestor = null): ?array
-    {
+    public function findDistribuicaoPorGestor(
+        int $anoExecucao,
+        int $tipoInformacaoId,
+        int $unidadeId = null,
+        string $siglaGestor = null
+    ): ?array {
         $query = 'exec SP_DISTRIBUICAO_PRE_BLOQUEIO_GESTOR :anoExecucao, :tipoInformacaoId, :unidadeId, :siglaGestor';
         $values = [
             ':anoExecucao' => $anoExecucao,
