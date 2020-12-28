@@ -1,6 +1,5 @@
 <?php
-/** @noinspection PhpUnused */
-/** @noinspection StaticClosureCanBeUsedInspection */
+
 declare(strict_types=1);
 
 use Tuupola\Middleware\JwtAuthentication;

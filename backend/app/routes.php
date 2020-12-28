@@ -1,6 +1,4 @@
 <?php
-/** @noinspection StaticClosureCanBeUsedInspection */
-/** @noinspection PhpUnused */
 
 declare(strict_types=1);
 
