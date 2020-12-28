@@ -20,9 +20,18 @@ class EstatisticasBloqueioSnapshotController extends ControllerBase
     public function index(Request $req, Response $res, array $args): Response
     {
         $anoExecucao = (int) $args['anoExecucao'];
-        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams()) ? (int) $req->getQueryParams()['tipoInfo'] : 3;
-        $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
-        $gestorSigla = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
+        
+        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams())
+            ? (int) $req->getQueryParams()['tipoInfo']
+            : 3;
+        
+        $unidadeId = array_key_exists('unidadeId', $req->getQueryParams())
+            ? (int) $req->getQueryParams()['unidadeId']
+            : null;
+        
+        $gestorSigla = array_key_exists('siglaGestor', $req->getQueryParams())
+            ? (string) $req->getQueryParams()['siglaGestor']
+            : null;
         
         $estatisticas = $this->dao->findByAnoExecucao($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
 
