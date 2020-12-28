@@ -27,7 +27,7 @@ class UgDao extends DaoBase
             $statment->execute($qb->getValues());
 
             return $this->inflateDomains($statment);
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
 

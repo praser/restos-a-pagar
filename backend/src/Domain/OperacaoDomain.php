@@ -37,7 +37,7 @@ class OperacaoDomain extends DomainBase
     public const VALOR_REPASE = 'valorRepasse';
     public const OBJETO = 'objeto';
     public const VALOR_DESEMBOLSADO = 'valorDesembolsado';
-    PUBLIC const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
+    public const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
 
     private $anoExecucao;
     private $anoOrcamentario;

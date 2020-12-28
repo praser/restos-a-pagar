@@ -76,7 +76,8 @@ abstract class DomainBase implements DomainInterface
         return $dateTime ? $dateTime->format(self::DATE_Y_M_D_H_I_S) : null;
     }
 
-    public function isValid(): bool {
+    public function isValid(): bool
+    {
         return true;
     }
 

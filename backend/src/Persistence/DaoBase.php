@@ -54,7 +54,8 @@ abstract class DaoBase implements DaoInterface
         throw new RuntimeException('Dao exeception');
     }
 
-    final public function all(array $orderBy = ['id', OrderBy::ASC], $table = null): ?array {
+    final public function all(array $orderBy = ['id', OrderBy::ASC], $table = null): ?array
+    {
         try {
             $queryBuilder = $this->getQueryBuilder();
             $t = $table ? $table : static::TABLE;
@@ -111,7 +112,8 @@ abstract class DaoBase implements DaoInterface
         return null;
     }
 
-    final public function create(DomainInterface $domain): bool {
+    final public function create(DomainInterface $domain): bool
+    {
         try {
             $params = $this->prepareParams($domain->jsonSerialize());
             $queryBuilder = $this->getQueryBuilder();
@@ -127,7 +129,8 @@ abstract class DaoBase implements DaoInterface
         return false;
     }
 
-    final public function update(DomainInterface $domain): bool {
+    final public function update(DomainInterface $domain): bool
+    {
         try {
             $params = $this->prepareParams($domain->jsonSerialize());
             $params[self::COL_UPDATED_AT] = new DateTime();
@@ -146,7 +149,7 @@ abstract class DaoBase implements DaoInterface
                 ->end();
             $statment = $this->getConnection()->prepare($queryBuilder->write($query));
             return $statment->execute($queryBuilder->getValues());
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
         return false;

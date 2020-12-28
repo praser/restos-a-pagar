@@ -11,7 +11,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use PHPMailer\PHPMailer\PHPMailer as Mailer; 
+use PHPMailer\PHPMailer\PHPMailer as Mailer;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -42,10 +42,10 @@ return function (ContainerBuilder $containerBuilder) {
             return new PDOConnection($conString, $username, $password);
         },
 
-        'queryBuilder' => static function(): GenericBuilder {
+        'queryBuilder' => static function (): GenericBuilder {
             return new GenericBuilder();
         },
-        'mailer' => static function(ContainerInterface $c): Mailer {
+        'mailer' => static function (ContainerInterface $c): Mailer {
             $settings = $c->get('settings')['smtp'];
             $mail = new Mailer(true);
 

@@ -60,12 +60,11 @@ class LotesDesbloqueioController extends ControllerBase
         $connection->beginTransaction();
         
         try {
-            if ($lote->isValid()) {    
+            if ($lote->isValid()) {
                 $this->dao->create($lote);
                 $lote = $this->dao->find((string) $lote->getId());
                 
-                $createOperacao = function($param) use($lote): LoteDesbloqueioOperacaoDomain
-                {
+                $createOperacao = function ($param) use ($lote): LoteDesbloqueioOperacaoDomain {
                     $p = array_intersect_key(
                         $param,
                         array_flip(

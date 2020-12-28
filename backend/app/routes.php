@@ -23,7 +23,6 @@ use App\Application\Controllers\LiminaresController;
 use App\Application\Controllers\LiminaresAtesteController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 

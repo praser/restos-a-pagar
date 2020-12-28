@@ -148,6 +148,4 @@ class EstatisticasBloqueioDomain extends DomainBase
 
         return $serialization;
     }
-
-
 }

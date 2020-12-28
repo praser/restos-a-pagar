@@ -20,7 +20,8 @@ class ParametrosController extends ControllerBase
         $this->dao = new ParametrosDao($this->container);
     }
 
-    public function index(Request $req, Response $res, array $args): Response {
+    public function index(Request $req, Response $res, array $args): Response
+    {
         $parametros = $this->dao->all();
         $res->getBody()->write(json_encode($parametros, JSON_THROW_ON_ERROR, 512));
         return $res->withStatus(self::HTTP_OK);

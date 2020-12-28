@@ -36,7 +36,7 @@ return function (App $app) {
         },
     ]));
 
-    $app->add(function($request, $handler) use ($container) {
+    $app->add(function ($request, $handler) use ($container) {
         $jwt = $request->getHeader('X-Token')[0];
         $secret = $container->get('settings')['jwt']['secret'];
         $decoded = JWT::decode($jwt, $secret, array('HS256'));
