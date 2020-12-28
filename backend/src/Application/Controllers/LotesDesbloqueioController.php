@@ -20,6 +20,7 @@ class LotesDesbloqueioController extends ControllerBase
     private $loteDesbloqueioOperacaoDao;
     private $expedienteGovService;
     private $mail;
+    private $templates;
     private $gerentes;
 
     public function __construct(Container $container)
@@ -29,6 +30,7 @@ class LotesDesbloqueioController extends ControllerBase
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
+        $this->templates = $container->get('templates');
         $this->gerentes = $container->get('settings')['managers'];
     }
 
@@ -102,34 +104,22 @@ class LotesDesbloqueioController extends ControllerBase
                 );
 
                 $this->mail->isHTML(true);                                  // Set email format to HTML
-                $this->mail->Subject = "{$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
-                $this->mail->Body = <<<HTML
-                    À
-                    <br>{$this->gerentes['gerenciaExecutivaFinanceira']}
-                    <br>
-                    <br>Senhor(a) Gerente,
-                    <br><br>
-                    <ol>
-                    <li>Comunicamos que nesta data geramos o lote {$lote->numero()} que contém {$lote->quantidadeNotasEmpenho()} notas de empenho que tiveram o seu saldo bloqueado no RAP deste ano e que atendem aos critérios estabelecidos para o desbloqueio.</li>
-                    <br>
-                    <li>Pedimos que esta gerência proceda com a operacionalização dos desbloqueios a fim de evitar o cancelamento dos saldos emepenhados nestas notas.</li>
-                    <br>
-                    <li>As informações detalhadas para o processamento do lote estão disponíveis no endereço <a htrf='http://sudep.mz.caixa/sistemas/restos-a-pagar'>http://sudep.mz.caixa/sistemas/restos-a-pagar</a> onde também é possível fazer o donwload dos dados.</li>
-                    <br>
-                    <li>Pedimos ainda que o retorno informando sobre os desbloqueios das notas de empenho seja feito através do painel de gestão dos restos a pagar.</li>
-                    <br>
-                    <li>Certos da costumeira colaboração antecipamos os agradecimentos e permanecemos à disposição.</li>
-                    </ol>
-                    <br>Atenciosamente,
-                    <br>
-                    <br><b>{$this->gerentes['gerenteExecutivoOperacao']}</b>
-                    <br>Gerente Executivo
-                    <br>{$this->gerentes['gerenciaNacionalOperacao']}
-                    <br>
-                    <br><b>{$this->gerentes['gerenteNacionalOperacao']}</b>
-                    <br>Gerente Nacional
-                    <br>{$this->gerentes['gerenciaNacionalOperacao']}
-                HTML;
+                $this->mail->Subject = <<<SUBJECT
+                    {$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos 
+                    lote {$lote->numero()}
+                SUBJECT;
+                
+                $this->mail->Body = $this->templates->render(
+                    'NewLoteDesbloqueio.html',
+                    [
+                        'gerenciaExecutivaFinanceira' => $this->gerentes['gerenciaExecutivaFinanceira'],
+                        'numeroLote' => $lote->numero(),
+                        'quantidadeDocumentos' => $lote->quantidadeNotasEmpenho(),
+                        'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
+                        'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
+                        'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
+                    ]
+                );
 
                 $this->mail->send();
 
