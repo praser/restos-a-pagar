@@ -43,7 +43,7 @@ const requests = async () => {
 
   const getUnidades = async () => client.get('/unidades');
 
-  const getOperacoes = async => {
+  const getOperacoes = async () => {
     const path = '/operacoes';
     return client.get(path);
   };
