@@ -4,4 +4,4 @@ parameters:
     - src
   excludes_analyse:
     - src/Infrastructure/Database/Seeds/*
-  level: 2
+  level: 5

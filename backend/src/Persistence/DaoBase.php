@@ -11,7 +11,7 @@ use DateTime;
 use Exception;
 use NilPortugues\Sql\QueryBuilder\Syntax\OrderBy;
 use RuntimeException;
-use NilPortugues\Sql\QueryBuilder\Builder\BuilderInterface;
+use NilPortugues\Sql\QueryBuilder\Builder\GenericBuilder;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -45,7 +45,7 @@ abstract class DaoBase implements DaoInterface
         return $this->connection;
     }
 
-    final public function getQueryBuilder(): BuilderInterface
+    final public function getQueryBuilder(): GenericBuilder
     {
         return $this->queryBuilder;
     }

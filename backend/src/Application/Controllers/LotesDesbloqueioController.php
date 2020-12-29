@@ -37,7 +37,7 @@ class LotesDesbloqueioController extends ControllerBase
 
     public function create(Request $req, Response $res, array $args): Response
     {
-        $currentUser = $req->getAttributes('user')['user'];
+        $currentUser = $req->getAttributes()['user'];
         $jwt = $currentUser['token'];
         $user = new UserDomain(json_decode($currentUser['attributes'], true));
 

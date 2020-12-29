@@ -99,14 +99,10 @@ class ParametrosDomain extends DomainBase
         return $this->dataCancelamento;
     }
 
-    private function countDias(DateTime $dataFim): ?int
+    private function countDias(DateTime $dataFim): int
     {
-        $date = $dataFim;
-        if ($date) {
-            $dias = $date->diff(new DateTime())->format('%a');
-            return $dias > 0 ? $dias : 0;
-        }
-        return null;
+        $dias = $dataFim->diff(new DateTime())->format('%a');
+        return $dias > 0 ? $dias : 0;
     }
 
     public function diasAteBloqueio(): ?int

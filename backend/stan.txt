@@ -1,0 +1,1248 @@
+ ------ -------------------------------------------------------------------- 
+  Line   app/middleware.php                                                  
+ ------ -------------------------------------------------------------------- 
+  12     Cannot call method get() on Psr\Container\ContainerInterface|null.  
+  41     Cannot call method get() on Psr\Container\ContainerInterface|null.  
+  45     Access to an undefined property object::$user.                      
+ ------ -------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/ControllerBase.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  19     Property App\Application\Controllers\ControllerBase::$container has no typehint specified.                                    
+  20     Property App\Application\Controllers\ControllerBase::$repository has no typehint specified.                                   
+  21     Property App\Application\Controllers\ControllerBase::$logger has no typehint specified.                                       
+  29     Method App\Application\Controllers\ControllerBase::index() has parameter $args with no value type specified in iterable type  
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  34     Method App\Application\Controllers\ControllerBase::show() has parameter $args with no value type specified in iterable type   
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  39     Method App\Application\Controllers\ControllerBase::create() has parameter $args with no value type specified in iterable      
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  44     Method App\Application\Controllers\ControllerBase::update() has parameter $args with no value type specified in iterable      
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  49     Method App\Application\Controllers\ControllerBase::destroy() has parameter $args with no value type specified in iterable     
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/ControllerInterface.php                                                                           
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  12     Method App\Application\Controllers\ControllerInterface::index() has parameter $args with no value type specified in iterable  
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  13     Method App\Application\Controllers\ControllerInterface::show() has parameter $args with no value type specified in iterable   
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  14     Method App\Application\Controllers\ControllerInterface::create() has parameter $args with no value type specified in          
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  15     Method App\Application\Controllers\ControllerInterface::update() has parameter $args with no value type specified in          
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  16     Method App\Application\Controllers\ControllerInterface::destroy() has parameter $args with no value type specified in         
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/EstatisticasBloqueioController.php                                                               
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Application\Controllers\EstatisticasBloqueioController::$dao has no typehint specified.                         
+  22     Method App\Application\Controllers\EstatisticasBloqueioController::index() has parameter $args with no value type specified  
+         in iterable type array.                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/EstatisticasBloqueioSnapshotController.php                                                     
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Application\Controllers\EstatisticasBloqueioSnapshotController::$dao has no typehint specified.               
+  22     Method App\Application\Controllers\EstatisticasBloqueioSnapshotController::index() has parameter $args with no value type  
+         specified in iterable type array.                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/EstatisticasPreBloqueioController.php                                                     
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Application\Controllers\EstatisticasPreBloqueioController::$dao has no typehint specified.               
+  22     Method App\Application\Controllers\EstatisticasPreBloqueioController::index() has parameter $args with no value type  
+         specified in iterable type array.                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                            
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                   
+         phpstan.neon.dist.                                                                                                    
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/InfoController.php                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  14     Property App\Application\Controllers\InfoController::$dao has no typehint specified.                                          
+  22     Method App\Application\Controllers\InfoController::index() has parameter $args with no value type specified in iterable type  
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/LiminaresAtesteController.php                                                                   
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  19     Property App\Application\Controllers\LiminaresAtesteController::$dao has no typehint specified.                             
+  28     Method App\Application\Controllers\LiminaresAtesteController::update() has parameter $args with no value type specified in  
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/LiminaresController.php                                                                           
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  19     Property App\Application\Controllers\LiminaresController::$dao has no typehint specified.                                     
+  28     Method App\Application\Controllers\LiminaresController::index() has parameter $args with no value type specified in iterable  
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  35     Method App\Application\Controllers\LiminaresController::create() has parameter $args with no value type specified in          
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  40     Parameter #1 $params of class App\Domain\LiminarDomain constructor expects array, array|object|null given.                    
+  50     Parameter #1 $liminarId of method App\Domain\LiminarOperacaoDomain::setLiminarId() expects int, int|null given.               
+  53     Cannot access offset 'operacoes' on array|object|null.                                                                        
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/LotesDesbloqueioController.php                                                                   
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  20     Property App\Application\Controllers\LotesDesbloqueioController::$dao has no typehint specified.                             
+  21     Property App\Application\Controllers\LotesDesbloqueioController::$loteDesbloqueioOperacaoDao has no typehint specified.      
+  22     Property App\Application\Controllers\LotesDesbloqueioController::$expedienteGovService has no typehint specified.            
+  23     Property App\Application\Controllers\LotesDesbloqueioController::$mail has no typehint specified.                            
+  24     Property App\Application\Controllers\LotesDesbloqueioController::$templates has no typehint specified.                       
+  25     Property App\Application\Controllers\LotesDesbloqueioController::$gerentes has no typehint specified.                        
+  38     Method App\Application\Controllers\LotesDesbloqueioController::create() has parameter $args with no value type specified in  
+         iterable type array.                                                                                                         
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  91     Parameter #2 $input1 of function array_map expects array, array|object|null given.                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/LotesDesbloqueioLiminarController.php                                                         
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  23     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$dao has no typehint specified.                   
+  24     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$loteDesbloqueioOperacaoDao has no typehint       
+         specified.                                                                                                                
+  25     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$liminarDao has no typehint specified.            
+  26     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$liminarOperacaoDao has no typehint specified.    
+  27     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$saldoNotaEmpenhoDao has no typehint specified.   
+  28     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$expedienteGovService has no typehint specified.  
+  29     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$mail has no typehint specified.                  
+  30     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$templates has no typehint specified.             
+  31     Property App\Application\Controllers\LotesDesbloqueioLiminarController::$gerentes has no typehint specified.              
+  47     Method App\Application\Controllers\LotesDesbloqueioLiminarController::create() has parameter $args with no value type     
+         specified in iterable type array.                                                                                         
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  75     Cannot access offset 'id' on array|object|null.                                                                           
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/OperacoesComEmpenhoBloqueadoController.php                                                     
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  13     Property App\Application\Controllers\OperacoesComEmpenhoBloqueadoController::$dao has no typehint specified.               
+  21     Method App\Application\Controllers\OperacoesComEmpenhoBloqueadoController::index() has parameter $args with no value type  
+         specified in iterable type array.                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/OperacoesComEmpenhoPassivelBloqueioController.php                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Application\Controllers\OperacoesComEmpenhoPassivelBloqueioController::$dao has no typehint specified.          
+  22     Method App\Application\Controllers\OperacoesComEmpenhoPassivelBloqueioController::index() has parameter $args with no value  
+         type specified in iterable type array.                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/OperacoesController.php                                                                           
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  14     Property App\Application\Controllers\OperacoesController::$dao has no typehint specified.                                     
+  22     Method App\Application\Controllers\OperacoesController::index() has parameter $args with no value type specified in iterable  
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/ParametrosController.php                                                                          
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  15     Property App\Application\Controllers\ParametrosController::$dao has no typehint specified.                                    
+  23     Method App\Application\Controllers\ParametrosController::index() has parameter $args with no value type specified in          
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  30     Method App\Application\Controllers\ParametrosController::show() has parameter $args with no value type specified in iterable  
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/SaldoNotaEmpenhoController.php                                                                   
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  15     Method App\Application\Controllers\SaldoNotaEmpenhoController::create() has parameter $args with no value type specified in  
+         iterable type array.                                                                                                         
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  19     Cannot access offset 'uuid' on array|object|null.                                                                            
+  21     Parameter #1 $params of class App\Domain\ControleArquivoDomain constructor expects array, array|object|null given.           
+  31     Cannot access offset 'saldos' on array|object|null.                                                                          
+  31     Parameter #1 $fp of function fputcsv expects resource, resource|false given.                                                 
+  32     Cannot access offset 'saldos' on array|object|null.                                                                          
+  33     Parameter #1 $fp of function fwrite expects resource, resource|false given.                                                  
+  35     Parameter #1 $fp of function fclose expects resource, resource|false given.                                                  
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/SaldoNotaEmpenhoLiminarController.php                                                     
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  15     Property App\Application\Controllers\SaldoNotaEmpenhoLiminarController::$dao has no typehint specified.               
+  23     Method App\Application\Controllers\SaldoNotaEmpenhoLiminarController::index() has parameter $args with no value type  
+         specified in iterable type array.                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                            
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                   
+         phpstan.neon.dist.                                                                                                    
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/SaldoNotasEmpenhoAptasDesbloqueioController.php                                                
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  15     Property App\Application\Controllers\SaldoNotasEmpenhoAptasDesbloqueioController::$dao has no typehint specified.          
+  23     Method App\Application\Controllers\SaldoNotasEmpenhoAptasDesbloqueioController::index() has parameter $args with no value  
+         type specified in iterable type array.                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/TipoInformacaoController.php                                                                  
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  15     Property App\Application\Controllers\TipoInformacaoController::$dao has no typehint specified.                            
+  23     Method App\Application\Controllers\TipoInformacaoController::index() has parameter $args with no value type specified in  
+         iterable type array.                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Application/Controllers/UgController.php                                                                                  
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  15     Property App\Application\Controllers\UgController::$dao has no typehint specified.                                            
+  23     Method App\Application\Controllers\UgController::index() has parameter $args with no value type specified in iterable type    
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  30     Method App\Application\Controllers\UgController::show() has parameter $args with no value type specified in iterable type     
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  43     Method App\Application\Controllers\UgController::create() has parameter $args with no value type specified in iterable type   
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  46     Cannot access offset 'ug' on array|object|null.                                                                               
+  52     Method App\Application\Controllers\UgController::update() has parameter $args with no value type specified in iterable type   
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  54     Cannot access offset 'ug' on array|object|null.                                                                               
+  74     Method App\Application\Controllers\UgController::destroy() has parameter $args with no value type specified in iterable type  
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  86     Method App\Application\Controllers\UgController::distintas() has parameter $args with no value type specified in iterable     
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/UgGestoresController.php                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Application\Controllers\UgGestoresController::$dao has no typehint specified.                            
+  22     Method App\Application\Controllers\UgGestoresController::index() has parameter $args with no value type specified in  
+         iterable type array.                                                                                                  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                            
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                   
+         phpstan.neon.dist.                                                                                                    
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Application/Controllers/UnidadesController.php                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  15     Property App\Application\Controllers\UnidadesController::$dao has no typehint specified.                                     
+  23     Method App\Application\Controllers\UnidadesController::index() has parameter $args with no value type specified in iterable  
+         type array.                                                                                                                  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/ControleArquivoDomain.php                                                                                        
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  16     Property App\Domain\ControleArquivoDomain::$uuid has no typehint specified.                                                 
+  17     Property App\Domain\ControleArquivoDomain::$matricula has no typehint specified.                                            
+  18     Property App\Domain\ControleArquivoDomain::$dataReferencia has no typehint specified.                                       
+  19     Property App\Domain\ControleArquivoDomain::$arquivo has no typehint specified.                                              
+  21     Method App\Domain\ControleArquivoDomain::__construct() has parameter $params with no value type specified in iterable type  
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/DomainBase.php                                                                                                 
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  18     Property App\Domain\DomainBase::$id has no typehint specified.                                                            
+  19     Property App\Domain\DomainBase::$created_at has no typehint specified.                                                    
+  20     Property App\Domain\DomainBase::$updated_at has no typehint specified.                                                    
+  21     Property App\Domain\DomainBase::$validator has no typehint specified.                                                     
+  23     Method App\Domain\DomainBase::__construct() has parameter $params with no value type specified in iterable type array.    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  84     Method App\Domain\DomainBase::getErrors() return type has no value type specified in iterable type array.                 
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  89     Method App\Domain\DomainBase::setAttribute() has no return typehint specified.                                            
+  89     Method App\Domain\DomainBase::setAttribute() has parameter $params with no value type specified in iterable type array.   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  98     Cannot access offset 'warning_count' on array('warning_count' => int, 'warnings' => array<int, string>, 'error_count' =>  
+         int, 'errors' => array<int, string>)|false.                                                                               
+  104    Method App\Domain\DomainBase::parseParams() has parameter $params with no value type specified in iterable type array.    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  104    Method App\Domain\DomainBase::parseParams() return type has no value type specified in iterable type array.               
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/DomainInterface.php                                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+  26     Method App\Domain\DomainInterface::getErrors() return type has no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                      
+         You can turn off this check by setting checkMissingIterableValueType: false in your                             
+         phpstan.neon.dist.                                                                                              
+ ------ ---------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/EstatisticasBloqueioDomain.php                                                                                   
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  26     Property App\Domain\EstatisticasBloqueioDomain::$anoExecucao has no typehint specified.                                     
+  27     Property App\Domain\EstatisticasBloqueioDomain::$anoOrcamentario has no typehint specified.                                 
+  28     Property App\Domain\EstatisticasBloqueioDomain::$data has no typehint specified.                                            
+  29     Property App\Domain\EstatisticasBloqueioDomain::$gigovId has no typehint specified.                                         
+  30     Property App\Domain\EstatisticasBloqueioDomain::$gigovNome has no typehint specified.                                       
+  31     Property App\Domain\EstatisticasBloqueioDomain::$siglaGestor has no typehint specified.                                     
+  32     Property App\Domain\EstatisticasBloqueioDomain::$nomeGestor has no typehint specified.                                      
+  33     Property App\Domain\EstatisticasBloqueioDomain::$quantidadeOperacoes has no typehint specified.                             
+  34     Property App\Domain\EstatisticasBloqueioDomain::$quantidadeDocumentos has no typehint specified.                            
+  35     Property App\Domain\EstatisticasBloqueioDomain::$saldoBloqueado has no typehint specified.                                  
+  36     Property App\Domain\EstatisticasBloqueioDomain::$saldoDesbloqueado has no typehint specified.                               
+  37     Property App\Domain\EstatisticasBloqueioDomain::$saldoAguardandoDesbloqueio has no typehint specified.                      
+  38     Property App\Domain\EstatisticasBloqueioDomain::$tipoInformacaoId has no typehint specified.                                
+  39     Property App\Domain\EstatisticasBloqueioDomain::$tipoInformacaoDescricao has no typehint specified.                         
+  41     Method App\Domain\EstatisticasBloqueioDomain::__construct() has parameter $params with no value type specified in iterable  
+         type array.                                                                                                                 
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  130    Method App\Domain\EstatisticasBloqueioDomain::jsonSerialize() return type has no value type specified in iterable type      
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/EstatisticasPreBloqueioDomain.php                                                                               
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  24     Property App\Domain\EstatisticasPreBloqueioDomain::$anoExecucao has no typehint specified.                                 
+  25     Property App\Domain\EstatisticasPreBloqueioDomain::$anoOrcamentario has no typehint specified.                             
+  26     Property App\Domain\EstatisticasPreBloqueioDomain::$data has no typehint specified.                                        
+  27     Property App\Domain\EstatisticasPreBloqueioDomain::$gigovId has no typehint specified.                                     
+  28     Property App\Domain\EstatisticasPreBloqueioDomain::$gigovNome has no typehint specified.                                   
+  29     Property App\Domain\EstatisticasPreBloqueioDomain::$siglaGestor has no typehint specified.                                 
+  30     Property App\Domain\EstatisticasPreBloqueioDomain::$nomeGestor has no typehint specified.                                  
+  31     Property App\Domain\EstatisticasPreBloqueioDomain::$quantidadeOperacoes has no typehint specified.                         
+  32     Property App\Domain\EstatisticasPreBloqueioDomain::$quantidadeNotasEmpenho has no typehint specified.                      
+  33     Property App\Domain\EstatisticasPreBloqueioDomain::$saldoNotasEmpenho has no typehint specified.                           
+  34     Property App\Domain\EstatisticasPreBloqueioDomain::$tipoInformacaoId has no typehint specified.                            
+  35     Property App\Domain\EstatisticasPreBloqueioDomain::$tipoInformacaoDescricao has no typehint specified.                     
+  37     Method App\Domain\EstatisticasPreBloqueioDomain::__construct() has parameter $params with no value type specified in       
+         iterable type array.                                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+  114    Method App\Domain\EstatisticasPreBloqueioDomain::jsonSerialize() return type has no value type specified in iterable type  
+         array.                                                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Domain/InfoDomain.php                                                                                               
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  17     Property App\Domain\InfoDomain::$name has no typehint specified.                                                        
+  18     Property App\Domain\InfoDomain::$description has no typehint specified.                                                 
+  19     Property App\Domain\InfoDomain::$docs has no typehint specified.                                                        
+  20     Property App\Domain\InfoDomain::$source has no typehint specified.                                                      
+  21     Property App\Domain\InfoDomain::$databasePosition has no typehint specified.                                            
+  22     Property App\Domain\InfoDomain::$databaseLastUpdate has no typehint specified.                                          
+  24     Method App\Domain\InfoDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                              
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                     
+         phpstan.neon.dist.                                                                                                      
+  65     Method App\Domain\InfoDomain::jsonSerialize() return type has no value type specified in iterable type array.           
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                              
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                     
+         phpstan.neon.dist.                                                                                                      
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/LiminarDomain.php                                                                                               
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  32     Property App\Domain\LiminarDomain::$numeroProcesso has no typehint specified.                                              
+  33     Property App\Domain\LiminarDomain::$requerente has no typehint specified.                                                  
+  34     Property App\Domain\LiminarDomain::$dataDecisao has no typehint specified.                                                 
+  35     Property App\Domain\LiminarDomain::$siarg has no typehint specified.                                                       
+  36     Property App\Domain\LiminarDomain::$observacoes has no typehint specified.                                                 
+  37     Property App\Domain\LiminarDomain::$responsavelCadastramentoId has no typehint specified.                                  
+  38     Property App\Domain\LiminarDomain::$responsavelCadastramentoNome has no typehint specified.                                
+  39     Property App\Domain\LiminarDomain::$responsavelCadastramentoUnidadeId has no typehint specified.                           
+  40     Property App\Domain\LiminarDomain::$responsavelCadastramentoUnidadeSigla has no typehint specified.                        
+  41     Property App\Domain\LiminarDomain::$dataAteste has no typehint specified.                                                  
+  42     Property App\Domain\LiminarDomain::$responsavelAtesteId has no typehint specified.                                         
+  43     Property App\Domain\LiminarDomain::$responsavelAtesteNome has no typehint specified.                                       
+  44     Property App\Domain\LiminarDomain::$responsavelAtesteUnidadeId has no typehint specified.                                  
+  45     Property App\Domain\LiminarDomain::$responsavelAtesteUnidadeSigla has no typehint specified.                               
+  46     Property App\Domain\LiminarDomain::$fimVigencia has no typehint specified.                                                 
+  47     Property App\Domain\LiminarDomain::$responsavelFimVigenciaId has no typehint specified.                                    
+  48     Property App\Domain\LiminarDomain::$responsavelFimVigenciaNome has no typehint specified.                                  
+  49     Property App\Domain\LiminarDomain::$responsavelFimVigenciaUnidadeId has no typehint specified.                             
+  50     Property App\Domain\LiminarDomain::$responsavelFimVigenciaUnidadeSigla has no typehint specified.                          
+  51     Property App\Domain\LiminarDomain::$empenhosBloqueados has no typehint specified.                                          
+  53     Method App\Domain\LiminarDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+  245    Method App\Domain\LiminarDomain::jsonSerialize() return type has no value type specified in iterable type array.           
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/LiminarOperacaoDomain.php                                                                                        
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  10     Property App\Domain\LiminarOperacaoDomain::$liminarId has no typehint specified.                                            
+  11     Property App\Domain\LiminarOperacaoDomain::$operacaoId has no typehint specified.                                           
+  13     Method App\Domain\LiminarOperacaoDomain::__construct() has parameter $params with no value type specified in iterable type  
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  53     Method App\Domain\LiminarOperacaoDomain::jsonSerialize() return type has no value type specified in iterable type array.    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/LoteDesbloqueioDomain.php                                                                                        
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  19     Property App\Domain\LoteDesbloqueioDomain::$sequencial has no typehint specified.                                           
+  20     Property App\Domain\LoteDesbloqueioDomain::$ano has no typehint specified.                                                  
+  21     Property App\Domain\LoteDesbloqueioDomain::$ce has no typehint specified.                                                   
+  22     Property App\Domain\LoteDesbloqueioDomain::$responsavelId has no typehint specified.                                        
+  23     Property App\Domain\LoteDesbloqueioDomain::$responsavelNome has no typehint specified.                                      
+  24     Property App\Domain\LoteDesbloqueioDomain::$responsavelUnidadeId has no typehint specified.                                 
+  25     Property App\Domain\LoteDesbloqueioDomain::$responsavelUnidadeSigla has no typehint specified.                              
+  26     Property App\Domain\LoteDesbloqueioDomain::$situacao has no typehint specified.                                             
+  27     Property App\Domain\LoteDesbloqueioDomain::$liminarId has no typehint specified.                                            
+  28     Property App\Domain\LoteDesbloqueioDomain::$notasEmpenho has no typehint specified.                                         
+  30     Method App\Domain\LoteDesbloqueioDomain::__construct() has parameter $params with no value type specified in iterable type  
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  168    Method App\Domain\LoteDesbloqueioDomain::jsonSerialize() return type has no value type specified in iterable type array.    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/LoteDesbloqueioOperacaoDomain.php                                                                               
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  19     Property App\Domain\LoteDesbloqueioOperacaoDomain::$loteDesbloqueioId has no typehint specified.                           
+  20     Property App\Domain\LoteDesbloqueioOperacaoDomain::$operacaoId has no typehint specified.                                  
+  21     Property App\Domain\LoteDesbloqueioOperacaoDomain::$documento has no typehint specified.                                   
+  22     Property App\Domain\LoteDesbloqueioOperacaoDomain::$saldo has no typehint specified.                                       
+  23     Property App\Domain\LoteDesbloqueioOperacaoDomain::$desbloqueado has no typehint specified.                                
+  24     Property App\Domain\LoteDesbloqueioOperacaoDomain::$responsavelRetornoId has no typehint specified.                        
+  25     Property App\Domain\LoteDesbloqueioOperacaoDomain::$responsavelRetornoNome has no typehint specified.                      
+  26     Property App\Domain\LoteDesbloqueioOperacaoDomain::$responsavelRetornoUnidadeId has no typehint specified.                 
+  27     Property App\Domain\LoteDesbloqueioOperacaoDomain::$responsavelRetornoUnidadeSigla has no typehint specified.              
+  29     Method App\Domain\LoteDesbloqueioOperacaoDomain::__construct() has parameter $params with no value type specified in       
+         iterable type array.                                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+  158    Method App\Domain\LoteDesbloqueioOperacaoDomain::jsonSerialize() return type has no value type specified in iterable type  
+         array.                                                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/OperacaoDomain.php                                                                                               
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  42     Property App\Domain\OperacaoDomain::$anoExecucao has no typehint specified.                                                 
+  43     Property App\Domain\OperacaoDomain::$anoOrcamentario has no typehint specified.                                             
+  44     Property App\Domain\OperacaoDomain::$operacao has no typehint specified.                                                    
+  45     Property App\Domain\OperacaoDomain::$dv has no typehint specified.                                                          
+  46     Property App\Domain\OperacaoDomain::$proposta has no typehint specified.                                                    
+  47     Property App\Domain\OperacaoDomain::$anoProposta has no typehint specified.                                                 
+  48     Property App\Domain\OperacaoDomain::$anoOrcamentarioProposta has no typehint specified.                                     
+  49     Property App\Domain\OperacaoDomain::$convenio has no typehint specified.                                                    
+  50     Property App\Domain\OperacaoDomain::$gigovId has no typehint specified.                                                     
+  51     Property App\Domain\OperacaoDomain::$gigovNome has no typehint specified.                                                   
+  52     Property App\Domain\OperacaoDomain::$proponente has no typehint specified.                                                  
+  53     Property App\Domain\OperacaoDomain::$uf has no typehint specified.                                                          
+  54     Property App\Domain\OperacaoDomain::$siglaGestor has no typehint specified.                                                 
+  55     Property App\Domain\OperacaoDomain::$nomeGestor has no typehint specified.                                                  
+  56     Property App\Domain\OperacaoDomain::$enquadramentoLegislacao has no typehint specified.                                     
+  57     Property App\Domain\OperacaoDomain::$enquadramentoLegislacaoComplemento has no typehint specified.                          
+  58     Property App\Domain\OperacaoDomain::$situacaoContrato has no typehint specified.                                            
+  59     Property App\Domain\OperacaoDomain::$situacaoContratoComplemento has no typehint specified.                                 
+  60     Property App\Domain\OperacaoDomain::$percentualFisicoAferido has no typehint specified.                                     
+  61     Property App\Domain\OperacaoDomain::$percentualFinanceiroDesbloqueado has no typehint specified.                            
+  62     Property App\Domain\OperacaoDomain::$dataVigencia has no typehint specified.                                                
+  63     Property App\Domain\OperacaoDomain::$dataSPA has no typehint specified.                                                     
+  64     Property App\Domain\OperacaoDomain::$dataVRPL has no typehint specified.                                                    
+  65     Property App\Domain\OperacaoDomain::$dataAIO has no typehint specified.                                                     
+  66     Property App\Domain\OperacaoDomain::$dataRetiradaSuspensiva has no typehint specified.                                      
+  67     Property App\Domain\OperacaoDomain::$dataCumprimentoCriteriosDesbloqueio has no typehint specified.                         
+  68     Property App\Domain\OperacaoDomain::$valorRepasse has no typehint specified.                                                
+  69     Property App\Domain\OperacaoDomain::$objeto has no typehint specified.                                                      
+  70     Property App\Domain\OperacaoDomain::$valorDesembolsado has no typehint specified.                                           
+  71     Property App\Domain\OperacaoDomain::$aptaDesbloqueio has no typehint specified.                                             
+  73     Method App\Domain\OperacaoDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  261    Method App\Domain\OperacaoDomain::jsonSerialize() return type has no value type specified in iterable type array.           
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Domain/ParametrosDomain.php                                                                                               
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  21     Property App\Domain\ParametrosDomain::$anoExecucao has no typehint specified.                                                 
+  22     Property App\Domain\ParametrosDomain::$anoOrcamentario has no typehint specified.                                             
+  23     Property App\Domain\ParametrosDomain::$rpNaoProcessadosALiquidarPcaspId has no typehint specified.                            
+  24     Property App\Domain\ParametrosDomain::$rpNaoProcessadosBloqueadosPcaspId has no typehint specified.                           
+  25     Property App\Domain\ParametrosDomain::$rpNaoProcessadosCanceladosPcaspId has no typehint specified.                           
+  26     Property App\Domain\ParametrosDomain::$saudeUgId has no typehint specified.                                                   
+  27     Property App\Domain\ParametrosDomain::$orcamentoImpositivoTipoResultadoPrimarioId has no typehint specified.                  
+  28     Property App\Domain\ParametrosDomain::$dataBloqueio has no typehint specified.                                                
+  29     Property App\Domain\ParametrosDomain::$dataCancelamento has no typehint specified.                                            
+  31     Method App\Domain\ParametrosDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  105    Method App\Domain\ParametrosDomain::countDias() should return int but returns int|string.                                     
+  110    Parameter #1 $dataFim of method App\Domain\ParametrosDomain::countDias() expects DateTime, DateTime|null given.               
+  115    Parameter #1 $dataFim of method App\Domain\ParametrosDomain::countDias() expects DateTime, DateTime|null given.               
+  118    Method App\Domain\ParametrosDomain::jsonSerialize() return type has no value type specified in iterable type array.           
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/PcaspDomain.php                                                                                               
+ ------ ------------------------------------------------------------------------------------------------------------------------- 
+  22     Property App\Domain\PcaspDomain::$classe has no typehint specified.                                                      
+  23     Property App\Domain\PcaspDomain::$grupo has no typehint specified.                                                       
+  24     Property App\Domain\PcaspDomain::$subgrupo has no typehint specified.                                                    
+  25     Property App\Domain\PcaspDomain::$titulo has no typehint specified.                                                      
+  26     Property App\Domain\PcaspDomain::$subtitulo has no typehint specified.                                                   
+  27     Property App\Domain\PcaspDomain::$item has no typehint specified.                                                        
+  28     Property App\Domain\PcaspDomain::$subitem has no typehint specified.                                                     
+  29     Property App\Domain\PcaspDomain::$conta has no typehint specified.                                                       
+  30     Property App\Domain\PcaspDomain::$tituloConta has no typehint specified.                                                 
+  31     Property App\Domain\PcaspDomain::$funcao has no typehint specified.                                                      
+  32     Property App\Domain\PcaspDomain::$naturezaSaldo has no typehint specified.                                               
+  33     Property App\Domain\PcaspDomain::$ano has no typehint specified.                                                         
+  35     Method App\Domain\PcaspDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                               
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                      
+         phpstan.neon.dist.                                                                                                       
+ ------ ------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/SaldoNotaEmpenhoDomain.php                                                                                        
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  27     Property App\Domain\SaldoNotaEmpenhoDomain::$pcaspId has no typehint specified.                                              
+  28     Property App\Domain\SaldoNotaEmpenhoDomain::$ugId has no typehint specified.                                                 
+  29     Property App\Domain\SaldoNotaEmpenhoDomain::$operacaoId has no typehint specified.                                           
+  30     Property App\Domain\SaldoNotaEmpenhoDomain::$operacao has no typehint specified.                                             
+  31     Property App\Domain\SaldoNotaEmpenhoDomain::$proposta has no typehint specified.                                             
+  32     Property App\Domain\SaldoNotaEmpenhoDomain::$convenio has no typehint specified.                                             
+  33     Property App\Domain\SaldoNotaEmpenhoDomain::$tipoResultadoPrimarioId has no typehint specified.                              
+  34     Property App\Domain\SaldoNotaEmpenhoDomain::$anoOrcamentario has no typehint specified.                                      
+  35     Property App\Domain\SaldoNotaEmpenhoDomain::$documento has no typehint specified.                                            
+  36     Property App\Domain\SaldoNotaEmpenhoDomain::$ptres has no typehint specified.                                                
+  37     Property App\Domain\SaldoNotaEmpenhoDomain::$dataEmissao has no typehint specified.                                          
+  38     Property App\Domain\SaldoNotaEmpenhoDomain::$saldo has no typehint specified.                                                
+  39     Property App\Domain\SaldoNotaEmpenhoDomain::$controleArquivoId has no typehint specified.                                    
+  40     Property App\Domain\SaldoNotaEmpenhoDomain::$dataReferencia has no typehint specified.                                       
+  41     Property App\Domain\SaldoNotaEmpenhoDomain::$aptaDesbloqueio has no typehint specified.                                      
+  43     Method App\Domain\SaldoNotaEmpenhoDomain::__construct() has parameter $params with no value type specified in iterable type  
+         array.                                                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  187    Method App\Domain\SaldoNotaEmpenhoDomain::jsonSerialize() return type has no value type specified in iterable type array.    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  200    Cannot call method format() on DateTime|null.                                                                                
+  203    Cannot call method format() on DateTime|null.                                                                                
+  205    Cannot call method format() on DateTime|null.                                                                                
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/UgDomain.php                                                                                               
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  14     Property App\Domain\UgDomain::$codigo has no typehint specified.                                                      
+  15     Property App\Domain\UgDomain::$nome has no typehint specified.                                                        
+  16     Property App\Domain\UgDomain::$nomeGestor has no typehint specified.                                                  
+  17     Property App\Domain\UgDomain::$siglaGestor has no typehint specified.                                                 
+  19     Method App\Domain\UgDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                            
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                   
+         phpstan.neon.dist.                                                                                                    
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Domain/UnidadeDomain.php                                                                                               
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  11     Property App\Domain\UnidadeDomain::$nome has no typehint specified.                                                        
+  13     Method App\Domain\UnidadeDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Domain/UserDomain.php                                                                                               
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  18     Property App\Domain\UserDomain::$cpf has no typehint specified.                                                         
+  19     Property App\Domain\UserDomain::$registration has no typehint specified.                                                
+  20     Property App\Domain\UserDomain::$name has no typehint specified.                                                        
+  21     Property App\Domain\UserDomain::$photo has no typehint specified.                                                       
+  22     Property App\Domain\UserDomain::$physicalLotationAbbreviation has no typehint specified.                                
+  23     Property App\Domain\UserDomain::$physicalLotationId has no typehint specified.                                          
+  25     Method App\Domain\UserDomain::__construct() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                              
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                     
+         phpstan.neon.dist.                                                                                                      
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Connection/ConnectionInterface.php                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  9      Method App\Infrastructure\Database\Connection\ConnectionInterface::__construct() has parameter $options with no value type    
+         specified in iterable type array.                                                                                             
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  10     Method App\Infrastructure\Database\Connection\ConnectionInterface::prepare() has parameter $driverOptions with no value type  
+         specified in iterable type array.                                                                                             
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Connection/PDOConnection.php                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+  11     Property App\Infrastructure\Database\Connection\PDOConnection::$connection has no typehint specified.                   
+  13     Method App\Infrastructure\Database\Connection\PDOConnection::__construct() has parameter $options with no value type    
+         specified in iterable type array.                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                              
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                     
+         phpstan.neon.dist.                                                                                                      
+  19     Method App\Infrastructure\Database\Connection\PDOConnection::prepare() has parameter $driverOptions with no value type  
+         specified in iterable type array.                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                              
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                     
+         phpstan.neon.dist.                                                                                                      
+ ------ ------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Connection/PDOStatment.php                                                                        
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  12     Property App\Infrastructure\Database\Connection\PDOStatment::$pdoStatment has no typehint specified.                          
+  19     Method App\Infrastructure\Database\Connection\PDOStatment::bindValue() has parameter $value with no typehint specified.       
+  24     Method App\Infrastructure\Database\Connection\PDOStatment::execute() has parameter $inputParams with no value type specified  
+         in iterable type array.                                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  29     Method App\Infrastructure\Database\Connection\PDOStatment::fetchAll() return type has no value type specified in iterable     
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  34     Method App\Infrastructure\Database\Connection\PDOStatment::fetch() return type has no value type specified in iterable type   
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Connection/StatementInterface.php                                                             
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  14     Method App\Infrastructure\Database\Connection\StatementInterface::bindValue() has parameter $value with no typehint       
+         specified.                                                                                                                
+  15     Method App\Infrastructure\Database\Connection\StatementInterface::execute() has parameter $inputParameters with no value  
+         type specified in iterable type array.                                                                                    
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  16     Method App\Infrastructure\Database\Connection\StatementInterface::fetchAll() return type has no value type specified in   
+         iterable type array.                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  17     Method App\Infrastructure\Database\Connection\StatementInterface::fetch() return type has no value type specified in      
+         iterable type array.                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201026195820_create_lotes_desbloqueio.php  
+ ------ ------------------------------------------------------------------------------------ 
+  7      Method CreateLotesDesbloqueio::change() has no return typehint specified.           
+ ------ ------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201026201859_create_lotes_desbloqueio_operacoes.php  
+ ------ ---------------------------------------------------------------------------------------------- 
+  7      Method CreateLotesDesbloqueioOperacoes::change() has no return typehint specified.            
+ ------ ---------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201027172234_rename_vw_estatiscias.php  
+ ------ --------------------------------------------------------------------------------- 
+  7      Method RenameVwEstatiscias::change() has no return typehint specified.           
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201030151400_create_parametros.php  
+ ------ ----------------------------------------------------------------------------- 
+  7      Method CreateParametros::change() has no return typehint specified.          
+ ------ ----------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201030152906_create_ministerios.php  
+ ------ ------------------------------------------------------------------------------ 
+  7      Method CreateMinisterios::change() has no return typehint specified.          
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201030170157_create_parametros_ug_nao_participantes.php  
+ ------ -------------------------------------------------------------------------------------------------- 
+  7      Method CreateParametrosUgNaoParticipantes::change() has no return typehint specified.             
+ ------ -------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201030171250_create_parametros_tipo_resultado_primario_nao_participante.php  
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+  7      Method CreateParametrosTipoResultadoPrimarioNaoParticipante::change() has no return typehint specified.               
+ ------ ---------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201030181103_alter_vw_estatisticas_bloqueio.php  
+ ------ ------------------------------------------------------------------------------------------ 
+  7      Method AlterVwEstatisticasBloqueio::change() has no return typehint specified.            
+ ------ ------------------------------------------------------------------------------------------ 
+
+ ------ ----------------------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201030184952_alter_vw_operacoes_com_ne_passiveis_de_bloqueio.php  
+ ------ ----------------------------------------------------------------------------------------------------------- 
+  7      Method AlterVwOperacoesComNePassiveisDeBloqueio::change() has no return typehint specified.                
+ ------ ----------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201030191410_create_sp_distribuicao_pre_bloqueio_gestor.php  
+ ------ ------------------------------------------------------------------------------------------------------ 
+  7      Method CreateSpDistribuicaoPreBloqueioGestor::up() has no return typehint specified.                  
+ ------ ------------------------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201107100715_parametros_criterios_desbloqueio.php  
+ ------ -------------------------------------------------------------------------------------------- 
+  7      Method ParametrosCriteriosDesbloqueio::change() has no return typehint specified.           
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201112173230_alter_lote_desbloqueio_operacoes.php  
+ ------ -------------------------------------------------------------------------------------------- 
+  7      Method AlterLoteDesbloqueioOperacoes::change() has no return typehint specified.            
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201113011441_create_lote_desbloqueio_sequence.php  
+ ------ -------------------------------------------------------------------------------------------- 
+  7      Method CreateLoteDesbloqueioSequence::up() has no return typehint specified.                
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201125123659_snapshot_estatisticas_bloqueio.php  
+ ------ ------------------------------------------------------------------------------------------ 
+  7      Method SnapshotEstatisticasBloqueio::change() has no return typehint specified.           
+ ------ ------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201125185505_create_liminares.php  
+ ------ ---------------------------------------------------------------------------- 
+  7      Method CreateLiminares::change() has no return typehint specified.          
+ ------ ---------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------ 
+  Line   src/Infrastructure/Database/Migrations/20201125185655_create_liminar_operacoes.php  
+ ------ ------------------------------------------------------------------------------------ 
+  7      Method CreateLiminarOperacoes::change() has no return typehint specified.           
+ ------ ------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Database/Migrations/20201127180601_alter_liminares.php  
+ ------ --------------------------------------------------------------------------- 
+  7      Method AlterLiminares::change() has no return typehint specified.          
+ ------ --------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Infrastructure/Validator/Validator.php                                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  17     Property App\Infrastructure\Validator\Validator::$patterns has no typehint specified.                                       
+  35     Property App\Infrastructure\Validator\Validator::$errors has no typehint specified.                                         
+  36     Property App\Infrastructure\Validator\Validator::$name has no typehint specified.                                           
+  37     Property App\Infrastructure\Validator\Validator::$value has no typehint specified.                                          
+  38     Property App\Infrastructure\Validator\Validator::$file has no typehint specified.                                           
+  46     Method App\Infrastructure\Validator\Validator::setValue() has parameter $value with no typehint specified.                  
+  52     Method App\Infrastructure\Validator\Validator::setFile() has parameter $value with no typehint specified.                   
+  126    Method App\Infrastructure\Validator\Validator::equal() has parameter $value with no typehint specified.                     
+  171    Method App\Infrastructure\Validator\Validator::getErrors() return type has no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  176    Method App\Infrastructure\Validator\Validator::isInt() has parameter $value with no typehint specified.                     
+  178    Method App\Infrastructure\Validator\Validator::isInt() should return bool but returns int|false.                            
+  181    Method App\Infrastructure\Validator\Validator::isFloat() has parameter $value with no typehint specified.                   
+  183    Method App\Infrastructure\Validator\Validator::isFloat() should return bool but returns float|false.                        
+  186    Method App\Infrastructure\Validator\Validator::isAlpha() has parameter $value with no typehint specified.                   
+  188    Method App\Infrastructure\Validator\Validator::isAlpha() should return bool but returns string|false.                       
+  191    Method App\Infrastructure\Validator\Validator::isAlphanum() has parameter $value with no typehint specified.                
+  193    Method App\Infrastructure\Validator\Validator::isAlphanum() should return bool but returns string|false.                    
+  200    Method App\Infrastructure\Validator\Validator::isUrl() has parameter $value with no typehint specified.                     
+  202    Method App\Infrastructure\Validator\Validator::isUrl() should return bool but returns string|false.                         
+  205    Method App\Infrastructure\Validator\Validator::isUri() has parameter $value with no typehint specified.                     
+  207    Method App\Infrastructure\Validator\Validator::isUri() should return bool but returns string|false.                         
+  214    Method App\Infrastructure\Validator\Validator::isBool() has parameter $value with no typehint specified.                    
+  219    Method App\Infrastructure\Validator\Validator::isEmail() has parameter $value with no typehint specified.                   
+  221    Method App\Infrastructure\Validator\Validator::isEmail() should return bool but returns string|false.                       
+  224    Method App\Infrastructure\Validator\Validator::isInstanceOf() has parameter $object with no typehint specified.             
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   src/Persistence/ControleArquivoDao.php                                           
+ ------ --------------------------------------------------------------------------------- 
+  12     Property App\Persistence\ControleArquivoDao::$domain has no typehint specified.  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/DaoBase.php                                                                                                  
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  30     Property App\Persistence\DaoBase::$connection has no typehint specified.                                                     
+  31     Property App\Persistence\DaoBase::$logger has no typehint specified.                                                         
+  32     Property App\Persistence\DaoBase::$queryBuilder has no typehint specified.                                                   
+  34     Property App\Persistence\DaoBase::$domain has no typehint specified.                                                         
+  61     Method App\Persistence\DaoBase::all() has parameter $orderBy with no value type specified in iterable type array.            
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  61     Method App\Persistence\DaoBase::all() has parameter $table with no typehint specified.                                       
+  61     Method App\Persistence\DaoBase::all() return type has no value type specified in iterable type array.                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  76     Method App\Persistence\DaoBase::findAllBy() has parameter $orderBy with no value type specified in iterable type array.      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  76     Method App\Persistence\DaoBase::findAllBy() has parameter $params with no value type specified in iterable type array.       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  76     Method App\Persistence\DaoBase::findAllBy() has parameter $table with no typehint specified.                                 
+  76     Method App\Persistence\DaoBase::findAllBy() return type has no value type specified in iterable type array.                  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  103    Method App\Persistence\DaoBase::findBy() has parameter $params with no value type specified in iterable type array.          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  124    Call to an undefined method NilPortugues\Sql\QueryBuilder\Manipulation\AbstractBaseQuery::setValues().                       
+  128    Parameter #1 $id of method App\Domain\DomainInterface::setId() expects int, int|null given.                                  
+  148    Call to an undefined method NilPortugues\Sql\QueryBuilder\Manipulation\AbstractBaseQuery::setValues().                       
+  179    Method App\Persistence\DaoBase::instanciateDomain() has parameter $params with no value type specified in iterable type      
+         array.                                                                                                                       
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  191    Method App\Persistence\DaoBase::inflateDomains() has parameter $values with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  191    Method App\Persistence\DaoBase::inflateDomains() return type has no value type specified in iterable type array.             
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  207    Method App\Persistence\DaoBase::prepareParams() has parameter $params with no value type specified in iterable type array.   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  207    Method App\Persistence\DaoBase::prepareParams() return type has no value type specified in iterable type array.              
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/DaoInterface.php                                                                                          
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  16     Method App\Persistence\DaoInterface::all() return type has no value type specified in iterable type array.                
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  20     Method App\Persistence\DaoInterface::findBy() has parameter $params with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Persistence/EstatisticasBloqueioDao.php                                                                                   
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  15     Property App\Persistence\EstatisticasBloqueioDao::$domain has no typehint specified.                                          
+  17     Method App\Persistence\EstatisticasBloqueioDao::findByAnoExecucao() return type has no value type specified in iterable type  
+         array.                                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/EstatisticasBloqueioSnapshotDao.php                                                                         
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  15     Property App\Persistence\EstatisticasBloqueioSnapshotDao::$domain has no typehint specified.                                
+  17     Method App\Persistence\EstatisticasBloqueioSnapshotDao::findByAnoExecucao() return type has no value type specified in      
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  42     Method App\Persistence\EstatisticasBloqueioSnapshotDao::getBaseQuery() has parameter $columns with no value type specified  
+         in iterable type array.                                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  42     Method App\Persistence\EstatisticasBloqueioSnapshotDao::getBaseQuery() return type has no value type specified in iterable  
+         type array.                                                                                                                 
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  64     Call to an undefined method NilPortugues\Sql\QueryBuilder\Manipulation\QueryInterface::orderBy().                           
+  95     Parameter #2 $value of method NilPortugues\Sql\QueryBuilder\Syntax\Where::lessThanOrEqual() expects int, string given.      
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/EstatisticasPreBloqueioDao.php                                                                              
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+  16     Property App\Persistence\EstatisticasPreBloqueioDao::$domain has no typehint specified.                                     
+  18     Method App\Persistence\EstatisticasPreBloqueioDao::findSumario() return type has no value type specified in iterable type   
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  36     Method App\Persistence\EstatisticasPreBloqueioDao::findSumarioPorGestor() return type has no value type specified in        
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  62     Method App\Persistence\EstatisticasPreBloqueioDao::findAllTipoInformacao() return type has no value type specified in       
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  70     Call to an undefined method NilPortugues\Sql\QueryBuilder\Manipulation\QueryInterface::orderBy().                           
+  74     Parameter #1 $value of method NilPortugues\Sql\QueryBuilder\Manipulation\ColumnQuery::setValueAsColumn() expects string,    
+         null given.                                                                                                                 
+  90     Method App\Persistence\EstatisticasPreBloqueioDao::getBaseQuery() has parameter $columns with no value type specified in    
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  90     Method App\Persistence\EstatisticasPreBloqueioDao::getBaseQuery() return type has no value type specified in iterable type  
+         array.                                                                                                                      
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+  112    Call to an undefined method NilPortugues\Sql\QueryBuilder\Manipulation\QueryInterface::orderBy().                           
+  144    Parameter #2 $value of method NilPortugues\Sql\QueryBuilder\Syntax\Where::lessThanOrEqual() expects int, string given.      
+  166    Method App\Persistence\EstatisticasPreBloqueioDao::findDistribuicaoPorGestor() return type has no value type specified in   
+         iterable type array.                                                                                                        
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                  
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                         
+         phpstan.neon.dist.                                                                                                          
+ ------ ---------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------- 
+  Line   src/Persistence/InfoDao.php                                           
+ ------ ---------------------------------------------------------------------- 
+  13     Property App\Persistence\InfoDao::$domain has no typehint specified.  
+ ------ ---------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------- 
+  Line   src/Persistence/LiminarDao.php                                           
+ ------ ------------------------------------------------------------------------- 
+  12     Property App\Persistence\LiminarDao::$domain has no typehint specified.  
+ ------ ------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   src/Persistence/LiminarOperacaoDao.php                                           
+ ------ --------------------------------------------------------------------------------- 
+  12     Property App\Persistence\LiminarOperacaoDao::$domain has no typehint specified.  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   src/Persistence/LoteDesbloqueioDao.php                                           
+ ------ --------------------------------------------------------------------------------- 
+  12     Property App\Persistence\LoteDesbloqueioDao::$domain has no typehint specified.  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------- 
+  Line   src/Persistence/LoteDesbloqueioOperacaoDao.php                                           
+ ------ ----------------------------------------------------------------------------------------- 
+  12     Property App\Persistence\LoteDesbloqueioOperacaoDao::$domain has no typehint specified.  
+ ------ ----------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Persistence/OperacaoDao.php                                                                                               
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  13     Property App\Persistence\OperacaoDao::$domain has no typehint specified.                                                      
+  15     Method App\Persistence\OperacaoDao::operacoesComNotasEmpenhoPassiveisBloqueio() return type has no value type specified in    
+         iterable type array.                                                                                                          
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  25     Method App\Persistence\OperacaoDao::operacoesComNotasEmpenhoBloqueadas() return type has no value type specified in iterable  
+         type array.                                                                                                                   
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  35     Method App\Persistence\OperacaoDao::queryOperacoesCache() return type has no value type specified in iterable type array.     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ ---------------------------------------------------------------------------- 
+  Line   src/Persistence/ParametrosDao.php                                           
+ ------ ---------------------------------------------------------------------------- 
+  16     Property App\Persistence\ParametrosDao::$domain has no typehint specified.  
+ ------ ---------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------- 
+  Line   src/Persistence/PcaspDao.php                                           
+ ------ ----------------------------------------------------------------------- 
+  12     Property App\Persistence\PcaspDao::$domain has no typehint specified.  
+ ------ ----------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/SaldoNotaEmpenhoAptaDesbloqueioDao.php                                           
+ ------ ------------------------------------------------------------------------------------------------- 
+  15     Property App\Persistence\SaldoNotaEmpenhoAptaDesbloqueioDao::$domain has no typehint specified.  
+ ------ ------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------- 
+  Line   src/Persistence/SaldoNotaEmpenhoDao.php                                           
+ ------ ---------------------------------------------------------------------------------- 
+  13     Property App\Persistence\SaldoNotaEmpenhoDao::$domain has no typehint specified.  
+ ------ ---------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  Line   src/Persistence/Traits/FindByAnoExecucaoTrait.php (in context of class App\Persistence\ParametrosDao)                         
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+  16     Method App\Persistence\ParametrosDao::findAllByAnoExecucao() return type has no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+  21     Method App\Persistence\ParametrosDao::anoExecucaoParams() has parameter $anoExecucao with no typehint specified.              
+  21     Method App\Persistence\ParametrosDao::anoExecucaoParams() return type has no value type specified in iterable type array.     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                    
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                           
+         phpstan.neon.dist.                                                                                                            
+ ------ ------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/Traits/FindByAnoOrcamentarioTrait.php (in context of class App\Persistence\ParametrosDao)                  
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+  16     Method App\Persistence\ParametrosDao::findAllByAnoOrcamentario() return type has no value type specified in iterable type  
+         array.                                                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+  21     Method App\Persistence\ParametrosDao::anoOrcamentarioParams() has parameter $anoOrcamentario with no typehint specified.   
+  21     Method App\Persistence\ParametrosDao::anoOrcamentarioParams() return type has no value type specified in iterable type     
+         array.                                                                                                                     
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                 
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                        
+         phpstan.neon.dist.                                                                                                         
+ ------ --------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/Traits/FindByAnoOrcamentarioTrait.php (in context of class App\Persistence\SaldoNotaEmpenhoAptaDesbloqueioDao)  
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+  16     Method App\Persistence\SaldoNotaEmpenhoAptaDesbloqueioDao::findAllByAnoOrcamentario() return type has no value type             
+         specified in iterable type array.                                                                                               
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                      
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                             
+         phpstan.neon.dist.                                                                                                              
+  21     Method App\Persistence\SaldoNotaEmpenhoAptaDesbloqueioDao::anoOrcamentarioParams() has parameter $anoOrcamentario with no       
+         typehint specified.                                                                                                             
+  21     Method App\Persistence\SaldoNotaEmpenhoAptaDesbloqueioDao::anoOrcamentarioParams() return type has no value type specified      
+         in iterable type array.                                                                                                         
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                      
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                             
+         phpstan.neon.dist.                                                                                                              
+ ------ -------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Persistence/UgDao.php                                                                                                 
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+  13     Property App\Persistence\UgDao::$domain has no typehint specified.                                                        
+  15     Method App\Persistence\UgDao::ugsAtivas() return type has no value type specified in iterable type array.                 
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+  37     Method App\Persistence\UgDao::findAllGestoresUgsAtivas() return type has no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                       
+         phpstan.neon.dist.                                                                                                        
+ ------ -------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------- 
+  Line   src/Persistence/UnidadeDao.php                                           
+ ------ ------------------------------------------------------------------------- 
+  12     Property App\Persistence\UnidadeDao::$domain has no typehint specified.  
+ ------ ------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   src/Services/ExpedienteGovService.php                                                                                        
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  13     Property App\Services\ExpedienteGovService::$client has no typehint specified.                                               
+  23     Method App\Services\ExpedienteGovService::create() has parameter $data with no value type specified in iterable type array.  
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+  23     Method App\Services\ExpedienteGovService::create() return type has no value type specified in iterable type array.           
+         💡 Consider adding something like array<Foo> to the PHPDoc.                                                                   
+         You can turn off this check by setting checkMissingIterableValueType: false in your                                          
+         phpstan.neon.dist.                                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ [ERROR] Found 411 errors                                                                                               
+

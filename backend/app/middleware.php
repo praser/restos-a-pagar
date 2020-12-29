@@ -50,5 +50,5 @@ return function (App $app) {
         return $handler->handle($req);
     });
 
-    $app->addErrorMiddleware(true, true, true, $logger);
+    $app->addErrorMiddleware(true, true, true);
 };
