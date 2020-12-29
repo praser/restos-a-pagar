@@ -6,4 +6,5 @@
     <exclude-pattern>vendor</exclude-pattern>
     <exclude-pattern>var</exclude-pattern>
     <exclude-pattern>src/Infrastructure/Database/Migrations</exclude-pattern>
+    <exclude-pattern>src/Infrastructure/Database/Seeds</exclude-pattern>
 </ruleset>

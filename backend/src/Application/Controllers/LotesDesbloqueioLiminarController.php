@@ -16,6 +16,7 @@ use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
+use Exception;
 
 class LotesDesbloqueioLiminarController extends ControllerBase
 {
@@ -152,9 +153,9 @@ class LotesDesbloqueioLiminarController extends ControllerBase
             
             $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
-        } catch (Exception $Ex) {
+        } catch (Exception $ex) {
             $connection->rollback();
-            $res->getBody()->write($th->getMessage());
+            $res->getBody()->write($ex->getMessage());
             return $res->withStatus(self::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

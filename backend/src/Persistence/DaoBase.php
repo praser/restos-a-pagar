@@ -22,12 +22,16 @@ abstract class DaoBase implements DaoInterface
     protected const COL_CREATED_AT = 'created_at';
     protected const COL_UPDATED_AT = 'updated_at';
 
+    protected const TABLE = null;
+
     public const DESC = OrderBy::DESC;
     public const ASC = OrderBy::ASC;
 
     private $connection;
     private $logger;
     private $queryBuilder;
+
+    protected $domain = null;
 
     public function __construct(ContainerInterface $c)
     {

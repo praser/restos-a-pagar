@@ -36,7 +36,7 @@ class UserDomain extends DomainBase
         $this->physicalLotationAbbreviation =
             (string) $this->setAttribute(self::PHYSICAL_LOTATION_ABBREVIATION, $params);
         
-        $this->phisicalLotationId = (int) $this->setAttribute(self::PHYSICAL_LOTATION_ID, $params);
+        $this->physicalLotationId = (int) $this->setAttribute(self::PHYSICAL_LOTATION_ID, $params);
     }
 
     public function getCpf(): string
@@ -66,7 +66,7 @@ class UserDomain extends DomainBase
 
     public function getPhysicalLotationId(): int
     {
-        return $this->phisicalLotationId;
+        return $this->physicalLotationId;
     }
 
 

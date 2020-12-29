@@ -15,7 +15,7 @@ class LiminarDomain extends DomainBase
     private const OBSERVACOES = 'observacoes';
     private const RESPONSAVEL_CADASTRAMENTO_ID = 'responsavelCadastramentoId';
     private const RESPONSAVEL_CADASTRAMENTO_NOME = 'responsavelCadastramentoNome';
-    private const RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D = 'responsavelCadastramentoUnidadeId';
+    private const RESPONSAVEL_CADASTRAMENTO_UNIDADE_ID = 'responsavelCadastramentoUnidadeId';
     private const RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA = 'responsavelCadastramentoUnidadeSigla';
     private const DATA_ATESTE = 'dataAteste';
     private const RESPONSAVEL_ATESTE_ID = 'responsavelAtesteId';
@@ -61,7 +61,7 @@ class LiminarDomain extends DomainBase
         $this->responsavelCadastramentoId = $this->setAttribute(self::RESPONSAVEL_CADASTRAMENTO_ID, $params);
         $this->responsavelCadastramentoNome = $this->setAttribute(self::RESPONSAVEL_CADASTRAMENTO_NOME, $params);
         $this->responsavelCadastramentoUnidadeId = (int) $this->setAttribute(
-            self::RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D,
+            self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_ID,
             $params
         );
         $this->responsavelCadastramentoUnidadeSigla = $this->setAttribute(
@@ -231,10 +231,12 @@ class LiminarDomain extends DomainBase
             ->setValue($this->getResponsavelCadastramentoUnidadeSigla())
             ->required();
         $v->setName(self::DATA_ATESTE)->isInstanceOf($this->getDataAteste(), DateTime::class);
-        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
-        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
-        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)->setValue($this->getResponsavelUnidadeId())->required();
-        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)->isInt($this->getResponsavelUnidadeId());
+        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)
+            ->setValue($this->getResponsavelCadastramentoUnidadeId())->required();
+        $v->setName(self::RESPONSAVEL_ATESTE_UNIDADE_ID)->isInt($this->getResponsavelCadastramentoUnidadeId());
+        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)
+            ->setValue($this->getResponsavelCadastramentoUnidadeId())->required();
+        $v->setName(self::RESPONSAVEL_FIM_VIGENCIA_UNIDADE_ID)->isInt($this->getResponsavelCadastramentoUnidadeId());
         $v->setName(self::FIM_VIGENCIA)->isInstanceOf($this->getFimVigencia(), DateTime::class);
         
         return $v->isSuccess();
@@ -250,7 +252,7 @@ class LiminarDomain extends DomainBase
             self::OBSERVACOES => $this->getObservacoes(),
             self::RESPONSAVEL_CADASTRAMENTO_ID => $this->getResponsavelCadastramentoId(),
             self::RESPONSAVEL_CADASTRAMENTO_NOME => $this->getResponsavelCadastramentoNome(),
-            self::RESPONSAVEL_CADASTRAMENTO_UNIDADEI_D => $this->getResponsavelCadastramentoUnidadeId(),
+            self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_ID => $this->getResponsavelCadastramentoUnidadeId(),
             self::RESPONSAVEL_CADASTRAMENTO_UNIDADE_SIGLA => $this->getResponsavelCadastramentoUnidadeSigla(),
             self::DATA_ATESTE => $this->dateTimeToString($this->getDataAteste()),
             self::RESPONSAVEL_ATESTE_ID => $this->getResponsavelAtesteId(),

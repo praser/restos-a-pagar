@@ -11,6 +11,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class EstatisticasBloqueioSnapshotController extends ControllerBase
 {
+    private $dao;
+
     public function __construct(Container $container)
     {
         parent::__construct($container);

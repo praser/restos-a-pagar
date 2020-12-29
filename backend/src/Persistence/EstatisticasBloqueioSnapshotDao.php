@@ -35,6 +35,8 @@ class EstatisticasBloqueioSnapshotDao extends DaoBase
         } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
+
+        return null;
     }
 
     private function getBaseQuery(

@@ -51,5 +51,6 @@ class UgDao extends DaoBase
         } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
+        return null;
     }
 }

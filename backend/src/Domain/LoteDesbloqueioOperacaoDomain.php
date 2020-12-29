@@ -20,7 +20,7 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
     private $operacaoId;
     private $documento;
     private $saldo;
-    private $debloqueado;
+    private $desbloqueado;
     private $responsavelRetornoId;
     private $responsavelRetornoNome;
     private $responsavelRetornoUnidadeId;
@@ -150,7 +150,7 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
         $v->setName(self::DOCUMENTO)->setValue($this->getDocumento())->customPattern('\d{4}NE\d{6}')->required();
         $v->setName(self::SALDO)->setValue($this->getSaldo())->required();
         $v->setName(self::SALDO)->isFloat($this->getSaldo());
-        $v->setName(self::DESBLOQUEADO)->isBool($thus->isDesbloqueado());
+        $v->setName(self::DESBLOQUEADO)->isBool($this->isDesbloqueado());
         $v->setName(self::RESPONSAVEL_RETORNO_UNIDADE_ID)->isInt($this->getResponsavelRetornoUnidadeId());
         return $v->isSuccess();
     }

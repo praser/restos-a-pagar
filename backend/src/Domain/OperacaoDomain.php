@@ -63,7 +63,7 @@ class OperacaoDomain extends DomainBase
     private $dataSPA;
     private $dataVRPL;
     private $dataAIO;
-    private $dataRetiradaSsuspensiva;
+    private $dataRetiradaSuspensiva;
     private $dataCumprimentoCriteriosDesbloqueio;
     private $valorRepasse;
     private $objeto;
