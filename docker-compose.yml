@@ -16,19 +16,6 @@ services:
     restart: always
     volumes:
       - "./database:/var/opt/database"
-  backend:
-    image: praser/api-restos-a-pagar
-    build:
-      context: ./backend
-    container_name: backend
-    depends_on:
-      - database
-    networks:
-      - restos-a-pagar-net
-    ports:
-      - 3000:80
-    volumes:
-      - "./backend:/var/www/html"
   auth_api:
     container_name: auth-api
     environment:
@@ -51,3 +38,31 @@ services:
       - 8080:8080
       - 2500:2500
       - 8085:8085
+  backend:
+    image: praser/api-restos-a-pagar
+    build:
+      context: ./backend
+    container_name: backend
+    depends_on:
+      - database
+    networks:
+      - restos-a-pagar-net
+    ports:
+      - 3000:80
+    volumes:
+      - "./backend:/var/www/html"
+  web:
+    image: praser/web-restos-a-pagar
+    build:
+      context: ./web
+    container_name: web
+    depends_on:
+      - backend
+      - auth_api
+    networks:
+      - restos-a-pagar-net
+    ports:
+      - 3002:3000
+    volumes:
+      - "./web:/app"
+    stdin_open: true
