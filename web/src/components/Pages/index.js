@@ -4,7 +4,6 @@ import {
   Create as JudicialInjunctionCreate,
   List as JudicialInjunctionList,
 } from '~/components/Pages/JudicialInjunction';
-import Login from '~/components/Pages/Login';
 import {
   List as UgList,
   Create as UgCreate,
@@ -20,7 +19,6 @@ export {
   Error,
   JudicialInjunctionCreate,
   JudicialInjunctionList,
-  Login,
   Locks,
   PossibleLocks,
   UgCreate,
