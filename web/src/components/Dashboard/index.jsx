@@ -14,7 +14,7 @@ import { useApiRap } from '../../hooks';
 
 const currYearparam = params => {
   const currYear = getYear(new Date());
-  return first(params.filter(p => p.anoExecucao === currYear));
+  return first(params.filter(p => p.anoExecucao <= currYear));
 };
 
 const parseParam = param => {
@@ -57,9 +57,11 @@ const Dashboard = () => {
   const apiRap = useApiRap();
 
   useEffect(() => {
-    apiRap.then(api => {
-      api.requests.getParams().then(res => setDestiny(getLink(res.data)));
-    });
+    (async () => {
+      const api = await apiRap;
+      const res = await api.requests.getParams();
+      setDestiny(getLink(res.data));
+    })();
   }, []);
 
   return destiny ? <Redirect to={destiny} /> : <Layout />;
