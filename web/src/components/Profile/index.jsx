@@ -20,7 +20,6 @@ const Profile = () => {
   const dispatch = useContext(Context)[1];
   const currentUser = useCurrentUser();
   const [expanded, setExpanded] = useState(false);
-  const history = useHistory();
 
   let firstName;
   let photo;
@@ -34,7 +33,7 @@ const Profile = () => {
     event.preventDefault();
     removeToken();
     dispatch({ type: 'SET_JWT', payload: null });
-    history.push('/');
+    window.location = process.env.REACT_APP_MAIN_PORTAL;
   };
 
   const handleClick = event => {

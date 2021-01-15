@@ -6,6 +6,7 @@ import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { defaults } from 'react-chartjs-2';
 import ptBR from 'date-fns/locale/pt-BR';
 
+import Login from 'components/Login';
 import { Alert, Loading } from '~/components/Modal';
 import {
   Cancellations,
@@ -13,7 +14,6 @@ import {
   JudicialInjunctionCreate,
   JudicialInjunctionList,
   Locks,
-  Login,
   PossibleLocks,
   UgCreate,
   UgList,
