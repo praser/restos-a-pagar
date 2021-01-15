@@ -7,12 +7,12 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{B1BA9DFF-3C24-4BC1-ACB1-DA2886EAA2E9}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{D53B7FC9-4EB8-4253-B817-41F45FFE3283}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{EA963B8D-2C24-4A23-8CE2-1663518C5B76}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,12 +23,7 @@
       DTS:ObjectName="BD_GESTORES">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546901;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARKQtlQq7J061mlPT0zoAYAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD3ULb9/b+pqdxTng9mzIqxAAAAAASAAACgAAAAEAAAAHnoQKQQUskP7qHS30m402sYAAAAOFVdcUnjbdY8UFiahkjHW0p2jZWEGnOHFAAAAE/df34ThfOzMys+0+Zm3OS9JCbE</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546901;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -75,7 +70,7 @@
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Operacoes nao pac"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -91,7 +86,7 @@
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Operacoes PAC"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -195,7 +190,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{8E8A945A-BA0F-4930-BB72-DF2456A4459D}"
-              SQLTask:SqlStatementSource="SELECT&#xA;&#x9;b.query&#xA;FROM parametros AS a&#xA;JOIN parametros_criterios_desbloqueio AS b&#xA;ON a.id = b.parametroId&#xA;AND b.fimVigencia IS NULL&#xA;WHERE a.anoExecucao = YEAR(GETDATE())"
+              SQLTask:SqlStatementSource="SELECT TOP 1&#xA;&#x9;b.query&#xA;FROM parametros AS a&#xA;JOIN parametros_criterios_desbloqueio AS b&#xA;ON a.id = b.parametroId&#xA;AND b.fimVigencia IS NULL&#xA;ORDER BY a.anoExecucao DESC, a.created_at DESC&#xA;"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="0"
