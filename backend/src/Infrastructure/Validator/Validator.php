@@ -1,17 +1,4 @@
-<?php /** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-
-/** @noinspection PhpUnused */
+<?php
 
 namespace App\Infrastructure\Validator;
 
@@ -118,7 +105,7 @@ class Validator
             if (strlen($this->value) < $length) {
                 $this->errors[] = 'O valor do atributo ' . $this->name . ' é inferior a ' . $length;
             }
-        } else if ($this->value < $length) {
+        } elseif ($this->value < $length) {
             $this->errors[] = 'O valor do atributo ' . $this->name . ' é inferior a ' . $length;
         }
         return $this;
@@ -130,7 +117,7 @@ class Validator
             if (strlen($this->value) > $length) {
                 $this->errors[] = 'O valor do atributo ' . $this->name . 'é superior a ' . $length;
             }
-        } else if ($this->value > $length) {
+        } elseif ($this->value > $length) {
             $this->errors[] = 'O valor do atributo ' . $this->name . 'é superior a ' . $length;
         }
         return $this;

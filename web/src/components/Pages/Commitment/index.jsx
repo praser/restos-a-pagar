@@ -94,11 +94,11 @@ const Create = () => {
         return 'tipoResultadoPrimarioId';
       case '':
         return 'tipoResultadoPrimarioDescricao';
-      case 'Dia Emissão NE CCor':
+      case 'NE CCor - Dia Emissão':
         return 'dataEmissao';
-      case 'Nota Empenho CCor':
+      case 'NE CCor':
         return 'documento';
-      case 'Núm. Original TV NE CCor':
+      case 'NE CCor - Núm. Original TV':
         return 'convenio';
       case 'Conta Contábil':
         return 'pcaspConta';

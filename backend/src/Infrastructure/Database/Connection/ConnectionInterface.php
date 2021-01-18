@@ -1,6 +1,4 @@
-<?php /** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
+<?php
 
 declare(strict_types=1);
 

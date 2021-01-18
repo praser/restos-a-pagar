@@ -1,9 +1,5 @@
 <?php
 
-/** @noinspection PhpIllegalPsrClassPathInspection */
-/** @noinspection AutoloadingIssuesInspection */
-/** @noinspection PhpUnused */
-
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;

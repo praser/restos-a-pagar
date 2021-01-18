@@ -19,7 +19,8 @@ class InfoController extends ControllerBase
         $this->dao = new InfoDao($this->container);
     }
 
-    public function index(Request $req, Response $res, array $args): Response {
+    public function index(Request $req, Response $res, array $args): Response
+    {
         $info = $this->dao->mostRecent();
         $res->getBody()->write(json_encode($info, JSON_THROW_ON_ERROR, 512));
         return $res->withStatus(self::HTTP_OK);

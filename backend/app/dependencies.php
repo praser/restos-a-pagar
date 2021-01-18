@@ -1,5 +1,4 @@
-<?php /** @noinspection StaticClosureCanBeUsedInspection */
-/** @noinspection PhpUnused */
+<?php
 
 declare(strict_types=1);
 
@@ -12,7 +11,9 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use PHPMailer\PHPMailer\PHPMailer as Mailer; 
+use PHPMailer\PHPMailer\PHPMailer as Mailer;
+use Twig\Loader\FilesystemLoader as TemplateLoader;
+use Twig\Environment as Template;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -43,10 +44,10 @@ return function (ContainerBuilder $containerBuilder) {
             return new PDOConnection($conString, $username, $password);
         },
 
-        'queryBuilder' => static function(): GenericBuilder {
+        'queryBuilder' => static function (): GenericBuilder {
             return new GenericBuilder();
         },
-        'mailer' => static function(ContainerInterface $c): Mailer {
+        'mailer' => static function (ContainerInterface $c): Mailer {
             $settings = $c->get('settings')['smtp'];
             $mail = new Mailer(true);
 
@@ -57,8 +58,18 @@ return function (ContainerBuilder $containerBuilder) {
             $mail->Port = $settings['port'];
             $mail->setFrom($settings['fromEmail'], $settings['fromName']);
             $mail->addBCC('rubens.junior@caixa.gov.br');
+            $mail->CharSet = 'UTF-8';
+            $mail->Encoding = 'base64';
 
             return $mail;
+        },
+        'templates' => static function (ContainerInterface $c): Template {
+            $loader = new TemplateLoader($c->get('settings')['templates']);
+            $template = new Template($loader, [
+                'cache' => $c->get('settings')['cache'],
+            ]);
+
+            return $template;
         }
     ]);
 };

@@ -17,23 +17,23 @@ class LiminarOperacaoDomain extends DomainBase
         $this->operacaoId = (int) $this->setAttribute(self::OPERACAO_ID, $params);
     }
     
-    public function getLiminarId() : ?int
+    public function getLiminarId(): ?int
     {
         return $this->liminarId;
     }
     
-    public function setLiminarId(int $liminarId) : LiminarOperacaoDomain
+    public function setLiminarId(int $liminarId): LiminarOperacaoDomain
     {
         $this->liminarId = $liminarId;
         return $this;
     }
     
-    public function getOperacaoId() : ?int
+    public function getOperacaoId(): ?int
     {
         return $this->operacaoId;
     }
     
-    public function setOperacaoId(int $operacaoId) : LiminarOperacaoDomain
+    public function setOperacaoId(int $operacaoId): LiminarOperacaoDomain
     {
         $this->operacaoId = $operacaoId;
         return $this;

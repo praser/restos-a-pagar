@@ -1,9 +1,5 @@
 <?php
 
-/** @noinspection PhpIllegalPsrClassPathInspection */
-/** @noinspection PhpUnused */
-
-
 use Phinx\Seed\AbstractSeed;
 
 class UgSeeder extends AbstractSeed

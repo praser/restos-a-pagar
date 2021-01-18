@@ -1,5 +1,4 @@
-<?php /** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
+<?php
 
 declare(strict_types=1);
 
@@ -38,7 +37,7 @@ class OperacaoDomain extends DomainBase
     public const VALOR_REPASE = 'valorRepasse';
     public const OBJETO = 'objeto';
     public const VALOR_DESEMBOLSADO = 'valorDesembolsado';
-    PUBLIC const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
+    public const APTA_DESBLOQUEIO = 'aptaDesbloqueio';
 
     private $anoExecucao;
     private $anoOrcamentario;
@@ -64,7 +63,7 @@ class OperacaoDomain extends DomainBase
     private $dataSPA;
     private $dataVRPL;
     private $dataAIO;
-    private $dataRetiradaSsuspensiva;
+    private $dataRetiradaSuspensiva;
     private $dataCumprimentoCriteriosDesbloqueio;
     private $valorRepasse;
     private $objeto;
@@ -89,17 +88,20 @@ class OperacaoDomain extends DomainBase
         $this->siglaGestor = (string) $this->setAttribute(self::SIGLA_GESTOR, $params);
         $this->nomeGestor = (string) $this->setAttribute(self::NOME_GESTOR, $params);
         $this->enquadramentoLegislacao = (string) $this->setAttribute(self::ENQUADRAMENTO_LEGISLACAO, $params);
-        $this->enquadramentoLegislacaoComplemento = (string) $this->setAttribute(self::ENQUADRAMENTO_LEGISLACAO_COMPLEMENTO, $params);
+        $this->enquadramentoLegislacaoComplemento =
+            (string) $this->setAttribute(self::ENQUADRAMENTO_LEGISLACAO_COMPLEMENTO, $params);
         $this->situacaoContrato = (string) $this->setAttribute(self::SITUACAO_CONTRATO, $params);
         $this->situacaoContratoComplemento = (string) $this->setAttribute(self::SITUACAO_CONTRATO_COMPLEMENTO, $params);
         $this->percentualFisicoAferido = (float) $this->setAttribute(self::PERCENTUAL_FISICO_AFERIDO, $params);
-        $this->percentualFinanceiroDesbloqueado = (float) $this->setAttribute(self::PERCENTUAL_FINANCEIRO_DESBLOQUEADO, $params);
+        $this->percentualFinanceiroDesbloqueado =
+            (float) $this->setAttribute(self::PERCENTUAL_FINANCEIRO_DESBLOQUEADO, $params);
         $this->dataVigencia = $this->parseDateTime($params[self::DATA_VIGENCIA], self::DATE_Y_M_D);
         $this->dataSPA = $this->parseDateTime($params[self::DATA_SPA], self::DATE_Y_M_D);
         $this->dataVRPL = $this->parseDateTime($params[self::DATA_VRPL], self::DATE_Y_M_D);
         $this->dataAIO = $this->parseDateTime($params[self::DATA_AIO], self::DATE_Y_M_D);
         $this->dataRetiradaSuspensiva = $this->parseDateTime($params[self::DATA_RETIRADA_SUSPENSIVA], self::DATE_Y_M_D);
-        $this->dataCumprimentoCriteriosDesbloqueio = $this->parseDateTime($params[self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO], self::DATE_Y_M_D);
+        $this->dataCumprimentoCriteriosDesbloqueio =
+            $this->parseDateTime($params[self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO], self::DATE_Y_M_D);
         $this->valorRepasse = (float) $this->setAttribute(self::VALOR_REPASE, $params);
         $this->objeto = (string) $this->setAttribute(self::OBJETO, $params);
         $this->valorDesembolsado = (float) $this->setAttribute(self::VALOR_DESEMBOLSADO, $params);
@@ -284,7 +286,8 @@ class OperacaoDomain extends DomainBase
             self::DATA_VRPL => $this->dateTimeToString($this->getDataVRPL()),
             self::DATA_AIO => $this->dateTimeToString($this->getDataAIO()),
             self::DATA_RETIRADA_SUSPENSIVA => $this->dateTimeToString($this->getDataRetiradaSuspensiva()),
-            self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO => $this->dateTimeToString($this->getDataCumprimentoCriteriosDesbloqueio()),
+            self::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO =>
+                $this->dateTimeToString($this->getDataCumprimentoCriteriosDesbloqueio()),
             self::VALOR_REPASE => $this->getValorRepasse(),
             self::OBJETO => $this->getObjeto(),
             self::VALOR_DESEMBOLSADO => $this->getValorDesembolsado(),

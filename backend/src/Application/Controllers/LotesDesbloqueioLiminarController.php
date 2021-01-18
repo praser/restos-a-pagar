@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpUnused */
 
 declare(strict_types=1);
 
@@ -17,6 +16,7 @@ use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
+use Exception;
 
 class LotesDesbloqueioLiminarController extends ControllerBase
 {
@@ -27,6 +27,7 @@ class LotesDesbloqueioLiminarController extends ControllerBase
     private $saldoNotaEmpenhoDao;
     private $expedienteGovService;
     private $mail;
+    private $templates;
     private $gerentes;
 
     public function __construct(Container $container)
@@ -39,12 +40,13 @@ class LotesDesbloqueioLiminarController extends ControllerBase
         $this->saldoNotaEmpenhoDao = new SaldoNotaEmpenhoDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
+        $this->templates = $container->get('templates');
         $this->gerentes = $container->get('settings')['managers'];
     }
 
     public function create(Request $req, Response $res, array $args): Response
     {
-        $currentUser = $req->getAttributes('user')['user'];
+        $currentUser = $req->getAttributes()['user'];
         $jwt = $currentUser['token'];
         $user = new UserDomain(json_decode($currentUser['attributes'], true));
 
@@ -126,34 +128,23 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                 );
 
                 $this->mail->isHTML(true);                                  // Set email format to HTML
-                $this->mail->Subject = "{$expediente['tx_identificacao']} - RAP LIMINAR - Solicitação de desbloqueio de empenhos lote {$lote->numero()}";
-                $this->mail->Body = <<<HTML
-                    À
-                    <br>{$this->gerentes['gerenciaExecutivaFinanceira']}
-                    <br>
-                    <br>Senhor(a) Gerente,
-                    <br><br>
-                    <ol>
-                    <li>Comunicamos que nesta data geramos o lote {$lote->numero()} que contém {$lote->quantidadeNotasEmpenho()} notas de empenho que tiveram o seu saldo bloqueado no RAP deste ano e que atendem aos critérios estabelecidos para o desbloqueio.</li>
-                    <br>
-                    <li>Pedimos que esta gerência proceda com a operacionalização dos desbloqueios a fim de evitar o cancelamento dos saldos emepenhados nestas notas.</li>
-                    <br>
-                    <li>As informações detalhadas para o processamento do lote estão disponíveis no endereço <a htrf='http://sudep.mz.caixa/sistemas/restos-a-pagar'>http://sudep.mz.caixa/sistemas/restos-a-pagar</a> onde também é possível fazer o donwload dos dados.</li>
-                    <br>
-                    <li>Pedimos ainda que o retorno informando sobre os desbloqueios das notas de empenho seja feito através do painel de gestão dos restos a pagar.</li>
-                    <br>
-                    <li>Certos da costumeira colaboração antecipamos os agradecimentos e permanecemos à disposição.</li>
-                    </ol>
-                    <br>Atenciosamente,
-                    <br>
-                    <br><b>{$this->gerentes['gerenteExecutivoOperacao']}</b>
-                    <br>Gerente Executivo
-                    <br>{$this->gerentes['gerenciaNacionalOperacao']}
-                    <br>
-                    <br><b>{$this->gerentes['gerenteNacionalOperacao']}</b>
-                    <br>Gerente Nacional
-                    <br>{$this->gerentes['gerenciaNacionalOperacao']}
-                HTML;
+                $this->mail->Subject = <<<SUBJECT
+                    {$expediente['tx_identificacao']} - RAP LIMINAR - Solicitação de desbloqueio de empenhos
+                     lote {$lote->numero()}
+                SUBJECT;
+                
+                $this->mail->Body = $this->templates->render(
+                    'NewLoteDesbloqueioLiminar.html',
+                    [
+                        'numero_processo' => $liminar->getNumeroProcesso(),
+                        'gerenciaExecutivaFinanceira' => $this->gerentes['gerenciaExecutivaFinanceira'],
+                        'numeroLote' => $lote->numero(),
+                        'quantidadeDocumentos' => $lote->quantidadeNotasEmpenho(),
+                        'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
+                        'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
+                        'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
+                    ]
+                );
 
                 $this->mail->send();
 
@@ -162,9 +153,9 @@ class LotesDesbloqueioLiminarController extends ControllerBase
             
             $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
-        } catch (Exception $Ex) {
+        } catch (Exception $ex) {
             $connection->rollback();
-            $res->getBody()->write($th->getMessage());
+            $res->getBody()->write($ex->getMessage());
             return $res->withStatus(self::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
