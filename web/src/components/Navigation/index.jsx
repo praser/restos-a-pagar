@@ -44,15 +44,15 @@ const mountCollapsables = param => {
     perform: 'dashboards:show',
   };
 
-  const cancelled = {
-    label: 'Cancelamentos',
-    to: joinPath(cancellationsPath, [param.anoOrcamentario]),
-    perform: 'dashboards:show',
-  };
+  // const cancelled = {
+  //   label: 'Cancelamentos',
+  //   to: joinPath(cancellationsPath, [param.anoOrcamentario]),
+  //   perform: 'dashboards:show',
+  // };
 
   if (isPast(blockDate) || isToday(blockDate)) collapsables.push(blocked);
-  if (isPast(cancellationDate) || isToday(cancellationDate))
-    collapsables.push(cancelled);
+  // if (isPast(cancellationDate) || isToday(cancellationDate))
+  //   collapsables.push(cancelled);
 
   return collapsables;
 };
