@@ -41,78 +41,78 @@ class LoteDesbloqueioDomain extends DomainBase
         $this->liminarId = $this->setAttribute(self::LIMINAR_ID, $params);
     }
     
-    public function getSequencial() : ?int
+    public function getSequencial(): ?int
     {
         return $this->sequencial;
     }
     
-    public function setSequencial(int $sequencial) : LoteDesbloqueioDomain
+    public function setSequencial(int $sequencial): LoteDesbloqueioDomain
     {
         $this->sequencial = $sequencial;
         return $this;
     }
     
-    public function getAno() : ?int
+    public function getAno(): ?int
     {
         return $this->ano;
     }
     
-    public function setAno(int $ano) : LoteDesbloqueioDomain
+    public function setAno(int $ano): LoteDesbloqueioDomain
     {
         $this->ano = $ano;
         return $this;
     }
     
-    public function getCe() : ?string
+    public function getCe(): ?string
     {
         return $this->ce;
     }
     
-    public function setCe(string $ce) : LoteDesbloqueioDomain
+    public function setCe(string $ce): LoteDesbloqueioDomain
     {
         $this->ce = $ce;
         return $this;
     }
     
-    public function getResponsavelId() : ?string
+    public function getResponsavelId(): ?string
     {
         return $this->responsavelId;
     }
     
-    public function setResponsavelId(string $responsavelId) : LoteDesbloqueioDomain
+    public function setResponsavelId(string $responsavelId): LoteDesbloqueioDomain
     {
         $this->responsavelId = $responsavelId;
         return $this;
     }
     
-    public function getResponsavelNome() : ?string
+    public function getResponsavelNome(): ?string
     {
         return $this->responsavelNome;
     }
     
-    public function setResponsavelNome(string $responsavelNome) : LoteDesbloqueioDomain
+    public function setResponsavelNome(string $responsavelNome): LoteDesbloqueioDomain
     {
         $this->responsavelNome = $responsavelNome;
         return $this;
     }
     
-    public function getResponsavelUnidadeId() : ?int
+    public function getResponsavelUnidadeId(): ?int
     {
         return $this->responsavelUnidadeId;
     }
     
-    public function setResponsavelUnidadeId(int $responsavelUnidadeId) : LoteDesbloqueioDomain
+    public function setResponsavelUnidadeId(int $responsavelUnidadeId): LoteDesbloqueioDomain
     {
         $this->responsavelUnidadeId = $responsavelUnidadeId;
         return $this;
     }
     
-    public function getResponsavelUnidadeSigla() : ?string
+    public function getResponsavelUnidadeSigla(): ?string
     {
         return $this->responsavelUnidadeSigla;
     }
     
-    public function setResponsavelUnidadeSigla(string $responsavelUnidadeSigla) : LoteDesbloqueioDomain
+    public function setResponsavelUnidadeSigla(string $responsavelUnidadeSigla): LoteDesbloqueioDomain
     {
         $this->responsavelUnidadeSigla = $responsavelUnidadeSigla;
         return $this;
@@ -123,7 +123,7 @@ class LoteDesbloqueioDomain extends DomainBase
         return $this->situacao;
     }
     
-    public function setSituacao(string $situacao) : LoteDesbloqueioDomain
+    public function setSituacao(string $situacao): LoteDesbloqueioDomain
     {
         $this->situacao = $situacao;
         return $this;

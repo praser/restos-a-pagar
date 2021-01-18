@@ -22,11 +22,26 @@ class OperacoesComEmpenhoPassivelBloqueioController extends ControllerBase
     public function index(Request $req, Response $res, array $args): Response
     {
         $anoExecucao = (int) $args[OperacaoDomain::ANO_EXECUCAO];
-        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams()) ? (int) $req->getQueryParams()['tipoInfo'] : 3;
-        $unidadeId = array_key_exists('unidadeId', $req->getQueryParams()) ? (int) $req->getQueryParams()['unidadeId'] : null;
-        $siglaGestor = array_key_exists('siglaGestor', $req->getQueryParams()) ? (string) $req->getQueryParams()['siglaGestor'] : null;
+        
+        $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams())
+            ? (int) $req->getQueryParams()['tipoInfo']
+            : 3;
+        
+        $unidadeId = array_key_exists('unidadeId', $req->getQueryParams())
+            ? (int) $req->getQueryParams()['unidadeId']
+            : null;
+        
+        $siglaGestor = array_key_exists('siglaGestor', $req->getQueryParams())
+            ? (string) $req->getQueryParams()['siglaGestor']
+            : null;
 
-        $operacoes = $this->dao->operacoesComNotasEmpenhoPassiveisBloqueio($tipoInformacaoId, $anoExecucao, $unidadeId, $siglaGestor);
+        $operacoes = $this->dao->operacoesComNotasEmpenhoPassiveisBloqueio(
+            $tipoInformacaoId,
+            $anoExecucao,
+            $unidadeId,
+            $siglaGestor
+        );
+        
         if ($operacoes) {
             $res->getBody()->write(json_encode($operacoes, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_OK);

@@ -14,7 +14,6 @@ import {
   createLiminarFail as alertProps,
   createLiminarSuccess,
 } from '~/utils/messages';
-import { ugPath } from '~/utils/paths';
 
 import Form from './Form';
 
@@ -64,7 +63,6 @@ const Create = () => {
     const {
       code: numeroProcesso,
       name: requerente,
-      issuanceDate,
       injunctionDigitalization: liminar,
       siarg,
       notes: observacoes,

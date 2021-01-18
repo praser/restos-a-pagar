@@ -1,6 +1,4 @@
 <?php
-/** @noinspection StaticClosureCanBeUsedInspection */
-/** @noinspection PhpUnused */
 
 declare(strict_types=1);
 
@@ -25,7 +23,6 @@ use App\Application\Controllers\LiminaresController;
 use App\Application\Controllers\LiminaresAtesteController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -46,7 +43,10 @@ return function (App $app) {
 
     $app->group('/notas-empenho', function (Group $group) {
         $group->post('/saldo', SaldoNotaEmpenhoController::class . ':create');
-        $group->get('/{anoOrcamentario}/aptas-desbloqueio', SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index');
+        $group->get(
+            '/{anoOrcamentario}/aptas-desbloqueio',
+            SaldoNotasEmpenhoAptasDesbloqueioController::class . ':index'
+        );
         $group->get('/liminar/{id}', SaldoNotaEmpenhoLiminarController::class . ':index');
         $group->group('/lotes-desbloqueio', function (Group $subgroup) {
             $subgroup->post('', LotesDesbloqueioController::class . ':create');

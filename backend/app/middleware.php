@@ -1,6 +1,5 @@
 <?php
-/** @noinspection PhpUnused */
-/** @noinspection StaticClosureCanBeUsedInspection */
+
 declare(strict_types=1);
 
 use Tuupola\Middleware\JwtAuthentication;
@@ -37,7 +36,7 @@ return function (App $app) {
         },
     ]));
 
-    $app->add(function($request, $handler) use ($container) {
+    $app->add(function ($request, $handler) use ($container) {
         $jwt = $request->getHeader('X-Token')[0];
         $secret = $container->get('settings')['jwt']['secret'];
         $decoded = JWT::decode($jwt, $secret, array('HS256'));
@@ -51,5 +50,5 @@ return function (App $app) {
         return $handler->handle($req);
     });
 
-    $app->addErrorMiddleware(true, true, true, $logger);
+    $app->addErrorMiddleware(true, true, true);
 };

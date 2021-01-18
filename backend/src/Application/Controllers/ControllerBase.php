@@ -1,11 +1,4 @@
-<?php /** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-
-/** @noinspection PhpUnused */
+<?php
 
 namespace App\Application\Controllers;
 

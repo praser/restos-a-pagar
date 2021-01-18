@@ -1,6 +1,4 @@
-<?php /** @noinspection StaticClosureCanBeUsedInspection */
-/** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
+<?php
 
 declare(strict_types=1);
 
@@ -56,6 +54,8 @@ return function (ContainerBuilder $containerBuilder) {
                 'gerenciaExecutivaFinanceira' => getenv('GERENCIA_EXECUTIVA_FINANCEIRA'),
                 'gerenciaExecutivaFinanceiraEmail' => getEnv('GERENCIA_EXECUTIVA_FINANCEIRA_EMAIL'),
             ],
+            'templates' => __DIR__ . '/../src/Views/Mail',
+            'cache' => __DIR__ . '/../var/cache/templates',
         ],
     ]);
 };

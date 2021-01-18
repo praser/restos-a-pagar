@@ -4,5 +4,7 @@
     <rule ref="PSR12"/>
     <file>public/</file>
     <exclude-pattern>vendor</exclude-pattern>
-    <exclude-pattern>src/Infrastructure/Database</exclude-pattern>
+    <exclude-pattern>var</exclude-pattern>
+    <exclude-pattern>src/Infrastructure/Database/Migrations</exclude-pattern>
+    <exclude-pattern>src/Infrastructure/Database/Seeds</exclude-pattern>
 </ruleset>

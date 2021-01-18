@@ -130,6 +130,4 @@ class EstatisticasPreBloqueioDomain extends DomainBase
 
         return array_merge(parent::jsonSerialize(), $serialization);
     }
-
-
 }

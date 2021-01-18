@@ -27,6 +27,4 @@ class TipoInformacaoController extends ControllerBase
         $res->getBody()->write(json_encode($tiposInformacoes, JSON_THROW_ON_ERROR, 512));
         return $res->withStatus(self::HTTP_OK);
     }
-
-
 }

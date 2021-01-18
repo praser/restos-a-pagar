@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024, initial-scale=1.0">
+  <style>
+    li {
+      margin-bottom: 20px;
+    }
+  </style>
+  <title>Novo lote de desbloqueio</title>
+</head>
+<body>
+  <div>
+    À
+    <br>{{ gerenciaExecutivaFinanceira }}
+    <br>
+    <br>Senhor(a) Gerente,
+    <br><br>
+    <ol>
+      <li>
+        Comunicamos que nesta data geramos o lote {{ numeroLote }} que contém {{ quantidadeDocumentos }} notas de empenho cujas operações estão arroladas no processo judicial {{ numero_processo }} com decisão liminar e que tiveram o seu saldo bloqueado conforme decreto nº 93.872, de 23 de dezembro 1986.
+      </li>
+      <li>
+        Pedimos que esta gerência proceda com a operacionalização dos desbloqueios a fim de evitar o cancelamento dos saldos emepenhados nestas notas.
+      </li>
+      <li>
+        As informações detalhadas para o processamento do lote estão disponíveis no endereço <a href='http://sudep.mz.caixa/sistemas/restos-a-pagar'>http://sudep.mz.caixa/sistemas/restos-a-pagar</a> onde também é possível fazer o donwload dos dados.
+      </li>
+      <li>
+        Certos da costumeira colaboração antecipamos os agradecimentos e permanecemos à disposição.
+      </li>
+    </ol>
+    Atenciosamente,
+    <br/><br/>
+    <b>{{ gerenteExecutivoOperacao }}</b><br/>
+    Gerente Executivo<br/>
+    {{ gerenciaNacionalOperacao }}<br/>
+    <br/>
+    <b>{{ gerenteNacionalOperacao }}</b><br/>
+    Gerente Nacional<br/>
+    {{ gerenciaNacionalOperacao }}
+  </div>
+</body>
+</html>

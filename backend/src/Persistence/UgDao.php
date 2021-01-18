@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpUnused */
 
 declare(strict_types=1);
 
@@ -28,7 +27,7 @@ class UgDao extends DaoBase
             $statment->execute($qb->getValues());
 
             return $this->inflateDomains($statment);
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
 
@@ -52,5 +51,6 @@ class UgDao extends DaoBase
         } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
+        return null;
     }
 }

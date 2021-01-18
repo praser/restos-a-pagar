@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpUnused */
+<?php
 
 declare(strict_types=1);
 
@@ -67,7 +67,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
 
     public function setPcasp(DomainInterface $pcasp): void
     {
-        !$pcasp ?: $this->pcaspId = $pcasp->getId();
+        $this->pcaspId = $pcasp->getId();
     }
 
     public function getUgId(): ?int
@@ -77,7 +77,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
 
     public function setUg(DomainInterface $ug): void
     {
-        !$ug ?: $this->ugId = $ug->getId();
+        $this->ugId = $ug->getId();
     }
 
     public function getOperacaoId(): ?int
@@ -87,7 +87,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
 
     public function setOperacao(DomainInterface $operacao): void
     {
-        !$operacao ?: $this->operacaoId = $operacao->getId();
+        $this->operacaoId = $operacao->getId();
     }
 
     public function getOperacao(): ?int
@@ -112,7 +112,7 @@ class SaldoNotaEmpenhoDomain extends DomainBase
 
     public function setTipoResultadoPrimario(DomainInterface $tipoResultadoPrimario): void
     {
-        !$tipoResultadoPrimario ?: $this->tipoResultadoPrimarioId = $tipoResultadoPrimario->getId();
+        $this->tipoResultadoPrimarioId = $tipoResultadoPrimario->getId();
     }
 
     public function getAnoOrcamentario(): ?int

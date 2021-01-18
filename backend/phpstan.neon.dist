@@ -1,0 +1,7 @@
+parameters:
+  paths:
+    - app
+    - src
+  excludes_analyse:
+    - src/Infrastructure/Database/Seeds/*
+  level: 4
