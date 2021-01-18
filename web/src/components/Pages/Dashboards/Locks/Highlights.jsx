@@ -14,6 +14,7 @@ import Highlight from '../../../Highlight';
 import Progressbar from '../../../Progressbar';
 import { formatDate, percentElapsedTime, remainingDays } from '~/utils/dates';
 import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
+import { CardSmallText } from 'components/Card';
 
 const Highlights = ({
   estatisticas,
@@ -23,36 +24,82 @@ const Highlights = ({
   posicaoBase,
 }) => {
   const {
-    quantidadeOperacoes,
-    quantidadeDocumentos,
+    quantidadeOperacoesBloqueadas,
+    quantidadeDocumentosBloqueados,
     saldoBloqueado,
+    quantidadeOperacoesDesbloqueadas,
+    quantidadeDocumentosDesbloqueados,
     saldoDesbloqueado,
+    quantidadeOperacoesAguardandoDesbloqueio,
+    quantidadeDocumentosAguardandoDesbloqueio,
     saldoAguardandoDesbloqueio,
   } = last(estatisticas);
-
   return (
     <>
       <Row>
         <Highlight
-          icon={faFileContract}
-          siblings={3}
-          title="quantidade de operações"
-        >
-          {formatInteger(quantidadeOperacoes)}
-        </Highlight>
-
-        <Highlight
-          icon={faMoneyCheckAlt}
-          siblings={3}
-          title=" quantidade de notas de empenho"
+          icon={faCameraRetro}
+          siblings={5}
+          title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
           variant="info"
         >
-          {formatInteger(quantidadeDocumentos)}
+          <p>{formatCurrencyShort(snapshot.saldoBloqueado)}</p>
+          <CardSmallText>
+            {formatInteger(snapshot.quantidadeOperacoesBloqueadas)} operações
+          </CardSmallText>
+          <CardSmallText>
+            {formatInteger(snapshot.quantidadeDocumentosBloqueados)} notas de
+            empenho
+          </CardSmallText>
+        </Highlight>
+        <Highlight
+          icon={faLock}
+          siblings={5}
+          title={`Bloqueado em ${formatDate(posicaoBase)}`}
+          variant="danger"
+        >
+          <p>{formatCurrencyShort(saldoBloqueado)}</p>
+          <CardSmallText>
+            {formatInteger(quantidadeOperacoesBloqueadas)} operações
+          </CardSmallText>
+          <CardSmallText>
+            {formatInteger(quantidadeDocumentosBloqueados)} notas de empenho
+          </CardSmallText>
         </Highlight>
 
         <Highlight
+          icon={faLockOpen}
+          siblings={5}
+          title={`Desbloqueado até ${formatDate(posicaoBase)}`}
+          variant="success"
+        >
+          <p>{formatCurrencyShort(saldoDesbloqueado)}</p>
+          <CardSmallText>
+            {formatInteger(quantidadeOperacoesDesbloqueadas)} operações
+          </CardSmallText>
+          <CardSmallText>
+            {formatInteger(quantidadeDocumentosDesbloqueados)} notas de empenho
+          </CardSmallText>
+        </Highlight>
+
+        <Highlight
+          icon={faHourglassHalf}
+          siblings={5}
+          title="Aguardando processamento"
+          variant="warning"
+        >
+          <p>{formatCurrencyShort(saldoAguardandoDesbloqueio)}</p>
+          <CardSmallText>
+            {formatInteger(quantidadeOperacoesAguardandoDesbloqueio)} operações
+          </CardSmallText>
+          <CardSmallText>
+            {formatInteger(quantidadeDocumentosAguardandoDesbloqueio)} notas de
+            empenho
+          </CardSmallText>
+        </Highlight>
+        <Highlight
           icon={faCalendarAlt}
-          siblings={3}
+          siblings={5}
           title="dias até o cancelamento"
           variant="warning"
         >
@@ -63,42 +110,6 @@ const Highlights = ({
               variant="warning"
             />
           </div>
-        </Highlight>
-      </Row>
-      <Row>
-        <Highlight
-          icon={faCameraRetro}
-          siblings={4}
-          title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
-          variant="info"
-        >
-          {formatCurrencyShort(snapshot.saldoBloqueado)}
-        </Highlight>
-        <Highlight
-          icon={faLock}
-          siblings={4}
-          title={`Bloqueado em ${formatDate(posicaoBase)}`}
-          variant="danger"
-        >
-          {formatCurrencyShort(saldoBloqueado)}
-        </Highlight>
-
-        <Highlight
-          icon={faLockOpen}
-          siblings={4}
-          title={`Desbloqueado até ${formatDate(posicaoBase)}`}
-          variant="success"
-        >
-          {formatCurrencyShort(saldoDesbloqueado)}
-        </Highlight>
-
-        <Highlight
-          icon={faHourglassHalf}
-          siblings={4}
-          title="Aguardando processamento"
-          variant="warning"
-        >
-          {formatCurrencyShort(saldoAguardandoDesbloqueio)}
         </Highlight>
       </Row>
     </>
