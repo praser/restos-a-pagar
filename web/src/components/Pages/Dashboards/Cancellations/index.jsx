@@ -1,25 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
 import {
   faDollarSign,
   faFileContract,
   faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
+import React, { useContext, useEffect, useState } from 'react';
+
 import { Bar } from 'react-chartjs-2';
+
 import { useParams } from 'react-router-dom';
-import ContextInfo from '~/components/ContextInfo';
-import Layout from '~/components/Layout/Internal';
-import { Row } from '~/components/Layout';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { possibleLocks as alertProps } from '~/utils/messages';
-import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
-import RightTab from '~/components/Pages/Dashboards/RightTab';
-import { csvHeaders } from '~/components/Pages/Dashboards/utils';
-import { initialState, dataInitialState } from './utils';
-import Highlight from '~/components/Highlight';
+
 import { Card, CardBody, CardHeader } from '../../../Card';
-import { DataTable } from '~/components/Table';
-import Heading from '~/components/Pages/Dashboards/Heading';
+
+import { initialState, dataInitialState } from './utils';
+
+import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
+import ContextInfo from '~/components/ContextInfo';
+import Highlight from '~/components/Highlight';
+import { Row } from '~/components/Layout';
 import { Context } from '~/components/Store';
+import { DataTable } from '~/components/Table';
+import { possibleLocks as alertProps } from '~/utils/messages';
+import Layout from '~/components/Layout/Internal';
+import Heading from '~/components/Pages/Dashboards/Heading';
+import Filters from '~/components/Filters';
+import { csvHeaders } from '~/components/Pages/Dashboards/utils';
+import { calcExecutionYear } from '~/components/Filters/utils';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],
@@ -91,7 +97,7 @@ const Cancellations = () => {
 
   return (
     <Layout>
-      <RightTab
+      <Filters
         budgetYear={budgetYear}
         visible={state.showFilters}
         setState={setState}
