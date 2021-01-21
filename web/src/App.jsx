@@ -22,13 +22,13 @@ import {
   UpdateCommitment,
 } from '~/pages';
 
-import { PrivateRoute, PublicRoute } from '../Route';
-import * as paths from '~/utils/paths';
-import Dashboard from '../Dashboard';
-import Navigation from '../Navigation';
-import { Container } from '../Layout';
+import { PrivateRoute, PublicRoute } from '~/components/Route';
+import Dashboard from '~/components/Dashboard';
+import Navigation from '~/components/Navigation';
+import { Container } from '~/components/Layout';
+import { Context } from '~/components/Store';
 import { useCurrentUser } from '~/hooks';
-import { Context } from '../Store';
+import * as paths from '~/utils/paths';
 import { getToken } from '~/utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';
