@@ -3,18 +3,17 @@ import { last } from 'lodash';
 import {
   faCalendarAlt,
   faCameraRetro,
-  faFileContract,
   faHourglassHalf,
   faLock,
   faLockOpen,
-  faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { CardSmallText } from 'components/Card';
+import WithZoomHover from 'components/HOC/ZoomHover';
 import { Row } from '~/components/Layout';
 import Highlight from '../../../Highlight';
 import Progressbar from '../../../Progressbar';
 import { formatDate, percentElapsedTime, remainingDays } from '~/utils/dates';
 import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
-import { CardSmallText } from 'components/Card';
 
 const Highlights = ({
   estatisticas,
@@ -34,72 +33,90 @@ const Highlights = ({
     quantidadeDocumentosAguardandoDesbloqueio,
     saldoAguardandoDesbloqueio,
   } = last(estatisticas);
+
+  const BloqueadosStn = () => (
+    <Highlight
+      icon={faCameraRetro}
+      title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
+      variant="info"
+    >
+      <p>{formatCurrencyShort(snapshot.saldoBloqueado)}</p>
+      <CardSmallText>
+        {formatInteger(snapshot.quantidadeOperacoesBloqueadas)} operações
+      </CardSmallText>
+      <CardSmallText>
+        {formatInteger(snapshot.quantidadeDocumentosBloqueados)} notas de
+        empenho
+      </CardSmallText>
+    </Highlight>
+  );
+
+  const BloqueadosHoje = () => (
+    <Highlight
+      icon={faLock}
+      title={`Bloqueado em ${formatDate(posicaoBase)}`}
+      variant="danger"
+    >
+      <p>{formatCurrencyShort(saldoBloqueado)}</p>
+      <CardSmallText>
+        {formatInteger(quantidadeOperacoesBloqueadas)} operações
+      </CardSmallText>
+      <CardSmallText>
+        {formatInteger(quantidadeDocumentosBloqueados)} notas de empenho
+      </CardSmallText>
+    </Highlight>
+  );
+
+  const DesbloqueadosAteHoje = () => (
+    <Highlight
+      icon={faLockOpen}
+      title={`Desbloqueado até ${formatDate(posicaoBase)}`}
+      variant="success"
+    >
+      <p>{formatCurrencyShort(saldoDesbloqueado)}</p>
+      <CardSmallText>
+        {formatInteger(quantidadeOperacoesDesbloqueadas)} operações
+      </CardSmallText>
+      <CardSmallText>
+        {formatInteger(quantidadeDocumentosDesbloqueados)} notas de empenho
+      </CardSmallText>
+    </Highlight>
+  );
+
+  const AguardandoProcessamento = () => (
+    <Highlight
+      icon={faHourglassHalf}
+      title="Aguardando processamento"
+      variant="warning"
+    >
+      <p>{formatCurrencyShort(saldoAguardandoDesbloqueio)}</p>
+      <CardSmallText>
+        {formatInteger(quantidadeOperacoesAguardandoDesbloqueio)} operações
+      </CardSmallText>
+      <CardSmallText>
+        {formatInteger(quantidadeDocumentosAguardandoDesbloqueio)} notas de
+        empenho
+      </CardSmallText>
+    </Highlight>
+  );
+
+  const BloqueadosStnWithZoomHover = WithZoomHover(BloqueadosStn);
+  const BloqueadosHojeWithZoomHover = WithZoomHover(BloqueadosHoje);
+  const DesbloqueadosAteHojeWithZoomHover = WithZoomHover(DesbloqueadosAteHoje);
+  const AguardandoProcessamentoWithZoomHover = WithZoomHover(
+    AguardandoProcessamento,
+  );
+
   return (
     <>
       <Row>
-        <Highlight
-          icon={faCameraRetro}
-          siblings={5}
-          title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
-          variant="info"
-        >
-          <p>{formatCurrencyShort(snapshot.saldoBloqueado)}</p>
-          <CardSmallText>
-            {formatInteger(snapshot.quantidadeOperacoesBloqueadas)} operações
-          </CardSmallText>
-          <CardSmallText>
-            {formatInteger(snapshot.quantidadeDocumentosBloqueados)} notas de
-            empenho
-          </CardSmallText>
-        </Highlight>
-        <Highlight
-          icon={faLock}
-          siblings={5}
-          title={`Bloqueado em ${formatDate(posicaoBase)}`}
-          variant="danger"
-        >
-          <p>{formatCurrencyShort(saldoBloqueado)}</p>
-          <CardSmallText>
-            {formatInteger(quantidadeOperacoesBloqueadas)} operações
-          </CardSmallText>
-          <CardSmallText>
-            {formatInteger(quantidadeDocumentosBloqueados)} notas de empenho
-          </CardSmallText>
-        </Highlight>
+        <BloqueadosStnWithZoomHover />
+        <BloqueadosHojeWithZoomHover />
+        <DesbloqueadosAteHojeWithZoomHover />
+        <AguardandoProcessamentoWithZoomHover />
 
-        <Highlight
-          icon={faLockOpen}
-          siblings={5}
-          title={`Desbloqueado até ${formatDate(posicaoBase)}`}
-          variant="success"
-        >
-          <p>{formatCurrencyShort(saldoDesbloqueado)}</p>
-          <CardSmallText>
-            {formatInteger(quantidadeOperacoesDesbloqueadas)} operações
-          </CardSmallText>
-          <CardSmallText>
-            {formatInteger(quantidadeDocumentosDesbloqueados)} notas de empenho
-          </CardSmallText>
-        </Highlight>
-
-        <Highlight
-          icon={faHourglassHalf}
-          siblings={5}
-          title="Aguardando processamento"
-          variant="warning"
-        >
-          <p>{formatCurrencyShort(saldoAguardandoDesbloqueio)}</p>
-          <CardSmallText>
-            {formatInteger(quantidadeOperacoesAguardandoDesbloqueio)} operações
-          </CardSmallText>
-          <CardSmallText>
-            {formatInteger(quantidadeDocumentosAguardandoDesbloqueio)} notas de
-            empenho
-          </CardSmallText>
-        </Highlight>
         <Highlight
           icon={faCalendarAlt}
-          siblings={5}
           title="dias até o cancelamento"
           variant="warning"
         >

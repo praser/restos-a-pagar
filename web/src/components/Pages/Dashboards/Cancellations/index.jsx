@@ -115,11 +115,7 @@ const Cancellations = () => {
       />
 
       <Row>
-        <Highlight
-          title="quantidade de operações"
-          icon={faFileContract}
-          siblings={3}
-        >
+        <Highlight title="quantidade de operações" icon={faFileContract}>
           1.892
         </Highlight>
 
@@ -127,17 +123,11 @@ const Cancellations = () => {
           title="quantidade de notas de empenho"
           icon={faMoneyCheckAlt}
           variant="info"
-          siblings={3}
         >
           1.941
         </Highlight>
 
-        <Highlight
-          title="Saldo cancelado"
-          icon={faDollarSign}
-          variant="danger"
-          siblings={3}
-        >
+        <Highlight title="Saldo cancelado" icon={faDollarSign} variant="danger">
           R$ 1.49 bilhões
         </Highlight>
       </Row>
