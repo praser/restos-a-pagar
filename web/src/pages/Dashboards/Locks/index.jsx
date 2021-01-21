@@ -7,7 +7,7 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isUndefined, last } from 'lodash';
-import Heading from '~/components/Pages/Dashboards/Heading';
+import Heading from '../Heading';
 import Highlights from './Highlights';
 import { dougnutChartData } from './doughnutChart';
 import { lineChartData, lineChartOptions } from './lineChart';
@@ -27,10 +27,7 @@ import { locks as alertProps } from '~/utils/messages';
 import { createUnlockPath, joinPath } from '~/utils/paths';
 import Layout from '~/components/Layout/Internal';
 import Filters from '~/components/Filters';
-import {
-  csvHeaders,
-  operacoesColumns,
-} from '~/components/Pages/Dashboards/utils';
+import { csvHeaders, operacoesColumns } from '../utils';
 import { calcExecutionYear } from '~/components/Filters/utils';
 
 const Locks = () => {

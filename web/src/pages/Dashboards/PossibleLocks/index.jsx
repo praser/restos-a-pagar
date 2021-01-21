@@ -18,13 +18,10 @@ import Highlights from './Highlights';
 import { initialState, dataInitialState } from './utils';
 import { lineChartData } from './lineChart';
 
-import Heading from '~/components/Pages/Dashboards/Heading';
+import Heading from '../Heading';
 import Filters from '~/components/Filters';
 import { calcExecutionYear } from '~/components/Filters/utils';
-import {
-  csvHeaders,
-  operacoesColumns,
-} from '~/components/Pages/Dashboards/utils';
+import { csvHeaders, operacoesColumns } from '../utils';
 
 import { LineChart, BarChart } from '~/components/Chart';
 import ContextInfo from '~/components/ContextInfo';

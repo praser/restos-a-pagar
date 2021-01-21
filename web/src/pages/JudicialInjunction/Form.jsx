@@ -19,7 +19,7 @@ import { SmallButtonPrimary, SmallButtonWarning } from '~/components/Button';
 //   UploadFile,
 // } from '../Commitment/styles';
 import { DataTable } from '~/components/Table';
-import { operacoesColumns as columns } from '~/components/Pages/Dashboards/utils';
+import { operacoesColumns as columns } from '../Dashboards/utils';
 import { useApiRap, useXHR } from '~/hooks';
 import { loadOperacoes } from '~/utils/messages';
 import { Row } from '~/components/Layout';

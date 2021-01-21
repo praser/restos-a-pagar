@@ -1,27 +1,30 @@
-import React, { useCallback, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useState, useContext, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import Form from './Form';
-import Layout from '../../Layout/Internal';
-import { Heading, Row } from '../../Layout';
-import { Card, CardBody, CardHeader } from '../../Card';
+import Layout from '../../components/Layout/Internal';
+import { Heading, Row } from '../../components/Layout';
+import { Card, CardBody, CardHeader } from '../../components/Card';
 import { useApiRap, useXHR } from '~/hooks';
-import { createUgFail as alertProps, createUgSuccess } from '~/utils/messages';
+import { updateUgFail as alertProps, updateUgSuccess } from '~/utils/messages';
 import { ugPath } from '~/utils/paths';
-import { Context } from '../../Store';
-import { PageTitle } from '../../Tipography';
-
-const initialValues = {
-  code: '',
-  name: '',
-  managerAbbreviation: '',
-  managerName: '',
-};
+import { Context } from '../../components/Store';
+import { PageTitle } from '../../components/Tipography';
 
 const initialState = {
   isSending: false,
+  ug: {
+    id: '',
+    created_at: '',
+    updated_at: '',
+    codigo: '',
+    nome: '',
+    nomeGestor: '',
+    siglaGestor: '',
+  },
 };
 
-const Create = () => {
+const Update = () => {
+  const { id } = useParams();
   const [state, setState] = useState(initialState);
   const dispatch = useContext(Context)[1];
   const apiRap = useApiRap();
@@ -29,8 +32,23 @@ const Create = () => {
   const { isSending } = state;
   const history = useHistory();
 
+  const handleLoadUg = res => {
+    const ug = res[0].data;
+    setState(prev => ({ ...prev, ug }));
+  };
+
+  useEffect(() => {
+    apiRap.then(api => {
+      doAllXhrRequest({
+        alertProps,
+        requests: [api.requests.getUg(id)],
+        success: handleLoadUg,
+      });
+    });
+  }, [id]);
+
   const handleSuccess = () => {
-    const { title, text } = createUgSuccess;
+    const { title, text } = updateUgSuccess;
     dispatch({ type: 'SET_ALERT', payload: { visible: true, title, text } });
     history.push(ugPath);
   };
@@ -42,7 +60,7 @@ const Create = () => {
       await apiRap.then(api => {
         doAllXhrRequest({
           alertProps,
-          requests: [api.requests.postUg(values)],
+          requests: [api.requests.putUg(id, values)],
           success: handleSuccess,
         });
       });
@@ -58,7 +76,14 @@ const Create = () => {
       siglaGestor: values.managerAbbreviation,
       nomeGestor: values.managerName,
     };
-    sendRequest({ ug });
+    sendRequest(ug);
+  };
+
+  const initialValues = {
+    code: state.ug.codigo,
+    name: state.ug.nome,
+    managerAbbreviation: state.ug.siglaGestor,
+    managerName: state.ug.nomeGestor,
   };
 
   return (
@@ -67,8 +92,6 @@ const Create = () => {
         <Heading>
           <PageTitle>Cadastrar Unidade Gestora</PageTitle>
         </Heading>
-      </Row>
-      <Row>
         <Card>
           <CardHeader>Dados da unidade gestora</CardHeader>
           <CardBody>
@@ -80,4 +103,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Update;

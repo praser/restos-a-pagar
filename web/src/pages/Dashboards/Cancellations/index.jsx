@@ -10,7 +10,7 @@ import { Bar } from 'react-chartjs-2';
 
 import { useParams } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from '../../../Card';
+import { Card, CardBody, CardHeader } from '../../../components/Card';
 
 import { initialState, dataInitialState } from './utils';
 
@@ -22,9 +22,9 @@ import { Context } from '~/components/Store';
 import { DataTable } from '~/components/Table';
 import { possibleLocks as alertProps } from '~/utils/messages';
 import Layout from '~/components/Layout/Internal';
-import Heading from '~/components/Pages/Dashboards/Heading';
+import Heading from '../Heading';
 import Filters from '~/components/Filters';
-import { csvHeaders } from '~/components/Pages/Dashboards/utils';
+import { csvHeaders } from '../utils';
 import { calcExecutionYear } from '~/components/Filters/utils';
 
 const data = {

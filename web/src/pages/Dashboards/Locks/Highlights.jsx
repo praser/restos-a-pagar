@@ -10,8 +10,8 @@ import {
 import { CardSmallText } from 'components/Card';
 import WithZoomHover from 'components/HOC/ZoomHover';
 import { Row } from '~/components/Layout';
-import Highlight from '../../../Highlight';
-import Progressbar from '../../../Progressbar';
+import Highlight from '../../../components/Highlight';
+import Progressbar from '../../../components/Progressbar';
 import { formatDate, percentElapsedTime, remainingDays } from '~/utils/dates';
 import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
 
