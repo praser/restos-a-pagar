@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { last } from 'lodash';
 import {
   faCalendarAlt,
@@ -9,11 +9,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { CardSmallText } from 'components/Card';
 import WithZoomHover from 'components/HOC/ZoomHover';
-import { Row } from '~/components/Layout';
-import Highlight from '../../../components/Highlight';
-import Progressbar from '../../../components/Progressbar';
-import { formatDate, percentElapsedTime, remainingDays } from '~/utils/dates';
-import { formatCurrencyShort, formatInteger } from '~/utils/numbers';
+import Modal from 'components/Modal';
+import DataTable from 'components/Table/DataTable';
+import { useApiRap, useXHR } from 'hooks';
+import { Row } from 'components/Layout';
+import Highlight from 'components/Highlight';
+import Progressbar from 'components/Progressbar';
+import {
+  formatDate,
+  formatISO,
+  percentElapsedTime,
+  remainingDays,
+} from 'utils/dates';
+import {
+  formatCurrency,
+  formatCurrencyShort,
+  formatInteger,
+} from 'utils/numbers';
+import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
 
 const Highlights = ({
   estatisticas,
@@ -22,6 +35,12 @@ const Highlights = ({
   snapshot,
   posicaoBase,
 }) => {
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [modalTitle, setModalTitle] = useState();
+  const [modalData, setModalData] = useState([]);
+  const apiRap = useApiRap();
+  const { doAllXhrRequest } = useXHR();
+
   const {
     quantidadeOperacoesBloqueadas,
     quantidadeDocumentosBloqueados,
@@ -34,11 +53,70 @@ const Highlights = ({
     saldoAguardandoDesbloqueio,
   } = last(estatisticas);
 
+  const handleModalOnClose = () => setModalVisibility(false);
+
+  const getHighlightTitle = event => {
+    const titleClass = 'highlight-title';
+    const titleEl = event.currentTarget.getElementsByClassName(titleClass)[0];
+    return titleEl.textContent;
+  };
+
+  const fetchData = useCallback(
+    async type => {
+      const api = await apiRap;
+      const requests = [api.requests.getLoteDesbloqueio(type)];
+      const success = res => {
+        const { data } = res[0];
+        setModalData(data);
+        setModalVisibility(true);
+      };
+      doAllXhrRequest({
+        alertProps,
+        requests,
+        success,
+      });
+    },
+    [apiRap, setModalData, setModalVisibility],
+  );
+
+  const getDataType = event => {
+    return event.currentTarget.dataset.type;
+  };
+
+  const handleHighlightClick = event => {
+    setModalTitle(getHighlightTitle(event));
+    fetchData(getDataType(event));
+  };
+
+  const columns = [
+    { name: 'Operação', selector: 'operacao', sortable: true },
+    { name: 'Convênio', selector: 'convenio', sortable: true },
+    { name: 'GIGOV', selector: 'gigovNome', sortable: true },
+    { name: 'Gestor', selector: 'sigla', sortable: true },
+    { name: 'Tomador', selector: 'proponente', sortable: true },
+    { name: 'NE', selector: 'documento', sortable: true },
+    {
+      name: 'Saldo',
+      selector: 'saldo',
+      sortable: true,
+      format: ({ saldo }) => formatCurrency(saldo),
+    },
+    { name: 'Lote', selector: 'loteDesbloqueio', sortable: true },
+    {
+      name: 'Data do desbloqueio',
+      selector: 'dataDesbloqueio',
+      sortable: true,
+      format: ({ dataDesbloqueio }) => formatISO(dataDesbloqueio),
+    },
+  ];
+
   const BloqueadosStn = () => (
     <Highlight
       icon={faCameraRetro}
       title={`Bloqueado STN em ${formatDate(dataBloqueio)}`}
       variant="info"
+      onClick={handleHighlightClick}
+      data-type="snapshot"
     >
       <p>{formatCurrencyShort(snapshot.saldoBloqueado)}</p>
       <CardSmallText>
@@ -56,6 +134,8 @@ const Highlights = ({
       icon={faLock}
       title={`Bloqueado em ${formatDate(posicaoBase)}`}
       variant="danger"
+      onClick={handleHighlightClick}
+      data-type="bloqueados"
     >
       <p>{formatCurrencyShort(saldoBloqueado)}</p>
       <CardSmallText>
@@ -72,6 +152,8 @@ const Highlights = ({
       icon={faLockOpen}
       title={`Desbloqueado até ${formatDate(posicaoBase)}`}
       variant="success"
+      onClick={handleHighlightClick}
+      data-type="desbloqueados"
     >
       <p>{formatCurrencyShort(saldoDesbloqueado)}</p>
       <CardSmallText>
@@ -88,6 +170,8 @@ const Highlights = ({
       icon={faHourglassHalf}
       title="Aguardando processamento"
       variant="warning"
+      onClick={handleHighlightClick}
+      data-type="aguardando-processamento"
     >
       <p>{formatCurrencyShort(saldoAguardandoDesbloqueio)}</p>
       <CardSmallText>
@@ -128,6 +212,21 @@ const Highlights = ({
             />
           </div>
         </Highlight>
+
+        <Modal
+          title={modalTitle}
+          visible={modalVisibility}
+          onClose={handleModalOnClose}
+          dismissible
+        >
+          <DataTable
+            data={modalData}
+            columns={columns}
+            noDataText="Não há nenhuma nota de empenho aqui"
+            noHeader
+            searchable
+          />
+        </Modal>
       </Row>
     </>
   );
