@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Reset } from 'styled-reset';
+import { defaults } from 'react-chartjs-2';
+import ptBR from 'date-fns/locale/pt-BR';
+import Login from 'components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
-import { defaults } from 'react-chartjs-2';
-import ptBR from 'date-fns/locale/pt-BR';
 
-import Login from 'components/Login';
 import { Alert, Loading } from '~/components/Modal';
 import {
   Cancellations,
@@ -20,15 +20,15 @@ import {
   UgUpdate,
   UnlockCreate,
   UpdateCommitment,
-} from '../Pages';
+} from '~/pages';
 
-import { PrivateRoute, PublicRoute } from '../Route';
-import * as paths from '../../utils/paths';
-import Dashboard from '../Dashboard';
-import Navigation from '../Navigation';
-import { Container } from '../Layout';
-import { useCurrentUser } from '../../hooks';
-import { Context } from '../Store';
+import { PrivateRoute, PublicRoute } from '~/components/Route';
+import Dashboard from '~/components/Dashboard';
+import Navigation from '~/components/Navigation';
+import { Container } from '~/components/Layout';
+import { Context } from '~/components/Store';
+import { useCurrentUser } from '~/hooks';
+import * as paths from '~/utils/paths';
 import { getToken } from '~/utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';

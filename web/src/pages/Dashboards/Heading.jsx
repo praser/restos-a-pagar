@@ -7,7 +7,7 @@ import { deburr, snakeCase } from 'lodash';
 import { SmallButtonPrimary, SmallButtonSecondary } from '~/components/Button';
 import { Heading as HeadingSC } from '~/components/Layout';
 import { PageTitle } from '~/components/Tipography';
-import { handleVisibility } from './RightTab/handlers';
+import { handleVisibility } from '../../components/Filters/handlers';
 import Can from '~/components/Can';
 
 function Heading({ children, data, headers, setState, buttons }) {

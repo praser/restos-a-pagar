@@ -1,25 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
 import {
   faDollarSign,
   faFileContract,
   faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
+import React, { useContext, useEffect, useState } from 'react';
+
 import { Bar } from 'react-chartjs-2';
+
 import { useParams } from 'react-router-dom';
-import ContextInfo from '~/components/ContextInfo';
-import Layout from '~/components/Layout/Internal';
-import { Row } from '~/components/Layout';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { possibleLocks as alertProps } from '~/utils/messages';
-import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
-import RightTab from '~/components/Pages/Dashboards/RightTab';
-import { csvHeaders } from '~/components/Pages/Dashboards/utils';
+
+import { Card, CardBody, CardHeader } from '../../../components/Card';
+
 import { initialState, dataInitialState } from './utils';
+
+import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
+import ContextInfo from '~/components/ContextInfo';
 import Highlight from '~/components/Highlight';
-import { Card, CardBody, CardHeader } from '../../../Card';
-import { DataTable } from '~/components/Table';
-import Heading from '~/components/Pages/Dashboards/Heading';
+import { Row } from '~/components/Layout';
 import { Context } from '~/components/Store';
+import { DataTable } from '~/components/Table';
+import { possibleLocks as alertProps } from '~/utils/messages';
+import Layout from '~/components/Layout/Internal';
+import Heading from '../Heading';
+import Filters from '~/components/Filters';
+import { csvHeaders } from '../utils';
+import { calcExecutionYear } from '~/components/Filters/utils';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],
@@ -91,7 +97,7 @@ const Cancellations = () => {
 
   return (
     <Layout>
-      <RightTab
+      <Filters
         budgetYear={budgetYear}
         visible={state.showFilters}
         setState={setState}
@@ -115,11 +121,7 @@ const Cancellations = () => {
       />
 
       <Row>
-        <Highlight
-          title="quantidade de operações"
-          icon={faFileContract}
-          siblings={3}
-        >
+        <Highlight title="quantidade de operações" icon={faFileContract}>
           1.892
         </Highlight>
 
@@ -127,17 +129,11 @@ const Cancellations = () => {
           title="quantidade de notas de empenho"
           icon={faMoneyCheckAlt}
           variant="info"
-          siblings={3}
         >
           1.941
         </Highlight>
 
-        <Highlight
-          title="Saldo cancelado"
-          icon={faDollarSign}
-          variant="danger"
-          siblings={3}
-        >
+        <Highlight title="Saldo cancelado" icon={faDollarSign} variant="danger">
           R$ 1.49 bilhões
         </Highlight>
       </Row>

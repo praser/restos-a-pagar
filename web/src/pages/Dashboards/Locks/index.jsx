@@ -4,20 +4,14 @@ import {
   faThumbsUp,
   faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
-
 import React, { useContext, useEffect, useState } from 'react';
-
 import { Link, useParams } from 'react-router-dom';
-
 import { isUndefined, last } from 'lodash';
-
-import Heading from '~/components/Pages/Dashboards/Heading';
-
+import Heading from '../Heading';
 import Highlights from './Highlights';
 import { dougnutChartData } from './doughnutChart';
 import { lineChartData, lineChartOptions } from './lineChart';
 import { initialState, dataInitialState } from './utils';
-
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { SmallButtonWarning } from '~/components/Button';
 import Can from '~/components/Can';
@@ -32,12 +26,9 @@ import { formatDate, parseISO } from '~/utils/dates';
 import { locks as alertProps } from '~/utils/messages';
 import { createUnlockPath, joinPath } from '~/utils/paths';
 import Layout from '~/components/Layout/Internal';
-import RightTab from '~/components/Pages/Dashboards/RightTab';
-import {
-  csvHeaders,
-  operacoesColumns,
-} from '~/components/Pages/Dashboards/utils';
-import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
+import Filters from '~/components/Filters';
+import { csvHeaders, operacoesColumns } from '../utils';
+import { calcExecutionYear } from '~/components/Filters/utils';
 
 const Locks = () => {
   const currentUser = useCurrentUser();
@@ -128,7 +119,7 @@ const Locks = () => {
 
   return (
     <Layout>
-      <RightTab
+      <Filters
         budgetYear={budgetYear}
         visible={state.showFilters}
         setState={setState}

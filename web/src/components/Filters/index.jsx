@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
 import { ButtonPrimary } from '~/components/Button';
 import { Select } from '~/components/Form';
-import RightTabSC from '~/components/Modal/RightTab';
+import Modal from '~/components/Modal';
 import { handleClick, handleVisibility } from './handlers';
 import { possibleLocksFilters as alertProps } from '~/utils/messages';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
 import Can from '~/components/Can';
 
-const RightTab = ({ visible, setState: setParentState }) => {
+const Filters = ({ visible, setState: setParentState }) => {
   const { budgetYear } = useParams();
   const [state, setState] = useState(initialState);
   const apiRap = useApiRap();
@@ -43,10 +43,11 @@ const RightTab = ({ visible, setState: setParentState }) => {
   }, [budgetYear]);
 
   return (
-    <RightTabSC
+    <Modal
       visible={visible}
       title="Filtros"
       onClose={() => handleVisibility(setParentState)}
+      dismissible
     >
       <Can
         perform="dashboard:filter:unidade"
@@ -90,8 +91,8 @@ const RightTab = ({ visible, setState: setParentState }) => {
           </ButtonPrimary>
         )}
       />
-    </RightTabSC>
+    </Modal>
   );
 };
 
-export default RightTab;
+export default Filters;

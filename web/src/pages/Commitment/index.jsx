@@ -1,39 +1,50 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
 import {
   faFolderOpen,
   faSave,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import React, { useCallback, useContext, useRef, useState } from 'react';
+
+import DatePicker from 'react-datepicker';
+
 import { useFormik } from 'formik';
+
 import * as Yup from 'yup';
+
 import { CSVReader } from 'react-papaparse';
+
 import { v4 as uuidv4 } from 'uuid';
+
 import { isNull, first } from 'lodash';
+
 import { useHistory } from 'react-router-dom';
-import { SmallButtonPrimary } from '../../Button';
-import { Card, CardBody, CardHeader } from '../../Card';
-import { Field, FormGroup, FormRow, Input, Label } from '../../Form';
-import { Heading, Row } from '../../Layout';
-import Layout from '../../Layout/Internal';
-import { PageTitle } from '../../Tipography';
+
+import { SmallButtonPrimary } from '../../components/Button';
+import { Card, CardBody, CardHeader } from '../../components/Card';
+import { Field, FormGroup, FormRow, Input, Label } from '../../components/Form';
+import { Heading, Row } from '../../components/Layout';
+import { Context } from '../../components/Store';
+import { PageTitle } from '../../components/Tipography';
+import Layout from '../../components/Layout/Internal';
+
+import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
+
+import { useCurrentUser, useApiRap, useXHR } from '~/hooks';
+import { DataTable } from '~/components/Table';
 import { parseDate, getYear, formatAsISO, formatISO } from '~/utils/dates';
+import {
+  wrongBalanceFile,
+  createNeBalanceFail as alertProps,
+  createNeBalanceSuccess,
+} from '~/utils/messages';
 import { formatCurrency, parseNumber } from '~/utils/numbers';
 import {
   splitDocumento,
   parseNumeroContratoRepasse,
   parseConvenio,
 } from '~/utils/string';
-import { useCurrentUser, useApiRap, useXHR } from '~/hooks';
-import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
-import { Context } from '../../Store';
-import {
-  wrongBalanceFile,
-  createNeBalanceFail as alertProps,
-  createNeBalanceSuccess,
-} from '~/utils/messages';
-import { DataTable } from '~/components/Table';
 
 const initialValues = {
   fileDate: new Date(),

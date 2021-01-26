@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
 import { useCurrentUser } from '~/hooks';
 import { Context } from '../Store';
 

@@ -21,16 +21,11 @@ const Highlights = ({ estatisticas, dataBloqueio }) => {
 
   return (
     <Row>
-      <Highlight
-        icon={faFileContract}
-        siblings={4}
-        title="Quantidade de operações"
-      >
+      <Highlight icon={faFileContract} title="Quantidade de operações">
         {formatInteger(countOperacoes)}
       </Highlight>
       <Highlight
         icon={faMoneyCheckAlt}
-        siblings={4}
         title="Quantidade de notas de empenho"
         variant="success"
       >
@@ -38,7 +33,6 @@ const Highlights = ({ estatisticas, dataBloqueio }) => {
       </Highlight>
       <Highlight
         icon={faDollarSign}
-        siblings={4}
         title="Saldo passível de bloqueio"
         variant="info"
       >
@@ -46,7 +40,6 @@ const Highlights = ({ estatisticas, dataBloqueio }) => {
       </Highlight>
       <Highlight
         icon={faCalendar}
-        siblings={4}
         title="Dias até o bloqueio"
         variant="warning"
       >

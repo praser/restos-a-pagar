@@ -13,8 +13,9 @@ const Alert = ({ title, text, onConfirm, visible }) => {
     <Layout
       visible={visible}
       title={title}
-      text={text}
+      content={text}
       buttons={[confirmBtn]}
+      width="500px"
     />
   );
 };

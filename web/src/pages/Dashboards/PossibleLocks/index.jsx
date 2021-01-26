@@ -18,13 +18,10 @@ import Highlights from './Highlights';
 import { initialState, dataInitialState } from './utils';
 import { lineChartData } from './lineChart';
 
-import Heading from '~/components/Pages/Dashboards/Heading';
-import RightTab from '~/components/Pages/Dashboards/RightTab';
-import { calcExecutionYear } from '~/components/Pages/Dashboards/RightTab/utils';
-import {
-  csvHeaders,
-  operacoesColumns,
-} from '~/components/Pages/Dashboards/utils';
+import Heading from '../Heading';
+import Filters from '~/components/Filters';
+import { calcExecutionYear } from '~/components/Filters/utils';
+import { csvHeaders, operacoesColumns } from '../utils';
 
 import { LineChart, BarChart } from '~/components/Chart';
 import ContextInfo from '~/components/ContextInfo';
@@ -99,7 +96,7 @@ const PossibleLocks = () => {
 
   return (
     <Layout>
-      <RightTab visible={state.showFilters} setState={setState} />
+      <Filters visible={state.showFilters} setState={setState} />
 
       <Row>
         <Heading

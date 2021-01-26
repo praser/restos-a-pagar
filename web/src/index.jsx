@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import replaceAll from 'string.prototype.replaceall';
-import * as serviceWorker from './serviceWorker';
-import App from '~/components/App';
 import Store from '~/components/Store';
+import * as serviceWorker from './serviceWorker';
+import App from '~/App';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
