@@ -10,7 +10,7 @@ import {
 import {
   possibleLocksPath,
   locksPath,
-  cancellationsPath,
+  // cancellationsPath,
   createUgPath,
   updateCommitmentPath,
   ugPath,
@@ -28,7 +28,7 @@ import Can from '../Can';
 
 const mountCollapsables = param => {
   const blockDate = parseISO(param.dataBloqueio);
-  const cancellationDate = parseISO(param.dataCancelamento);
+  // const cancellationDate = parseISO(param.dataCancelamento);
 
   const collapsables = [
     {

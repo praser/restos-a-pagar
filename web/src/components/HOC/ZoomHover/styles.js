@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { primarySc8 } from '~/utils/colors.js';
-
 export const ZoomHover = styled.div`
   display: flex;
   flex: 1;
