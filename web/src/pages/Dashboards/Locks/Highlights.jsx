@@ -62,9 +62,9 @@ const Highlights = ({
   };
 
   const fetchData = useCallback(
-    async type => {
+    async args => {
       const api = await apiRap;
-      const requests = [api.requests.getLoteDesbloqueio(type)];
+      const requests = [api.requests.getEmpenhos(args)];
       const success = res => {
         const { data } = res[0];
         setModalData(data);
@@ -85,14 +85,16 @@ const Highlights = ({
 
   const handleHighlightClick = event => {
     setModalTitle(getHighlightTitle(event));
-    fetchData(getDataType(event));
+    const tipo = getDataType(event);
+    const anoExecucao = 2020;
+    fetchData({ anoExecucao, tipo });
   };
 
   const columns = [
     { name: 'Operação', selector: 'operacao', sortable: true },
     { name: 'Convênio', selector: 'convenio', sortable: true },
     { name: 'GIGOV', selector: 'gigovNome', sortable: true },
-    { name: 'Gestor', selector: 'sigla', sortable: true },
+    { name: 'Gestor', selector: 'siglaGestor', sortable: true },
     { name: 'Tomador', selector: 'proponente', sortable: true },
     { name: 'NE', selector: 'documento', sortable: true },
     {
@@ -135,7 +137,7 @@ const Highlights = ({
       title={`Bloqueado em ${formatDate(posicaoBase)}`}
       variant="danger"
       onClick={handleHighlightClick}
-      data-type="bloqueados"
+      data-type="bloqueado"
     >
       <p>{formatCurrencyShort(saldoBloqueado)}</p>
       <CardSmallText>
@@ -153,7 +155,7 @@ const Highlights = ({
       title={`Desbloqueado até ${formatDate(posicaoBase)}`}
       variant="success"
       onClick={handleHighlightClick}
-      data-type="desbloqueados"
+      data-type="desbloqueado"
     >
       <p>{formatCurrencyShort(saldoDesbloqueado)}</p>
       <CardSmallText>
@@ -171,7 +173,7 @@ const Highlights = ({
       title="Aguardando processamento"
       variant="warning"
       onClick={handleHighlightClick}
-      data-type="aguardando-processamento"
+      data-type="aguardando processamento"
     >
       <p>{formatCurrencyShort(saldoAguardandoDesbloqueio)}</p>
       <CardSmallText>
