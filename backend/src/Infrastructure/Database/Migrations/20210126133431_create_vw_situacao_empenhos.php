@@ -52,9 +52,7 @@ class CreateVwSituacaoEmpenhos extends AbstractMigration
                 ,a.updated_at
                 ,a.desbloqueado
                 ,b.ano
-
             UNION ALL
-
             SELECT
                 MAX(b.id) AS id
                 ,a.operacao
@@ -111,9 +109,7 @@ class CreateVwSituacaoEmpenhos extends AbstractMigration
                 ,b.documento
                 ,b.saldoContaContabil
                 ,h.anoExecucao
-
             UNION ALL
-
             SELECT
                 MAX(b.id) AS id
                 ,a.operacao

@@ -13,12 +13,10 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 @unidadeId AS INT,
                 @siglaGestor AS VARCHAR(10)
             AS
-
             DECLARE @datas AS TABLE(data DATE, dataReferencia DATE);
             DECLARE @bloqueios AS TABLE(dataReferencia DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldoBloqueado FLOAT);
             DECLARE @solicitacoes AS TABLE(data DATE, saldo FLOAT);
             DECLARE @desbloqueios AS TABLE(data DATE, saldo FLOAT);
-
             INSERT INTO @datas
             SELECT
                 *,
@@ -38,8 +36,6 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 WHERE type = 'P'
                 AND DATEADD(DAY, a.number, b.dataBloqueio) <= GETDATE()
             ) AS datas
-
-
             INSERT INTO @bloqueios
             SELECT
                 a.dataReferencia,
@@ -80,7 +76,6 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
             )
             GROUP BY
                 a.dataReferencia
-
             INSERT INTO @solicitacoes
             SELECT 
                 dataSolicitacao,
@@ -127,7 +122,6 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.created_at)
             ) AS a
-
             INSERT INTO @desbloqueios
             SELECT 
                 dataDesbloqueio,
@@ -177,7 +171,6 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.updated_at)
             ) AS a
-            
             SELECT
                 id,
                 anoExecucao,
@@ -225,7 +218,6 @@ class CreateSpEstatiscasBloqueio extends AbstractMigration
                 LEFT JOIN ministerios AS e
                 ON @siglaGestor = e.sigla
             ) AS a
-
             RETURN
         SQL;
 
