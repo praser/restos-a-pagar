@@ -7,12 +7,12 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{77D70D4B-7FFF-4BB4-94A2-1DE3AFFC17F4}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
   DTS:LocaleID="1046"
   DTS:ObjectName="importa_saldo_tesouro_gerencial"
   DTS:PackageType="5"
-  DTS:VersionBuild="124"
-  DTS:VersionGUID="{693A9456-CD8B-433D-AB32-69EA2D045D7A}">
+  DTS:VersionBuild="126"
+  DTS:VersionGUID="{7B4078D3-97F8-4C86-9360-C3FFD5D13785}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -271,7 +271,7 @@
       DTS:Required="True">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">Z:\restos-a-pagar\backend\var\upload\saldos-notas-empenhos</DTS:Property>
+        DTS:Name="ParameterValue">Z:\api\api-restos-a-pagar\var\upload\saldos-notas-empenhos</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -326,7 +326,7 @@
       DTS:Required="True">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">192.168.0.56</DTS:Property>
+        DTS:Name="ParameterValue">localhost</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -414,7 +414,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="dataExecucao">
       <DTS:VariableValue
-        DTS:DataType="7">12/21/2020 3:27:39 PM</DTS:VariableValue>
+        DTS:DataType="7">1/28/2021 9:58:57 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -828,18 +828,6 @@
                               externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nomeGestor]"
                               lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[nomeGestor]" />
                             <inputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[quantidadeOperacoes]"
-                              cachedDataType="i4"
-                              cachedName="quantidadeOperacoes"
-                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoes]"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]" />
-                            <inputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[quantidadeDocumentos]"
-                              cachedDataType="i4"
-                              cachedName="quantidadeDocumentos"
-                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentos]"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]" />
-                            <inputColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[saldoBloqueado]"
                               cachedDataType="r8"
                               cachedName="saldoBloqueado"
@@ -909,14 +897,6 @@
                               length="255"
                               name="nomeGestor" />
                             <externalMetadataColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoes]"
-                              dataType="i4"
-                              name="quantidadeOperacoes" />
-                            <externalMetadataColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentos]"
-                              dataType="i4"
-                              name="quantidadeDocumentos" />
-                            <externalMetadataColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[saldoBloqueado]"
                               dataType="r8"
                               name="saldoBloqueado" />
@@ -937,6 +917,30 @@
                               dataType="wstr"
                               length="255"
                               name="tipoInformacaoDescricao" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoesBloqueadas]"
+                              dataType="i4"
+                              name="quantidadeOperacoesBloqueadas" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentosBloqueados]"
+                              dataType="i4"
+                              name="quantidadeDocumentosBloqueados" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              dataType="i4"
+                              name="quantidadeOperacoesAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              dataType="i4"
+                              name="quantidadeDocumentosAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeOperacoesDesbloqueadas]"
+                              dataType="i4"
+                              name="quantidadeOperacoesDesbloqueadas" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[quantidadeDocumentosDesbloqueados]"
+                              dataType="i4"
+                              name="quantidadeDocumentosDesbloqueados" />
                           </externalMetadataColumns>
                         </input>
                       </inputs>
@@ -1102,24 +1106,6 @@
                               name="nomeGestor"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]"
-                              dataType="i4"
-                              errorOrTruncationOperation="Conversion"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoes]"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoes]"
-                              name="quantidadeOperacoes"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]"
-                              dataType="i4"
-                              errorOrTruncationOperation="Conversion"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentos]"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentos]"
-                              name="quantidadeDocumentos"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoBloqueado]"
                               dataType="r8"
                               errorOrTruncationOperation="Conversion"
@@ -1165,6 +1151,60 @@
                               lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[saldoAguardandoDesbloqueio]"
                               name="saldoAguardandoDesbloqueio"
                               truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesBloqueadas]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesBloqueadas]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesBloqueadas]"
+                              name="quantidadeOperacoesBloqueadas"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosBloqueados]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosBloqueados]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosBloqueados]"
+                              name="quantidadeDocumentosBloqueados"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              name="quantidadeOperacoesAguardandoDesbloqueio"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              name="quantidadeDocumentosAguardandoDesbloqueio"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesDesbloqueadas]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesDesbloqueadas]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeOperacoesDesbloqueadas]"
+                              name="quantidadeOperacoesDesbloqueadas"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosDesbloqueados]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosDesbloqueados]"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantidadeDocumentosDesbloqueados]"
+                              name="quantidadeDocumentosDesbloqueados"
+                              truncationRowDisposition="FailComponent" />
                           </outputColumns>
                           <externalMetadataColumns
                             isUsed="True">
@@ -1204,14 +1244,6 @@
                               length="255"
                               name="nomeGestor" />
                             <externalMetadataColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoes]"
-                              dataType="i4"
-                              name="quantidadeOperacoes" />
-                            <externalMetadataColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentos]"
-                              dataType="i4"
-                              name="quantidadeDocumentos" />
-                            <externalMetadataColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoBloqueado]"
                               dataType="r8"
                               name="saldoBloqueado" />
@@ -1232,6 +1264,30 @@
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[saldoAguardandoDesbloqueio]"
                               dataType="r8"
                               name="saldoAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesBloqueadas]"
+                              dataType="i4"
+                              name="quantidadeOperacoesBloqueadas" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosBloqueados]"
+                              dataType="i4"
+                              name="quantidadeDocumentosBloqueados" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              dataType="i4"
+                              name="quantidadeOperacoesAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              dataType="i4"
+                              name="quantidadeDocumentosAguardandoDesbloqueio" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeOperacoesDesbloqueadas]"
+                              dataType="i4"
+                              name="quantidadeOperacoesDesbloqueadas" />
+                            <externalMetadataColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantidadeDocumentosDesbloqueados]"
+                              dataType="i4"
+                              name="quantidadeDocumentosDesbloqueados" />
                           </externalMetadataColumns>
                         </output>
                         <output
@@ -1283,25 +1339,45 @@
                               lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nomeGestor]"
                               name="nomeGestor" />
                             <outputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoes]"
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesBloqueadas]"
                               dataType="i4"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoes]"
-                              name="quantidadeOperacoes" />
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesBloqueadas]"
+                              name="quantidadeOperacoesBloqueadas" />
                             <outputColumn
-                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentos]"
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosBloqueados]"
                               dataType="i4"
-                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentos]"
-                              name="quantidadeDocumentos" />
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosBloqueados]"
+                              name="quantidadeDocumentosBloqueados" />
                             <outputColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoBloqueado]"
                               dataType="r8"
                               lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoBloqueado]"
                               name="saldoBloqueado" />
                             <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesAguardandoDesbloqueio]"
+                              name="quantidadeOperacoesAguardandoDesbloqueio" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosAguardandoDesbloqueio]"
+                              name="quantidadeDocumentosAguardandoDesbloqueio" />
+                            <outputColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoAguardandoDesbloqueio]"
                               dataType="r8"
                               lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoAguardandoDesbloqueio]"
                               name="saldoAguardandoDesbloqueio" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesDesbloqueadas]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeOperacoesDesbloqueadas]"
+                              name="quantidadeOperacoesDesbloqueadas" />
+                            <outputColumn
+                              refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosDesbloqueados]"
+                              dataType="i4"
+                              lineageId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantidadeDocumentosDesbloqueados]"
+                              name="quantidadeDocumentosDesbloqueados" />
                             <outputColumn
                               refId="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[saldoDesbloqueado]"
                               dataType="r8"
@@ -1576,7 +1652,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="Z:\restos-a-pagar\backend\var\upload\saldos-notas-empenhos" />
+              Folder="Z:\api\api-restos-a-pagar\var\upload\saldos-notas-empenhos" />
             <FEFEProperty
               FileSpec="*.job" />
             <FEFEProperty
@@ -2592,14 +2668,35 @@ WHERE a.validacao = 1</property>
               Language="CSharp"
               ReadOnlyVariables="User::corpo_email_alerta_rejeicao_parseado,User::corpo_email_sucesso,User::nome_arquivo_rejeicoes,User::qnt_rejeitados,$Package::smtp_destinatarios,$Package::smtp_from_email,$Package::smtp_from_nome,$Package::smtp_porta,$Package::smtp_server">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_4f2ba7590a0b49ac82abb207f6e7b248")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_4f2ba7590a0b49ac82abb207f6e7b248")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2720,35 +2817,6 @@ WHERE a.validacao = 1</property>
   </resheader>
 </root>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties.Settings.get_Default():ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties.Sett" +
-    "ings")]
-
-namespace ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[using System;
 using System.Net.Mail;
@@ -2834,35 +2902,34 @@ namespace ST_4f2ba7590a0b49ac82abb207f6e7b248
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
 
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_4f2ba7590a0b49ac82abb207f6e7b248")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_4f2ba7590a0b49ac82abb207f6e7b248")]
-[assembly: AssemblyCopyright("Copyright @  2020")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties.Settings.get_Default():ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties.Sett" +
+    "ings")]
 
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+namespace ST_4f2ba7590a0b49ac82abb207f6e7b248.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ST_4f2ba7590a0b49ac82abb207f6e7b248.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2949,6 +3016,15 @@ using System.Runtime.CompilerServices;
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3194,36 +3270,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   Language="CSharp"
                   ReadOnlyVariables="User::nome_arquivo_rejeicoes">
                   <ProjectItem
-                    Name="Properties\AssemblyInfo.cs"
-                    Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_ccc3127afa404d6cac27389a49be00bf")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_ccc3127afa404d6cac27389a49be00bf")]
-[assembly: AssemblyCopyright("Copyright @  2020")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-                  <ProjectItem
                     Name="ST_ccc3127afa404d6cac27389a49be00bf.csproj"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -3429,6 +3475,35 @@ using System.Runtime.CompilerServices;
   </resheader>
 </root>]]></ProjectItem>
                   <ProjectItem
+                    Name="Properties\Settings.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccc3127afa404d6cac27389a49be00bf.Properties.Settings.get_Default():ST_ccc3127afa404d6cac27389a49be00bf.Properties.Sett" +
+    "ings")]
+
+namespace ST_ccc3127afa404d6cac27389a49be00bf.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+                  <ProjectItem
                     Name="ScriptMain.cs"
                     Encoding="UTF8"><![CDATA[using System.IO;
 
@@ -3479,34 +3554,35 @@ namespace ST_ccc3127afa404d6cac27389a49be00bf
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
                   <ProjectItem
-                    Name="Properties\Settings.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                    Name="Properties\AssemblyInfo.cs"
+                    Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_ccc3127afa404d6cac27389a49be00bf")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_ccc3127afa404d6cac27389a49be00bf")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccc3127afa404d6cac27389a49be00bf.Properties.Settings.get_Default():ST_ccc3127afa404d6cac27389a49be00bf.Properties.Sett" +
-    "ings")]
-
-namespace ST_ccc3127afa404d6cac27389a49be00bf.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\Settings.settings"
                     Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -4273,6 +4349,7 @@ WHERE validacao = 0</property>
         <DTS:Executable
           DTS:refId="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial"
           DTS:CreationName="SSIS.Pipeline.3"
+          DTS:DelayValidation="True"
           DTS:Description="Tarefa Fluxo de Dados"
           DTS:DTSID="{9A9911FB-CC64-4BD7-8E82-F3C74B783CA4}"
           DTS:ExecutableType="SSIS.Pipeline.3"
@@ -5050,36 +5127,6 @@ WHERE validacao = 0</property>
                   Language="CSharp"
                   ReadOnlyVariables="User::corpo_email_erro,User::nome_arquivo_erro,$Package::smtp_destinatarios,$Package::smtp_from_email,$Package::smtp_from_nome,$Package::smtp_porta,$Package::smtp_server">
                   <ProjectItem
-                    Name="Properties\AssemblyInfo.cs"
-                    Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_83c6911ea559415aba5b100a6eac033a")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_83c6911ea559415aba5b100a6eac033a")]
-[assembly: AssemblyCopyright("Copyright @  2020")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-                  <ProjectItem
                     Name="Properties\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -5198,6 +5245,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+                  <ProjectItem
+                    Name="Properties\Settings.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_83c6911ea559415aba5b100a6eac033a.Properties.Settings.get_Default():ST_83c6911ea559415aba5b100a6eac033a.Properties.Sett" +
+    "ings")]
+
+namespace ST_83c6911ea559415aba5b100a6eac033a.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
                   <ProjectItem
                     Name="ScriptMain.cs"
                     Encoding="UTF8"><![CDATA[#region Namespaces
@@ -5362,34 +5438,35 @@ namespace ST_83c6911ea559415aba5b100a6eac033a
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
                   <ProjectItem
-                    Name="Properties\Settings.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                    Name="Properties\AssemblyInfo.cs"
+                    Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_83c6911ea559415aba5b100a6eac033a")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_83c6911ea559415aba5b100a6eac033a")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_83c6911ea559415aba5b100a6eac033a.Properties.Settings.get_Default():ST_83c6911ea559415aba5b100a6eac033a.Properties.Sett" +
-    "ings")]
-
-namespace ST_83c6911ea559415aba5b100a6eac033a.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\Settings.settings"
                     Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -6279,6 +6356,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Size="155,42"
           Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\Conditional Split"
           TopLeft="183,159" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination"
+          TopLeft="175,252" />
         <EdgeLayout
           Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[OLE DB Source Output]"
           TopLeft="259.75,111">
@@ -6298,13 +6379,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot\OLE DB Destination"
-          TopLeft="175,252" />
         <EdgeLayout
           Id="Package\Atualiza o snapshot de bloqueios\Itera sobre os parametros\Insere os dados no snapshot.Paths[data bloqueio]"
           TopLeft="260.5,201">
@@ -6546,7 +6625,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\Varre todos os arquivos da pasta\Importa dados do arquivo do tesouro gerencial\Destino OLE DB"
@@ -6574,9 +6653,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
