@@ -58,6 +58,7 @@ export const Container = styled.div`
   flex-direction: column;
   background-color: #ffffff;
   justify-content: center;
+  overflow-x: scroll;
 
   ${({ alignLeft }) =>
     alignLeft &&
