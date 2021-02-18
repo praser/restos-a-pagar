@@ -7,12 +7,12 @@
   DTS:CreatorName="CORPCAIXA\c091800"
   DTS:DTSID="{B1BA9DFF-3C24-4BC1-ACB1-DA2886EAA2E9}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
   DTS:LocaleID="1046"
   DTS:ObjectName="atualizar_operacoes"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{EA963B8D-2C24-4A23-8CE2-1663518C5B76}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{4189EAB8-6C59-4110-A361-A562802C8E67}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,12 @@
       DTS:ObjectName="BD_GESTORES">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546901;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=DF7436SR464;User ID=s546901;Initial Catalog=DB5469_BD_GESTORES;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWLQIn8t0EUS49fyKAFQf7gAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABwY1V2nTcJf73xMERV+q5NAAAAAASAAACgAAAAEAAAAAVYKl/UBiV49EkpvlJFVDsYAAAARGXvWJww2kkLHExJQTboamwz+gWUvMqYFAAAAHhankfp9ZGJcf87IoNxYE7h7TVb</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>

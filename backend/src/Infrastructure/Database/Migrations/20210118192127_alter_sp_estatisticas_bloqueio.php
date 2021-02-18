@@ -7,18 +7,16 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
     public function up(): void
     {
         $query = <<<SQL
-            ALTER PROCEDURE SP_ESTATISTICAS_BLOQUEIO
+                        ALTER PROCEDURE SP_ESTATISTICAS_BLOQUEIO
                 @anoExecucao AS INT,
                 @tipoInformacao AS INT,
                 @unidadeId AS INT,
                 @siglaGestor AS VARCHAR(10)
             AS
-
             DECLARE @datas AS TABLE(data DATE, dataReferencia DATE);
             DECLARE @bloqueios AS TABLE(dataReferencia DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldoBloqueado FLOAT);
             DECLARE @solicitacoes AS TABLE(data DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldo FLOAT);
             DECLARE @desbloqueios AS TABLE(data DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldo FLOAT);
-
             INSERT INTO @datas
             SELECT
                 *,
@@ -38,7 +36,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 WHERE type = 'P'
                 AND DATEADD(DAY, a.number, b.dataBloqueio) <= GETDATE()
             ) AS datas
-
             INSERT INTO @bloqueios
             SELECT
                 a.dataReferencia,
@@ -68,7 +65,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
             )
             AND (
-                (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                (@siglaGestor IS NULL AND sigla IS NOT NULL)
                 OR (@siglaGestor IS NOT NULL AND f.sigla = @siglaGestor)
             )
             AND YEAR(a.dataReferencia) = @anoExecucao
@@ -79,7 +76,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
             )
             GROUP BY
                 a.dataReferencia
-
             INSERT INTO @solicitacoes
             SELECT 
                 dataSolicitacao,
@@ -118,7 +114,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                     OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                 )
                 AND (
-                    (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                    (@siglaGestor IS NULL AND sigla IS NOT NULL)
                     OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                 )
                 AND YEAR(a.created_at) = @anoExecucao
@@ -130,7 +126,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.created_at)
             ) AS a
-
             INSERT INTO @desbloqueios
             SELECT 
                 dataDesbloqueio,
@@ -171,7 +166,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                         OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                     )
                     AND (
-                        (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                        (@siglaGestor IS NULL AND sigla IS NOT NULL)
                         OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                     )
                     AND YEAR(a.updated_at) = @anoExecucao
@@ -184,7 +179,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.updated_at)
             ) AS a
-            
             SELECT
                 id,
                 anoExecucao,
@@ -240,10 +234,8 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 LEFT JOIN ministerios AS e
                 ON @siglaGestor = e.sigla
             ) AS a
-
             RETURN;
         SQL;
-
         $this->execute($query);
     }
 
@@ -256,12 +248,10 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 @unidadeId AS INT,
                 @siglaGestor AS VARCHAR(10)
             AS
-
             DECLARE @datas AS TABLE(data DATE, dataReferencia DATE);
             DECLARE @bloqueios AS TABLE(dataReferencia DATE, quantidadeOperacoes INT, quantidadeDocumentos INT, saldoBloqueado FLOAT);
             DECLARE @solicitacoes AS TABLE(data DATE, saldo FLOAT);
             DECLARE @desbloqueios AS TABLE(data DATE, saldo FLOAT);
-
             INSERT INTO @datas
             SELECT
                 *,
@@ -281,8 +271,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 WHERE type = 'P'
                 AND DATEADD(DAY, a.number, b.dataBloqueio) <= GETDATE()
             ) AS datas
-
-
             INSERT INTO @bloqueios
             SELECT
                 a.dataReferencia,
@@ -323,7 +311,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
             )
             GROUP BY
                 a.dataReferencia
-
             INSERT INTO @solicitacoes
             SELECT 
                 dataSolicitacao,
@@ -370,7 +357,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.created_at)
             ) AS a
-
             INSERT INTO @desbloqueios
             SELECT 
                 dataDesbloqueio,
@@ -420,7 +406,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 GROUP BY
                     CONVERT(DATE, a.updated_at)
             ) AS a
-            
             SELECT
                 id,
                 anoExecucao,
@@ -468,7 +453,6 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 LEFT JOIN ministerios AS e
                 ON @siglaGestor = e.sigla
             ) AS a
-
             RETURN;
         SQL;
 
