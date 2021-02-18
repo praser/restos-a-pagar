@@ -44,17 +44,21 @@ export const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   z-index: 1050;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-  opacity: ${props => (props.visible ? 1 : 0)};
+  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: visibility 0.15s, opacity 0.15s linear;
 `;
 
 export const Container = styled.div`
   margin-top: 30px;
-  width: 500px;
+  min-width: 500px;
+  max-width: 90%;
+  max-height: 90%;
+  width: ${({ width }) => width || 'auto'};
   flex-direction: column;
   background-color: #ffffff;
   justify-content: center;
+  overflow-x: scroll;
 
   ${({ alignLeft }) =>
     alignLeft &&

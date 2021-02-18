@@ -21,6 +21,7 @@ use App\Application\Controllers\LotesDesbloqueioController;
 use App\Application\Controllers\LotesDesbloqueioLiminarController;
 use App\Application\Controllers\LiminaresController;
 use App\Application\Controllers\LiminaresAtesteController;
+use App\Application\Controllers\EmpenhosDesbloqueiosController;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -90,4 +91,8 @@ return function (App $app) {
     });
 
     $app->get('/info', InfoController::class . ':index');
+
+    $app->group('/empenhos', function (Group $group) {
+        $group->get('/{anoExecucao}', EmpenhosDesbloqueiosController::class . ':index');
+    });
 };

@@ -67,13 +67,13 @@ class EstatisticasBloqueioSnapshotDao extends DaoBase
             ->setColumns($queryColumns)
             ->setFunctionAsColumn(
                 'SUM',
-                [EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES],
-                EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES
+                [EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES_BLOQUEADAS],
+                EstatisticasBloqueioDomain::QUANTIDADE_OPERACOES_BLOQUEADAS
             )
             ->setFunctionAsColumn(
                 'SUM',
-                [EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS],
-                EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS
+                [EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS_BLOQUEADOS],
+                EstatisticasBloqueioDomain::QUANTIDADE_DOCUMENTOS_BLOQUEADOS
             )
             ->setFunctionAsColumn(
                 'SUM',

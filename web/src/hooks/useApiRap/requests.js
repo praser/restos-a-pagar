@@ -93,6 +93,9 @@ const requests = async () => {
     return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
   };
 
+  const getEmpenhos = async ({ anoExecucao, tipo }) =>
+    client.get(`/empenhos/${anoExecucao}?situacao=${tipo}`);
+
   const postLoteDesbloqueioLiminar = async args => {
     const { payload } = args;
     return client.post('/notas-empenho/lotes-desbloqueio/liminar', {
@@ -115,6 +118,7 @@ const requests = async () => {
 
   return {
     deleteUg,
+    getEmpenhos,
     getEmpenhosLiminar,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,

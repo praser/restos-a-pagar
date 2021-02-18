@@ -1,8 +1,13 @@
 import jwtDecode from 'jwt-decode';
+
 import { capitalize, join, split } from 'lodash';
+
 import { parseISO } from 'date-fns';
+
 import { useContext } from 'react';
+
 import { Context } from '~/components/Store';
+
 import { getToken } from '~/utils/jwt';
 
 const capitalizeFirstChar = name => split(name, ' ').map(n => capitalize(n));

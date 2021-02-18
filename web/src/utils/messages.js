@@ -138,3 +138,8 @@ export const checkLiminarFail = getMessage({
   text:
     'Houve um problema ao realizar o ateste da liminar. Por favor tente novamente.',
 });
+
+export const loadLotesDesbloqueioFail = getMessage({
+  text:
+    'Não foi possível recuperar as notas de empenho no servidor. Por favor tente novamente.',
+});

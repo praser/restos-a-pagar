@@ -7,15 +7,10 @@ import {
   faGavel,
 } from '@fortawesome/free-solid-svg-icons';
 
-import Brand from './Brand';
-import Collapse from './Collapse';
-import { Content, Divider, Navbar, SectionTitle } from './styles';
-import { Context } from '../Store';
-
 import {
   possibleLocksPath,
   locksPath,
-  cancellationsPath,
+  // cancellationsPath,
   createUgPath,
   updateCommitmentPath,
   ugPath,
@@ -24,11 +19,16 @@ import {
   listJudicialInjunction,
 } from '~/utils/paths';
 import { useApiRap } from '~/hooks';
+import Brand from './Brand';
+import Collapse from './Collapse';
+import { Content, Divider, Navbar, SectionTitle } from './styles';
+import { Context } from '../Store';
+
 import Can from '../Can';
 
 const mountCollapsables = param => {
   const blockDate = parseISO(param.dataBloqueio);
-  const cancellationDate = parseISO(param.dataCancelamento);
+  // const cancellationDate = parseISO(param.dataCancelamento);
 
   const collapsables = [
     {
