@@ -7,7 +7,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
     public function up(): void
     {
         $query = <<<SQL
-            ALTER PROCEDURE SP_ESTATISTICAS_BLOQUEIO
+                        ALTER PROCEDURE SP_ESTATISTICAS_BLOQUEIO
                 @anoExecucao AS INT,
                 @tipoInformacao AS INT,
                 @unidadeId AS INT,
@@ -65,7 +65,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                 OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
             )
             AND (
-                (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                (@siglaGestor IS NULL AND sigla IS NOT NULL)
                 OR (@siglaGestor IS NOT NULL AND f.sigla = @siglaGestor)
             )
             AND YEAR(a.dataReferencia) = @anoExecucao
@@ -114,7 +114,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                     OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                 )
                 AND (
-                    (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                    (@siglaGestor IS NULL AND sigla IS NOT NULL)
                     OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                 )
                 AND YEAR(a.created_at) = @anoExecucao
@@ -166,7 +166,7 @@ class AlterSpEstatisticasBloqueio extends AbstractMigration
                         OR (@unidadeId IS NOT NULL AND gigovId = @unidadeId)
                     )
                     AND (
-                        (@siglaGestor IS NULL AND siglaGestor IS NOT NULL)
+                        (@siglaGestor IS NULL AND sigla IS NOT NULL)
                         OR (@siglaGestor IS NOT NULL AND g.sigla = @siglaGestor)
                     )
                     AND YEAR(a.updated_at) = @anoExecucao
