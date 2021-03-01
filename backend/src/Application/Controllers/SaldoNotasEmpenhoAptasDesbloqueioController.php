@@ -25,11 +25,7 @@ class SaldoNotasEmpenhoAptasDesbloqueioController extends ControllerBase
         $anoOrcamentario = (int) $args[SaldoNotaEmpenhoDomain::ANO_ORCAMENTARIO];
 
         $saldosNotasEmpenho = $this->dao->findAllByAnoOrcamentario($anoOrcamentario);
-        if ($saldosNotasEmpenho) {
-            $res->getBody()->write(json_encode($saldosNotasEmpenho, JSON_THROW_ON_ERROR, 512));
-            return $res->withStatus(self::HTTP_OK);
-        }
-
-        return $res->withStatus(self::HTTP_NOT_FOUND);
+        $res->getBody()->write(json_encode($saldosNotasEmpenho ? $saldosNotasEmpenho : [], JSON_THROW_ON_ERROR, 512));
+        return $res->withStatus(self::HTTP_OK);
     }
 }
