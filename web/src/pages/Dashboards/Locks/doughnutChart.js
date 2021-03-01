@@ -1,3 +1,5 @@
+import { isEmpty } from 'utils/arrays';
+
 const { isAfter } = require('date-fns');
 const { last } = require('lodash');
 const {
@@ -34,7 +36,7 @@ const extractData = data => {
 };
 
 export const dougnutChartData = data => {
-  const stats = extractData(data);
+  const stats = !isEmpty(data) ? extractData(data) : data;
   const dataset = { ...datasetDef };
   dataset.datasets[0].data = stats;
   return dataset;
