@@ -1,13 +1,11 @@
 import { isBefore } from 'date-fns';
 
-import { isEmpty } from 'utils/arrays';
 import { parseISO } from 'utils/dates';
 import { joinPath, locksPath, possibleLocksPath } from 'utils/paths';
 
 import IProps from './IProps';
 
 const getLink = (props: IProps): string | null => {
-  if (isEmpty(props)) return null;
   const { anoOrcamentario, dataBloqueio } = props;
   const today = new Date();
 
