@@ -3,9 +3,9 @@ import { parseISO } from 'date-fns/esm';
 import { first } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import Layout from '~/components/Layout/Internal';
-import { locksPath, joinPath, possibleLocksPath } from '~/utils/paths';
-import { useApiRap } from '../../hooks';
+import Layout from '../Layout/Internal';
+import { locksPath, joinPath, possibleLocksPath } from 'utils/paths';
+import { useApiRap } from 'hooks';
 
 const currYearparam = params => {
   const currYear = getYear(new Date());

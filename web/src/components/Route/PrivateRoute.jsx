@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { loginPath } from '~/utils/paths';
-import { useCurrentUser } from '~/hooks';
+import { loginPath } from 'utils/paths';
+import { useCurrentUser } from 'hooks';
 import Can from '../Can';
-import Error from '../../pages/Error';
+import Error from 'pages/Error';
 
 const accessForbiden = () => (
   <Error

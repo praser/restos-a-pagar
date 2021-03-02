@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 
-import { Alert, Loading } from '~/components/Modal';
+import { Alert, Loading } from './components/Modal';
 import {
   Cancellations,
   Error,
@@ -20,16 +20,16 @@ import {
   UgUpdate,
   UnlockCreate,
   UpdateCommitment,
-} from '~/pages';
+} from './pages';
 
-import { PrivateRoute, PublicRoute } from '~/components/Route';
-import Dashboard from '~/components/Dashboard';
-import Navigation from '~/components/Navigation';
-import { Container } from '~/components/Layout';
-import { Context } from '~/components/Store';
-import { useCurrentUser } from '~/hooks';
-import * as paths from '~/utils/paths';
-import { getToken } from '~/utils/jwt';
+import { PrivateRoute, PublicRoute } from './components/Route';
+import Dashboard from './components/Dashboard';
+import Navigation from './components/Navigation';
+import { Container } from './components/Layout';
+import { Context } from './components/Store';
+import { useCurrentUser } from './hooks';
+import * as paths from './utils/paths';
+import { getToken } from './utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';
 

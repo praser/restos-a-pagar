@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Can from '~/components/Can';
+import Can from '../../Can';
 
 import {
   Collapsable,

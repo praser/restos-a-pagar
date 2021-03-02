@@ -10,21 +10,21 @@ import {
   SmallButtonDanger,
   SmallButtonPrimary,
   SmallButtonSecondary,
-} from '~/components/Button';
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Heading, Row } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import { DataTable } from '~/components/Table';
-import { PageTitle } from '~/components/Tipography';
-import { createUgPath, joinPath, updateUgPath } from '~/utils/paths';
-import { useApiRap, useXHR } from '~/hooks';
+} from 'components/Button';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Heading, Row } from 'components/Layout';
+import Layout from 'components/Layout/Internal';
+import { DataTable } from 'components/Table';
+import { PageTitle } from 'components/Tipography';
+import { createUgPath, joinPath, updateUgPath } from 'utils/paths';
+import { useApiRap, useXHR } from 'hooks';
 import {
   ugsFail as alertProps,
   deleteUgFail,
   deleteUgSucces,
-} from '~/utils/messages';
-import { Prompt } from '~/components/Modal';
-import Can from '~/components/Can';
+} from 'utils/messages';
+import { Prompt } from 'components/Modal';
+import Can from 'components/Can';
 
 const initialState = {
   ugs: [],

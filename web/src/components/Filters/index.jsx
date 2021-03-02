@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { ButtonPrimary } from '~/components/Button';
-import { Select } from '~/components/Form';
-import Modal from '~/components/Modal';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { ButtonPrimary } from '../Button';
+import { Select } from '../Form';
+import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
-import { possibleLocksFilters as alertProps } from '~/utils/messages';
+import { possibleLocksFilters as alertProps } from 'utils/messages';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
-import Can from '~/components/Can';
+import Can from '../Can';
 
 const Filters = ({ visible, setState: setParentState }) => {
   const { budgetYear } = useParams();

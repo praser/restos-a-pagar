@@ -24,6 +24,14 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {"devDependencies": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/setupTest.ts"
+      ]}
+    ],
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
@@ -42,10 +50,6 @@
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
-      "babel-plugin-root-import": {
-        "rootPathPrefix": "~",
-        "rootPathSuffix": "src"
-      }
     }
   }
 }

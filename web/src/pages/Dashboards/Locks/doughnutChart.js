@@ -9,7 +9,7 @@ const {
   danger,
   warning,
   success,
-} = require('~/utils/colors');
+} = require('utils/colors');
 
 const backgroundColor = [dangerOp80, warningOp80, successOp80];
 const hoverBackgroundColor = [danger, warning, success];

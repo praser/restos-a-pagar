@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { formatProposta } from '~/utils/numbers';
+import { formatProposta } from 'utils/numbers';
 import Search from './Search';
 import NoData from './NoData';
 import { DTable } from './styles';

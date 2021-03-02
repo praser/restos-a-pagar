@@ -10,22 +10,22 @@ import { Bar } from 'react-chartjs-2';
 
 import { useParams } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from '../../../components/Card';
+import { Card, CardBody, CardHeader } from 'components/Card';
 
 import { initialState, dataInitialState } from './utils';
 
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import ContextInfo from '~/components/ContextInfo';
-import Highlight from '~/components/Highlight';
-import { Row } from '~/components/Layout';
-import { Context } from '~/components/Store';
-import { DataTable } from '~/components/Table';
-import { possibleLocks as alertProps } from '~/utils/messages';
-import Layout from '~/components/Layout/Internal';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import ContextInfo from 'components/ContextInfo';
+import Highlight from 'components/Highlight';
+import { Row } from 'components/Layout';
+import { Context } from 'components/Store';
+import { DataTable } from 'components/Table';
+import { possibleLocks as alertProps } from 'utils/messages';
+import Layout from 'components/Layout/Internal';
 import Heading from '../Heading';
-import Filters from '~/components/Filters';
+import Filters from 'components/Filters';
 import { csvHeaders } from '../utils';
-import { calcExecutionYear } from '~/components/Filters/utils';
+import { calcExecutionYear } from 'components/Filters/utils';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],

@@ -21,30 +21,30 @@ import { isNull, first } from 'lodash';
 
 import { useHistory } from 'react-router-dom';
 
-import { SmallButtonPrimary } from '../../components/Button';
-import { Card, CardBody, CardHeader } from '../../components/Card';
-import { Field, FormGroup, FormRow, Input, Label } from '../../components/Form';
-import { Heading, Row } from '../../components/Layout';
-import { Context } from '../../components/Store';
-import { PageTitle } from '../../components/Tipography';
-import Layout from '../../components/Layout/Internal';
+import { SmallButtonPrimary } from 'components/Button';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Field, FormGroup, FormRow, Input, Label } from 'components/Form';
+import { Heading, Row } from 'components/Layout';
+import { Context } from 'components/Store';
+import { PageTitle } from 'components/Tipography';
+import Layout from 'components/Layout/Internal';
 
 import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
 
-import { useCurrentUser, useApiRap, useXHR } from '~/hooks';
-import { DataTable } from '~/components/Table';
-import { parseDate, getYear, formatAsISO, formatISO } from '~/utils/dates';
+import { useCurrentUser, useApiRap, useXHR } from 'hooks';
+import { DataTable } from 'components/Table';
+import { parseDate, getYear, formatAsISO, formatISO } from 'utils/dates';
 import {
   wrongBalanceFile,
   createNeBalanceFail as alertProps,
   createNeBalanceSuccess,
-} from '~/utils/messages';
-import { formatCurrency, parseNumber } from '~/utils/numbers';
+} from 'utils/messages';
+import { formatCurrency, parseNumber } from 'utils/numbers';
 import {
   splitDocumento,
   parseNumeroContratoRepasse,
   parseConvenio,
-} from '~/utils/string';
+} from 'utils/string';
 
 const initialValues = {
   fileDate: new Date(),

@@ -1,20 +1,26 @@
 import React, { useContext } from 'react';
+
 import {
   faBan,
   faDatabase,
   faFilter,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useParams } from 'react-router-dom';
+
 import { first, isUndefined } from 'lodash';
+
+import { formatDate, parseISO } from 'utils/dates';
+
 import {
   PageContextInfo,
   PillPrimary,
   PillSuccess,
   PillWarning,
-} from '~/components/Tipography';
-import { formatDate, parseISO } from '~/utils/dates';
+} from '../Tipography';
 import { Row } from '../Layout';
 import { Context } from '../Store';
 import Can from '../Can';

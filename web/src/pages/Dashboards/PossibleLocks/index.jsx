@@ -4,14 +4,14 @@ import { first, isNull, isUndefined } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Row } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import { DataTable } from '~/components/Table';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { primary, danger } from '~/utils/colors';
-import { parseISO } from '~/utils/dates';
-import { possibleLocks as alertProps } from '~/utils/messages';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Row } from 'components/Layout';
+import Layout from 'components/Layout/Internal';
+import { DataTable } from 'components/Table';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { primary, danger } from 'utils/colors';
+import { parseISO } from 'utils/dates';
+import { possibleLocks as alertProps } from 'utils/messages';
 
 import { barChartData } from './barChart';
 import Highlights from './Highlights';
@@ -19,13 +19,13 @@ import { initialState, dataInitialState } from './utils';
 import { lineChartData } from './lineChart';
 
 import Heading from '../Heading';
-import Filters from '~/components/Filters';
-import { calcExecutionYear } from '~/components/Filters/utils';
+import Filters from 'components/Filters';
+import { calcExecutionYear } from 'components/Filters/utils';
 import { csvHeaders, operacoesColumns } from '../utils';
 
-import { LineChart, BarChart } from '~/components/Chart';
-import ContextInfo from '~/components/ContextInfo';
-import { Context } from '~/components/Store';
+import { LineChart, BarChart } from 'components/Chart';
+import ContextInfo from 'components/ContextInfo';
+import { Context } from 'components/Store';
 
 const PossibleLocks = () => {
   const currentUser = useCurrentUser();

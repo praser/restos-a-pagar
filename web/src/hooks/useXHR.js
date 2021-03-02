@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import { Context } from '~/components/Store';
-import { defaultMessage } from '~/utils/messages';
+import { Context } from 'components/Store';
+import { defaultMessage } from 'utils/messages';
 
 const useXHR = () => {
   const dispatch = useContext(Context)[1];

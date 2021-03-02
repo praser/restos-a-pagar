@@ -10,19 +10,19 @@ import {
   faSave,
   // faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { ErrorMesssage, Field, FormRow, Input } from '~/components/Form';
-import { SmallButtonPrimary, SmallButtonWarning } from '~/components/Button';
+import { ErrorMesssage, Field, FormRow, Input } from 'components/Form';
+import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
 // import {
 //   FileName,
 //   FindFile,
 //   RemoveFile,
 //   UploadFile,
 // } from '../Commitment/styles';
-import { DataTable } from '~/components/Table';
+import { DataTable } from 'components/Table';
 import { operacoesColumns as columns } from '../Dashboards/utils';
-import { useApiRap, useXHR } from '~/hooks';
-import { loadOperacoes } from '~/utils/messages';
-import { Row } from '~/components/Layout';
+import { useApiRap, useXHR } from 'hooks';
+import { loadOperacoes } from 'utils/messages';
+import { Row } from 'components/Layout';
 
 const validationSchema = Yup.object().shape({
   code: Yup.string()

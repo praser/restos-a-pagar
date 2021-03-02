@@ -1,4 +1,4 @@
-import { formatCurrencyShort } from '../../utils/numbers';
+import { formatCurrencyShort } from 'utils/numbers';
 
 const layout = {
   padding: { left: 10, right: 25, top: 25, bottom: 0 },

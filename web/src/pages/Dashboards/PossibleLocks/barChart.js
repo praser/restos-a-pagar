@@ -2,7 +2,7 @@ import {
   primaryScale as backgroundColor,
   primary as hoverBackgroundColor,
   primaryOp80 as borderColor,
-} from '~/utils/colors';
+} from 'utils/colors';
 
 const dataset = {
   backgroundColor,
