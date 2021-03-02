@@ -2,18 +2,15 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { loginPath } from 'utils/paths';
 import { useCurrentUser } from 'hooks';
-import Can from '../Can';
-import Error from 'pages/Error';
+import Can from 'components/Can';
+import AccessForbidden from './AccessForbidden';
 
-const accessForbiden = () => (
-  <Error
-    code={401}
-    description="Você não pode acessar essa página"
-    paragraph="Há uma diferença entre conhecer o caminho e percorrer o caminho."
-  />
-);
-
-const PrivateRoute = ({ component: Component, perform, ...rest }) => {
+const PrivateRoute = ({
+  component: Component,
+  componentProps,
+  perform,
+  ...rest
+}) => {
   const currentUser = useCurrentUser();
   return (
     <Can
@@ -22,11 +19,15 @@ const PrivateRoute = ({ component: Component, perform, ...rest }) => {
         <Route
           {...rest}
           render={props =>
-            currentUser ? <Component {...props} /> : <Redirect to={loginPath} />
+            currentUser ? (
+              <Component {...componentProps} />
+            ) : (
+              <Redirect to={loginPath} />
+            )
           }
         />
       )}
-      no={accessForbiden}
+      no={AccessForbidden}
     />
   );
 };
