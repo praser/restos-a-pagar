@@ -13,7 +13,7 @@ interface DaoInterface
 
     public function getConnection(): ConnectionInterface;
 
-    public function all(): ?array;
+    public function all(): array;
 
     public function find(string $id): ?DomainInterface;
 

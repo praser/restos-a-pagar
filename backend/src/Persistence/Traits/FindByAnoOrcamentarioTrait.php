@@ -13,7 +13,7 @@ trait FindByAnoOrcamentarioTrait
         return $this->findBy($this->anoOrcamentarioParams($anoOrcamentario));
     }
 
-    public function findAllByAnoOrcamentario(int $anoOrcamentario): ?array
+    public function findAllByAnoOrcamentario(int $anoOrcamentario): array
     {
         return $this->findAllBy($this->anoOrcamentarioParams($anoOrcamentario));
     }

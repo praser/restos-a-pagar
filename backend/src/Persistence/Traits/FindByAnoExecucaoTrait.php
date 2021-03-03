@@ -13,7 +13,7 @@ trait FindByAnoExecucaoTrait
         return $this->findBy($this->anoExecucaoParams($anoExecucao));
     }
 
-    public function findAllByAnoExecucao(int $anoExecucao): ?array
+    public function findAllByAnoExecucao(int $anoExecucao): array
     {
         return $this->findAllBy($this->anoExecucaoParams($anoExecucao));
     }
