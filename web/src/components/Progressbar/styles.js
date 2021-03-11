@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { handleVariant } from '~/utils/colors';
+import { handleVariant } from 'utils/colors';
 
 export const Container = styled.div`
   height: 0.5rem;

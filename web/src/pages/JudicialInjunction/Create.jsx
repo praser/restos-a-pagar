@@ -1,19 +1,19 @@
 import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Heading, Row } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import { Context } from '~/components/Store';
-import { PageTitle } from '~/components/Tipography';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Heading, Row } from 'components/Layout';
+import Layout from 'components/Layout/Internal';
+import { Context } from 'components/Store';
+import { PageTitle } from 'components/Tipography';
 
-import { useApiRap, useXHR } from '~/hooks';
-import { formatAsISO } from '~/utils/dates';
+import { useApiRap, useXHR } from 'hooks';
+import { formatAsISO } from 'utils/dates';
 
 import {
   createLiminarFail as alertProps,
   createLiminarSuccess,
-} from '~/utils/messages';
+} from 'utils/messages';
 
 import Form from './Form';
 

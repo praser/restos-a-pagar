@@ -12,23 +12,27 @@ import Highlights from './Highlights';
 import { dougnutChartData } from './doughnutChart';
 import { lineChartData, lineChartOptions } from './lineChart';
 import { initialState, dataInitialState } from './utils';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { SmallButtonWarning } from '~/components/Button';
-import Can from '~/components/Can';
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { DoughnutChart, LineChart } from '~/components/Chart';
-import ContextInfo from '~/components/ContextInfo';
-import { Row } from '~/components/Layout';
-import { Context } from '~/components/Store';
-import { DataTable } from '~/components/Table';
-import { primary, danger } from '~/utils/colors';
-import { formatDate, parseISO } from '~/utils/dates';
-import { locks as alertProps } from '~/utils/messages';
-import { createUnlockPath, joinPath } from '~/utils/paths';
-import Layout from '~/components/Layout/Internal';
-import Filters from '~/components/Filters';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { SmallButtonWarning } from 'components/Button';
+import Can from 'components/Can';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { DoughnutChart, LineChart } from 'components/Chart';
+import ContextInfo from 'components/ContextInfo';
+import { Row } from 'components/Layout';
+import { Context } from 'components/Store';
+import { DataTable } from 'components/Table';
+import { primary, danger } from 'utils/colors';
+import { formatDate, parseISO } from 'utils/dates';
+import { locks as alertProps } from 'utils/messages';
+import { createUnlockPath, joinPath } from 'utils/paths';
+import Layout from 'components/Layout/Internal';
+import Filters from 'components/Filters';
 import { csvHeaders, operacoesColumns } from '../utils';
-import { calcExecutionYear } from '~/components/Filters/utils';
+import { calcExecutionYear } from 'components/Filters/utils';
+import { Description } from 'pages/Error/styles';
+import Placeholder from 'components/Placeholder';
+import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
+import { isEmpty } from 'utils/arrays';
 
 const Locks = () => {
   const currentUser = useCurrentUser();
@@ -119,70 +123,81 @@ const Locks = () => {
 
   return (
     <Layout>
-      <Filters
-        budgetYear={budgetYear}
-        visible={state.showFilters}
-        setState={setState}
-      />
-      <Heading
-        data={dataState.operacoesCsv}
-        headers={csvHeaders}
-        setState={setState}
-        buttons={[solicitarDesbloqueioButton]}
-      >
-        Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
-      </Heading>
+      {!isEmpty(state.estatisticas) ? (
+        <>
+          <Filters
+            budgetYear={budgetYear}
+            visible={state.showFilters}
+            setState={setState}
+          />
+          <Heading
+            data={dataState.operacoesCsv}
+            headers={csvHeaders}
+            setState={setState}
+            buttons={[solicitarDesbloqueioButton]}
+          >
+            Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
+          </Heading>
 
-      <ContextInfo
-        tipoInfo={tipoInfo}
-        unidade={unidade}
-        gestor={gestor}
-        status={status}
-      />
+          <ContextInfo
+            tipoInfo={tipoInfo}
+            unidade={unidade}
+            gestor={gestor}
+            status={status}
+          />
 
-      <Highlights
-        estatisticas={estatisticas}
-        snapshot={last(snapshots)}
-        dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
-        dataCancelamento={
-          !isUndefined(param) && parseISO(param.dataCancelamento)
-        }
-        posicaoBase={status.databasePosition}
-      />
+          <Highlights
+            estatisticas={estatisticas}
+            snapshot={last(snapshots)}
+            dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
+            dataCancelamento={
+              !isUndefined(param) && parseISO(param.dataCancelamento)
+            }
+            posicaoBase={status.databasePosition}
+          />
 
-      <Row>
-        <Card width="65%">
-          <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
-          <CardBody>
-            <LineChart
-              data={lineChartData(estatisticas)}
-              {...lineChartOptions}
-            />
-          </CardBody>
-        </Card>
+          <Row>
+            <Card width="65%">
+              <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
+              <CardBody>
+                <LineChart
+                  data={lineChartData(estatisticas)}
+                  {...lineChartOptions}
+                />
+              </CardBody>
+            </Card>
 
-        <Card width="33%">
-          <CardHeader>{`Distribuição do saldo bloqueado em ${formatDate(
-            status.databasePosition,
-          )}`}</CardHeader>
-          <CardBody>
-            <DoughnutChart data={dougnutChartData(estatisticas)} />
-          </CardBody>
-        </Card>
-      </Row>
-      <Row>
-        <Card>
-          <CardHeader>Dados analíticos</CardHeader>
-          <CardBody>
-            <DataTable
-              data={dataState.operacoes}
-              columns={columns}
-              noHeader
-              searchable
-            />
-          </CardBody>
-        </Card>
-      </Row>
+            <Card width="33%">
+              <CardHeader>{`Distribuição do saldo bloqueado em ${formatDate(
+                status.databasePosition,
+              )}`}</CardHeader>
+              <CardBody>
+                <DoughnutChart data={dougnutChartData(estatisticas)} />
+              </CardBody>
+            </Card>
+          </Row>
+          <Row>
+            <Card>
+              <CardHeader>Dados analíticos</CardHeader>
+              <CardBody>
+                <DataTable
+                  data={dataState.operacoes}
+                  columns={columns}
+                  noHeader
+                  searchable
+                />
+              </CardBody>
+            </Card>
+          </Row>
+        </>
+      ) : (
+        <Placeholder src={wellDoneImage}>
+          <Description
+            style={{ marginTop: '30px' }}
+          >{`Bom trabalho! Você não tem nenhuma operação para se preocupar durante
+            o ciclo de bloqueio do RAP deste ano. Pode comemorar.`}</Description>
+        </Placeholder>
+      )}
     </Layout>
   );
 };

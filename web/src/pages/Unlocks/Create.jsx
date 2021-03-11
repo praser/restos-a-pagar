@@ -8,27 +8,27 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { isEmpty } from 'lodash';
-import Layout from '~/components/Layout/Internal';
-import { Heading, Row } from '~/components/Layout';
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { PageTitle, Paragraph } from '~/components/Tipography';
-import { useApiRap, useXHR } from '~/hooks';
+import Layout from 'components/Layout/Internal';
+import { Heading, Row } from 'components/Layout';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { PageTitle, Paragraph } from 'components/Tipography';
+import { useApiRap, useXHR } from 'hooks';
 import {
   unlocksFail,
   createUnlockError,
   createUnlockSuccess,
   promptGerarLote,
-} from '~/utils/messages';
-import { DataTable } from '~/components/Table';
-import { primary, danger } from '~/utils/colors';
-import { formatCurrency } from '~/utils/numbers';
-import { formatDate, parseISO } from '~/utils/dates';
+} from 'utils/messages';
+import { DataTable } from 'components/Table';
+import { primary, danger } from 'utils/colors';
+import { formatCurrency } from 'utils/numbers';
+import { formatDate, parseISO } from 'utils/dates';
 
-import { SmallButtonPrimary, SmallButtonWarning } from '~/components/Button';
-import { FormRow } from '~/components/Form';
-import { formatNumeroLoteDesbloqueio } from '~/utils/string';
-import { Context } from '~/components/Store';
-import { Prompt } from '~/components/Modal';
+import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
+import { FormRow } from 'components/Form';
+import { formatNumeroLoteDesbloqueio } from 'utils/string';
+import { Context } from 'components/Store';
+import { Prompt } from 'components/Modal';
 
 const Create = () => {
   const { budgetYear } = useParams();

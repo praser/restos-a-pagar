@@ -6,9 +6,9 @@ import { parseISO } from 'date-fns';
 
 import { useContext } from 'react';
 
-import { Context } from '~/components/Store';
+import { Context } from 'components/Store';
 
-import { getToken } from '~/utils/jwt';
+import { getToken } from 'utils/jwt';
 
 const capitalizeFirstChar = name => split(name, ' ').map(n => capitalize(n));
 

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styled from 'styled-components';
 
-import { handleVariant } from '~/utils/colors';
+import { handleVariant } from 'utils/colors';
 
 export const Container = styled.div`
   padding-bottom: 0.5rem;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SmallButtonPrimary, SmallButtonDanger } from '~/components/Button';
+import { SmallButtonPrimary, SmallButtonDanger } from 'components/Button';
 
 export const UploadFile = styled.div`
   display: flex;

@@ -26,3 +26,6 @@ export const parseConvenio = str => {
 
 export const formatNumeroLoteDesbloqueio = (sequencial, ano) =>
   `${`000${sequencial}`.substr(-3)}/${ano}`;
+
+export const replaceAll = (str, find, replace) =>
+  str.replace(new RegExp(find, 'g'), replace);

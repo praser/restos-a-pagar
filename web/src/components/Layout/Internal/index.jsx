@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { useApiRap } from '~/hooks';
-import { Context } from '~/components/Store';
-import Header from '~/components/Header/Index';
+import { useApiRap } from 'hooks';
+import { Context } from '../../Store';
+import Header from '../../Header';
 import { Content, Main } from './styles';
 
 const handleSuccess = (key, res, formatter, dispatch) => {

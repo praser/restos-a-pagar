@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { useCurrentUser } from '~/hooks';
+import { useCurrentUser } from 'hooks';
 import { Context } from '../Store';
 
 import {
@@ -12,8 +12,8 @@ import {
   Icon,
   Name,
 } from './styles';
-import avatarImg from '~/assets/undraw_male_avatar_323b.svg';
-import { removeToken } from '~/utils/jwt';
+import avatarImg from 'assets/undraw_male_avatar_323b.svg';
+import { removeToken } from 'utils/jwt';
 
 const Profile = () => {
   const dispatch = useContext(Context)[1];

@@ -27,6 +27,25 @@ import {
   formatInteger,
 } from 'utils/numbers';
 import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
+import { isEmpty } from 'utils/arrays';
+
+const defaultEstatisticas = {
+  quantidadeOperacoesBloqueadas: 0,
+  quantidadeDocumentosBloqueados: 0,
+  saldoBloqueado: 0,
+  quantidadeOperacoesDesbloqueadas: 0,
+  quantidadeDocumentosDesbloqueados: 0,
+  saldoDesbloqueado: 0,
+  quantidadeOperacoesAguardandoDesbloqueio: 0,
+  quantidadeDocumentosAguardandoDesbloqueio: 0,
+  saldoAguardandoDesbloqueio: 0,
+};
+
+const defaultSnapshot = {
+  saldoBloqueado: 0,
+  quantidadeOperacoesBloqueadas: 0,
+  quantidadeDocumentosBloqueados: 0,
+};
 
 const Highlights = ({
   estatisticas,
@@ -41,6 +60,12 @@ const Highlights = ({
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
 
+  const estatisticasLocal = !isEmpty(estatisticas)
+    ? last(estatisticas)
+    : defaultEstatisticas;
+
+  const snapshotLocal = !isEmpty(snapshot) ? snapshot : defaultSnapshot;
+
   const {
     quantidadeOperacoesBloqueadas,
     quantidadeDocumentosBloqueados,
@@ -51,7 +76,7 @@ const Highlights = ({
     quantidadeOperacoesAguardandoDesbloqueio,
     quantidadeDocumentosAguardandoDesbloqueio,
     saldoAguardandoDesbloqueio,
-  } = last(estatisticas);
+  } = estatisticasLocal;
 
   const handleModalOnClose = () => setModalVisibility(false);
 
@@ -120,12 +145,12 @@ const Highlights = ({
       onClick={handleHighlightClick}
       data-type="snapshot"
     >
-      <p>{formatCurrencyShort(snapshot.saldoBloqueado)}</p>
+      <p>{formatCurrencyShort(snapshotLocal.saldoBloqueado)}</p>
       <CardSmallText>
-        {formatInteger(snapshot.quantidadeOperacoesBloqueadas)} operações
+        {formatInteger(snapshotLocal.quantidadeOperacoesBloqueadas)} operações
       </CardSmallText>
       <CardSmallText>
-        {formatInteger(snapshot.quantidadeDocumentosBloqueados)} notas de
+        {formatInteger(snapshotLocal.quantidadeDocumentosBloqueados)} notas de
         empenho
       </CardSmallText>
     </Highlight>

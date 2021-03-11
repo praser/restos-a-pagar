@@ -1,7 +1,7 @@
 import { isAfter } from 'date-fns';
-import { formatDate } from '~/utils/dates';
-import { formatCurrency } from '~/utils/numbers';
-import { options } from '~/components/Chart/utils';
+import { formatDate } from 'utils/dates';
+import { formatCurrency } from 'utils/numbers';
+import { options } from 'components/Chart/utils';
 import {
   danger,
   dangerOp20,
@@ -9,7 +9,7 @@ import {
   successOp20,
   warning,
   warningOp20,
-} from '~/utils/colors';
+} from 'utils/colors';
 
 const datasetDef = {
   fill: true,

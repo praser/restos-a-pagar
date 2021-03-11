@@ -36,15 +36,9 @@ class EstatisticasBloqueioController extends ControllerBase
         $unidadeId = $unidadeId === 0 ? null : $unidadeId;
         $gestorSigla = $gestorSigla === '' ? null : $gestorSigla;
         $estatisticas = $this->dao->findByAnoExecucao($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
+        $responseBody = [ 'estatisticas' => $estatisticas ? $estatisticas : [] ];
+        $res->getBody()->write(json_encode($responseBody, JSON_THROW_ON_ERROR, 512));
 
-        if ($estatisticas) {
-            $responseBody = [
-                'estatisticas' => $estatisticas
-            ];
-
-            $res->getBody()->write(json_encode($responseBody, JSON_THROW_ON_ERROR, 512));
-            return $res->withStatus(self::HTTP_OK);
-        }
-        return $res->withStatus(self::HTTP_NOT_FOUND);
+        return $res->withStatus(self::HTTP_OK);
     }
 }

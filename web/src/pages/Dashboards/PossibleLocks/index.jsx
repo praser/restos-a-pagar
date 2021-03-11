@@ -4,14 +4,14 @@ import { first, isNull, isUndefined } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Row } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import { DataTable } from '~/components/Table';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { primary, danger } from '~/utils/colors';
-import { parseISO } from '~/utils/dates';
-import { possibleLocks as alertProps } from '~/utils/messages';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Row } from 'components/Layout';
+import Layout from 'components/Layout/Internal';
+import { DataTable } from 'components/Table';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { primary, danger } from 'utils/colors';
+import { parseISO } from 'utils/dates';
+import { possibleLocks as alertProps } from 'utils/messages';
 
 import { barChartData } from './barChart';
 import Highlights from './Highlights';
@@ -19,13 +19,18 @@ import { initialState, dataInitialState } from './utils';
 import { lineChartData } from './lineChart';
 
 import Heading from '../Heading';
-import Filters from '~/components/Filters';
-import { calcExecutionYear } from '~/components/Filters/utils';
+import Filters from 'components/Filters';
+import { calcExecutionYear } from 'components/Filters/utils';
 import { csvHeaders, operacoesColumns } from '../utils';
 
-import { LineChart, BarChart } from '~/components/Chart';
-import ContextInfo from '~/components/ContextInfo';
-import { Context } from '~/components/Store';
+import { LineChart, BarChart } from 'components/Chart';
+import ContextInfo from 'components/ContextInfo';
+import { Context } from 'components/Store';
+import { isEmpty } from 'utils/arrays';
+import Placeholder from 'components/Placeholder';
+
+import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
+import { Description } from 'pages/Error/styles';
 
 const PossibleLocks = () => {
   const currentUser = useCurrentUser();
@@ -76,7 +81,6 @@ const PossibleLocks = () => {
   const param = first(
     params.filter(item => item.anoOrcamentario === parseInt(budgetYear, 10)),
   );
-
   const { estatisticas } = state;
 
   const columns = [...operacoesColumns];
@@ -96,61 +100,72 @@ const PossibleLocks = () => {
 
   return (
     <Layout>
-      <Filters visible={state.showFilters} setState={setState} />
+      {!isEmpty(state.estatisticas.estatisticas) ? (
+        <>
+          <Filters visible={state.showFilters} setState={setState} />
 
-      <Row>
-        <Heading
-          data={dataState.operacoesCsv}
-          headers={csvHeaders}
-          setState={setState}
-        >
-          Prévia dos bloqueios da safra {budgetYear} - {lotation}
-        </Heading>
-      </Row>
+          <Row>
+            <Heading
+              data={dataState.operacoesCsv}
+              headers={csvHeaders}
+              setState={setState}
+            >
+              Prévia dos bloqueios da safra {budgetYear} - {lotation}
+            </Heading>
+          </Row>
 
-      <ContextInfo
-        tipoInfo={tipoInfo}
-        unidade={unidade}
-        gestor={gestor}
-        status={status}
-      />
+          <ContextInfo
+            tipoInfo={tipoInfo}
+            unidade={unidade}
+            gestor={gestor}
+            status={status}
+          />
 
-      <Highlights
-        estatisticas={estatisticas}
-        dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
-      />
+          <Highlights
+            estatisticas={estatisticas}
+            dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
+          />
 
-      <Row>
-        <Card width={estatisticas.estatisticasPorGestor ? '65%' : '100%'}>
-          <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
-          <CardBody />
-          <LineChart data={lineChartData(estatisticas.estatisticas)} />
-        </Card>
+          <Row>
+            <Card width={estatisticas.estatisticasPorGestor ? '65%' : '100%'}>
+              <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
+              <CardBody />
+              <LineChart data={lineChartData(estatisticas.estatisticas)} />
+            </Card>
 
-        {estatisticas.estatisticasPorGestor && (
-          <Card width="33%">
-            <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
-            <CardBody>
-              <BarChart
-                data={barChartData(estatisticas.estatisticasPorGestor)}
-              />
-            </CardBody>
-          </Card>
-        )}
-      </Row>
-      <Row>
-        <Card>
-          <CardHeader>Dados analíticos</CardHeader>
-          <CardBody>
-            <DataTable
-              data={dataState.operacoes}
-              columns={columns}
-              noHeader
-              searchable
-            />
-          </CardBody>
-        </Card>
-      </Row>
+            {estatisticas.estatisticasPorGestor && (
+              <Card width="33%">
+                <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
+                <CardBody>
+                  <BarChart
+                    data={barChartData(estatisticas.estatisticasPorGestor)}
+                  />
+                </CardBody>
+              </Card>
+            )}
+          </Row>
+          <Row>
+            <Card>
+              <CardHeader>Dados analíticos</CardHeader>
+              <CardBody>
+                <DataTable
+                  data={dataState.operacoes}
+                  columns={columns}
+                  noHeader
+                  searchable
+                />
+              </CardBody>
+            </Card>
+          </Row>
+        </>
+      ) : (
+        <Placeholder src={wellDoneImage}>
+          <Description style={{ marginTop: '30px' }}>
+            {`Bom trabalho! Você não tem nenhuma operação para se preocupar durante
+            o ciclo de pré-bloqueio do RAP ${executionYear}. Pode comemorar.`}
+          </Description>
+        </Placeholder>
+      )}
     </Layout>
   );
 };

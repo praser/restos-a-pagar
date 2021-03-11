@@ -1,6 +1,6 @@
 import { isNull, pickBy } from 'lodash';
 
-import getXhrClient from '~/utils/xhrClient';
+import getXhrClient from 'utils/xhrClient';
 
 const search = params => {
   const query = pickBy(params, value => !isNull(value));

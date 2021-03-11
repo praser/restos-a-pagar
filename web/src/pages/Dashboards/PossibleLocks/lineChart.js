@@ -1,5 +1,5 @@
-import { primary, primaryOp20 } from '~/utils/colors';
-import { monthNameShort, parseISO } from '~/utils/dates';
+import { primary, primaryOp20 } from 'utils/colors';
+import { monthNameShort, parseISO } from 'utils/dates';
 
 const dataset = {
   lineTension: 0.3,

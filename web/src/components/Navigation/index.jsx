@@ -17,8 +17,8 @@ import {
   joinPath,
   createJudicialInjunction,
   listJudicialInjunction,
-} from '~/utils/paths';
-import { useApiRap } from '~/hooks';
+} from 'utils/paths';
+import { useApiRap } from 'hooks';
 import Brand from './Brand';
 import Collapse from './Collapse';
 import { Content, Divider, Navbar, SectionTitle } from './styles';

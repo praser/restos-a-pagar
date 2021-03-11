@@ -11,27 +11,27 @@ import {
   SmallButtonPrimary,
   SmallButtonSecondary,
   SmallButtonWarning,
-} from '~/components/Button';
-import Can from '~/components/Can';
-import { Card, CardBody, CardHeader } from '~/components/Card';
-import { Heading, Row } from '~/components/Layout';
-import Layout from '~/components/Layout/Internal';
-import { DataTable } from '~/components/Table';
-import { PageTitle } from '~/components/Tipography';
-import { useApiRap, useCurrentUser, useXHR } from '~/hooks';
-import { createJudicialInjunction } from '~/utils/paths';
+} from 'components/Button';
+import Can from 'components/Can';
+import { Card, CardBody, CardHeader } from 'components/Card';
+import { Heading, Row } from 'components/Layout';
+import Layout from 'components/Layout/Internal';
+import { DataTable } from 'components/Table';
+import { PageTitle } from 'components/Tipography';
+import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { createJudicialInjunction } from 'utils/paths';
 import {
   checkLiminarSuccess,
   createUnlockError,
   createUnlockSuccess,
   loadLiminaresFail as alertProps,
-} from '~/utils/messages';
-import { Prompt } from '~/components/Modal';
+} from 'utils/messages';
+import { Prompt } from 'components/Modal';
 
-import { Context } from '~/components/Store';
-import { formatNumeroLoteDesbloqueio } from '~/utils/string';
+import { Context } from 'components/Store';
+import { formatNumeroLoteDesbloqueio } from 'utils/string';
 import InnerList from './InnerList';
-import { formatISO } from '~/utils/dates';
+import { formatISO } from 'utils/dates';
 
 const List = () => {
   const apiRap = useApiRap();

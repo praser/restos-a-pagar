@@ -2,7 +2,7 @@ import {
   unidade as defUnidade,
   gestor as defGestor,
   tipoInfo as defTipoInfo,
-} from '~/hooks/useApiRap/defaults';
+} from 'hooks/useApiRap/defaults';
 
 export const initialState = currentUser => ({
   showFilters: false,

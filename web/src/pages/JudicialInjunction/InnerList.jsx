@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 
-import { SimpleTable } from '~/components/Table';
-import { useApiRap } from '~/hooks';
-import { formatISO } from '~/utils/dates';
-import { formatCurrency } from '~/utils/numbers';
+import { SimpleTable } from 'components/Table';
+import { useApiRap } from 'hooks';
+import { formatISO } from 'utils/dates';
+import { formatCurrency } from 'utils/numbers';
 
 const InnerList = ({ data }) => {
   const columns = [

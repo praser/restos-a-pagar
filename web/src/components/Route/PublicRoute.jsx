@@ -1,18 +1,23 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { dashboardPath } from '~/utils/paths';
-import { useCurrentUser } from '~/hooks';
+import { dashboardPath } from 'utils/paths';
+import { useCurrentUser } from 'hooks';
 
-const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+const PublicRoute = ({
+  component: Component,
+  componentProps,
+  restricted,
+  ...rest
+}) => {
   const currentUser = useCurrentUser();
   return (
     <Route
       {...rest}
-      render={props =>
+      render={() =>
         currentUser && restricted ? (
           <Redirect to={dashboardPath} />
         ) : (
-          <Component {...props} />
+          <Component {...componentProps} />
         )
       }
     />

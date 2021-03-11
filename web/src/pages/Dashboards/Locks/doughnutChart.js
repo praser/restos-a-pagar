@@ -1,3 +1,5 @@
+import { isEmpty } from 'utils/arrays';
+
 const { isAfter } = require('date-fns');
 const { last } = require('lodash');
 const {
@@ -7,7 +9,7 @@ const {
   danger,
   warning,
   success,
-} = require('~/utils/colors');
+} = require('utils/colors');
 
 const backgroundColor = [dangerOp80, warningOp80, successOp80];
 const hoverBackgroundColor = [danger, warning, success];
@@ -34,7 +36,7 @@ const extractData = data => {
 };
 
 export const dougnutChartData = data => {
-  const stats = extractData(data);
+  const stats = !isEmpty(data) ? extractData(data) : data;
   const dataset = { ...datasetDef };
   dataset.datasets[0].data = stats;
   return dataset;
