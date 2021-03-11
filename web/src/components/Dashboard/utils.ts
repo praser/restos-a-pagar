@@ -9,6 +9,8 @@ const getLink = (props: IProps): string | null => {
   const { anoOrcamentario, dataBloqueio } = props;
   const today = new Date();
 
+  console.log(props);
+
   if (isBefore(today, parseISO(dataBloqueio) || 0))
     return joinPath(possibleLocksPath, [anoOrcamentario]);
 
