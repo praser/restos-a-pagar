@@ -1,7 +1,9 @@
 import { isAfter } from 'date-fns';
+
 import { formatDate } from 'utils/dates';
-import { formatCurrency } from 'utils/numbers';
+
 import { options } from 'components/Chart/utils';
+
 import {
   danger,
   dangerOp20,
@@ -81,16 +83,7 @@ const extractData = data => {
   };
 };
 
-const lineChartOptions = { ...options };
-
-lineChartOptions.tooltips.callbacks.label = (tooltipItem, data) =>
-  `${data.datasets[tooltipItem.datasetIndex].label}: ${formatCurrency(
-    tooltipItem.yLabel,
-  )}`;
-
-lineChartOptions.scales.xAxes[0].ticks.display = false;
-
-export const lineChartData = data => {
+const lineChartData = data => {
   const stats = extractData(data);
   const labels = stats.labels.map(item => `${formatDate(item)}`.toUpperCase());
   const dataArray = { labels, datasets: [] };
@@ -107,4 +100,4 @@ export const lineChartData = data => {
   return dataArray;
 };
 
-export { lineChartOptions };
+export { lineChartData };

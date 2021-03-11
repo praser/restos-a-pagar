@@ -8,6 +8,7 @@ const dataset = {
   backgroundColor,
   hoverBackgroundColor,
   borderColor,
+  label: 'Saldo',
 };
 
 const extractData = stats => {

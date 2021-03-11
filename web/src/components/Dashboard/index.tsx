@@ -14,8 +14,6 @@ const Dashboard = (props: IProps) => {
     setDestiny(link);
   }, [setDestiny, getLink, props]);
 
-  console.log('destiny', destiny, destiny ? true : false);
-
   return destiny ? (
     <Redirect to={destiny} />
   ) : (
