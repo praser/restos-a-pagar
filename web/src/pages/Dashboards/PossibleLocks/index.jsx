@@ -127,7 +127,7 @@ const PossibleLocks = () => {
           />
 
           <Row>
-            <Card width={estatisticas.estatisticasPorGestor ? '65%' : '100%'}>
+            <Card width="65%">
               <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
               <CardBody />
               <LineChart data={lineChartData(estatisticas.estatisticas)} />
