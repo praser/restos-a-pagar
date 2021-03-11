@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Reset } from 'styled-reset';
 import { defaults } from 'react-chartjs-2';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isNull } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 
-import { Alert, Loading } from './components/Modal';
+import { Alert, Loading } from 'components/Modal';
 import {
   Cancellations,
   Error,
@@ -20,16 +20,16 @@ import {
   UgUpdate,
   UnlockCreate,
   UpdateCommitment,
-} from './pages';
+} from 'pages';
 
-import { PrivateRoute, PublicRoute } from './components/Route';
-import Dashboard from './components/Dashboard';
-import Navigation from './components/Navigation';
-import { Container } from './components/Layout';
-import { Context } from './components/Store';
-import { useCurrentUser } from './hooks';
-import * as paths from './utils/paths';
-import { getToken } from './utils/jwt';
+import { PrivateRoute, PublicRoute } from 'components/Route';
+import Dashboard from 'components/Dashboard';
+import Navigation from 'components/Navigation';
+import { Container } from 'components/Layout';
+import { Context } from 'components/Store';
+import { useApiRap, useCurrentUser } from 'hooks';
+import * as paths from 'utils/paths';
+import { getToken } from 'utils/jwt';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -43,10 +43,24 @@ defaults.global.defaultFontColor = '#858796';
 const App = () => {
   const [context, dispatch] = useContext(Context);
   const currentUser = useCurrentUser();
+  const apiRap = useApiRap();
+  const [params, setParams] = useState([
+    { dataBloqueio: undefined, anoExecucao: undefined },
+  ]);
 
   useEffect(() => {
     dispatch({ type: 'SET_JWT', payload: getToken() });
   }, []);
+
+  const fetchParams = useCallback(async () => {
+    const api = await apiRap;
+    const res = await api.requests.getParams();
+    setParams(res.data);
+  }, []);
+
+  useEffect(() => {
+    fetchParams();
+  }, [fetchParams]);
 
   const handleAlertConfirm = event => {
     event.preventDefault();
@@ -97,6 +111,7 @@ const App = () => {
               component={Dashboard}
               path={paths.dashboardPath}
               perform="dashboards:show"
+              componentProps={params[0]}
               exact
             />
             <PrivateRoute
