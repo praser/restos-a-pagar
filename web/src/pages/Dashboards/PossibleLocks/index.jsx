@@ -128,14 +128,18 @@ const PossibleLocks = () => {
 
           <Row>
             <Card width="65%">
-              <CardHeader>Evolução do saldo passível de bloqueio</CardHeader>
+              <CardHeader>
+                Evolução do saldo sem condição de desbloqueio
+              </CardHeader>
               <CardBody />
               <LineChart data={lineChartData(estatisticas.estatisticas)} />
             </Card>
 
             {estatisticas.estatisticasPorGestor && (
               <Card width="33%">
-                <CardHeader>Saldo passível de bloqueio por gestor</CardHeader>
+                <CardHeader>
+                  Saldo sem condição de desbloqueio por gestor
+                </CardHeader>
                 <CardBody>
                   <BarChart
                     data={barChartData(estatisticas.estatisticasPorGestor)}
@@ -146,13 +150,14 @@ const PossibleLocks = () => {
           </Row>
           <Row>
             <Card>
-              <CardHeader>Dados analíticos</CardHeader>
+              <CardHeader>Operações sem condição de desbloqueio</CardHeader>
               <CardBody>
                 <DataTable
                   data={dataState.operacoes}
                   columns={columns}
                   noHeader
                   searchable
+                  noDataText="Não existem operações que possuam saldo sem condição de desbloqueio"
                 />
               </CardBody>
             </Card>

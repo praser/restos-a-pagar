@@ -20,7 +20,9 @@ export const lineChartData = stats => {
   stats.map(item => {
     data.labels.push(`${monthNameShort(parseISO(item.data))}`.toUpperCase());
     data.datasets[0].data.push(item.saldo_notas_empenho);
+    data.datasets[0].label = 'Saldo sem condição de desbloqueio';
     return item;
   });
+  console.log(data);
   return data;
 };

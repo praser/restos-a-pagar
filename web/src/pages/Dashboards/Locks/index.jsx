@@ -10,7 +10,7 @@ import { isUndefined, last } from 'lodash';
 import Heading from '../Heading';
 import Highlights from './Highlights';
 import { dougnutChartData } from './doughnutChart';
-import { lineChartData, lineChartOptions } from './lineChart';
+import { lineChartData } from './lineChart';
 import { initialState, dataInitialState } from './utils';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import { SmallButtonWarning } from 'components/Button';
@@ -160,10 +160,7 @@ const Locks = () => {
             <Card width="65%">
               <CardHeader>Saldo bloqueado X Saldo desbloqueado</CardHeader>
               <CardBody>
-                <LineChart
-                  data={lineChartData(estatisticas)}
-                  {...lineChartOptions}
-                />
+                <LineChart data={lineChartData(estatisticas)} />
               </CardBody>
             </Card>
 

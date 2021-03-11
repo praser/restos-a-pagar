@@ -33,7 +33,7 @@ const Highlights = ({ estatisticas, dataBloqueio }) => {
       </Highlight>
       <Highlight
         icon={faDollarSign}
-        title="Saldo passível de bloqueio"
+        title="Saldo sem condição de desbloqueio"
         variant="info"
       >
         {formatCurrencyShort(balanceEmpenhos)}
