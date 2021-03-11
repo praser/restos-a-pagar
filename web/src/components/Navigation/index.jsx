@@ -83,7 +83,7 @@ const Navigation = () => {
 
         {params.map((param, i) => (
           <Can
-            key={`${i * params.anoOrcamentario}`}
+            key={`${i * param.anoOrcamentario}`}
             perform="dashboards:show"
             yes={() => (
               <Collapse
