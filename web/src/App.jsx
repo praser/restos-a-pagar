@@ -35,6 +35,7 @@ import { getToken } from 'utils/jwt';
 import placeholderImage from 'assets/undraw_Metrics_re_6g90.svg';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { mostRecentParams } from 'utils/arrays';
 
 registerLocale('pt-BR', ptBR);
 setDefaultLocale('pt-BR');
@@ -113,7 +114,7 @@ const App = () => {
                 component={Dashboard}
                 path={paths.dashboardPath}
                 perform="dashboards:show"
-                componentProps={params[0]}
+                componentProps={mostRecentParams(params)[0]}
                 exact
               />
               <PrivateRoute

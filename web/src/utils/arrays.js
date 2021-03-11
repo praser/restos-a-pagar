@@ -1,3 +1,6 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, orderBy } from 'lodash';
 
-export { isEmpty };
+const mostRecentParams = params =>
+  orderBy(params, ['anoExecucao', 'anoOrcamentario'], ['desc', 'asc']);
+
+export { isEmpty, mostRecentParams };
