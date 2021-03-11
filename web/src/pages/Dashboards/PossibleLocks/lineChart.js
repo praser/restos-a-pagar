@@ -23,6 +23,5 @@ export const lineChartData = stats => {
     data.datasets[0].label = 'Saldo sem condição de desbloqueio';
     return item;
   });
-  console.log(data);
   return data;
 };
