@@ -62,7 +62,7 @@ const App = () => {
 
   useEffect(() => {
     fetchParams();
-  }, [fetchParams]);
+  }, [fetchParams, currentUser]);
 
   const handleAlertConfirm = event => {
     event.preventDefault();
@@ -83,7 +83,7 @@ const App = () => {
   const { loading, alert } = context;
   const { visible, title, text } = alert;
 
-  if (params) {
+  if (currentUser && params) {
     return (
       <React.StrictMode>
         <Reset />
@@ -192,7 +192,7 @@ const App = () => {
       </React.StrictMode>
     );
   } else {
-    return <Placeholder src={placeholderImage} />;
+    return currentUser ? <Placeholder src={placeholderImage} /> : <Login />;
   }
 };
 
