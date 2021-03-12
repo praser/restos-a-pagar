@@ -7,11 +7,6 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isUndefined, last } from 'lodash';
-import Heading from '../Heading';
-import Highlights from './Highlights';
-import { dougnutChartData } from './doughnutChart';
-import { lineChartData } from './lineChart';
-import { initialState, dataInitialState } from './utils';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import { SmallButtonWarning } from 'components/Button';
 import Can from 'components/Can';
@@ -27,12 +22,17 @@ import { locks as alertProps } from 'utils/messages';
 import { createUnlockPath, joinPath } from 'utils/paths';
 import Layout from 'components/Layout/Internal';
 import Filters from 'components/Filters';
-import { csvHeaders, operacoesColumns } from '../utils';
 import { calcExecutionYear } from 'components/Filters/utils';
 import { Description } from 'pages/Error/styles';
 import Placeholder from 'components/Placeholder';
 import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
 import { isEmpty } from 'utils/arrays';
+import { csvHeaders, operacoesColumns } from '../utils';
+import { initialState, dataInitialState } from './utils';
+import { lineChartData } from './lineChart';
+import { dougnutChartData } from './doughnutChart';
+import Highlights from './Highlights';
+import Heading from '../Heading';
 
 const Locks = () => {
   const currentUser = useCurrentUser();

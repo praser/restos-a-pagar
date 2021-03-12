@@ -13,15 +13,8 @@ import { primary, danger } from 'utils/colors';
 import { parseISO } from 'utils/dates';
 import { possibleLocks as alertProps } from 'utils/messages';
 
-import { barChartData } from './barChart';
-import Highlights from './Highlights';
-import { initialState, dataInitialState } from './utils';
-import { lineChartData } from './lineChart';
-
-import Heading from '../Heading';
 import Filters from 'components/Filters';
 import { calcExecutionYear } from 'components/Filters/utils';
-import { csvHeaders, operacoesColumns } from '../utils';
 
 import { LineChart, BarChart } from 'components/Chart';
 import ContextInfo from 'components/ContextInfo';
@@ -31,6 +24,12 @@ import Placeholder from 'components/Placeholder';
 
 import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
 import { Description } from 'pages/Error/styles';
+import Heading from '../Heading';
+import { csvHeaders, operacoesColumns } from '../utils';
+import { lineChartData } from './lineChart';
+import { initialState, dataInitialState } from './utils';
+import Highlights from './Highlights';
+import { barChartData } from './barChart';
 
 const PossibleLocks = () => {
   const currentUser = useCurrentUser();
