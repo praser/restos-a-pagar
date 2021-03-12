@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Persistence;
 
 use App\Domain\OperacaoDomain;
+use App\Persistence\ParametrosDao;
 use Exception;
 
 class OperacaoDao extends DaoBase
@@ -40,6 +41,8 @@ class OperacaoDao extends DaoBase
         string $gestorSigla = null
     ): ?array {
         try {
+            $parametrosDao = new ParametrosDao($this->container);
+            $parametros = $parametrosDao->findByAnoExecucao($anoExecucao);
             $qb = $this->getQueryBuilder();
             $query = $qb
                 ->select($table)
@@ -49,7 +52,13 @@ class OperacaoDao extends DaoBase
             if ($tipoInformacaoId === 2) {
                 $query->isNotNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
             } elseif ($tipoInformacaoId === 3) {
-                $query->isNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO);
+                $query
+                    ->subWhere('OR')
+                    ->isNull(OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO)
+                    ->greaterThanOrEqual(
+                        OperacaoDomain::DATA_CUMPRIMENTO_CRITERIOS_DESBLOQUEIO,
+                        $parametros->getDataBloqueio()->format('Y-m-d')
+                    );
             }
 
             if ($unidadeId) {

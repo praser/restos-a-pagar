@@ -30,6 +30,7 @@ abstract class DaoBase implements DaoInterface
     private $connection;
     private $logger;
     private $queryBuilder;
+    protected $container;
 
     protected $domain = null;
 
@@ -38,6 +39,7 @@ abstract class DaoBase implements DaoInterface
         $this->connection = $c->get(ConnectionInterface::class);
         $this->logger = $c->get(LoggerInterface::class);
         $this->queryBuilder = $c->get('queryBuilder');
+        $this->container = $c;
     }
 
     final public function getConnection(): ConnectionInterface
