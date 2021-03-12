@@ -26,17 +26,17 @@ class EstatisticasPreBloqueioController extends ControllerBase
         $tipoInformacaoId = array_key_exists('tipoInfo', $req->getQueryParams())
             ? (int) $req->getQueryParams()['tipoInfo']
             : 3;
-        
+
         $unidadeId = array_key_exists('unidadeId', $req->getQueryParams())
             ? (int) $req->getQueryParams()['unidadeId']
             : null;
-        
+
         $gestorSigla = array_key_exists('siglaGestor', $req->getQueryParams())
             ? (string) $req->getQueryParams()['siglaGestor']
             : null;
 
         $estatisticas = $this->dao->findSumario($anoExecucao, $tipoInformacaoId, $unidadeId, $gestorSigla);
-        
+
         $estatiscasPorGestor = $this->dao->findDistribuicaoPorGestor(
             $anoExecucao,
             $tipoInformacaoId,
@@ -44,15 +44,13 @@ class EstatisticasPreBloqueioController extends ControllerBase
             $gestorSigla
         );
 
-        if ($estatisticas) {
-            $responseBody = [
-                'estatisticas' => $estatisticas,
-                'estatisticasPorGestor' => $estatiscasPorGestor,
-            ];
+        $responseBody = [
+            'estatisticas' => $estatisticas ? $estatisticas : [],
+            'estatisticasPorGestor' => $estatisticas ? $estatiscasPorGestor : [],
+        ];
 
-            $res->getBody()->write(json_encode($responseBody, JSON_THROW_ON_ERROR, 512));
-            return $res->withStatus(self::HTTP_OK);
-        }
-        return $res->withStatus(self::HTTP_NOT_FOUND);
+        $res->getBody()->write(json_encode($responseBody, JSON_THROW_ON_ERROR, 512));
+
+        return $res->withStatus(self::HTTP_OK);
     }
 }

@@ -1,4 +1,4 @@
-import { formatCurrencyShort } from '../../utils/numbers';
+import { formatCurrency, formatCurrencyShort } from 'utils/numbers';
 
 const layout = {
   padding: { left: 10, right: 25, top: 25, bottom: 0 },
@@ -10,9 +10,10 @@ const tooltips = {
   borderColor: '#dddfeb',
   borderWidth: 1,
   callbacks: {
-    label: tooltipItem => {
-      return `Saldo: ${formatCurrencyShort(tooltipItem.yLabel)}`;
-    },
+    label: (tooltipItem, data) =>
+      `${data.datasets[tooltipItem.datasetIndex].label}: ${formatCurrency(
+        tooltipItem.yLabel,
+      )}`,
   },
   caretPadding: 10,
   displayColors: false,
@@ -36,7 +37,7 @@ const gridLines = {
 const xAxes = [
   {
     gridLines: { display: false, drawBorder: false },
-    ticks: { maxTicksLimit: 7 },
+    ticks: { maxTicksLimit: 7, display: false },
   },
 ];
 

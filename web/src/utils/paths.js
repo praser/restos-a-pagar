@@ -1,3 +1,5 @@
+import { replaceAll } from './string';
+
 export const locksPath = '/safras/:budgetYear/bloqueios';
 export const cancellationsPath = '/safras/:budgetYear/cancelamentos';
 export const createUgPath = '/ugs/novo';
@@ -16,7 +18,7 @@ export const listJudicialInjunction = '/liminares-judiciais';
 const replaceParams = (path, from, to) => {
   let result = path.repeat(1);
   from.map((value, i) => {
-    result = result.replaceAll(value, to[i]);
+    result = replaceAll(result, value, to[i]);
     return result;
   });
   return result;

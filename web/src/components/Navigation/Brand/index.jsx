@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { homePath } from 'utils/paths';
+import logo from 'assets/caixa-logo-x.png';
 import { Image, Link } from './styles';
-import { homePath } from '~/utils/paths';
-import logo from '~/assets/caixa-logo-x.png';
 
 const Logo = () => {
   return (

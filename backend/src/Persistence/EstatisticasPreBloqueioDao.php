@@ -59,7 +59,7 @@ class EstatisticasPreBloqueioDao extends DaoBase
         return null;
     }
 
-    public function findAllTipoInformacao(int $anoExecucao): ?array
+    public function findAllTipoInformacao(int $anoExecucao): array
     {
         $queryBuilder = $this->getQueryBuilder();
         $colunas = [
@@ -84,7 +84,7 @@ class EstatisticasPreBloqueioDao extends DaoBase
         } catch (Exception $ex) {
             $this->exceptionHandler($ex);
         }
-        return null;
+        return [];
     }
 
     private function getBaseQuery(

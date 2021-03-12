@@ -1,6 +1,6 @@
 import { isNull, pickBy } from 'lodash';
 
-import getXhrClient from '~/utils/xhrClient';
+import getXhrClient from 'utils/xhrClient';
 
 const search = params => {
   const query = pickBy(params, value => !isNull(value));
@@ -93,6 +93,9 @@ const requests = async () => {
     return client.post('/notas-empenho/lotes-desbloqueio', { ...payload });
   };
 
+  const getEmpenhos = async ({ anoExecucao, tipo }) =>
+    client.get(`/empenhos/${anoExecucao}?situacao=${tipo}`);
+
   const postLoteDesbloqueioLiminar = async args => {
     const { payload } = args;
     return client.post('/notas-empenho/lotes-desbloqueio/liminar', {
@@ -115,6 +118,7 @@ const requests = async () => {
 
   return {
     deleteUg,
+    getEmpenhos,
     getEmpenhosLiminar,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,

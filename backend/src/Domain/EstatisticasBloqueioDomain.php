@@ -15,11 +15,15 @@ class EstatisticasBloqueioDomain extends DomainBase
     public const GIGOV_NOME = 'gigovNome';
     public const SIGLA_GESTOR = 'siglaGestor';
     public const NOME_GESTOR = 'nomeGestor';
-    public const QUANTIDADE_OPERACOES = 'quantidadeOperacoes';
-    public const QUANTIDADE_DOCUMENTOS = 'quantidadeDocumentos';
+    public const QUANTIDADE_OPERACOES_BLOQUEADAS = 'quantidadeOperacoesBloqueadas';
+    public const QUANTIDADE_DOCUMENTOS_BLOQUEADOS = 'quantidadeDocumentosBloqueados';
     public const SALDO_BLOQUEADO = 'saldoBloqueado';
-    public const SALDO_DESBLOQUEADO = 'saldoDesbloqueado';
+    public const QUANTIDADE_OPERACOES_AGUARDANDO_DESBLOQUEIO = 'quantidadeOperacoesAguardandoDesbloqueio';
+    public const QUANTIDADE_DOCUMENTOS_AGUARDANDO_DESBLOQUEIO = 'quantidadeDocumentosAguardandoDesbloqueio';
     public const SALDO_AGUARDANDO_DESBLOQUEIO = 'saldoAguardandoDesbloqueio';
+    public const QUANTIDADE_OPERACOES_DESBLOQUEADAS = 'quantidadeOperacoesDesbloqueadas';
+    public const QUANTIDADE_DOCUMENTOS_DESBLOQUEADOS = 'quantidadeDocumentosDesbloqueados';
+    public const SALDO_DESBLOQUEADO = 'saldoDesbloqueado';
     public const TIPO_INFORMACAO_ID = 'tipoInformacaoId';
     public const TIPO_INFORMACAO_DESCRICAO = 'tipoInformacaoDescricao';
 
@@ -30,11 +34,15 @@ class EstatisticasBloqueioDomain extends DomainBase
     private $gigovNome;
     private $siglaGestor;
     private $nomeGestor;
-    private $quantidadeOperacoes;
-    private $quantidadeDocumentos;
+    private $quantidadeOperacoesBloqueadas;
+    private $quantidadeDocumentosBloqueados;
     private $saldoBloqueado;
-    private $saldoDesbloqueado;
+    private $quantidadeOperacoesAguardandoDesbloqueio;
+    private $quantidadeDocumentosAguardandoDesbloqueio;
     private $saldoAguardandoDesbloqueio;
+    private $quantidadeOperacoesDesbloqueadas;
+    private $quantidadeDocumentosDesbloqueados;
+    private $saldoDesbloqueado;
     private $tipoInformacaoId;
     private $tipoInformacaoDescricao;
 
@@ -48,11 +56,33 @@ class EstatisticasBloqueioDomain extends DomainBase
         $this->gigovNome = (string) $this->setAttribute(self::GIGOV_NOME, $params);
         $this->siglaGestor = (string) $this->setAttribute(self::SIGLA_GESTOR, $params);
         $this->nomeGestor = (string) $this->setAttribute(self::NOME_GESTOR, $params);
-        $this->quantidadeOperacoes = (int) $this->setAttribute(self::QUANTIDADE_OPERACOES, $params);
-        $this->quantidadeDocumentos = (int) $this->setAttribute(self::QUANTIDADE_DOCUMENTOS, $params);
+        $this->quantidadeOperacoesBloqueadas = (int) $this->setAttribute(
+            self::QUANTIDADE_OPERACOES_BLOQUEADAS,
+            $params
+        );
+        $this->quantidadeDocumentosBloqueados = (int) $this->setAttribute(
+            self::QUANTIDADE_DOCUMENTOS_BLOQUEADOS,
+            $params
+        );
         $this->saldoBloqueado = (float) $this->setAttribute(self::SALDO_BLOQUEADO, $params);
-        $this->saldoDesbloqueado = (float) $this->setAttribute(self::SALDO_DESBLOQUEADO, $params);
+        $this->quantidadeOperacoesAguardandoDesbloqueio = (int) $this->setAttribute(
+            self::QUANTIDADE_OPERACOES_AGUARDANDO_DESBLOQUEIO,
+            $params
+        );
+        $this->quantidadeDocumentosAguardandoDesbloqueio = (int) $this->setAttribute(
+            self::QUANTIDADE_DOCUMENTOS_AGUARDANDO_DESBLOQUEIO,
+            $params
+        );
         $this->saldoAguardandoDesbloqueio = (float) $this->setAttribute(self::SALDO_AGUARDANDO_DESBLOQUEIO, $params);
+        $this->quantidadeOperacoesDesbloqueadas = (int) $this->setAttribute(
+            self::QUANTIDADE_OPERACOES_DESBLOQUEADAS,
+            $params
+        );
+        $this->quantidadeDocumentosDesbloqueados = (int) $this->setAttribute(
+            self::QUANTIDADE_DOCUMENTOS_DESBLOQUEADOS,
+            $params
+        );
+        $this->saldoDesbloqueado = (float) $this->setAttribute(self::SALDO_DESBLOQUEADO, $params);
         $this->tipoInformacaoId = (int) $this->setAttribute(self::TIPO_INFORMACAO_ID, $params);
         $this->tipoInformacaoDescricao = (string) $this->setAttribute(self::TIPO_INFORMACAO_DESCRICAO, $params);
     }
@@ -92,14 +122,14 @@ class EstatisticasBloqueioDomain extends DomainBase
         return $this->nomeGestor;
     }
 
-    public function getQuantidadeOperacoes(): ?int
+    public function getQuantidadeOperacoesBloqueadas(): ?int
     {
-        return $this->quantidadeOperacoes;
+        return $this->quantidadeOperacoesBloqueadas;
     }
 
-    public function getQuantidadeDocumentos(): ?int
+    public function getQuantidadeDocumentosBloqueados(): ?int
     {
-        return $this->quantidadeDocumentos;
+        return $this->quantidadeDocumentosBloqueados;
     }
 
     public function getSaldoBloqueado(): ?float
@@ -107,14 +137,34 @@ class EstatisticasBloqueioDomain extends DomainBase
         return $this->saldoBloqueado;
     }
 
-    public function getSaldoDesbloqueado(): ?float
+    public function getQuantidadeOperacoesAguardandoDesbloqueio(): ?int
     {
-        return $this->saldoDesbloqueado;
+        return $this->quantidadeOperacoesAguardandoDesbloqueio;
+    }
+
+    public function getQuantidadeDocumentosAguardandoDesbloqueio(): ?int
+    {
+        return $this->quantidadeDocumentosAguardandoDesbloqueio;
     }
 
     public function getSaldoAguardandoDesbloqueio(): ?float
     {
         return $this->saldoAguardandoDesbloqueio;
+    }
+
+    public function getQuantidadeOperacoesDesbloqueadas(): ?int
+    {
+        return $this->quantidadeOperacoesDesbloqueadas;
+    }
+
+    public function getQuantidadeDocumentosDesbloqueados(): ?int
+    {
+        return $this->quantidadeDocumentosDesbloqueados;
+    }
+
+    public function getSaldoDesbloqueado(): ?float
+    {
+        return $this->saldoDesbloqueado;
     }
 
     public function getTipoInformacaoId(): ?int
@@ -137,11 +187,15 @@ class EstatisticasBloqueioDomain extends DomainBase
             self::GIGOV_NOME => $this->getGigovNome(),
             self::SIGLA_GESTOR => $this->getSiglaGestor(),
             self::NOME_GESTOR => $this->getNomeGestor(),
-            self::QUANTIDADE_OPERACOES => $this->getQuantidadeOperacoes(),
-            self::QUANTIDADE_DOCUMENTOS => $this->getQuantidadeDocumentos(),
+            self::QUANTIDADE_OPERACOES_BLOQUEADAS => $this->getQuantidadeOperacoesBloqueadas(),
+            self::QUANTIDADE_DOCUMENTOS_BLOQUEADOS => $this->getQuantidadeDocumentosBloqueados(),
             self::SALDO_BLOQUEADO => $this->getSaldoBloqueado(),
-            self::SALDO_DESBLOQUEADO => $this->getSaldoDesbloqueado(),
+            self::QUANTIDADE_OPERACOES_AGUARDANDO_DESBLOQUEIO => $this->getQuantidadeOperacoesAguardandoDesbloqueio(),
+            self::QUANTIDADE_DOCUMENTOS_AGUARDANDO_DESBLOQUEIO => $this->getQuantidadeDocumentosAguardandoDesbloqueio(),
             self::SALDO_AGUARDANDO_DESBLOQUEIO => $this->getSaldoAguardandoDesbloqueio(),
+            self::QUANTIDADE_OPERACOES_DESBLOQUEADAS => $this->getQuantidadeOperacoesDesbloqueadas(),
+            self::QUANTIDADE_DOCUMENTOS_DESBLOQUEADOS => $this->getQuantidadeDocumentosDesbloqueados(),
+            self::SALDO_DESBLOQUEADO => $this->getSaldoDesbloqueado(),
             self::TIPO_INFORMACAO_ID => $this->getTipoInformacaoId(),
             self::TIPO_INFORMACAO_DESCRICAO => $this->getTipoInformacaoDescricao(),
         ];

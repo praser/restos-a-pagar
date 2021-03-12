@@ -1,6 +1,6 @@
 import React from 'react';
 
-import image from '~/assets/undraw_No_data_re_kwbl.svg';
+import image from 'assets/undraw_No_data_re_kwbl.svg';
 import { Paragraph } from '../Tipography';
 import { NoDataImage } from './styles';
 

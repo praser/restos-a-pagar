@@ -37,3 +37,8 @@ export const CardBody = styled.div`
   flex: 1 1 auto;
   padding: 1.25rem;
 `;
+
+export const CardSmallText = styled.p`
+  font-size: 12px;
+  color: darkgray;
+`;

@@ -1,6 +1,8 @@
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { handleVariant } from '~/utils/colors';
+
+import styled from 'styled-components';
+
+import { handleVariant } from 'utils/colors';
 
 export const Container = styled.div`
   padding-bottom: 0.5rem;
@@ -15,7 +17,13 @@ export const Container = styled.div`
   border-radius: 0.35rem;
   border-left: 0.25rem solid;
   border-left-color: ${({ variant }) => handleVariant(variant)};
-  width: calc((100% - 5%) / ${({ siblings }) => siblings || 4});
+  flex: 1;
+  margin: 0 0.5%;
+  justify-content: space-between;
+
+  &:first-child:last-child {
+    margin: 0;
+  }
 `;
 
 export const Body = styled.div`

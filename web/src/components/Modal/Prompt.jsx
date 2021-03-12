@@ -26,8 +26,9 @@ const Prompt = ({
     <Layout
       visible={visible}
       title={title}
-      text={text}
+      content={text}
       buttons={[cancelBtn, confirmBtn]}
+      width="500px"
     />
   );
 };

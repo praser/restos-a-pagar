@@ -10,7 +10,8 @@ use Firebase\JWT\JWT;
 return function (App $app) {
     $container = $app->getContainer();
     $logger = $container->get(LoggerInterface::class);
-    
+    $authlessPaths = ['/info', '/parametros'];
+
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
         return $response
@@ -22,7 +23,7 @@ return function (App $app) {
     $app->add(new JwtAuthentication([
         'regexp' => '/(.*)/',
         'header' => 'X-Token',
-        'ignore' => ['/info'],
+        'ignore' => $authlessPaths,
         'path' => '/',
         'realm' => 'Protected',
         'secure' => false,
@@ -36,18 +37,22 @@ return function (App $app) {
         },
     ]));
 
-    $app->add(function ($request, $handler) use ($container) {
-        $jwt = $request->getHeader('X-Token')[0];
-        $secret = $container->get('settings')['jwt']['secret'];
-        $decoded = JWT::decode($jwt, $secret, array('HS256'));
+    $app->add(function ($request, $handler) use ($container, $authlessPaths) {
+        $path = $request->getUri()->getPath();
 
-        $attributes = array(
-            'attributes' => json_encode($decoded->user),
-            'token' => $jwt
-        );
-        
-        $req = $request->withAttribute('user', $attributes);
-        return $handler->handle($req);
+        if (!in_array($path, $authlessPaths)) {
+            $jwt = $request->getHeader('X-Token')[0];
+            $secret = $container->get('settings')['jwt']['secret'];
+            $decoded = JWT::decode($jwt, $secret, array('HS256'));
+
+            $attributes = array(
+                'attributes' => json_encode($decoded->user),
+                'token' => $jwt
+            );
+
+            $request->withAttribute('user', $attributes);
+        }
+        return $handler->handle($request);
     });
 
     $app->addErrorMiddleware(true, true, true);

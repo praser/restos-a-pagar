@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Placeholder Component is expected to render the component correctly 1`] = `
+<div
+  className="sc-bdfBwQ jxmVCH"
+>
+  <img
+    className="sc-gsTCUz hFcGpJ"
+    src="undraw_well_done_i2wr.svg"
+  />
+</div>
+`;
