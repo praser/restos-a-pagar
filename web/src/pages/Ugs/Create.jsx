@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Form from './Form';
 import Layout from 'components/Layout/Internal';
 import { Heading, Row } from 'components/Layout';
 import { Card, CardBody, CardHeader } from 'components/Card';
@@ -9,6 +8,7 @@ import { createUgFail as alertProps, createUgSuccess } from 'utils/messages';
 import { ugPath } from 'utils/paths';
 import { Context } from 'components/Store';
 import { PageTitle } from 'components/Tipography';
+import Form from './Form';
 
 const initialValues = {
   code: '',

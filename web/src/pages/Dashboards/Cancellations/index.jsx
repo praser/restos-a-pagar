@@ -12,8 +12,6 @@ import { useParams } from 'react-router-dom';
 
 import { Card, CardBody, CardHeader } from 'components/Card';
 
-import { initialState, dataInitialState } from './utils';
-
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import ContextInfo from 'components/ContextInfo';
 import Highlight from 'components/Highlight';
@@ -22,10 +20,11 @@ import { Context } from 'components/Store';
 import { DataTable } from 'components/Table';
 import { possibleLocks as alertProps } from 'utils/messages';
 import Layout from 'components/Layout/Internal';
-import Heading from '../Heading';
 import Filters from 'components/Filters';
-import { csvHeaders } from '../utils';
 import { calcExecutionYear } from 'components/Filters/utils';
+import Heading from '../Heading';
+import { csvHeaders } from '../utils';
+import { initialState, dataInitialState } from './utils';
 
 const data = {
   labels: ['MDR', 'MTUR', 'MC', 'MAPA', 'MJS', 'Outros'],

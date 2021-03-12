@@ -1,9 +1,6 @@
 import { isAfter } from 'date-fns';
 
 import { formatDate } from 'utils/dates';
-
-import { options } from 'components/Chart/utils';
-
 import {
   danger,
   dangerOp20,

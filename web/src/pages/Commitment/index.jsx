@@ -29,8 +29,6 @@ import { Context } from 'components/Store';
 import { PageTitle } from 'components/Tipography';
 import Layout from 'components/Layout/Internal';
 
-import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
-
 import { useCurrentUser, useApiRap, useXHR } from 'hooks';
 import { DataTable } from 'components/Table';
 import { parseDate, getYear, formatAsISO, formatISO } from 'utils/dates';
@@ -45,6 +43,7 @@ import {
   parseNumeroContratoRepasse,
   parseConvenio,
 } from 'utils/string';
+import { FileName, UploadFile, RemoveFile, FindFile } from './styles';
 
 const initialValues = {
   fileDate: new Date(),

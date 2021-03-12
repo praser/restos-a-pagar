@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
+import { possibleLocksFilters as alertProps } from 'utils/messages';
 import { ButtonPrimary } from '../Button';
 import { Select } from '../Form';
 import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
-import { possibleLocksFilters as alertProps } from 'utils/messages';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
 import Can from '../Can';
 

@@ -191,9 +191,8 @@ const App = () => {
         </Container>
       </React.StrictMode>
     );
-  } else {
-    return currentUser ? <Placeholder src={placeholderImage} /> : <Login />;
   }
+  return currentUser ? <Placeholder src={placeholderImage} /> : <Login />;
 };
 
 export default App;

@@ -30,8 +30,8 @@ import { Prompt } from 'components/Modal';
 
 import { Context } from 'components/Store';
 import { formatNumeroLoteDesbloqueio } from 'utils/string';
-import InnerList from './InnerList';
 import { formatISO } from 'utils/dates';
+import InnerList from './InnerList';
 
 const List = () => {
   const apiRap = useApiRap();
