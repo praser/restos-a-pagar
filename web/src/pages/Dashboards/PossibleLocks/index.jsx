@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { first, isNull, isUndefined } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -52,7 +52,7 @@ const PossibleLocks = () => {
     siglaGestor: gestor.value,
   };
 
-  useEffect(() => {
+  const fetchData = useCallback(async args => {
     apiRap.then(api => {
       const success = res => {
         const operacoes = api.formatters.operacoes(res[0].data);
@@ -66,8 +66,8 @@ const PossibleLocks = () => {
       };
 
       const requests = [
-        api.requests.getOperacoesPreBloqueio(reqArgs),
-        api.requests.getEstatisticasPreBloqueio(reqArgs),
+        api.requests.getOperacoesPreBloqueio(args),
+        api.requests.getEstatisticasPreBloqueio(args),
       ];
       doAllXhrRequest({
         alertProps,
@@ -75,7 +75,11 @@ const PossibleLocks = () => {
         success,
       });
     });
-  }, [tipoInfo, unidade, gestor]);
+  }, []);
+
+  useEffect(() => {
+    fetchData(reqArgs);
+  }, [tipoInfo, unidade, gestor, executionYear]);
 
   const { params } = context;
   const param = first(
