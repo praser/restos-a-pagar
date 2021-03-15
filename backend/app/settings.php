@@ -56,6 +56,7 @@ return function (ContainerBuilder $containerBuilder) {
             ],
             'templates' => __DIR__ . '/../src/Views/Mail',
             'cache' => __DIR__ . '/../var/cache/templates',
+            'basePath' => getenv('BASE_PATH'),
         ],
     ]);
 };
