@@ -11,6 +11,7 @@ export const possibleLocksPath = '/safras/:budgetYear/previa-bloqueio';
 export const ugPath = '/ugs';
 export const updateCommitmentPath = '/notas-empenho/saldo/novo';
 export const updateUgPath = '/ugs/editar/:id';
+export const unlockPath = '/safras/:budgetYear/desbloqueios';
 export const createUnlockPath = '/safras/:budgetYear/desbloqueios/novo';
 export const createJudicialInjunction = '/liminares-judiciais/novo';
 export const listJudicialInjunction = '/liminares-judiciais';

@@ -19,7 +19,7 @@ import { DataTable } from 'components/Table';
 import { primary, danger } from 'utils/colors';
 import { formatDate, parseISO } from 'utils/dates';
 import { locks as alertProps } from 'utils/messages';
-import { createUnlockPath, joinPath } from 'utils/paths';
+import { unlockPath, joinPath } from 'utils/paths';
 import Layout from 'components/Layout/Internal';
 import Filters from 'components/Filters';
 import { calcExecutionYear } from 'components/Filters/utils';
@@ -114,12 +114,9 @@ const Locks = () => {
       key={1}
       perform="unlock:create"
       yes={() => (
-        <SmallButtonWarning
-          as={Link}
-          to={joinPath(createUnlockPath, [budgetYear])}
-        >
+        <SmallButtonWarning as={Link} to={joinPath(unlockPath, [budgetYear])}>
           <FontAwesomeIcon icon={faUnlock} />
-          Gerar lote de desbloqueio
+          Lotes de desbloqueio
         </SmallButtonWarning>
       )}
     />

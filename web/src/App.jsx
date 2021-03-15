@@ -19,6 +19,7 @@ import {
   UgList,
   UgUpdate,
   UnlockCreate,
+  UnlockList,
   UpdateCommitment,
 } from 'pages';
 
@@ -157,6 +158,12 @@ const App = () => {
                 component={Cancellations}
                 path={paths.cancellationsPath}
                 perform="dashboards:show"
+                exact
+              />
+              <PrivateRoute
+                component={UnlockList}
+                path={paths.unlockPath}
+                perform="unlock:list"
                 exact
               />
               <PrivateRoute
