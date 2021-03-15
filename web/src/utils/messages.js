@@ -148,3 +148,8 @@ export const loadLotesDesbloqueioFail = getMessage({
   text:
     'Ops, houve um erro ao carregar os lotes de desbloqueio. Por favor tente novamente.',
 });
+
+export const loadEmpenhosLoteDesbloqueioFail = getMessage({
+  text:
+    'Houve um erro ao carregar os empenhos deste lote de desbloqueio. Por favor tente novamente',
+});

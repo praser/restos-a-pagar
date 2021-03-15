@@ -4,33 +4,22 @@ import { Link, useParams } from 'react-router-dom';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
-import { DataTable } from 'components/Table';
+import { DataTable, IColumn } from 'components/Table';
 import { PageTitle } from 'components/Tipography';
 import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
 import { useApiRap, useXHR } from 'hooks';
 import { formatISO } from 'utils/dates';
 import Can from 'components/Can';
 import { SmallButtonSecondary, SmallButtonPrimary } from 'components/Button';
-import { createUnlockPath, joinPath, showUnlockPath } from 'utils/paths';
+import {
+  createUnlockPath,
+  joinPath,
+  showUnlockPath,
+  IUriParams,
+} from 'utils/paths';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-
-interface IUriParams {
-  budgetYear: string;
-}
-
-interface IColumn {
-  name: string;
-  selector?: string;
-  sortable?: boolean;
-  center?: boolean;
-  format?: (row: any) => any;
-  cell?: (row: any) => any;
-}
-
-interface IResponse {
-  data: any;
-}
+import { IResponse } from 'utils/xhrClient';
 
 const columns: Array<IColumn> = [
   {
