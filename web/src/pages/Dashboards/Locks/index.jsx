@@ -4,7 +4,7 @@ import {
   faThumbsUp,
   faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isUndefined, last } from 'lodash';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
@@ -63,7 +63,7 @@ const Locks = () => {
     ],
   );
 
-  useEffect(() => {
+  const fectchData = useCallback(async args => {
     apiRap.then(api => {
       const success = res => {
         const { estatisticas } = res[0].data;
@@ -78,13 +78,6 @@ const Locks = () => {
         }));
       };
 
-      const args = {
-        tipoInfo: tipoInfo.value,
-        anoExecucao: calcExecutionYear(budgetYear),
-        unidadeId: unidade.value || '',
-        siglaGestor: gestor.value || '',
-      };
-
       const requests = [
         api.requests.getEstatisticasBloqueio(args),
         api.requests.getEstatisticasBloqueioSnapshot(args),
@@ -97,7 +90,18 @@ const Locks = () => {
         success,
       });
     });
-  }, [tipoInfo, unidade, gestor]);
+  }, []);
+
+  useEffect(() => {
+    const args = {
+      tipoInfo: tipoInfo.value,
+      anoExecucao: calcExecutionYear(budgetYear),
+      unidadeId: unidade.value || '',
+      siglaGestor: gestor.value || '',
+    };
+
+    fectchData(args);
+  }, [tipoInfo, unidade, gestor, budgetYear]);
 
   const { estatisticas, snapshots } = state;
   const { params } = context;
