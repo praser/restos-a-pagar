@@ -74,12 +74,6 @@ class AlterVwOperacoesComNePassiveisDeBloqueio4 extends AbstractMigration
                 GROUP BY b.id
             ) AS h
             ON a.dataReferencia = h.dataReferencia
-            WHERE f.situacaoContrato = 'CONTRATADA'
-            AND (
-                f.dataCumprimentoCriteriosDesbloqueio IS NULL
-                OR f.dataCumprimentoCriteriosDesbloqueio >= g.dataBloqueio
-            )
-            
         SQL;
 
         $this->execute($query);
