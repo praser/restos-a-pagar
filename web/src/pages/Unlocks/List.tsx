@@ -11,7 +11,7 @@ import { useApiRap, useXHR } from 'hooks';
 import { formatISO } from 'utils/dates';
 import Can from 'components/Can';
 import { SmallButtonSecondary, SmallButtonPrimary } from 'components/Button';
-import { createUnlockPath, joinPath } from 'utils/paths';
+import { createUnlockPath, joinPath, showUnlockPath } from 'utils/paths';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -59,7 +59,7 @@ const columns: Array<IColumn> = [
       <Can
         perform="unlock:show"
         yes={() => (
-          <SmallButtonSecondary as={Link} to={createUnlockPath}>
+          <SmallButtonSecondary as={Link} to={showUnlockPath}>
             <FontAwesomeIcon icon={faEye} /> ver lote
           </SmallButtonSecondary>
         )}

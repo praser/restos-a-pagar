@@ -20,6 +20,7 @@ import {
   UgUpdate,
   UnlockCreate,
   UnlockList,
+  UnlockShow,
   UpdateCommitment,
 } from 'pages';
 
@@ -170,6 +171,12 @@ const App = () => {
                 component={UnlockCreate}
                 path={paths.createUnlockPath}
                 perform="unlock:create"
+                exact
+              />
+              <PrivateRoute
+                component={UnlockShow}
+                path={paths.showUnlockPath}
+                perform="unlock:show"
                 exact
               />
               <PrivateRoute
