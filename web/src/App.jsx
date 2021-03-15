@@ -62,7 +62,7 @@ const App = () => {
 
   useEffect(() => {
     fetchParams();
-  }, [fetchParams, currentUser]);
+  }, [fetchParams]);
 
   const handleAlertConfirm = event => {
     event.preventDefault();
