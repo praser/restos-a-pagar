@@ -1,9 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDownload,
+  faLongArrowAltLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
-import { SmallButtonPrimary } from 'components/Button';
+import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
 import Can from 'components/Can';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Heading, Row } from 'components/Layout';
@@ -44,6 +47,12 @@ const Show = () => {
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const [empenhos, setEmpenhos] = useState([]);
+  const history = useHistory();
+
+  const handleGoBack = (event: any) => {
+    event.preventDefault();
+    history.goBack();
+  };
 
   const fetchData = useCallback(
     async (anoExecucao: string | undefined, sequencial: string | undefined) => {
@@ -102,6 +111,10 @@ const Show = () => {
               noHeader
               noDataText="Que estranho... Este lote de desbloqueio não deveria conter notas de empenho?"
             />
+            <SmallButtonWarning onClick={handleGoBack}>
+              <FontAwesomeIcon icon={faLongArrowAltLeft} />
+              Voltar
+            </SmallButtonWarning>
           </CardBody>
         </Card>
       </Row>
