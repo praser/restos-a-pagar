@@ -44,11 +44,14 @@ const columns: Array<IColumn> = [
   { name: 'Por', selector: 'responsavelNome' },
   {
     name: 'Ações',
-    cell: () => (
+    cell: row => (
       <Can
         perform="unlock:show"
         yes={() => (
-          <SmallButtonSecondary as={Link} to={showUnlockPath}>
+          <SmallButtonSecondary
+            as={Link}
+            to={joinPath(showUnlockPath, [row.ano, row.sequencial])}
+          >
             <FontAwesomeIcon icon={faEye} /> ver lote
           </SmallButtonSecondary>
         )}
