@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { Card, CardBody, CardHeader } from 'components/Card';
@@ -20,6 +20,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IResponse } from 'utils/xhrClient';
+import { Context } from 'components/Store';
 
 const columns: Array<IColumn> = [
   {
@@ -66,6 +67,10 @@ const List = () => {
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const [lotesDesbloqueio, setLotesDesbloqueio] = useState([]);
+  const [params] = useContext(Context)[0].params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear || '', 10),
+  );
+  const { anoExecucao } = params || {};
 
   const fetchData = useCallback(async anoExecucao => {
     const api = await apiRap;
@@ -84,8 +89,8 @@ const List = () => {
   }, []);
 
   useEffect(() => {
-    fetchData(budgetYear);
-  }, [budgetYear]);
+    if (anoExecucao) fetchData(anoExecucao);
+  }, [anoExecucao]);
 
   return (
     <Layout>

@@ -15,6 +15,8 @@ interface IAlert {
 interface IParams {
   dataBloqueio: Date | null;
   dataCancelamento: Date | null;
+  anoExecucao: number | null;
+  anoOrcamentario: number | null;
 }
 
 interface IStatus {
@@ -42,6 +44,8 @@ const initialState: IContext = {
     {
       dataBloqueio: null,
       dataCancelamento: null,
+      anoExecucao: null,
+      anoOrcamentario: null,
     },
   ],
   status: {

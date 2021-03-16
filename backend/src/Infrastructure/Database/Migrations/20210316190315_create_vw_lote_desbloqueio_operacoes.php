@@ -11,10 +11,14 @@ class CreateVwLoteDesbloqueioOperacoes extends AbstractMigration
             SELECT
                 b.sequencial,
                 b.ano,
+                c.operacao,
+                c.convenio,
                 a.*
             FROM lote_desbloqueio_operacoes AS a
             JOIN lotes_desbloqueio AS b
             ON a.loteDesbloqueioId = b.id
+            JOIN operacoes AS c
+            ON a.operacaoId = c.id
         SQL;
 
         $this->execute($query);
