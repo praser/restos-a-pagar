@@ -21,7 +21,6 @@ import { DataTable } from 'components/Table';
 import { possibleLocks as alertProps } from 'utils/messages';
 import Layout from 'components/Layout/Internal';
 import Filters from 'components/Filters';
-import { calcExecutionYear } from 'components/Filters/utils';
 import Heading from '../Heading';
 import { csvHeaders } from '../utils';
 import { initialState, dataInitialState } from './utils';
@@ -68,7 +67,11 @@ const Cancellations = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
   const [context] = useContext(Context);
-  const { status } = context;
+  const { status, params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const { anoExecucao } = param || {};
 
   useEffect(() => {
     apiRap.then(api => {
@@ -80,7 +83,7 @@ const Cancellations = () => {
 
       const requests = [
         api.requests.getOperacoesPreBloqueio({
-          anoExecucao: calcExecutionYear(budgetYear),
+          anoExecucao,
           tipoInfo: tipoInfo.value,
           unidadeId: unidade.value || '',
           siglaGestor: gestor.value || '',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
 import Can from '../Can';
+import { Context } from '../Store';
 
 const Filters = ({ visible, setState: setParentState }) => {
   const { budgetYear } = useParams();
@@ -17,6 +18,12 @@ const Filters = ({ visible, setState: setParentState }) => {
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const currentUser = useCurrentUser();
+  const [context] = useContext(Context);
+  const { params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const anoExecucao = param;
 
   const fetchData = () => {
     return apiRap
@@ -31,7 +38,7 @@ const Filters = ({ visible, setState: setParentState }) => {
         };
 
         return doAllXhrRequest({
-          requests: getRequests(api, budgetYear),
+          requests: getRequests(api, anoExecucao),
           alertProps,
           success,
         });

@@ -8,14 +8,12 @@ export const setDefaults = (api, currentUser) => {
   };
 };
 
-export const calcExecutionYear = budgetYear => parseInt(budgetYear, 10) + 2;
-
-export const getRequests = (api, budgetYear) => {
+export const getRequests = (api, executionYear) => {
   return [
     api.requests.getUnidades(),
     api.requests.getGestores(),
     api.requests.getTiposInformacoes({
-      anoExecucao: calcExecutionYear(budgetYear),
+      anoExecucao: executionYear,
     }),
   ];
 };
