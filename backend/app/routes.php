@@ -19,6 +19,7 @@ use App\Application\Controllers\ParametrosController;
 use App\Application\Controllers\InfoController;
 use App\Application\Controllers\LotesDesbloqueioController;
 use App\Application\Controllers\LotesDesbloqueioLiminarController;
+use App\Application\Controllers\LoteDesbloqueioOperacoesController;
 use App\Application\Controllers\LiminaresController;
 use App\Application\Controllers\LiminaresAtesteController;
 use App\Application\Controllers\EmpenhosDesbloqueiosController;
@@ -94,5 +95,10 @@ return function (App $app) {
 
     $app->group('/empenhos', function (Group $group) {
         $group->get('/{anoExecucao}', EmpenhosDesbloqueiosController::class . ':index');
+    });
+
+    $app->group('/lotes-desbloqueio/{anoExecucao}', function (Group $group) {
+        $group->get('', LotesDesbloqueioController::class . ':index');
+        $group->get('/{sequencial}', LoteDesbloqueioOperacoesController::class . ':index');
     });
 };

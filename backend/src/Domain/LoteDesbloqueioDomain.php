@@ -15,7 +15,8 @@ class LoteDesbloqueioDomain extends DomainBase
     private const RESPONSAVEL_UNIDADE_SIGLA = 'responsavelUnidadeSigla';
     private const SITUACAO = 'situacao';
     private const LIMINAR_ID = 'liminarId';
-    
+    private const EMPENHOS = 'empenhos';
+
     private $sequencial;
     private $ano;
     private $ce;
@@ -26,7 +27,8 @@ class LoteDesbloqueioDomain extends DomainBase
     private $situacao;
     private $liminarId;
     public $notasEmpenho = [];
-    
+    private $empenhos;
+
     public function __construct(array $params = [])
     {
         parent::__construct($params);
@@ -39,90 +41,91 @@ class LoteDesbloqueioDomain extends DomainBase
         $this->responsavelUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_UNIDADE_SIGLA, $params);
         $this->situacao = $this->setAttribute(self::SITUACAO, $params);
         $this->liminarId = $this->setAttribute(self::LIMINAR_ID, $params);
+        $this->empenhos = (int) $this->setAttribute(self::EMPENHOS, $params);
     }
-    
+
     public function getSequencial(): ?int
     {
         return $this->sequencial;
     }
-    
+
     public function setSequencial(int $sequencial): LoteDesbloqueioDomain
     {
         $this->sequencial = $sequencial;
         return $this;
     }
-    
+
     public function getAno(): ?int
     {
         return $this->ano;
     }
-    
+
     public function setAno(int $ano): LoteDesbloqueioDomain
     {
         $this->ano = $ano;
         return $this;
     }
-    
+
     public function getCe(): ?string
     {
         return $this->ce;
     }
-    
+
     public function setCe(string $ce): LoteDesbloqueioDomain
     {
         $this->ce = $ce;
         return $this;
     }
-    
+
     public function getResponsavelId(): ?string
     {
         return $this->responsavelId;
     }
-    
+
     public function setResponsavelId(string $responsavelId): LoteDesbloqueioDomain
     {
         $this->responsavelId = $responsavelId;
         return $this;
     }
-    
+
     public function getResponsavelNome(): ?string
     {
         return $this->responsavelNome;
     }
-    
+
     public function setResponsavelNome(string $responsavelNome): LoteDesbloqueioDomain
     {
         $this->responsavelNome = $responsavelNome;
         return $this;
     }
-    
+
     public function getResponsavelUnidadeId(): ?int
     {
         return $this->responsavelUnidadeId;
     }
-    
+
     public function setResponsavelUnidadeId(int $responsavelUnidadeId): LoteDesbloqueioDomain
     {
         $this->responsavelUnidadeId = $responsavelUnidadeId;
         return $this;
     }
-    
+
     public function getResponsavelUnidadeSigla(): ?string
     {
         return $this->responsavelUnidadeSigla;
     }
-    
+
     public function setResponsavelUnidadeSigla(string $responsavelUnidadeSigla): LoteDesbloqueioDomain
     {
         $this->responsavelUnidadeSigla = $responsavelUnidadeSigla;
         return $this;
     }
-    
+
     public function getSituacao(): ?string
     {
         return $this->situacao;
     }
-    
+
     public function setSituacao(string $situacao): LoteDesbloqueioDomain
     {
         $this->situacao = $situacao;
@@ -139,17 +142,27 @@ class LoteDesbloqueioDomain extends DomainBase
         $this->liminarId = $liminarId;
         return $this;
     }
-    
+
     public function numero(): string
     {
         return substr("000{$this->getSequencial()}/{$this->getAno()}", -8);
     }
-    
+
     public function quantidadeNotasEmpenho(): int
     {
         return count($this->notasEmpenho);
     }
-    
+
+    public function getEmpenhos()
+    {
+        return $this->empenhos;
+    }
+    public function setEmpenhos($empenhos)
+    {
+        $this->empenhos = $empenhos;
+        return $this;
+    }
+
     public function isValid(): bool
     {
         $v = $this->validator;
@@ -164,7 +177,7 @@ class LoteDesbloqueioDomain extends DomainBase
         $v->setName(self::LIMINAR_ID)->isInt($this->getLiminarId());
         return $v->isSuccess();
     }
-    
+
     public function jsonSerialize(): array
     {
         $serialization = [
@@ -177,9 +190,10 @@ class LoteDesbloqueioDomain extends DomainBase
             self::RESPONSAVEL_UNIDADE_SIGLA => $this->getResponsavelUnidadeSigla(),
             self::SITUACAO => $this->getSituacao(),
             self::LIMINAR_ID => $this->getLiminarId(),
+            self::EMPENHOS => $this->getEmpenhos(),
             'notasEmpenho' => $this->notasEmpenho,
         ];
-        
+    
         return array_merge(parent::jsonSerialize(), $serialization);
     }
 }

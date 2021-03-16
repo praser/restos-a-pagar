@@ -8,6 +8,6 @@ use App\Domain\LoteDesbloqueioDomain;
 
 class LoteDesbloqueioDao extends DaoBase
 {
-    protected const TABLE = 'lotes_desbloqueio';
+    protected const TABLE = 'vw_lotes_desbloqueio';
     protected $domain = LoteDesbloqueioDomain::class;
 }

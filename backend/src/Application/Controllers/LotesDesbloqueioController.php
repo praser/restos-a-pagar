@@ -35,6 +35,16 @@ class LotesDesbloqueioController extends ControllerBase
         $this->gerentes = $container->get('settings')['managers'];
     }
 
+    public function index(Request $req, Response $res, array $args): Response
+    {
+        $anoExecucao = $args['anoExecucao'];
+        $lotesDesbloqueio = $this->dao->findAllBy([
+            ['COLUMN' => 'ano', 'VALUE' => $anoExecucao]
+        ]);
+        $res->getBody()->write(json_encode($lotesDesbloqueio, JSON_THROW_ON_ERROR, 512));
+        return $res->withStatus(self::HTTP_OK);
+    }
+
     public function create(Request $req, Response $res, array $args): Response
     {
         $currentUser = $req->getAttributes()['user'];
@@ -61,12 +71,12 @@ class LotesDesbloqueioController extends ControllerBase
 
         $connection = $this->dao->getConnection();
         $connection->beginTransaction();
-        
+
         try {
             if ($lote->isValid()) {
                 $this->dao->create($lote);
                 $lote = $this->dao->find((string) $lote->getId());
-                
+
                 $createOperacao = function ($param) use ($lote): LoteDesbloqueioOperacaoDomain {
                     $p = array_intersect_key(
                         $param,
@@ -82,7 +92,7 @@ class LotesDesbloqueioController extends ControllerBase
                     $operacao
                         ->setLoteDesbloqueioId($lote->getId())
                         ->setSaldo($p['saldoContaContabil']);
-                    
+
                     $this->loteDesbloqueioOperacaoDao->create($operacao);
                     array_push($lote->notasEmpenho, $operacao->getDocumento());
                     return $operacao;
@@ -109,7 +119,7 @@ class LotesDesbloqueioController extends ControllerBase
                     {$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos 
                     lote {$lote->numero()}
                 SUBJECT;
-                
+
                 $this->mail->Body = $this->templates->render(
                     'NewLoteDesbloqueio.html',
                     [
@@ -126,7 +136,7 @@ class LotesDesbloqueioController extends ControllerBase
 
                 $connection->commit();
             }
-            
+
             $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
         } catch (Exception $ex) {
