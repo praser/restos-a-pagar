@@ -22,7 +22,7 @@ import {
 import { DataTable } from 'components/Table';
 import { primary, danger } from 'utils/colors';
 import { formatCurrency } from 'utils/numbers';
-import { formatDate, getYear, isWithinInterval, parseISO } from 'utils/dates';
+import { formatDate, isWithinInterval, parseISO } from 'utils/dates';
 
 import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
 import { FormRow } from 'components/Form';
