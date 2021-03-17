@@ -8,7 +8,7 @@ import { DataTable, IColumn } from 'components/Table';
 import { PageTitle } from 'components/Tipography';
 import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
 import { useApiRap, useXHR } from 'hooks';
-import { formatISO } from 'utils/dates';
+import { formatISO, getYear } from 'utils/dates';
 import Can from 'components/Can';
 import { SmallButtonSecondary, SmallButtonPrimary } from 'components/Button';
 import {
@@ -92,24 +92,31 @@ const List = () => {
     if (anoExecucao) fetchData(anoExecucao);
   }, [anoExecucao]);
 
+  let btnCriarLoteDesbloqueio;
+  if (anoExecucao === getYear(new Date())) {
+    btnCriarLoteDesbloqueio = (
+      <Can
+        perform="unlock:create"
+        yes={() => (
+          <SmallButtonPrimary
+            as={Link}
+            to={joinPath(createUnlockPath, [budgetYear])}
+          >
+            <FontAwesomeIcon icon={faPlusCircle} />
+            Gerar novo lote de desbloqueio
+          </SmallButtonPrimary>
+        )}
+        data={[]}
+      />
+    );
+  }
+
   return (
     <Layout>
       <Row>
         <Heading>
           <PageTitle>Lotes de desbloqueio</PageTitle>
-          <Can
-            perform="unlock:create"
-            yes={() => (
-              <SmallButtonPrimary
-                as={Link}
-                to={joinPath(createUnlockPath, [budgetYear])}
-              >
-                <FontAwesomeIcon icon={faPlusCircle} />
-                Gerar novo lote de desbloqueio
-              </SmallButtonPrimary>
-            )}
-            data={[]}
-          />
+          {btnCriarLoteDesbloqueio}
         </Heading>
       </Row>
       <Row>

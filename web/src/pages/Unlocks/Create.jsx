@@ -22,13 +22,46 @@ import {
 import { DataTable } from 'components/Table';
 import { primary, danger } from 'utils/colors';
 import { formatCurrency } from 'utils/numbers';
-import { formatDate, parseISO } from 'utils/dates';
+import { formatDate, getYear, isWithinInterval, parseISO } from 'utils/dates';
 
 import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
 import { FormRow } from 'components/Form';
 import { formatNumeroLoteDesbloqueio } from 'utils/string';
 import { Context } from 'components/Store';
 import { Prompt } from 'components/Modal';
+import Error from 'pages/Error';
+
+const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
+
+const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
+
+const columns = [
+  { name: 'Operação', selector: 'operacao', sortable: true },
+  { name: 'Convênio', selector: 'convenio', sortable: true },
+  {
+    name: 'Apta desbloqueio',
+    selector: 'aptaDesbloqueio',
+    sortable: true,
+    center: true,
+    format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
+  },
+  { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
+  { name: 'Documento', selector: 'documento', sortable: true, grow: 2 },
+  {
+    name: 'Data emissão',
+    selector: 'dataEmissao',
+    sortable: true,
+    grow: 2,
+    format: row => formatDate(parseISO(row.dataEmissao)),
+  },
+  {
+    name: 'Saldo a ser desbloqueado',
+    selector: 'saldoContaContabil',
+    sortable: true,
+    grow: 2,
+    format: row => formatCurrency(row.saldoContaContabil),
+  },
+];
 
 const Create = () => {
   const { budgetYear } = useParams();
@@ -40,61 +73,39 @@ const Create = () => {
   const [isPromptShowing, setIsPromptShowing] = useState(false);
   const { doAllXhrRequest } = useXHR();
   const history = useHistory();
-  const dispatch = useContext(Context)[1];
+  const [context, dispatch] = useContext(Context);
+  const { params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
 
-  const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
-  const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
-  const columns = [
-    { name: 'Operação', selector: 'operacao', sortable: true },
-    { name: 'Convênio', selector: 'convenio', sortable: true },
-    {
-      name: 'Apta desbloqueio',
-      selector: 'aptaDesbloqueio',
-      sortable: true,
-      center: true,
-      format: row => (row.aptaDesbloqueio ? thumbsUp : thumbsDown),
-    },
-    { name: 'Ano orçamento', selector: 'anoOrcamentario', sortable: true },
-    { name: 'Documento', selector: 'documento', sortable: true, grow: 2 },
-    {
-      name: 'Data emissão',
-      selector: 'dataEmissao',
-      sortable: true,
-      grow: 2,
-      format: row => formatDate(parseISO(row.dataEmissao)),
-    },
-    {
-      name: 'Saldo a ser desbloqueado',
-      selector: 'saldoContaContabil',
-      sortable: true,
-      grow: 2,
-      format: row => formatCurrency(row.saldoContaContabil),
-    },
-  ];
+  const fetchData = useCallback(async anoOrcamentario => {
+    const api = await apiRap;
 
-  useEffect(() => {
-    apiRap.then(api => {
-      const success = res => {
-        const { data } = res[0];
-        setNotasEmpenho(data);
-      };
+    const success = res => {
+      const { data } = res[0];
+      setNotasEmpenho(data);
+    };
 
-      const args = {
-        tipoInfo: 5,
-        anoOrcamentario: budgetYear,
-        unidadeId: '',
-        siglaGestor: '',
-      };
+    const args = {
+      tipoInfo: 5,
+      anoOrcamentario,
+      unidadeId: '',
+      siglaGestor: '',
+    };
 
-      const requests = [api.requests.getNotasEmpenhoAptasDesbloqueio(args)];
+    const requests = [api.requests.getNotasEmpenhoAptasDesbloqueio(args)];
 
-      doAllXhrRequest({
-        alertProps: unlocksFail,
-        requests,
-        success,
-      });
+    doAllXhrRequest({
+      alertProps: unlocksFail,
+      requests,
+      success,
     });
   }, []);
+
+  useEffect(() => {
+    fetchData(budgetYear);
+  }, [budgetYear]);
 
   const handleSubmit = useCallback(() => {
     apiRap.then(api => {
@@ -134,6 +145,17 @@ const Create = () => {
     event.preventDefault();
     history.goBack();
   };
+
+  const { dataBloqueio, dataCancelamento } = param || {};
+  if (param && !isWithinInterval(new Date(), dataBloqueio, dataCancelamento)) {
+    return (
+      <Error
+        code="404"
+        description="Página não encontrada"
+        paragraph="Parece que você encontrou um buraco na Matrix..."
+      />
+    );
+  }
 
   return (
     <Layout>
