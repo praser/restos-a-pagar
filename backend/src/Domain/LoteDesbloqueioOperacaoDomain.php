@@ -6,8 +6,6 @@ use DateTime;
 
 class LoteDesbloqueioOperacaoDomain extends DomainBase
 {
-    private const OPERACAO = 'operacao';
-    private const CONVENIO = 'convenio';
     private const LOTE_DESBLOQUEIO_ID = 'loteDesbloqueioId';
     public const OPERACAO_ID = 'operacaoId';
     public const DOCUMENTO = 'documento';
@@ -18,8 +16,6 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
     private const RESPONSAVEL_RETORNO_UNIDADE_ID = 'responsavelRetornoUnidadeId';
     private const RESPONSAVEL_RETORNO_UNIDADE_SIGLA = 'responsavelRetornoUnidadeSigla';
 
-    private $operacao;
-    private $convenio;
     private $loteDesbloqueioId;
     private $operacaoId;
     private $documento;
@@ -33,8 +29,6 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
     public function __construct(array $params = [])
     {
         parent::__construct($params);
-        $this->operacao = (int) $this->setAttribute(self::OPERACAO, $params);
-        $this->convenio = (int) $this->setAttribute(self::CONVENIO, $params);
         $this->loteDesbloqueioId = (int) $this->setAttribute(self::LOTE_DESBLOQUEIO_ID, $params);
         $this->operacaoId = (int) $this->setAttribute(self::OPERACAO_ID, $params);
         $this->documento = (string) $this->setAttribute(self::DOCUMENTO, $params);
@@ -146,28 +140,6 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
         return $this;
     }
 
-    public function getOperacao(): ?int
-    {
-        return $this->operacao;
-    }
-
-    public function setOperacao(int $operacao): LoteDesbloqueioOperacaoDomain
-    {
-        $this->operacao = $operacao;
-        return $this;
-    }
-
-    public function getConvenio(): ?int
-    {
-        return $this->convenio;
-    }
-
-    public function setConvenio(int $convenio): LoteDesbloqueioOperacaoDomain
-    {
-        $this->convenio = $convenio;
-        return $this;
-    }
-
     public function isValid(): bool
     {
         $v = $this->validator;
@@ -188,8 +160,6 @@ class LoteDesbloqueioOperacaoDomain extends DomainBase
         $serialization = [
         self::LOTE_DESBLOQUEIO_ID => $this->getLoteDesbloqueioId(),
         self::OPERACAO_ID => $this->getOperacaoId(),
-        self::OPERACAO => $this->getOperacao(),
-        self::CONVENIO => $this->getConvenio(),
         self::DOCUMENTO => $this->getDocumento(),
         self::SALDO => $this->getSaldo(),
         self::DESBLOQUEADO => $this->isDesbloqueado(),

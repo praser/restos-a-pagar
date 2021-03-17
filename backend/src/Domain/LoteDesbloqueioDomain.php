@@ -15,7 +15,6 @@ class LoteDesbloqueioDomain extends DomainBase
     private const RESPONSAVEL_UNIDADE_SIGLA = 'responsavelUnidadeSigla';
     private const SITUACAO = 'situacao';
     private const LIMINAR_ID = 'liminarId';
-    private const EMPENHOS = 'empenhos';
 
     private $sequencial;
     private $ano;
@@ -27,7 +26,6 @@ class LoteDesbloqueioDomain extends DomainBase
     private $situacao;
     private $liminarId;
     public $notasEmpenho = [];
-    private $empenhos;
 
     public function __construct(array $params = [])
     {
@@ -41,7 +39,6 @@ class LoteDesbloqueioDomain extends DomainBase
         $this->responsavelUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_UNIDADE_SIGLA, $params);
         $this->situacao = $this->setAttribute(self::SITUACAO, $params);
         $this->liminarId = $this->setAttribute(self::LIMINAR_ID, $params);
-        $this->empenhos = (int) $this->setAttribute(self::EMPENHOS, $params);
     }
 
     public function getSequencial(): ?int
@@ -153,16 +150,6 @@ class LoteDesbloqueioDomain extends DomainBase
         return count($this->notasEmpenho);
     }
 
-    public function getEmpenhos()
-    {
-        return $this->empenhos;
-    }
-    public function setEmpenhos($empenhos)
-    {
-        $this->empenhos = $empenhos;
-        return $this;
-    }
-
     public function isValid(): bool
     {
         $v = $this->validator;
@@ -190,7 +177,6 @@ class LoteDesbloqueioDomain extends DomainBase
             self::RESPONSAVEL_UNIDADE_SIGLA => $this->getResponsavelUnidadeSigla(),
             self::SITUACAO => $this->getSituacao(),
             self::LIMINAR_ID => $this->getLiminarId(),
-            self::EMPENHOS => $this->getEmpenhos(),
             'notasEmpenho' => $this->notasEmpenho,
         ];
     

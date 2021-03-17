@@ -8,6 +8,7 @@ use App\Domain\LoteDesbloqueioDomain;
 use App\Domain\LoteDesbloqueioOperacaoDomain;
 use App\Domain\UserDomain;
 use App\Persistence\LoteDesbloqueioDao;
+use App\Persistence\LoteDesbloqueioVwDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -17,7 +18,10 @@ use Exception;
 
 class LotesDesbloqueioController extends ControllerBase
 {
+    use Traits\CurrentUserTrait;
+
     private $dao;
+    private $loteDesbloqueioVwDao;
     private $loteDesbloqueioOperacaoDao;
     private $expedienteGovService;
     private $mail;
@@ -28,6 +32,7 @@ class LotesDesbloqueioController extends ControllerBase
     {
         parent::__construct($container);
         $this->dao = new LoteDesbloqueioDao($container);
+        $this->loteDesbloqueioVwDao = new LoteDesbloqueioVwDao($container);
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
@@ -38,7 +43,7 @@ class LotesDesbloqueioController extends ControllerBase
     public function index(Request $req, Response $res, array $args): Response
     {
         $anoExecucao = $args['anoExecucao'];
-        $lotesDesbloqueio = $this->dao->findAllBy([
+        $lotesDesbloqueio = $this->loteDesbloqueioVwDao->findAllBy([
             ['COLUMN' => 'ano', 'VALUE' => $anoExecucao]
         ]);
         $res->getBody()->write(json_encode($lotesDesbloqueio, JSON_THROW_ON_ERROR, 512));
@@ -47,12 +52,11 @@ class LotesDesbloqueioController extends ControllerBase
 
     public function create(Request $req, Response $res, array $args): Response
     {
-        $currentUser = $req->getAttributes()['user'];
-        $jwt = $currentUser['token'];
-        $user = new UserDomain(json_decode($currentUser['attributes'], true));
+        $token = $this->getToken($req);
+        $user = $this->getCurrentUser($req);
 
         $params = $req->getParsedBody();
-        $expediente = $this->expedienteGovService->create($jwt, array(
+        $expediente = $this->expedienteGovService->create($token, array(
             "expediente" => array(
                 "co_tipo" => "CE",
                 "tx_assunto" => "RAP - Lote de desbloqueio",
@@ -74,7 +78,7 @@ class LotesDesbloqueioController extends ControllerBase
 
         try {
             if ($lote->isValid()) {
-                $this->dao->create($lote);
+                $this->dao->create($lote, 'lotes_desbloqueio');
                 $lote = $this->dao->find((string) $lote->getId());
 
                 $createOperacao = function ($param) use ($lote): LoteDesbloqueioOperacaoDomain {
@@ -93,7 +97,7 @@ class LotesDesbloqueioController extends ControllerBase
                         ->setLoteDesbloqueioId($lote->getId())
                         ->setSaldo($p['saldoContaContabil']);
 
-                    $this->loteDesbloqueioOperacaoDao->create($operacao);
+                    $this->loteDesbloqueioOperacaoDao->create($operacao, 'lote_desbloqueio_operacoes');
                     array_push($lote->notasEmpenho, $operacao->getDocumento());
                     return $operacao;
                 };

@@ -59,7 +59,7 @@ return function (App $app) {
                 'token' => $jwt
             );
 
-            $request->withAttribute('user', $attributes);
+            return $handler->handle($request->withAttribute('user', $attributes));
         }
         return $handler->handle($request);
     });
