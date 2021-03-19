@@ -9,6 +9,7 @@ export const setDefaults = (api, currentUser) => {
 };
 
 export const getRequests = (api, executionYear) => {
+  console.log(executionYear);
   return [
     api.requests.getUnidades(),
     api.requests.getGestores(),

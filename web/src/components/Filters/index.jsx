@@ -23,7 +23,7 @@ const Filters = ({ visible, setState: setParentState }) => {
   const [param] = params.filter(
     item => item.anoOrcamentario === parseInt(budgetYear, 10),
   );
-  const anoExecucao = param;
+  const { anoExecucao } = param || {};
 
   const fetchData = useCallback(async anoExecucao_ => {
     const api = await apiRap;
@@ -43,7 +43,7 @@ const Filters = ({ visible, setState: setParentState }) => {
   }, []);
 
   useEffect(() => {
-    fetchData(anoExecucao);
+    if (anoExecucao) fetchData(anoExecucao);
   }, [anoExecucao]);
 
   return (
