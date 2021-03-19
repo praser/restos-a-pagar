@@ -6,18 +6,22 @@ namespace App\Application\Controllers;
 
 use App\Domain\LoteDesbloqueioDomain;
 use App\Domain\LoteDesbloqueioOperacaoDomain;
-use App\Domain\UserDomain;
 use App\Persistence\LoteDesbloqueioDao;
+use App\Persistence\LoteDesbloqueioVwDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 use Exception;
+use RuntimeException;
 
 class LotesDesbloqueioController extends ControllerBase
 {
+    use Traits\CurrentUserTrait;
+
     private $dao;
+    private $loteDesbloqueioVwDao;
     private $loteDesbloqueioOperacaoDao;
     private $expedienteGovService;
     private $mail;
@@ -28,6 +32,7 @@ class LotesDesbloqueioController extends ControllerBase
     {
         parent::__construct($container);
         $this->dao = new LoteDesbloqueioDao($container);
+        $this->loteDesbloqueioVwDao = new LoteDesbloqueioVwDao($container);
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
@@ -35,14 +40,23 @@ class LotesDesbloqueioController extends ControllerBase
         $this->gerentes = $container->get('settings')['managers'];
     }
 
+    public function index(Request $req, Response $res, array $args): Response
+    {
+        $anoExecucao = $args['anoExecucao'];
+        $lotesDesbloqueio = $this->loteDesbloqueioVwDao->findAllBy([
+            ['COLUMN' => 'ano', 'VALUE' => $anoExecucao]
+        ]);
+        $res->getBody()->write(json_encode($lotesDesbloqueio, JSON_THROW_ON_ERROR, 512));
+        return $res->withStatus(self::HTTP_OK);
+    }
+
     public function create(Request $req, Response $res, array $args): Response
     {
-        $currentUser = $req->getAttributes()['user'];
-        $jwt = $currentUser['token'];
-        $user = new UserDomain(json_decode($currentUser['attributes'], true));
+        $token = $this->getToken($req);
+        $user = $this->getCurrentUser($req);
 
         $params = $req->getParsedBody();
-        $expediente = $this->expedienteGovService->create($jwt, array(
+        $expediente = $this->expedienteGovService->create($token, array(
             "expediente" => array(
                 "co_tipo" => "CE",
                 "tx_assunto" => "RAP - Lote de desbloqueio",
@@ -61,13 +75,13 @@ class LotesDesbloqueioController extends ControllerBase
 
         $connection = $this->dao->getConnection();
         $connection->beginTransaction();
-        
+
         try {
             if ($lote->isValid()) {
-                $this->dao->create($lote);
+                $this->dao->create($lote, 'lotes_desbloqueio');
                 $lote = $this->dao->find((string) $lote->getId());
-                
-                $createOperacao = function ($param) use ($lote): LoteDesbloqueioOperacaoDomain {
+
+                $createOperacao = function ($param) use ($lote): array {
                     $p = array_intersect_key(
                         $param,
                         array_flip(
@@ -82,10 +96,9 @@ class LotesDesbloqueioController extends ControllerBase
                     $operacao
                         ->setLoteDesbloqueioId($lote->getId())
                         ->setSaldo($p['saldoContaContabil']);
-                    
-                    $this->loteDesbloqueioOperacaoDao->create($operacao);
-                    array_push($lote->notasEmpenho, $operacao->getDocumento());
-                    return $operacao;
+
+                    $this->loteDesbloqueioOperacaoDao->create($operacao, 'lote_desbloqueio_operacoes');
+                    return (array) json_decode(json_encode($operacao));
                 };
 
                 $operacoes = array_map($createOperacao, $params);
@@ -109,13 +122,13 @@ class LotesDesbloqueioController extends ControllerBase
                     {$expediente['tx_identificacao']} - RAP - Solicitação de desbloqueio de empenhos 
                     lote {$lote->numero()}
                 SUBJECT;
-                
+
                 $this->mail->Body = $this->templates->render(
                     'NewLoteDesbloqueio.html',
                     [
                         'gerenciaExecutivaFinanceira' => $this->gerentes['gerenciaExecutivaFinanceira'],
                         'numeroLote' => $lote->numero(),
-                        'quantidadeDocumentos' => $lote->quantidadeNotasEmpenho(),
+                        'quantidadeDocumentos' => count($operacoes),
                         'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
                         'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
                         'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
@@ -124,10 +137,31 @@ class LotesDesbloqueioController extends ControllerBase
 
                 $this->mail->send();
 
+                // Gerar o arquivo execel
+                $folder = realpath($this->container->get('settings')['lotesDesbloqueioFolder'] . "/./{$lote->getAno()}/");
+                $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
+                $delimiter = ';';
+
+                if (!file_exists($folder) && !mkdir($folder, 777, true) && !is_dir($folder)) {
+                    throw new RuntimeException(sprintf('Directory "%s" was not created', $folder));
+                }
+
+                $file = fopen($csvFilePath, 'wb');
+                fputcsv($file, array_keys((array) $operacoes[0]), $delimiter);
+                foreach ($operacoes as $param) {
+                    fwrite($file, implode($delimiter, $param) . PHP_EOL);
+                }
+                fclose($file);
+
+                $lote->setFilePath($csvFilePath);
+                $lote->setChecksum(md5_file($csvFilePath));
+                $this->dao->update($lote);
+
                 $connection->commit();
             }
-            
-            $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
+            $body = json_decode(json_encode($lote), true);
+            $body['notasEmpenho'] = count($operacoes);
+            $res->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
         } catch (Exception $ex) {
             $connection->rollback();

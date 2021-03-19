@@ -26,6 +26,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN cd /usr/local/etc/php/conf.d/ && \
   echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
+RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+  echo "[XDebug]" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+  echo "xdebug.mode = debug"  > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+  echo "xdebug.start_with_request = yes"  > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+  echo "xdebug.client_port = 9000"  > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+  echo "xdebug.client_host = host.docker.internal"  > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 COPY . /var/www/html
 
 WORKDIR /var/www/html

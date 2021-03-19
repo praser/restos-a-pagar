@@ -5,7 +5,11 @@ import {
   List as JudicialInjunctionList,
 } from './JudicialInjunction';
 import { List as UgList, Create as UgCreate, Update as UgUpdate } from './Ugs';
-import { Create as UnlockCreate } from './Unlocks';
+import {
+  Create as UnlockCreate,
+  List as UnlockList,
+  Show as UnlockShow,
+} from './Unlocks';
 
 import Cancellations from './Dashboards/Cancellations';
 import Locks from './Dashboards/Locks';
@@ -23,4 +27,6 @@ export {
   UgUpdate,
   UpdateCommitment,
   UnlockCreate,
+  UnlockList,
+  UnlockShow,
 };

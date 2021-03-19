@@ -3,6 +3,7 @@
 /vendor/
 /var/cache/*
 /var/upload/*
+/var/lotes-desbloqueio/*
 /logs/*
 !/logs/README.md
 .env

@@ -116,15 +116,23 @@ const requests = async () => {
   const putLiminarCheck = async liminarId =>
     client.put(`/liminares/${liminarId}/check`);
 
+  const getLotesDesbloqueio = async anoExecucao =>
+    client.get(`/lotes-desbloqueio/${anoExecucao}`);
+
+  const getEmpenhosLoteDesbloqueio = async (anoExecucao, sequencial) =>
+    client.get(`lotes-desbloqueio/${anoExecucao}/${sequencial}`);
+
   return {
     deleteUg,
     getEmpenhos,
     getEmpenhosLiminar,
+    getEmpenhosLoteDesbloqueio,
     getEstatisticasPreBloqueio,
     getEstatisticasBloqueio,
     getEstatisticasBloqueioSnapshot,
     getGestores,
     getLiminares,
+    getLotesDesbloqueio,
     getOperacoes,
     getOperacoesBloqueio,
     getOperacoesPreBloqueio,

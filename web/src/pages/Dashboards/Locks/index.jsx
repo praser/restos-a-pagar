@@ -19,10 +19,9 @@ import { DataTable } from 'components/Table';
 import { primary, danger } from 'utils/colors';
 import { formatDate, parseISO } from 'utils/dates';
 import { locks as alertProps } from 'utils/messages';
-import { createUnlockPath, joinPath } from 'utils/paths';
+import { unlockPath, joinPath } from 'utils/paths';
 import Layout from 'components/Layout/Internal';
 import Filters from 'components/Filters';
-import { calcExecutionYear } from 'components/Filters/utils';
 import { Description } from 'pages/Error/styles';
 import Placeholder from 'components/Placeholder';
 import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
@@ -45,7 +44,11 @@ const Locks = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
   const columns = [...operacoesColumns];
-  const { status } = context;
+  const { status, params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const { anoExecucao } = param || {};
 
   const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
   const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
@@ -93,33 +96,28 @@ const Locks = () => {
   }, []);
 
   useEffect(() => {
-    const args = {
-      tipoInfo: tipoInfo.value,
-      anoExecucao: calcExecutionYear(budgetYear),
-      unidadeId: unidade.value || '',
-      siglaGestor: gestor.value || '',
-    };
+    if (anoExecucao) {
+      const args = {
+        tipoInfo: tipoInfo.value,
+        anoExecucao,
+        unidadeId: unidade.value || '',
+        siglaGestor: gestor.value || '',
+      };
 
-    fectchData(args);
-  }, [tipoInfo, unidade, gestor, budgetYear]);
+      fectchData(args);
+    }
+  }, [tipoInfo, unidade, gestor, anoExecucao]);
 
   const { estatisticas, snapshots } = state;
-  const { params } = context;
-  const [param] = params.filter(
-    item => item.anoOrcamentario === parseInt(budgetYear, 10),
-  );
 
   const solicitarDesbloqueioButton = (
     <Can
       key={1}
       perform="unlock:create"
       yes={() => (
-        <SmallButtonWarning
-          as={Link}
-          to={joinPath(createUnlockPath, [budgetYear])}
-        >
+        <SmallButtonWarning as={Link} to={joinPath(unlockPath, [budgetYear])}>
           <FontAwesomeIcon icon={faUnlock} />
-          Gerar lote de desbloqueio
+          Lotes de desbloqueio
         </SmallButtonWarning>
       )}
     />
