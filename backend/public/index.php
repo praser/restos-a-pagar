@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+error_reporting(E_ERROR | E_PARSE);
+
 use App\Application\ResponseEmitter\ResponseEmitter;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;

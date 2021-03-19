@@ -90,10 +90,10 @@ const List = () => {
         alertProps: createUnlockError,
         requests: [api.requests.postLoteDesbloqueioLiminar({ payload })],
         success: res => {
-          const { sequencial, ano, ce, notasEmpenho: empenhos } = res[0].data;
+          const { sequencial, ano, ce, notasEmpenho: quantidade } = res[0].data;
           const args = {
             lote: formatNumeroLoteDesbloqueio(sequencial, ano),
-            quantidade: empenhos.length,
+            quantidade,
             ce,
           };
 

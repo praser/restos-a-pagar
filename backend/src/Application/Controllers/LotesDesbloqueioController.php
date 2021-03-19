@@ -137,7 +137,7 @@ class LotesDesbloqueioController extends ControllerBase
 
                 $this->mail->send();
 
-                // Gerar o arquivo execel
+                // Gerar o arquivo csv
                 $folder = realpath($this->container->get('settings')['lotesDesbloqueioFolder'] . "/./{$lote->getAno()}/");
                 $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
                 $delimiter = ';';

@@ -34,7 +34,7 @@ class LoteDesbloqueioDownloadController extends ControllerBase
             $filePath = $loteDesbloqueio->getFilePath();
             $response = $res
             ->withHeader('Content-Type', 'application/octet-stream')
-            ->withHeader('Content-Disposition', 'attachment; filename=' . basename($filePath))
+            ->withHeader('Content-Disposition', 'attachment; filename=lote_desbloqueio_rap_' . basename($filePath))
             ->withAddedHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->withHeader('Cache-Control', 'post-check=0, pre-check=0')
             ->withHeader('Pragma', 'no-cache')

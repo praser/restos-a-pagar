@@ -17,6 +17,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 use Exception;
+use RuntimeException;
 
 class LotesDesbloqueioLiminarController extends ControllerBase
 {
@@ -70,7 +71,7 @@ class LotesDesbloqueioLiminarController extends ControllerBase
 
         $connection = $this->dao->getConnection();
         $connection->beginTransaction();
-        
+
         try {
             $liminar = $this->liminarDao->find((string) $argsarams['id']);
             $liminarOperacoes = $this->liminarOperacaoDao->findAllBy([
@@ -84,7 +85,7 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                     ['id', 'ASC'],
                     'vw_liminares_saldo_notas_empenho_bloqueadas'
                 );
-                
+
                 $saldosEmpenhos = array_merge($saldosEmpenhos, $saldoBloqueado);
             }
 
@@ -92,7 +93,7 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                 $lote->setLiminarId($liminar->getId());
                 $this->dao->create($lote);
                 $lote = $this->dao->find((string) $lote->getId());
-                
+
                 $createOperacao = function ($saldoEmpenho) use ($lote): LoteDesbloqueioOperacaoDomain {
                     $args = [
                         LoteDesbloqueioOperacaoDomain::OPERACAO_ID => $saldoEmpenho->getOperacaoId(),
@@ -101,13 +102,12 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                     ];
 
                     $operacao = new LoteDesbloqueioOperacaoDomain($args);
-                    
+
                     $operacao
                         ->setLoteDesbloqueioId($lote->getId())
                         ->setSaldo($args['saldoContaContabil']);
-                    
+
                     $this->loteDesbloqueioOperacaoDao->create($operacao);
-                    array_push($lote->notasEmpenho, $operacao->getDocumento());
                     return $operacao;
                 };
 
@@ -132,14 +132,14 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                     {$expediente['tx_identificacao']} - RAP LIMINAR - Solicitação de desbloqueio de empenhos
                      lote {$lote->numero()}
                 SUBJECT;
-                
+
                 $this->mail->Body = $this->templates->render(
                     'NewLoteDesbloqueioLiminar.html',
                     [
                         'numero_processo' => $liminar->getNumeroProcesso(),
                         'gerenciaExecutivaFinanceira' => $this->gerentes['gerenciaExecutivaFinanceira'],
                         'numeroLote' => $lote->numero(),
-                        'quantidadeDocumentos' => $lote->quantidadeNotasEmpenho(),
+                        'quantidadeDocumentos' => count($operacoes),
                         'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
                         'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
                         'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
@@ -148,10 +148,32 @@ class LotesDesbloqueioLiminarController extends ControllerBase
 
                 $this->mail->send();
 
+                // Gerar o arquivo csv
+                $folder = realpath($this->container->get('settings')['lotesDesbloqueioFolder'] . "/./{$lote->getAno()}/");
+                $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
+                $delimiter = ';';
+
+                if (!file_exists($folder) && !mkdir($folder, 777, true) && !is_dir($folder)) {
+                    throw new RuntimeException(sprintf('Directory "%s" was not created', $folder));
+                }
+
+                $file = fopen($csvFilePath, 'wb');
+                fputcsv($file, array_keys((array) $operacoes[0]), $delimiter);
+                foreach ($operacoes as $param) {
+                    fwrite($file, implode($delimiter, $param) . PHP_EOL);
+                }
+                fclose($file);
+
+                $lote->setFilePath($csvFilePath);
+                $lote->setChecksum(md5_file($csvFilePath));
+                $this->dao->update($lote);
+
                 $connection->commit();
             }
-            
-            $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
+
+            $body = json_decode(json_encode($lote), true);
+            $body['notasEmpenho'] = count($operacoes);
+            $res->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
         } catch (Exception $ex) {
             $connection->rollback();
