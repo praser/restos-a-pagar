@@ -79,7 +79,7 @@ const PossibleLocks = () => {
   }, []);
 
   useEffect(() => {
-    fetchData(reqArgs);
+    if (anoExecucao) fetchData(reqArgs);
   }, [tipoInfo, unidade, gestor, anoExecucao]);
 
   const { estatisticas } = state;

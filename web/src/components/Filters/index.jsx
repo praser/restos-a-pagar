@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useCallback, useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
@@ -25,29 +25,26 @@ const Filters = ({ visible, setState: setParentState }) => {
   );
   const anoExecucao = param;
 
-  const fetchData = () => {
-    return apiRap
-      .then(api => {
-        setState(prev => ({ ...prev, ...setDefaults(api, currentUser) }));
-        return api;
-      })
-      .then(api => {
-        const success = res => {
-          const data = formatData(api, res);
-          setState(prev => ({ ...prev, ...data }));
-        };
+  const fetchData = useCallback(async anoExecucao_ => {
+    const api = await apiRap;
 
-        return doAllXhrRequest({
-          requests: getRequests(api, anoExecucao),
-          alertProps,
-          success,
-        });
-      });
-  };
+    setState(prev => ({ ...prev, ...setDefaults(api, currentUser) }));
+
+    const success = res => {
+      const data = formatData(api, res);
+      setState(prev => ({ ...prev, ...data }));
+    };
+
+    doAllXhrRequest({
+      requests: getRequests(api, anoExecucao_),
+      alertProps,
+      success,
+    });
+  }, []);
 
   useEffect(() => {
-    fetchData({ apiRap, budgetYear, setState });
-  }, [budgetYear]);
+    fetchData(anoExecucao);
+  }, [anoExecucao]);
 
   return (
     <Modal
