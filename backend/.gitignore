@@ -9,3 +9,4 @@
 .env
 tests
 phpstan.neon
+*.zip
