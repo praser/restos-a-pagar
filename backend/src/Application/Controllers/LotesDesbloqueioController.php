@@ -6,7 +6,7 @@ namespace App\Application\Controllers;
 
 use App\Domain\LoteDesbloqueioDomain;
 use App\Domain\LoteDesbloqueioOperacaoDomain;
-use App\Domain\UserDomain;
+
 use App\Persistence\LoteDesbloqueioDao;
 use App\Persistence\LoteDesbloqueioVwDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
@@ -15,6 +15,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Services\ExpedienteGovService;
 use Exception;
+use RuntimeException;
 
 class LotesDesbloqueioController extends ControllerBase
 {
@@ -81,7 +82,7 @@ class LotesDesbloqueioController extends ControllerBase
                 $this->dao->create($lote, 'lotes_desbloqueio');
                 $lote = $this->dao->find((string) $lote->getId());
 
-                $createOperacao = function ($param) use ($lote): LoteDesbloqueioOperacaoDomain {
+                $createOperacao = function ($param) use ($lote): array {
                     $p = array_intersect_key(
                         $param,
                         array_flip(
@@ -98,8 +99,7 @@ class LotesDesbloqueioController extends ControllerBase
                         ->setSaldo($p['saldoContaContabil']);
 
                     $this->loteDesbloqueioOperacaoDao->create($operacao, 'lote_desbloqueio_operacoes');
-                    array_push($lote->notasEmpenho, $operacao->getDocumento());
-                    return $operacao;
+                    return (array) json_decode(json_encode($operacao));
                 };
 
                 $operacoes = array_map($createOperacao, $params);
@@ -129,7 +129,7 @@ class LotesDesbloqueioController extends ControllerBase
                     [
                         'gerenciaExecutivaFinanceira' => $this->gerentes['gerenciaExecutivaFinanceira'],
                         'numeroLote' => $lote->numero(),
-                        'quantidadeDocumentos' => $lote->quantidadeNotasEmpenho(),
+                        'quantidadeDocumentos' => count($operacoes),
                         'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
                         'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
                         'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
@@ -138,10 +138,30 @@ class LotesDesbloqueioController extends ControllerBase
 
                 $this->mail->send();
 
+                // Gerar o arquivo execel
+                $folder = realpath($this->container->get('settings')['lotesDesbloqueioFolder'] . "/./{$lote->getAno()}/");
+                $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
+                $delimiter = ';';
+
+                if (!file_exists($folder) && !mkdir($folder, 777, true) && !is_dir($folder)) {
+                    throw new RuntimeException(sprintf('Directory "%s" was not created', $folder));
+                }
+
+                $file = fopen($csvFilePath, 'wb');
+                fputcsv($file, array_keys((array) $operacoes[0]), $delimiter);
+                foreach ($operacoes as $param) {
+                    fwrite($file, implode($delimiter, $param) . PHP_EOL);
+                }
+                fclose($file);
+
+                $lote->setChecksum(md5_file($csvFilePath));
+                $this->dao->update($lote);
+
                 $connection->commit();
             }
-
-            $res->getBody()->write(json_encode($lote, JSON_THROW_ON_ERROR, 512));
+            $body = json_decode(json_encode($lote), true);
+            $body['notasEmpenho'] = count($operacoes);
+            $res->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR, 512));
             return $res->withStatus(self::HTTP_CREATED);
         } catch (Exception $ex) {
             $connection->rollback();
