@@ -19,6 +19,7 @@ import { formatCurrency } from 'utils/numbers';
 import { IUriParams, joinPath, showUnlockPath } from 'utils/paths';
 import { IResponse } from 'utils/xhrClient';
 import { loadEmpenhosLoteDesbloqueioFail as alertProps } from 'utils/messages';
+import { isEmpty } from 'utils/arrays';
 
 const columns: Array<IColumn> = [
   { name: 'Operação', selector: 'operacao' },
@@ -76,6 +77,28 @@ const Show = () => {
     fetchData(executionYear, sequence);
   }, [executionYear, sequence]);
 
+  const downloadButton = (listaEmpenhos: any) => {
+    if (!isEmpty(listaEmpenhos)) {
+      const loteId = listaEmpenhos[0].loteDesbloqueioId;
+      return (
+        <Can
+          perform="unlock:download"
+          yes={() => (
+            <SmallButtonPrimary
+              as="a"
+              href={`${process.env.REACT_APP_RAP_API_URL}/lotes-desbloqueio/download?jwt=asd&loteId=${loteId}`}
+            >
+              <FontAwesomeIcon icon={faDownload} />
+              Download do lote de desbloqueio
+            </SmallButtonPrimary>
+          )}
+          data={[]}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <Layout>
       <Row>
@@ -83,19 +106,7 @@ const Show = () => {
           <PageTitle>
             Lote de desbloqueio {sequence}/{executionYear}
           </PageTitle>
-          <Can
-            perform="unlock:download"
-            yes={() => (
-              <SmallButtonPrimary
-                as={Link}
-                to={joinPath(showUnlockPath, [2020, 1])}
-              >
-                <FontAwesomeIcon icon={faDownload} />
-                Download do lote de desbloqueio
-              </SmallButtonPrimary>
-            )}
-            data={[]}
-          />
+          {downloadButton(empenhos)}
         </Heading>
       </Row>
       <Row>

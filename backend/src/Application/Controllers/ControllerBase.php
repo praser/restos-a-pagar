@@ -15,6 +15,7 @@ abstract class ControllerBase implements ControllerInterface
     protected const HTTP_NO_CONTENT = 204;
     protected const HTTP_NOT_FOUND = 404;
     protected const HTTP_INTERNAL_SERVER_ERROR = 500;
+    protected const HTTP_UNAUTHORIZED = 401;
 
     protected $container;
     protected $repository;

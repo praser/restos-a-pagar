@@ -19,7 +19,7 @@ return function (App $app) {
     $basePath = $container->get('settings')['basePath'];
     $authlessPaths = array_map(function ($path) use ($basePath) {
         return joinPaths($basePath, $path);
-    }, ['/info', '/parametros']);
+    }, ['/info', '/parametros', '/lotes-desbloqueio/download']);
 
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);

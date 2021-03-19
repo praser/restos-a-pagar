@@ -6,7 +6,6 @@ namespace App\Application\Controllers;
 
 use App\Domain\LoteDesbloqueioDomain;
 use App\Domain\LoteDesbloqueioOperacaoDomain;
-
 use App\Persistence\LoteDesbloqueioDao;
 use App\Persistence\LoteDesbloqueioVwDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
