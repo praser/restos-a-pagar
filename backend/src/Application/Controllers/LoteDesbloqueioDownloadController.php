@@ -41,7 +41,7 @@ class LoteDesbloqueioDownloadController extends ControllerBase
             ->withBody((new \Slim\Psr7\Stream(fopen($filePath, 'rb'))));
 
             return $response;
-        } catch (Exception $ex){
+        } catch (Exception $ex) {
             return $res->withStatus(self::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
