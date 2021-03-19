@@ -15,6 +15,7 @@ class LoteDesbloqueioDomain extends DomainBase
     private const RESPONSAVEL_UNIDADE_SIGLA = 'responsavelUnidadeSigla';
     private const SITUACAO = 'situacao';
     private const LIMINAR_ID = 'liminarId';
+    private const FILE_PATH = 'filePath';
     private const CHECKSUM = 'checksum';
 
     private $sequencial;
@@ -26,6 +27,7 @@ class LoteDesbloqueioDomain extends DomainBase
     private $responsavelUnidadeSigla;
     private $situacao;
     private $liminarId;
+    private $filePath;
     private $checksum;
 
     public function __construct(array $params = [])
@@ -40,6 +42,7 @@ class LoteDesbloqueioDomain extends DomainBase
         $this->responsavelUnidadeSigla = $this->setAttribute(self::RESPONSAVEL_UNIDADE_SIGLA, $params);
         $this->situacao = $this->setAttribute(self::SITUACAO, $params);
         $this->liminarId = $this->setAttribute(self::LIMINAR_ID, $params);
+        $this->filePath = $this->setAttribute(self::FILE_PATH, $params);
         $this->checksum = $this->setAttribute(self::CHECKSUM, $params);
     }
 
@@ -142,6 +145,17 @@ class LoteDesbloqueioDomain extends DomainBase
         return $this;
     }
 
+    public function getFilePath()
+    {
+        return $this->filePath;
+    }
+
+    public function setFilePath($filePath)
+    {
+        $this->filePath = $filePath;
+        return $this;
+    }
+
     public function getChecksum()
     {
         return $this->checksum;
@@ -185,6 +199,7 @@ class LoteDesbloqueioDomain extends DomainBase
             self::RESPONSAVEL_UNIDADE_SIGLA => $this->getResponsavelUnidadeSigla(),
             self::SITUACAO => $this->getSituacao(),
             self::LIMINAR_ID => $this->getLiminarId(),
+            self::FILE_PATH => $this->getFilePath(),
             self::CHECKSUM => $this->getChecksum(),
         ];
     

@@ -154,6 +154,7 @@ class LotesDesbloqueioController extends ControllerBase
                 }
                 fclose($file);
 
+                $lote->setFilePath($csvFilePath);
                 $lote->setChecksum(md5_file($csvFilePath));
                 $this->dao->update($lote);
 
