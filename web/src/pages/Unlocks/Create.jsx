@@ -24,7 +24,7 @@ import { primary, danger } from 'utils/colors';
 import { formatCurrency } from 'utils/numbers';
 import { formatDate, isWithinInterval, parseISO } from 'utils/dates';
 
-import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
+import Button from 'components/atoms/Button';
 import { FormRow } from 'components/Form';
 import { formatNumeroLoteDesbloqueio } from 'utils/string';
 import { Context } from 'components/Store';
@@ -197,18 +197,19 @@ const Create = () => {
               searchable
             />
             <FormRow>
-              <SmallButtonPrimary
+              <Button
+                small
                 type="button"
                 disabled={isEmpty(notasEmpenhoSelecionadas)}
                 onClick={() => setIsPromptShowing(true)}
               >
                 <FontAwesomeIcon icon={faSave} />
                 Salvar
-              </SmallButtonPrimary>
-              <SmallButtonWarning onClick={handleGoBack}>
+              </Button>
+              <Button warning small onClick={handleGoBack}>
                 <FontAwesomeIcon icon={faLongArrowAltLeft} />
                 Voltar
-              </SmallButtonWarning>
+              </Button>
             </FormRow>
           </CardBody>
         </Card>

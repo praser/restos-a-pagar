@@ -14,7 +14,7 @@ const Search = ({ filterText, onFilter, onClear }) => {
         value={filterText}
         onChange={onFilter}
       />
-      <SearchClear type="button" onClick={onClear}>
+      <SearchClear secondary small type="button" onClick={onClear}>
         <FontAwesomeIcon icon={faEraser} />
       </SearchClear>
     </>

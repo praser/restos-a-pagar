@@ -21,7 +21,7 @@ import { isNull, first } from 'lodash';
 
 import { useHistory } from 'react-router-dom';
 
-import { SmallButtonPrimary } from 'components/Button';
+import Button from 'components/atoms/Button';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Field, FormGroup, FormRow, Input, Label } from 'components/Form';
 import { Heading, Row } from 'components/Layout';
@@ -275,13 +275,19 @@ const Create = () => {
                   >
                     {({ file }) => (
                       <UploadFile>
-                        <FindFile type="button" onClick={handleOpenDialog}>
+                        <FindFile
+                          small
+                          type="button"
+                          onClick={handleOpenDialog}
+                        >
                           <FontAwesomeIcon icon={faFolderOpen} />
                         </FindFile>
                         <FileName onClick={handleOpenDialog}>
                           {file ? file.name : 'Selecione um arquivo'}
                         </FileName>
                         <RemoveFile
+                          small
+                          danger
                           type="button"
                           onClick={handleRemoveFile}
                           disabled={isNull(state.data)}
@@ -294,9 +300,9 @@ const Create = () => {
                 </FormGroup>
               </FormRow>
               <FormRow>
-                <SmallButtonPrimary type="submit" disabled={isNull(state.data)}>
+                <Button small type="submit" disabled={isNull(state.data)}>
                   <FontAwesomeIcon icon={faSave} /> Salvar
-                </SmallButtonPrimary>
+                </Button>
               </FormRow>
             </form>
           </CardBody>

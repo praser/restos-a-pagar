@@ -4,9 +4,9 @@ import {
   faLongArrowAltLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
+import Button from 'components/atoms/Button';
 import Can from 'components/Can';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Heading, Row } from 'components/Layout';
@@ -52,7 +52,7 @@ const Show = () => {
 
   const handleGoBack = (event: any) => {
     event.preventDefault();
-    history.goBack();
+    // history.goBack();
   };
 
   const fetchData = useCallback(
@@ -84,13 +84,14 @@ const Show = () => {
         <Can
           perform="unlock:download"
           yes={() => (
-            <SmallButtonPrimary
+            <Button
+              small
               as="a"
               href={`${process.env.REACT_APP_RAP_API_URL}/lotes-desbloqueio/download?jwt=asd&loteId=${loteId}`}
             >
               <FontAwesomeIcon icon={faDownload} />
               Download do lote de desbloqueio
-            </SmallButtonPrimary>
+            </Button>
           )}
           data={[]}
         />
@@ -122,10 +123,10 @@ const Show = () => {
               noHeader
               noDataText="Que estranho... Este lote de desbloqueio não deveria conter notas de empenho?"
             />
-            <SmallButtonWarning onClick={handleGoBack}>
+            <Button warning small onClick={handleGoBack}>
               <FontAwesomeIcon icon={faLongArrowAltLeft} />
               Voltar
-            </SmallButtonWarning>
+            </Button>
           </CardBody>
         </Card>
       </Row>

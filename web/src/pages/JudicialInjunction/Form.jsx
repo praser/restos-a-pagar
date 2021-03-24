@@ -11,7 +11,7 @@ import {
   // faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { ErrorMesssage, Field, FormRow, Input } from 'components/Form';
-import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
+import Button from 'components/atoms/Button';
 // import {
 //   FileName,
 //   FindFile,
@@ -133,11 +133,11 @@ const Form = ({ initialValues, onSubmit }) => {
               fileInput.click();
             }}
           >
-            <FindFile type="button">
+            <FindFile small type="button">
               <FontAwesomeIcon icon={faFolderOpen} />
             </FindFile>
             <FileName ref={fileNameRef}>Selecione um arquivo</FileName>
-            <RemoveFile type="button" disabled>
+            <RemoveFile danger small type="button" disabled>
               <FontAwesomeIcon icon={faTrashAlt} />
             </RemoveFile>
             <input
@@ -201,14 +201,14 @@ const Form = ({ initialValues, onSubmit }) => {
       </Row>
 
       <FormRow>
-        <SmallButtonPrimary>
+        <Button small>
           <FontAwesomeIcon icon={faSave} />
           Salvar
-        </SmallButtonPrimary>
-        <SmallButtonWarning onClick={handleGoBack}>
+        </Button>
+        <Button warning small onClick={handleGoBack}>
           <FontAwesomeIcon icon={faLongArrowAltLeft} />
           Voltar
-        </SmallButtonWarning>
+        </Button>
       </FormRow>
     </form>
   );

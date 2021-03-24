@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { SmallButtonPrimary, SmallButtonDanger } from 'components/Button';
+
+import Button from 'components/atoms/Button';
 
 export const UploadFile = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const UploadFile = styled.div`
   width: 100%;
 `;
 
-export const FindFile = styled(SmallButtonPrimary)`
+export const FindFile = styled(Button)`
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   margin-right: 0;
@@ -28,7 +29,7 @@ export const FileName = styled.div`
   cursor: pointer;
 `;
 
-export const RemoveFile = styled(SmallButtonDanger)`
+export const RemoveFile = styled(Button)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin-left: 0;

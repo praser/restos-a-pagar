@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Field, FormRow } from 'components/Form';
-import { SmallButtonPrimary, SmallButtonWarning } from 'components/Button';
+import Button from 'components/atoms/Button';
 
 const validationSchema = Yup.object().shape({
   code: Yup.number()
@@ -58,14 +58,14 @@ const Form = ({ initialValues, onSubmit }) => {
         <Field formik={formik} label="Nome do Gestor" name="managerName" />
       </FormRow>
       <FormRow>
-        <SmallButtonPrimary>
+        <Button small>
           <FontAwesomeIcon icon={faSave} />
           Salvar
-        </SmallButtonPrimary>
-        <SmallButtonWarning onClick={handleGoBack}>
+        </Button>
+        <Button warning small onClick={handleGoBack}>
           <FontAwesomeIcon icon={faLongArrowAltLeft} />
           Voltar
-        </SmallButtonWarning>
+        </Button>
       </FormRow>
     </form>
   );

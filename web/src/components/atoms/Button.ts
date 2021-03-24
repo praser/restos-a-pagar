@@ -105,13 +105,4 @@ const Button = styled.button<IProps>`
   `}
 `;
 
-const ButtonPrimary = styled(Button)``;
-const ButtonDanger = styled(Button)``;
-const ButtonSecondary = styled(Button)``;
-const ButtonWarning = styled(Button)``;
-const SmallButtonPrimary = styled(ButtonPrimary)``;
-const SmallButtonSecondary = styled(ButtonSecondary)``;
-const SmallButtonDanger = styled(ButtonDanger)``;
-const SmallButtonWarning = styled(ButtonWarning)``;
-
 export default Button;

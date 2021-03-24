@@ -8,7 +8,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isUndefined, last } from 'lodash';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
-import { SmallButtonWarning } from 'components/Button';
+import Button from 'components/atoms/Button';
 import Can from 'components/Can';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { DoughnutChart, LineChart } from 'components/Chart';
@@ -115,10 +115,10 @@ const Locks = () => {
       key={1}
       perform="unlock:create"
       yes={() => (
-        <SmallButtonWarning as={Link} to={joinPath(unlockPath, [budgetYear])}>
+        <Button warning small as={Link} to={joinPath(unlockPath, [budgetYear])}>
           <FontAwesomeIcon icon={faUnlock} />
           Lotes de desbloqueio
-        </SmallButtonWarning>
+        </Button>
       )}
     />
   );

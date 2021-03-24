@@ -7,11 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useHistory } from 'react-router-dom';
 import { first, isNull, words } from 'lodash';
-import {
-  SmallButtonPrimary,
-  SmallButtonSecondary,
-  SmallButtonWarning,
-} from 'components/Button';
+import Button from 'components/atoms/Button';
 import Can from 'components/Can';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Heading, Row } from 'components/Layout';
@@ -144,7 +140,9 @@ const List = () => {
             <Can
               perform="judicialInjunction:check"
               yes={() => (
-                <SmallButtonSecondary
+                <Button
+                  secondary
+                  small
                   typeButton
                   onClick={() =>
                     setPromptState(prev => ({
@@ -163,7 +161,7 @@ const List = () => {
                 >
                   <FontAwesomeIcon icon={faCheckCircle} />
                   Realizar ateste
-                </SmallButtonSecondary>
+                </Button>
               )}
             />
           )}
@@ -171,7 +169,9 @@ const List = () => {
             <Can
               perform="unlock:create"
               yes={() => (
-                <SmallButtonWarning
+                <Button
+                  warning
+                  small
                   typeButton
                   onClick={() =>
                     setPromptState(prev => ({
@@ -194,7 +194,7 @@ const List = () => {
                 >
                   <FontAwesomeIcon icon={faUnlock} />
                   Pedir desbloqueio
-                </SmallButtonWarning>
+                </Button>
               )}
             />
           )}
@@ -220,10 +220,10 @@ const List = () => {
             <Can
               perform="judicialInjunction:create"
               yes={() => (
-                <SmallButtonPrimary as={Link} to={createJudicialInjunction}>
+                <Button small as={Link} to={createJudicialInjunction}>
                   <FontAwesomeIcon icon={faPlusCircle} />
                   Cadastrar Liminar
-                </SmallButtonPrimary>
+                </Button>
               )}
             />
           </div>

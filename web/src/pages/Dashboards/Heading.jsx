@@ -4,7 +4,7 @@ import { faDownload, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSVLink } from 'react-csv';
 import { deburr, snakeCase } from 'lodash';
-import { SmallButtonPrimary, SmallButtonSecondary } from 'components/Button';
+import Button from 'components/atoms/Button';
 import { Heading as HeadingSC } from 'components/Layout';
 import { PageTitle } from 'components/Tipography';
 import { handleVisibility } from 'components/Filters/handlers';
@@ -19,7 +19,8 @@ function Heading({ children, data, headers, setState, buttons }) {
         <Can
           perform="dashboard:download"
           yes={() => (
-            <SmallButtonPrimary
+            <Button
+              small
               as={CSVLink}
               data={data}
               separator=";"
@@ -28,16 +29,16 @@ function Heading({ children, data, headers, setState, buttons }) {
             >
               <FontAwesomeIcon icon={faDownload} />
               Download da base csv
-            </SmallButtonPrimary>
+            </Button>
           )}
         />
         <Can
           perform="dashboard:filter"
           yes={() => (
-            <SmallButtonSecondary onClick={() => handleVisibility(setState)}>
+            <Button secondary small onClick={() => handleVisibility(setState)}>
               <FontAwesomeIcon icon={faFilter} />
               Filtros
-            </SmallButtonSecondary>
+            </Button>
           )}
         />
       </div>

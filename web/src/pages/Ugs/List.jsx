@@ -6,11 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import {
-  SmallButtonDanger,
-  SmallButtonPrimary,
-  SmallButtonSecondary,
-} from 'components/Button';
+import Button from 'components/atoms/Button';
 import { Card, CardBody, CardHeader } from 'components/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
@@ -109,27 +105,31 @@ const Ugs = () => {
           <Can
             perform="ugs:update"
             yes={() => (
-              <SmallButtonSecondary
+              <Button
+                secondary
+                small
                 as={Link}
                 to={joinPath(updateUgPath, [row.id])}
               >
                 <FontAwesomeIcon icon={faEdit} />
                 Editar
-              </SmallButtonSecondary>
+              </Button>
             )}
           />
 
           <Can
             perform="ugs:destroy"
             yes={() => (
-              <SmallButtonDanger
+              <Button
+                danger
+                small
                 data-name={row.nome}
                 data-id={row.id}
                 onClick={handleDeleteClick}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
                 Remover
-              </SmallButtonDanger>
+              </Button>
             )}
           />
         </>
@@ -153,10 +153,10 @@ const Ugs = () => {
             <Can
               perform="ugs:create"
               yes={() => (
-                <SmallButtonPrimary as={Link} to={createUgPath}>
+                <Button small as={Link} to={createUgPath}>
                   <FontAwesomeIcon icon={faPlusCircle} />
                   Cadastrar UG
-                </SmallButtonPrimary>
+                </Button>
               )}
             />
           </div>

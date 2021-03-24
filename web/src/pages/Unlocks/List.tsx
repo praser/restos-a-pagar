@@ -10,7 +10,7 @@ import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
 import { useApiRap, useXHR } from 'hooks';
 import { formatISO, getYear } from 'utils/dates';
 import Can from 'components/Can';
-import { SmallButtonSecondary, SmallButtonPrimary } from 'components/Button';
+import Button from 'components/atoms/Button';
 import {
   createUnlockPath,
   joinPath,
@@ -49,12 +49,14 @@ const columns: Array<IColumn> = [
       <Can
         perform="unlock:show"
         yes={() => (
-          <SmallButtonSecondary
+          <Button
+            secondary
+            small
             as={Link}
             to={joinPath(showUnlockPath, [row.ano, row.sequencial])}
           >
             <FontAwesomeIcon icon={faEye} /> ver lote
-          </SmallButtonSecondary>
+          </Button>
         )}
         data={[]}
       />
@@ -98,13 +100,10 @@ const List = () => {
       <Can
         perform="unlock:create"
         yes={() => (
-          <SmallButtonPrimary
-            as={Link}
-            to={joinPath(createUnlockPath, [budgetYear])}
-          >
+          <Button small as={Link} to={joinPath(createUnlockPath, [budgetYear])}>
             <FontAwesomeIcon icon={faPlusCircle} />
             Gerar novo lote de desbloqueio
-          </SmallButtonPrimary>
+          </Button>
         )}
         data={[]}
       />

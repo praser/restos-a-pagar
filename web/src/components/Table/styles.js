@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import DataTable from 'react-data-table-component';
 
-import { SmallButtonSecondary } from '../Button';
+import Button from 'components/atoms/Button';
 
 export const DTable = styled(DataTable)`
   width: calc(${window.innerWidth}px - 20.5rem);
@@ -31,7 +31,7 @@ export const SearchField = styled.input`
   }
 `;
 
-export const SearchClear = styled(SmallButtonSecondary)`
+export const SearchClear = styled(Button)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin-left: 0;
