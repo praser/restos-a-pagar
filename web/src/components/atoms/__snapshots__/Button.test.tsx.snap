@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button atom component is expected to render the component correctly 1`] = `
+<button
+  className="sc-bdfBwQ hXEZTf"
+>
+  Teste
+</button>
+`;
