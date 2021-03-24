@@ -49,6 +49,11 @@
             "App\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "db:migrate": "phinx migrate",
         "db:rollback": "phinx rollback",

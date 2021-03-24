@@ -7,18 +7,13 @@ use Slim\App;
 use Psr\Log\LoggerInterface;
 use Firebase\JWT\JWT;
 
-function joinPaths(string $basePath, string $path): string
-{
-    $sep = '/';
-    return join($sep, array(trim($basePath, $sep), trim($path, $sep)));
-}
-
 return function (App $app) {
     $container = $app->getContainer();
     $logger = $container->get(LoggerInterface::class);
     $basePath = $container->get('settings')['basePath'];
     $authlessPaths = array_map(function ($path) use ($basePath) {
-        return joinPaths($basePath, $path);
+        $sep = '/';
+        return join($sep, array(trim($basePath, $sep), trim($path, $sep)));
     }, ['/info', '/parametros', '/lotes-desbloqueio/download']);
 
     $app->add(function ($request, $handler) {
