@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Button from 'components/atoms/Button';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { DataTable } from 'components/Table';

@@ -8,7 +8,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import Button from 'components/atoms/Button';
 import Can from 'components/Can';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { DataTable, IColumn } from 'components/Table';

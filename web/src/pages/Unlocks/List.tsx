@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { DataTable, IColumn } from 'components/Table';

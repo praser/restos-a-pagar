@@ -10,7 +10,7 @@ import { Bar } from 'react-chartjs-2';
 
 import { useParams } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import ContextInfo from 'components/ContextInfo';

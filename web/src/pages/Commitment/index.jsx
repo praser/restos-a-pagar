@@ -22,7 +22,7 @@ import { isNull, first } from 'lodash';
 import { useHistory } from 'react-router-dom';
 
 import Button from 'components/atoms/Button';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Field, FormGroup, FormRow, Input, Label } from 'components/Form';
 import { Heading, Row } from 'components/Layout';
 import { Context } from 'components/Store';

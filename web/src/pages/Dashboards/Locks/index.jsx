@@ -10,7 +10,7 @@ import { isUndefined, last } from 'lodash';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import Button from 'components/atoms/Button';
 import Can from 'components/Can';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { DoughnutChart, LineChart } from 'components/Chart';
 import ContextInfo from 'components/ContextInfo';
 import { Row } from 'components/Layout';

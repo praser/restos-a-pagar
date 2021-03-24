@@ -2,7 +2,7 @@ import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Layout from 'components/Layout/Internal';
 import { Heading, Row } from 'components/Layout';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { useApiRap, useXHR } from 'hooks';
 import { createUgFail as alertProps, createUgSuccess } from 'utils/messages';
 import { ugPath } from 'utils/paths';

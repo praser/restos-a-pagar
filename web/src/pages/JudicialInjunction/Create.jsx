@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { Context } from 'components/Store';

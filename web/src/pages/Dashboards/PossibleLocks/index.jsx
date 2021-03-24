@@ -4,7 +4,7 @@ import { isNull, isUndefined } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { DataTable } from 'components/Table';

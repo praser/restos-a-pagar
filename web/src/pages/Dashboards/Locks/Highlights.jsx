@@ -7,7 +7,7 @@ import {
   faLock,
   faLockOpen,
 } from '@fortawesome/free-solid-svg-icons';
-import { CardSmallText } from 'components/Card';
+import { CardSmallText } from 'components/atoms/Card';
 import WithZoomHover from 'components/HOC/ZoomHover';
 import Modal from 'components/Modal';
 import DataTable from 'components/Table/DataTable';

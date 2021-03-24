@@ -9,7 +9,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { first, isNull, words } from 'lodash';
 import Button from 'components/atoms/Button';
 import Can from 'components/Can';
-import { Card, CardBody, CardHeader } from 'components/Card';
+import { Card, CardBody, CardHeader } from 'components/atoms/Card';
 import { Heading, Row } from 'components/Layout';
 import Layout from 'components/Layout/Internal';
 import { DataTable } from 'components/Table';
