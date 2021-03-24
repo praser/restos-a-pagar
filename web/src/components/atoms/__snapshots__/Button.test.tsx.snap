@@ -3,7 +3,5 @@
 exports[`Button atom component is expected to render the component correctly 1`] = `
 <button
   className="sc-bdfBwQ hXEZTf"
->
-  Teste
-</button>
+/>
 `;
