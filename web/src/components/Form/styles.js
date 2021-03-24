@@ -5,7 +5,7 @@ export const Select = styled(ReactSelect)`
   margin-bottom: 1rem;
 `;
 
-export const ErrorMesssage = styled.div`
+export const ErrorMessage = styled.div`
   color: #ea4335;
   margin-top: 0.3rem;
 `;

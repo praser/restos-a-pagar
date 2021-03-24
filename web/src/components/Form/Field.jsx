@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMesssage, FormGroup, Input, Label } from './styles';
+import { ErrorMessage, FormGroup, Input, Label } from './styles';
 
 const Field = ({ formik, label, name, type, width, children, ...rest }) => {
   const input = (
@@ -19,7 +19,7 @@ const Field = ({ formik, label, name, type, width, children, ...rest }) => {
       <Label htmlFor={name}>{label}</Label>
       {children || input}
       {formik.touched[name] && formik.errors[name] ? (
-        <ErrorMesssage>{formik.errors[name]}</ErrorMesssage>
+        <ErrorMessage>{formik.errors[name]}</ErrorMessage>
       ) : null}
     </FormGroup>
   );

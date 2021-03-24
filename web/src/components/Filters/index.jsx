@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import { possibleLocksFilters as alertProps } from 'utils/messages';
 import Button from 'components/atoms/Button';
-import { Select } from '../Form';
+import { Select } from 'components/atoms/Form';
 import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
 import { initialState, setDefaults, formatData, getRequests } from './utils';

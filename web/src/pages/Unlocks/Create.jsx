@@ -25,7 +25,7 @@ import { formatCurrency } from 'utils/numbers';
 import { formatDate, isWithinInterval, parseISO } from 'utils/dates';
 
 import Button from 'components/atoms/Button';
-import { FormRow } from 'components/Form';
+import { FormRow } from 'components/atoms/Form';
 import { formatNumeroLoteDesbloqueio } from 'utils/string';
 import { Context } from 'components/Store';
 import { Prompt } from 'components/Modal';

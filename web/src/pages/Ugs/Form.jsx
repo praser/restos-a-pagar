@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft, faSave } from '@fortawesome/free-solid-svg-icons';
-import { Field, FormRow } from 'components/Form';
+import { FormRow } from 'components/atoms/Form';
+import { Field } from 'components/Form';
 import Button from 'components/atoms/Button';
 
 const validationSchema = Yup.object().shape({

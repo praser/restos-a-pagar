@@ -10,7 +10,8 @@ import {
   faSave,
   // faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { ErrorMesssage, Field, FormRow, Input } from 'components/Form';
+import { ErrorMessage, FormRow, Input } from 'components/atoms/Form';
+import { Field } from 'components/Form';
 import Button from 'components/atoms/Button';
 // import {
 //   FileName,
@@ -196,7 +197,7 @@ const Form = ({ initialValues, onSubmit }) => {
       </FormRow>
       <Row>
         {formik.touched.contracts && formik.errors.contracts ? (
-          <ErrorMesssage>{formik.errors.contracts}</ErrorMesssage>
+          <ErrorMessage>{formik.errors.contracts}</ErrorMessage>
         ) : null}
       </Row>
 
