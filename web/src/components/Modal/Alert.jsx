@@ -1,12 +1,12 @@
 import React from 'react';
+import Button from 'components/atoms/Button';
 import Layout from './Layout';
-import { ButtonPrimary } from '../Button';
 
 const Alert = ({ title, text, onConfirm, visible }) => {
   const confirmBtn = (
-    <ButtonPrimary onClick={onConfirm} key={0}>
+    <Button onClick={onConfirm} key={0}>
       Ok
-    </ButtonPrimary>
+    </Button>
   );
 
   return (

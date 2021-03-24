@@ -4,7 +4,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
 import { possibleLocksFilters as alertProps } from 'utils/messages';
-import { ButtonPrimary } from '../Button';
+import Button from 'components/atoms/Button';
 import { Select } from '../Form';
 import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
@@ -89,10 +89,10 @@ const Filters = ({ visible, setState: setParentState }) => {
       <Can
         perform="dashboard:filter"
         yes={() => (
-          <ButtonPrimary onClick={() => handleClick(setParentState, state)}>
+          <Button onClick={() => handleClick(setParentState, state)}>
             <FontAwesomeIcon icon={faCheckCircle} />
             Aplicar filtros
-          </ButtonPrimary>
+          </Button>
         )}
       />
     </Modal>

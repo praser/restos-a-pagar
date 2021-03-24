@@ -1,6 +1,6 @@
 import React from 'react';
+import Button from 'components/atoms/Button';
 import Layout from './Layout';
-import { ButtonPrimary, ButtonSecondary } from '../Button';
 
 const Prompt = ({
   title,
@@ -11,15 +11,15 @@ const Prompt = ({
   confirmButtonText,
 }) => {
   const cancelBtn = (
-    <ButtonSecondary onClick={onCancel} key={1}>
+    <Button secondary onClick={onCancel} key={1}>
       Cancelar
-    </ButtonSecondary>
+    </Button>
   );
 
   const confirmBtn = (
-    <ButtonPrimary onClick={onConfirm} key={0}>
+    <Button onClick={onConfirm} key={0}>
       {confirmButtonText || 'Ok'}
-    </ButtonPrimary>
+    </Button>
   );
 
   return (
