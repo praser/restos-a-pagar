@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardHeader atom component is expected to render the component correctly 1`] = `
+<div
+  className="sc-bdfBwQ hVynvs"
+/>
+`;
