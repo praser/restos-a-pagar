@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Button from 'components/atoms/Button';
+
 import Layout from './Layout';
 
 const Alert = ({ title, text, onConfirm, visible }) => {

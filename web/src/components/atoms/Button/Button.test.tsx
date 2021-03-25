@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react';
 
-import Button from 'components/atoms/Button';
+import Button from './Button';
 
 describe('Button atom component', () => {
   it('is expected to render the component correctly', () => {
