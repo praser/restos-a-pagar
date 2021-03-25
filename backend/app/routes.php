@@ -30,7 +30,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 return function (App $app) {
-    $app->options('/{routes:.+}', function ($request, $response, $args) {
+    $app->options('/{routes:.+}', function (Request $request, Response $response, $args) {
         return $response;
     });
 
@@ -102,7 +102,8 @@ return function (App $app) {
         $group->get('/download', LoteDesbloqueioDownloadController::class . ':show');
         $group->group('/{anoExecucao}', function (Group $subgroup) {
             $subgroup->get('', LotesDesbloqueioController::class . ':index');
-            $subgroup->get('/{sequencial}', LoteDesbloqueioOperacoesController::class . ':index');
+            $subgroup->get('/{sequencial}', LotesDesbloqueioController::class . ':show');
+            $subgroup->get('/{sequencial}/notas-empenho', LoteDesbloqueioOperacoesController::class . ':index');
         });
     });
 };

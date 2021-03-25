@@ -50,6 +50,18 @@ class LotesDesbloqueioController extends ControllerBase
         return $res->withStatus(self::HTTP_OK);
     }
 
+    public function show(Request $req, Response $res, array $args): Response
+    {
+        $anoExecucao = $args['anoExecucao'];
+        $sequencial = $args['sequencial'];
+        $loteDesbloqueio = $this->loteDesbloqueioVwDao->findBy([
+            ['COLUMN' => 'ano', 'VALUE' => $anoExecucao],
+            ['COLUMN' => 'sequencial', 'VALUE' => $sequencial],
+        ]);
+        $res->getBody()->write(json_encode($loteDesbloqueio, JSON_THROW_ON_ERROR, 512));
+        return $res->withStatus(self::HTTP_OK);
+    }
+
     public function create(Request $req, Response $res, array $args): Response
     {
         $token = $this->getToken($req);
