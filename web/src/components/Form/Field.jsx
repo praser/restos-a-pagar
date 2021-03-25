@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage, FormGroup, Input, Label } from './styles';
+import { ErrorMessage, FormGroup, Input, Label } from 'components/atoms/Form';
 
 const Field = ({ formik, label, name, type, width, children, ...rest }) => {
   const input = (
