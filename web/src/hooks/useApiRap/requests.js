@@ -119,8 +119,11 @@ const requests = async () => {
   const getLotesDesbloqueio = async anoExecucao =>
     client.get(`/lotes-desbloqueio/${anoExecucao}`);
 
+  const getLoteDesbloqueio = async (anoExecucao, sequencial) =>
+    client.get(`/lotes-desbloqueio/${anoExecucao}/${sequencial}`);
+
   const getEmpenhosLoteDesbloqueio = async (anoExecucao, sequencial) =>
-    client.get(`lotes-desbloqueio/${anoExecucao}/${sequencial}`);
+    client.get(`lotes-desbloqueio/${anoExecucao}/${sequencial}/notas-empenho`);
 
   return {
     deleteUg,
@@ -132,6 +135,7 @@ const requests = async () => {
     getEstatisticasBloqueioSnapshot,
     getGestores,
     getLiminares,
+    getLoteDesbloqueio,
     getLotesDesbloqueio,
     getOperacoes,
     getOperacoesBloqueio,

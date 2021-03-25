@@ -48,6 +48,7 @@ const Show = () => {
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const [empenhos, setEmpenhos] = useState([]);
+  const [loteDesbloqueio, setLoteDesbloqueio] = useState(null);
   const history = useHistory();
 
   const handleGoBack = (event: any) => {
@@ -60,12 +61,15 @@ const Show = () => {
       const api = await apiRap;
 
       const success = (res: Array<IResponse>) => {
-        const { data } = res[0];
-        setEmpenhos(data);
+        const { data: empenhosData } = res[0];
+        const { data: loteDesbloqueioData } = res[1];
+        setEmpenhos(empenhosData);
+        setLoteDesbloqueio(loteDesbloqueioData);
       };
 
       const requests = [
         api.requests.getEmpenhosLoteDesbloqueio(anoExecucao, sequencial),
+        api.requests.getLoteDesbloqueio(anoExecucao, sequencial),
       ];
 
       doAllXhrRequest({ alertProps, requests, success });
@@ -77,25 +81,28 @@ const Show = () => {
     fetchData(executionYear, sequence);
   }, [executionYear, sequence]);
 
-  const downloadButton = (listaEmpenhos: any) => {
-    if (!isEmpty(listaEmpenhos)) {
-      const loteId = listaEmpenhos[0].loteDesbloqueioId;
-      return (
-        <Can
-          perform="unlock:download"
-          yes={() => (
-            <SmallButtonPrimary
-              as="a"
-              href={`${process.env.REACT_APP_RAP_API_URL}/lotes-desbloqueio/download?jwt=asd&loteId=${loteId}`}
-            >
-              <FontAwesomeIcon icon={faDownload} />
-              Download do lote de desbloqueio
-            </SmallButtonPrimary>
-          )}
-          data={[]}
-        />
-      );
+  const downloadButton = (loteDesbloqueio: any) => {
+    if (loteDesbloqueio) {
+      if (loteDesbloqueio.filePath) {
+        return (
+          <Can
+            perform="unlock:download"
+            yes={() => (
+              <SmallButtonPrimary
+                as="a"
+                href={`${process.env.REACT_APP_RAP_API_URL}/lotes-desbloqueio/download?jwt=asd&loteId=${loteDesbloqueio.id}`}
+              >
+                <FontAwesomeIcon icon={faDownload} />
+                Download do lote de desbloqueio
+              </SmallButtonPrimary>
+            )}
+            data={[]}
+          />
+        );
+      }
+      return null;
     }
+
     return null;
   };
 
@@ -106,7 +113,7 @@ const Show = () => {
           <PageTitle>
             Lote de desbloqueio {sequence}/{executionYear}
           </PageTitle>
-          {downloadButton(empenhos)}
+          {downloadButton(loteDesbloqueio)}
         </Heading>
       </Row>
       <Row>
