@@ -30,6 +30,8 @@
         "slim/psr7": "^0.5",
         "slim/slim": "^4.1",
         "tuupola/slim-jwt-auth": "^3.4",
+        "twig/extra-bundle": "^3.3",
+        "twig/intl-extra": "^3.3",
         "twig/twig": "^3.0",
         "vlucas/phpdotenv": "^4.1"
     },

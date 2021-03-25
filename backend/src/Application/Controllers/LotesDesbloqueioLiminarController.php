@@ -143,6 +143,7 @@ class LotesDesbloqueioLiminarController extends ControllerBase
                         'gerenteExecutivoOperacao' => $this->gerentes['gerenteExecutivoOperacao'],
                         'gerenciaNacionalOperacao' => $this->gerentes['gerenciaNacionalOperacao'],
                         'gerenteNacionalOperacao' => $this->gerentes['gerenteNacionalOperacao'],
+                        'operacoes' => $operacoes,
                     ]
                 );
 
