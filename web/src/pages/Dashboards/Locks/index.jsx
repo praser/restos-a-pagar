@@ -110,10 +110,10 @@ const Locks = () => {
 
   const { estatisticas, snapshots } = state;
 
-  const solicitarDesbloqueioButton = (
+  const desbloqueioButton = (
     <Can
       key={1}
-      perform="unlock:create"
+      perform="unlock:list"
       yes={() => (
         <SmallButtonWarning as={Link} to={joinPath(unlockPath, [budgetYear])}>
           <FontAwesomeIcon icon={faUnlock} />
@@ -136,7 +136,7 @@ const Locks = () => {
             data={dataState.operacoesCsv}
             headers={csvHeaders}
             setState={setState}
-            buttons={[solicitarDesbloqueioButton]}
+            buttons={[desbloqueioButton]}
           >
             Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
           </Heading>

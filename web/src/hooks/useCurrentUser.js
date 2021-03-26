@@ -37,6 +37,7 @@ const format = user => {
 const getRole = lotation => {
   const admin = [5385];
   const manager = [5916, 5469, 5382, 5054, 5669, 5381];
+  const financial = [5445];
   const attendance = [
     6407,
     6408,
@@ -116,6 +117,7 @@ const getRole = lotation => {
   if (admin.includes(lotation)) return 'admin';
   if (manager.includes(lotation)) return 'manager';
   if (attendance.includes(lotation)) return 'attendance';
+  if (financial.includes(lotation)) return 'financial';
   return 'visitor';
 };
 

@@ -46,6 +46,22 @@ const rules = {
     ],
   },
 
+  financial: {
+    static: [
+      'ugs:list',
+      'error:show',
+      'dashboards:show',
+      'dashboard:download',
+      'dashboard:filter',
+      'dashboard:filter:unidade',
+      'dashboard:filter:gestor',
+      'dashboard:filter:situacao',
+      'unlock:download',
+      'unlock:list',
+      'unlock:show',
+    ],
+  },
+
   visitor: {
     static: ['session:login'],
   },
