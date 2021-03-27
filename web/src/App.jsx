@@ -4,7 +4,7 @@ import { defaults } from 'react-chartjs-2';
 import ptBR from 'date-fns/locale/pt-BR';
 import Login from 'components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { isNull } from 'lodash';
+import { isNull, isFunction } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 
 import { Alert, Loading } from 'components/Modal';
@@ -83,7 +83,7 @@ const App = () => {
   };
 
   const { loading, alert } = context;
-  const { visible, title, text } = alert;
+  const { visible, title, text, onConfirm } = alert;
 
   if (currentUser && params) {
     return (
@@ -94,7 +94,12 @@ const App = () => {
           visible={visible}
           title={title}
           text={text}
-          onConfirm={handleAlertConfirm}
+          onConfirm={e => {
+            if (isFunction(onConfirm)) {
+              onConfirm(e);
+            }
+            handleAlertConfirm(e);
+          }}
         />
         <Container>
           <Router basename={process.env.REACT_APP_ROUTER_BASE}>

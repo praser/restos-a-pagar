@@ -114,11 +114,17 @@ const Create = () => {
         const { sequencial, ano, ce, notasEmpenho: empenhos } = res[0].data;
         const args = {
           lote: formatNumeroLoteDesbloqueio(sequencial, ano),
-          quantidade: empenhos.length,
+          quantidade: empenhos,
           ce,
         };
 
-        const message = createUnlockSuccess(args);
+        const message = {
+          ...createUnlockSuccess(args),
+          onConfirm: () => {
+            const path = `/safras/${ano}/desbloqueios/${sequencial}`;
+            history.push(path);
+          },
+        };
         dispatch({
           type: 'SET_ALERT',
           payload: { visible: true, ...message },
