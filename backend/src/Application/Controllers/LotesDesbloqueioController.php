@@ -8,6 +8,7 @@ use App\Domain\LoteDesbloqueioDomain;
 use App\Domain\LoteDesbloqueioOperacaoDomain;
 use App\Persistence\LoteDesbloqueioDao;
 use App\Persistence\LoteDesbloqueioVwDao;
+use App\Persistence\LoteDesbloqueioFileDao;
 use App\Persistence\LoteDesbloqueioOperacaoDao;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -23,6 +24,7 @@ class LotesDesbloqueioController extends ControllerBase
     private $dao;
     private $loteDesbloqueioVwDao;
     private $loteDesbloqueioOperacaoDao;
+    private $loteDesbloqueioFileDao;
     private $expedienteGovService;
     private $mail;
     private $templates;
@@ -34,6 +36,7 @@ class LotesDesbloqueioController extends ControllerBase
         $this->dao = new LoteDesbloqueioDao($container);
         $this->loteDesbloqueioVwDao = new LoteDesbloqueioVwDao($container);
         $this->loteDesbloqueioOperacaoDao = new LoteDesbloqueioOperacaoDao($container);
+        $this->loteDesbloqueioFileDao = new LoteDesbloqueioFileDao($container);
         $this->expedienteGovService = new ExpedienteGovService($container);
         $this->mail = $container->get('mailer');
         $this->templates = $container->get('templates');
@@ -155,13 +158,22 @@ class LotesDesbloqueioController extends ControllerBase
                 $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
                 $delimiter = ';';
 
+                $operacoesArquivo = array_map(
+                    function ($op) {
+                        return $op->jsonSerialize();
+                    },
+                    $this->loteDesbloqueioFileDao->findAllBy([
+                        ['COLUMN' => 'id', 'VALUE' => $lote->getId()]
+                    ])
+                );
+
                 if (!file_exists($folder) && !mkdir($folder, 777, true) && !is_dir($folder)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $folder));
                 }
 
                 $file = fopen($csvFilePath, 'wb');
-                fputcsv($file, array_keys((array) $operacoes[0]), $delimiter);
-                foreach ($operacoes as $param) {
+                fputcsv($file, array_keys((array) $operacoesArquivo[0]), $delimiter);
+                foreach ($operacoesArquivo as $param) {
                     fwrite($file, implode($delimiter, $param) . PHP_EOL);
                 }
                 fclose($file);
