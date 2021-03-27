@@ -16,6 +16,7 @@ class ParametrosTipoResultadoPrimarioNaoParticipamentesSeeder extends AbstractSe
     {
         $data = [
             [ 'id' => 1, 'parametroId' => 1, 'tipoResultadoPrimarioId' => 4 ],
+            ['id' => 2, 'parametroId' => 2, 'tipoResultadoPrimarioId' => 4],
         ];
 
         $this->execute('SET IDENTITY_INSERT dbo.parametros_tipo_resultado_primario_nao_participante ON');

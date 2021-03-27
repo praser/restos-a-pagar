@@ -16,6 +16,7 @@ class ParametrosUgNaoParticipamentesSeeder extends AbstractSeed
     {
         $data = [
             [ 'id' => 1, 'parametroId' => 1, 'ugId' => 11 ],
+            ['id' => 2, 'parametroId' => 2, 'ugId' => 11],
         ];
 
         $this->execute('SET IDENTITY_INSERT dbo.parametros_ug_nao_participantes ON');
