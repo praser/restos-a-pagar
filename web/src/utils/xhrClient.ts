@@ -6,7 +6,7 @@ export interface IResponse {
   data: any;
 }
 
-const timeout = 10000;
+const timeout = 0;
 const headers = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
