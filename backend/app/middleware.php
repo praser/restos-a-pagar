@@ -13,7 +13,8 @@ return function (App $app) {
     $basePath = $container->get('settings')['basePath'];
     $authlessPaths = array_map(function ($path) use ($basePath) {
         $sep = '/';
-        return join($sep, array(trim($basePath, $sep), trim($path, $sep)));
+        $path = $sep . join($sep, array(trim($basePath, $sep), trim($path, $sep)));
+        return $path;
     }, ['/info', '/parametros', '/lotes-desbloqueio/download']);
 
     $app->add(function ($request, $handler) {
