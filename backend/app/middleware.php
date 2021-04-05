@@ -17,9 +17,6 @@ return function (App $app) {
         return $path;
     }, ['/info', '/parametros', '/lotes-desbloqueio/download']);
 
-    print_r($authlessPaths);
-    die();
-
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
         return $response
