@@ -58,7 +58,7 @@ export const operacoesColumns = [
     selector: 'valorRepasse',
     sortable: true,
     format: row => {
-      return formatCurrency(row.valorDesembolsado);
+      return formatCurrency(row.valorRepasse);
     },
   },
   {
