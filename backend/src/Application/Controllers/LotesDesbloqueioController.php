@@ -151,8 +151,6 @@ class LotesDesbloqueioController extends ControllerBase
                     ]
                 );
 
-                $this->mail->send();
-
                 // Gerar o arquivo csv
                 $folder = realpath($this->container->get('settings')['lotesDesbloqueioFolder'] . "/./{$lote->getAno()}/");
                 $csvFilePath = "{$folder}/{$lote->getAno()}_{$lote->getSequencial()}.csv";
@@ -181,6 +179,9 @@ class LotesDesbloqueioController extends ControllerBase
                 $lote->setFilePath($csvFilePath);
                 $lote->setChecksum(md5_file($csvFilePath));
                 $this->dao->update($lote);
+
+                $this->mail->AddAttachment($csvFilePath, '', 'base64', 'text/csv');
+                $this->mail->send();
 
                 $connection->commit();
             }
