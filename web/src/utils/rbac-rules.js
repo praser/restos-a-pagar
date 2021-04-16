@@ -39,6 +39,7 @@ const rules = {
       'dashboards:show',
       'dashboard:download',
       'dashboard:filter',
+      'dashboard:filter:unidade',
       'dashboard:filter:gestor',
       'dashboard:filter:situacao',
       'judicialInjunction:create',
