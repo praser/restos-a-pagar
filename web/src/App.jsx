@@ -4,7 +4,7 @@ import { defaults } from 'react-chartjs-2';
 import ptBR from 'date-fns/locale/pt-BR';
 import Login from 'components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { isNull } from 'lodash';
+import { isNull, isFunction } from 'lodash';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 
 import { Alert, Loading } from 'components/Modal';
@@ -19,6 +19,8 @@ import {
   UgList,
   UgUpdate,
   UnlockCreate,
+  UnlockList,
+  UnlockShow,
   UpdateCommitment,
 } from 'pages';
 
@@ -62,7 +64,7 @@ const App = () => {
 
   useEffect(() => {
     fetchParams();
-  }, [fetchParams, currentUser]);
+  }, [fetchParams]);
 
   const handleAlertConfirm = event => {
     event.preventDefault();
@@ -81,7 +83,7 @@ const App = () => {
   };
 
   const { loading, alert } = context;
-  const { visible, title, text } = alert;
+  const { visible, title, text, onConfirm } = alert;
 
   if (currentUser && params) {
     return (
@@ -92,7 +94,12 @@ const App = () => {
           visible={visible}
           title={title}
           text={text}
-          onConfirm={handleAlertConfirm}
+          onConfirm={e => {
+            if (isFunction(onConfirm)) {
+              onConfirm(e);
+            }
+            handleAlertConfirm(e);
+          }}
         />
         <Container>
           <Router basename={process.env.REACT_APP_ROUTER_BASE}>
@@ -160,9 +167,21 @@ const App = () => {
                 exact
               />
               <PrivateRoute
+                component={UnlockList}
+                path={paths.unlockPath}
+                perform="unlock:list"
+                exact
+              />
+              <PrivateRoute
                 component={UnlockCreate}
                 path={paths.createUnlockPath}
                 perform="unlock:create"
+                exact
+              />
+              <PrivateRoute
+                component={UnlockShow}
+                path={paths.showUnlockPath}
+                perform="unlock:show"
                 exact
               />
               <PrivateRoute

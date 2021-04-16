@@ -3,8 +3,10 @@
 /vendor/
 /var/cache/*
 /var/upload/*
+/var/lotes-desbloqueio/*
 /logs/*
 !/logs/README.md
 .env
 tests
 phpstan.neon
+*.zip

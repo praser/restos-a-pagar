@@ -10,7 +10,12 @@ use Firebase\JWT\JWT;
 return function (App $app) {
     $container = $app->getContainer();
     $logger = $container->get(LoggerInterface::class);
-    $authlessPaths = ['/info', '/parametros'];
+    $basePath = $container->get('settings')['basePath'];
+    $authlessPaths = array_map(function ($path) use ($basePath) {
+        $sep = '/';
+        $path = str_replace($sep . $sep, $sep, $sep . join($sep, array(trim($basePath, $sep), trim($path, $sep))));
+        return $path;
+    }, ['/info', '/parametros', '/lotes-desbloqueio/download']);
 
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
@@ -50,7 +55,7 @@ return function (App $app) {
                 'token' => $jwt
             );
 
-            $request->withAttribute('user', $attributes);
+            return $handler->handle($request->withAttribute('user', $attributes));
         }
         return $handler->handle($request);
     });

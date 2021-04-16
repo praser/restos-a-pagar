@@ -24,7 +24,7 @@ services:
       AUTH_SECRET: secret
       AUTH_EXPIRATION: 21600
       AUTH_ISSUER: SUDEP
-    image: praser/api-autenticacao
+    image: praser/api-autenticacao:1.2.0
     networks:
       - restos-a-pagar-net
     ports:

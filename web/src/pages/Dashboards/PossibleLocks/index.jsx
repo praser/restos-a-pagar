@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { first, isNull, isUndefined } from 'lodash';
+import { isNull, isUndefined } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +14,6 @@ import { parseISO } from 'utils/dates';
 import { possibleLocks as alertProps } from 'utils/messages';
 
 import Filters from 'components/Filters';
-import { calcExecutionYear } from 'components/Filters/utils';
 
 import { LineChart, BarChart } from 'components/Chart';
 import ContextInfo from 'components/ContextInfo';
@@ -41,11 +40,14 @@ const PossibleLocks = () => {
   const apiRap = useApiRap();
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
-  const { status } = context;
+  const { status, params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const { anoExecucao } = param || {};
 
-  const executionYear = calcExecutionYear(budgetYear);
   const reqArgs = {
-    anoExecucao: executionYear,
+    anoExecucao,
     tipoInfo: tipoInfo.value,
     unidadeId: unidade.value,
     siglaGestor: gestor.value,
@@ -77,13 +79,9 @@ const PossibleLocks = () => {
   }, []);
 
   useEffect(() => {
-    fetchData(reqArgs);
-  }, [tipoInfo, unidade, gestor, executionYear]);
+    if (anoExecucao) fetchData(reqArgs);
+  }, [tipoInfo, unidade, gestor, anoExecucao]);
 
-  const { params } = context;
-  const param = first(
-    params.filter(item => item.anoOrcamentario === parseInt(budgetYear, 10)),
-  );
   const { estatisticas } = state;
 
   const columns = [...operacoesColumns];
@@ -170,7 +168,7 @@ const PossibleLocks = () => {
         <Placeholder src={wellDoneImage}>
           <Description style={{ marginTop: '30px' }}>
             {`Bom trabalho! Você não tem nenhuma operação para se preocupar durante
-            o ciclo de pré-bloqueio do RAP ${executionYear}. Pode comemorar.`}
+            o ciclo de pré-bloqueio do RAP ${anoExecucao}. Pode comemorar.`}
           </Description>
         </Placeholder>
       )}

@@ -17,6 +17,7 @@ return function (ContainerBuilder $containerBuilder) {
         'settings' => [
             'displayErrorDetails' => getenv('ENV') === 'DES', // Should be set to false in production
             'uploadFolder' => __DIR__ . '/../' . getenv('UPLOAD_FOLDER'),
+            'lotesDesbloqueioFolder' => __DIR__ . '/../' . getenv('LOTES_DESBLOQUEIO_FOLDER'),
             'logger' => [
                 'name' => 'api-restos-a-pagar',
                 'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
@@ -56,6 +57,7 @@ return function (ContainerBuilder $containerBuilder) {
             ],
             'templates' => __DIR__ . '/../src/Views/Mail',
             'cache' => __DIR__ . '/../var/cache/templates',
+            'basePath' => getenv('BASE_PATH'),
         ],
     ]);
 };

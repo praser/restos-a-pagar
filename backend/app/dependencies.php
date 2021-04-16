@@ -14,6 +14,7 @@ use Psr\Log\LoggerInterface;
 use PHPMailer\PHPMailer\PHPMailer as Mailer;
 use Twig\Loader\FilesystemLoader as TemplateLoader;
 use Twig\Environment as Template;
+use Twig\Extra\Intl\IntlExtension;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -68,6 +69,7 @@ return function (ContainerBuilder $containerBuilder) {
             $template = new Template($loader, [
                 'cache' => $c->get('settings')['cache'],
             ]);
+            $template->addExtension(new IntlExtension());
 
             return $template;
         }

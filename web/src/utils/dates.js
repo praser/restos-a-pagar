@@ -6,32 +6,33 @@ import {
   startOfYear,
   parse,
   getYear as getYearDateFns,
+  isWithinInterval as isWithinIntervalDateFns,
 } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 const dateFormat = 'dd/MM/yyyy';
 
-export const parseISO = isoDate => {
+const parseISO = isoDate => {
   const date = dParseISO(isoDate);
   return isValid(date) ? date : null;
 };
 
-export const formatDate = date => {
+const formatDate = date => {
   if (!isValid(date)) return null;
   return format(date, dateFormat, { locale: ptBR });
 };
 
-export const formatISO = isoDate => {
+const formatISO = isoDate => {
   const date = parseISO(isoDate);
   return formatDate(date);
 };
 
-export const remainingDays = targetDate => {
+const remainingDays = targetDate => {
   const days = differenceInDays(targetDate, new Date());
   return days > 0 ? days : 0;
 };
 
-export const percentElapsedTime = (
+const percentElapsedTime = (
   targetDate,
   startDate = startOfYear(targetDate),
 ) => {
@@ -40,15 +41,40 @@ export const percentElapsedTime = (
   return 100 - (elapsedDays / daysBetween) * 100;
 };
 
-export const monthNameShort = date => {
+const monthNameShort = date => {
   if (!isValid(date)) return null;
   return format(date, 'MMM', { locale: ptBR });
 };
 
-export const parseDate = (dateString, formatStr = dateFormat) => {
+const parseDate = (dateString, formatStr = dateFormat) => {
   return parse(dateString, formatStr, new Date());
 };
 
-export const getYear = date => getYearDateFns(date);
+const getYear = date => getYearDateFns(date);
 
-export const formatAsISO = date => format(date, 'yyyy-MM-dd');
+const formatAsISO = date => format(date, 'yyyy-MM-dd');
+
+const isWithinInterval = (date, start, end) => {
+  if (date && start && end) {
+    const range = {
+      start: parseISO(start),
+      end: parseISO(end),
+    };
+
+    return isWithinIntervalDateFns(date, range);
+  }
+  return false;
+};
+
+export {
+  parseISO,
+  formatDate,
+  formatISO,
+  remainingDays,
+  percentElapsedTime,
+  monthNameShort,
+  parseDate,
+  getYear,
+  formatAsISO,
+  isWithinInterval,
+};

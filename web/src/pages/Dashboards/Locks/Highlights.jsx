@@ -26,7 +26,7 @@ import {
   formatCurrencyShort,
   formatInteger,
 } from 'utils/numbers';
-import { loadLotesDesbloqueioFail as alertProps } from 'utils/messages';
+import { loadEmpenhosFail as alertProps } from 'utils/messages';
 import { isEmpty } from 'utils/arrays';
 
 const defaultEstatisticas = {

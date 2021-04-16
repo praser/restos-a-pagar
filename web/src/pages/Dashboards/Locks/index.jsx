@@ -4,7 +4,7 @@ import {
   faThumbsUp,
   faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isUndefined, last } from 'lodash';
 import { useApiRap, useCurrentUser, useXHR } from 'hooks';
@@ -19,10 +19,9 @@ import { DataTable } from 'components/Table';
 import { primary, danger } from 'utils/colors';
 import { formatDate, parseISO } from 'utils/dates';
 import { locks as alertProps } from 'utils/messages';
-import { createUnlockPath, joinPath } from 'utils/paths';
+import { unlockPath, joinPath } from 'utils/paths';
 import Layout from 'components/Layout/Internal';
 import Filters from 'components/Filters';
-import { calcExecutionYear } from 'components/Filters/utils';
 import { Description } from 'pages/Error/styles';
 import Placeholder from 'components/Placeholder';
 import wellDoneImage from 'assets/undraw_well_done_i2wr.svg';
@@ -45,7 +44,11 @@ const Locks = () => {
   const { tipoInfo, unidade, gestor } = state;
   const { doAllXhrRequest } = useXHR();
   const columns = [...operacoesColumns];
-  const { status } = context;
+  const { status, params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const { anoExecucao } = param || {};
 
   const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} color={primary} />;
   const thumbsDown = <FontAwesomeIcon icon={faThumbsDown} color={danger} />;
@@ -63,7 +66,7 @@ const Locks = () => {
     ],
   );
 
-  useEffect(() => {
+  const fectchData = useCallback(async args => {
     apiRap.then(api => {
       const success = res => {
         const { estatisticas } = res[0].data;
@@ -78,13 +81,6 @@ const Locks = () => {
         }));
       };
 
-      const args = {
-        tipoInfo: tipoInfo.value,
-        anoExecucao: calcExecutionYear(budgetYear),
-        unidadeId: unidade.value || '',
-        siglaGestor: gestor.value || '',
-      };
-
       const requests = [
         api.requests.getEstatisticasBloqueio(args),
         api.requests.getEstatisticasBloqueioSnapshot(args),
@@ -97,25 +93,31 @@ const Locks = () => {
         success,
       });
     });
-  }, [tipoInfo, unidade, gestor]);
+  }, []);
+
+  useEffect(() => {
+    if (anoExecucao) {
+      const args = {
+        tipoInfo: tipoInfo.value,
+        anoExecucao,
+        unidadeId: unidade.value || '',
+        siglaGestor: gestor.value || '',
+      };
+
+      fectchData(args);
+    }
+  }, [tipoInfo, unidade, gestor, anoExecucao]);
 
   const { estatisticas, snapshots } = state;
-  const { params } = context;
-  const [param] = params.filter(
-    item => item.anoOrcamentario === parseInt(budgetYear, 10),
-  );
 
-  const solicitarDesbloqueioButton = (
+  const desbloqueioButton = (
     <Can
       key={1}
-      perform="unlock:create"
+      perform="unlock:list"
       yes={() => (
-        <SmallButtonWarning
-          as={Link}
-          to={joinPath(createUnlockPath, [budgetYear])}
-        >
+        <SmallButtonWarning as={Link} to={joinPath(unlockPath, [budgetYear])}>
           <FontAwesomeIcon icon={faUnlock} />
-          Gerar lote de desbloqueio
+          Lotes de desbloqueio
         </SmallButtonWarning>
       )}
     />
@@ -134,7 +136,7 @@ const Locks = () => {
             data={dataState.operacoesCsv}
             headers={csvHeaders}
             setState={setState}
-            buttons={[solicitarDesbloqueioButton]}
+            buttons={[desbloqueioButton]}
           >
             Bloqueios da safra {budgetYear} - {physicalLotationAbbreviation}
           </Heading>

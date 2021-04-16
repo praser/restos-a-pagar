@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Modal from '../Modal';
 import { handleClick, handleVisibility } from './handlers';
 import { initialState, setDefaults, formatData, getRequests } from './utils';
 import Can from '../Can';
+import { Context } from '../Store';
 
 const Filters = ({ visible, setState: setParentState }) => {
   const { budgetYear } = useParams();
@@ -17,30 +18,33 @@ const Filters = ({ visible, setState: setParentState }) => {
   const apiRap = useApiRap();
   const { doAllXhrRequest } = useXHR();
   const currentUser = useCurrentUser();
+  const [context] = useContext(Context);
+  const { params } = context;
+  const [param] = params.filter(
+    item => item.anoOrcamentario === parseInt(budgetYear, 10),
+  );
+  const { anoExecucao } = param || {};
 
-  const fetchData = () => {
-    return apiRap
-      .then(api => {
-        setState(prev => ({ ...prev, ...setDefaults(api, currentUser) }));
-        return api;
-      })
-      .then(api => {
-        const success = res => {
-          const data = formatData(api, res);
-          setState(prev => ({ ...prev, ...data }));
-        };
+  const fetchData = useCallback(async anoExecucao_ => {
+    const api = await apiRap;
 
-        return doAllXhrRequest({
-          requests: getRequests(api, budgetYear),
-          alertProps,
-          success,
-        });
-      });
-  };
+    setState(prev => ({ ...prev, ...setDefaults(api, currentUser) }));
+
+    const success = res => {
+      const data = formatData(api, res);
+      setState(prev => ({ ...prev, ...data }));
+    };
+
+    doAllXhrRequest({
+      requests: getRequests(api, anoExecucao_),
+      alertProps,
+      success,
+    });
+  }, []);
 
   useEffect(() => {
-    fetchData({ apiRap, budgetYear, setState });
-  }, [budgetYear]);
+    if (anoExecucao) fetchData(anoExecucao);
+  }, [anoExecucao]);
 
   return (
     <Modal
