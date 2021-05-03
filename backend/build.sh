@@ -44,7 +44,7 @@ rm -rf \
   src/Infrastructure/Database/Seeds
 
 # compactar
-zip "restos-a-pagar-backend-$tag.zip" ./**/*
+zip -r "restos-a-pagar-backend-$tag.zip" .
 
 # remover a pasta da build
 cd .. && mv build/*.zip . && rm -rf build
