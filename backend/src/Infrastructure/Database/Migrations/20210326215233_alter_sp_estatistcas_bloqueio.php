@@ -59,7 +59,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
             GROUP BY
                 a.dataReferencia
             INSERT INTO @solicitacoes
-            SELECT 
+            SELECT
                 dataSolicitacao,
                 SUM(quantidadeOperacoes) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeOperacoes,
                 SUM(quantidadeDocumentos) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeDocumentos,
@@ -108,7 +108,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
                     CONVERT(DATE, a.created_at)
             ) AS a
             INSERT INTO @desbloqueios
-            SELECT 
+            SELECT
                 a.dataDesbloqueio,
                 b.quantidadeOperacoes,
                 SUM(quantidadeDocumentos) OVER (ORDER BY a.dataDesbloqueio ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeDocumentos,
@@ -172,7 +172,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
                             operacaoId,
                             CONVERT(DATE, min(updated_at)) as updated_at
                         FROM
-                            dbo.lote_desbloqueio_operacoes 
+                            dbo.lote_desbloqueio_operacoes
                         GROUP BY operacaoId
                     ) as h0
                     GROUP BY updated_at
@@ -296,7 +296,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
             GROUP BY
                 a.dataReferencia
             INSERT INTO @solicitacoes
-            SELECT 
+            SELECT
                 dataSolicitacao,
                 SUM(quantidadeOperacoes) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeOperacoes,
                 SUM(quantidadeDocumentos) OVER (ORDER BY dataSolicitacao ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeDocumentos,
@@ -345,7 +345,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
                     CONVERT(DATE, a.created_at)
             ) AS a
             INSERT INTO @desbloqueios
-            SELECT 
+            SELECT
                 a.dataDesbloqueio,
                 b.quantidadeOperacoes,
                 SUM(quantidadeDocumentos) OVER (ORDER BY a.dataDesbloqueio ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS quantidadeDocumentos,
@@ -409,7 +409,7 @@ class AlterSpEstatistcasBloqueio extends AbstractMigration
                             operacaoId,
                             CONVERT(DATE, min(updated_at)) as updated_at
                         FROM
-                            dbo.lote_desbloqueio_operacoes 
+                            dbo.lote_desbloqueio_operacoes
                         GROUP BY operacaoId
                     ) as h0
                     GROUP BY updated_at

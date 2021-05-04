@@ -13,9 +13,9 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
             @unidadeId AS INT,
             @siglaGestor AS NVARCHAR(10)
             AS
-            
+
             DECLARE @SQL AS VARCHAR(MAX)
-            
+
             SET @SQL = 'WITH cte(
                 id
                 ,siglaGestor
@@ -41,24 +41,24 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
                 AND a.data = (
                     SELECT TOP 1
                         data
-                    FROM cache.estatisticas_pre_bloqueio 
-                    WHERE data < b.dataBloqueio 
+                    FROM cache.estatisticas_pre_bloqueio
+                    WHERE data < b.dataBloqueio
                     ORDER BY data DESC
                 )'
-            
+
                 IF (@unidadeId IS NOT NULL)
                 BEGIN
                     SET @SQL = @SQL + ' AND a.gigovId = ' + CONVERT(NVARCHAR(4), @unidadeId)
                 END
-            
+
                 IF(@siglaGestor IS NOT NULL)
                 BEGIN
                     SET @SQL = @SQL + ' AND a.siglaGestor = '''+ @siglaGestor +''''
                 END
-            
+
                 SET @SQL = @SQL + '
             )
-                                
+
             SELECT
                 MAX(a.id) AS id
                 ,a.siglaGestor
@@ -100,7 +100,7 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
             END
 
             SET @SQL = @SQL + ' GROUP BY a.siglaGestor;'
-        
+
             EXECUTE(@SQL);
         SQL;
 
@@ -116,9 +116,9 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
             @unidadeId AS INT,
             @siglaGestor AS NVARCHAR(10)
             AS
-            
+
             DECLARE @SQL AS VARCHAR(MAX)
-            
+
             SET @SQL = 'WITH cte(
                 id,
                 siglaGestor,
@@ -164,31 +164,31 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
                     )
                     WHERE f.situacaoContrato = ''CONTRATADA''
                     AND g.anoExecucao = ' + CONVERT(NVARCHAR(4), @anoExecucao)
-            
+
             IF (@tipoInformacaoId = 2)
             BEGIN
                 SET @SQL = @SQL + ' AND f.dataCumprimentoCriteriosDesbloqueio IS NOT NULL '
             END
-            
+
             IF (@tipoInformacaoId = 3)
             BEGIN
                 SET @SQL = @SQL + ' AND f.dataCumprimentoCriteriosDesbloqueio IS NULL '
             END
-            
+
             IF (@unidadeId IS NOT NULL)
             BEGIN
                 SET @SQL = @SQL + ' AND f.gigovId = ' + CONVERT(NVARCHAR(4), @unidadeId)
             END
-            
+
             IF(@siglaGestor IS NOT NULL)
             BEGIN
                 SET @SQL = @SQL + ' AND d.sigla = '''+ @siglaGestor +''''
             END
-            
-            SET @SQL = @SQL + ' GROUP BY d.sigla, c.created_at 
+
+            SET @SQL = @SQL + ' GROUP BY d.sigla, c.created_at
                 ) a
             )
-                                
+
             SELECT
                 a.id,
                 a.siglaGestor,
@@ -217,7 +217,7 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
                 ON a.saldo_notas_empenho = b.saldo_notas_empenho
             ) a
             GROUP BY a.id, a.siglaGestor;'
-            
+
             EXECUTE(@SQL);
         SQL;
 

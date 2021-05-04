@@ -117,7 +117,7 @@ class AlterVwEstatisticasPreBloqueio1 extends AbstractMigration
                     a.nomeGestor,
                     a.created_at,
                     a.updated_at
-            )                           
+            )
             SELECT
                 a.id,
                 a.anoExecucao,
@@ -311,7 +311,7 @@ class AlterVwEstatisticasPreBloqueio1 extends AbstractMigration
                     a.nomeGestor,
                     a.created_at,
                     a.updated_at
-            )                           
+            )
             SELECT
                 a.id,
                 a.anoExecucao,
