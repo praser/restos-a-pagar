@@ -199,7 +199,6 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
                 ON a.saldo_notas_empenho = b.saldo_notas_empenho
             ) a
             GROUP BY a.id, a.siglaGestor;'
-
             EXECUTE(@SQL);
         SQL;
 
