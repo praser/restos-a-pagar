@@ -73,6 +73,9 @@ const Create = () => {
     const convenio = parseConvenio(data.convenio);
     const convenioComplemento = parseConvenio(data.convenioComplemento);
     const operacao = parseNumeroContratoRepasse(data.convenio);
+    const operacaoComplemento = parseNumeroContratoRepasse(
+      data.convenioComplemento,
+    );
     const tipoResultadoPrimarioId = parseInt(data.tipoResultadoPrimarioId, 10);
     const anoOrcamentario = getYear(parseDate(data.dataEmissao));
     const saldoContaContabil = parseNumber(data.saldoContaContabil);
@@ -86,6 +89,7 @@ const Create = () => {
       convenio,
       convenioComplemento,
       operacao,
+      operacaoComplemento,
       ptres,
       tipoResultadoPrimarioId,
       tipoResultadoPrimarioDescricao,
