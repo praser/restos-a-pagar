@@ -93,10 +93,8 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
             SET @SQL = @SQL + ' GROUP BY a.siglaGestor;'
             EXECUTE(@SQL);
         SQL;
-
         $this->execute($query);
     }
-
     public function down(): void
     {
         $query = <<<SQL
@@ -201,7 +199,7 @@ class AlterSpDistribuicaoPreBloqueioGestor extends AbstractMigration
             GROUP BY a.id, a.siglaGestor;'
             EXECUTE(@SQL);
         SQL;
-
+        
         $this->execute($query);
     }
 }
