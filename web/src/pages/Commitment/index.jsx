@@ -71,7 +71,11 @@ const Create = () => {
     const pcaspConta = parseInt(data.pcaspConta, 10);
     const ugCodigo = parseInt(data.ugCodigo, 10);
     const convenio = parseConvenio(data.convenio);
+    const convenioComplemento = parseConvenio(data.convenioComplemento);
     const operacao = parseNumeroContratoRepasse(data.convenio);
+    const operacaoComplemento = parseNumeroContratoRepasse(
+      data.convenioComplemento,
+    );
     const tipoResultadoPrimarioId = parseInt(data.tipoResultadoPrimarioId, 10);
     const anoOrcamentario = getYear(parseDate(data.dataEmissao));
     const saldoContaContabil = parseNumber(data.saldoContaContabil);
@@ -83,7 +87,9 @@ const Create = () => {
       pcaspConta,
       ugCodigo,
       convenio,
+      convenioComplemento,
       operacao,
+      operacaoComplemento,
       ptres,
       tipoResultadoPrimarioId,
       tipoResultadoPrimarioDescricao,
@@ -112,6 +118,8 @@ const Create = () => {
         return 'convenio';
       case 'Conta Contábil':
         return 'pcaspConta';
+      case 'NE CCor - Informação Complementar':
+        return 'convenioComplemento';
       case 'Saldo - R$ (Conta Contábil)':
         return 'saldoContaContabil';
       default:
@@ -139,6 +147,11 @@ const Create = () => {
       format: row => formatISO(row.dataEmissao),
     },
     { name: 'Convênio', selector: 'convenio', sortable: true },
+    {
+      name: 'Convênio complemento',
+      selector: 'convenioComplemento',
+      sortable: true,
+    },
     { name: 'Conta', selector: 'pcaspConta', sortable: true },
     {
       name: 'Saldo',

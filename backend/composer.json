@@ -1,7 +1,7 @@
 {
     "name": "geotr/api-restos-a-pagar",
     "description": "Api REST para o gerenciamento dos Restos a Pagar OGU",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "keywords": [
         "rap",
         "empenho",

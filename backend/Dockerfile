@@ -9,7 +9,7 @@ RUN apt-get update \
   > /etc/apt/sources.list.d/mssql-release.list \
   && apt-get install -y --no-install-recommends \
   locales \
-  apt-transport-https \
+  apt-transport-https=1.4.10 \
   && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
   && locale-gen \
   && apt-get update \

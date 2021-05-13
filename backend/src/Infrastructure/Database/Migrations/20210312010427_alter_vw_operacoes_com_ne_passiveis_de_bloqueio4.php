@@ -135,7 +135,7 @@ class AlterVwOperacoesComNePassiveisDeBloqueio4 extends AbstractMigration
             JOIN ministerios AS f
             ON e.ministerioId = f.id
             WHERE dataReferencia = (
-                SELECT TOP 1 
+                SELECT TOP 1
                     dataReferencia
                 FROM saldos_notas_empenhos
                 WHERE dataReferencia >= c.dataBloqueio
