@@ -53,7 +53,7 @@ const Show = () => {
 
   const handleGoBack = (event: any) => {
     event.preventDefault();
-    history.goBack();
+    history.back();
   };
 
   const fetchData = useCallback(
