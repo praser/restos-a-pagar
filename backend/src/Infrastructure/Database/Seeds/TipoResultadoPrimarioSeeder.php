@@ -15,6 +15,7 @@ class TipoResultadoPrimarioSeeder extends AbstractSeed
             ['id' => 5, 'idSiafi'=> 7, 'descricao' => 'DESPESA DISCRICIONARIA DECORRENTE DE EMENDA DE BANCADA'],
             ['id' => 6, 'idSiafi'=> 9, 'descricao' => 'DESP.DISC.DECORRENTE DE EMENDA DIR.GERAL PLOA,EXC.ORDEM TEC'],
             ['id' => 7, 'idSiafi'=> 8, 'descricao' => 'DESP.DISC.DECORRENTE DE EMENDA SF,CD E COMISAO MISTA CN'],
+            ['id' => 8, 'idSiafi'=> -7, 'descricao' => 'CODIGO INVALIDO'],
         ];
 
         $this->execute('SET IDENTITY_INSERT dbo.tipo_resultado_primario ON');

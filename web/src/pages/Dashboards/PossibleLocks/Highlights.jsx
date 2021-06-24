@@ -12,7 +12,20 @@ import { formatCurrencyShort, formatInteger } from 'utils/numbers';
 import Progressbar from 'components/Progressbar';
 import { percentElapsedTime, remainingDays } from 'utils/dates';
 
-const Highlights = ({ estatisticas, dataBloqueio }) => {
+const contextHighlightTitle = tipoInfo => {
+  const { value } = tipoInfo;
+
+  switch (value) {
+    case 1:
+      return 'Saldo total de empenhos inscritos em RAP';
+    case 2:
+      return 'Saldo passível de desbloqueio';
+    default:
+      return 'Saldo sem condição de desbloqueio';
+  }
+};
+
+const Highlights = ({ estatisticas, dataBloqueio, tipoInfo }) => {
   const {
     quantidade_operacoes: countOperacoes,
     quantidade_notas_empenho: countEmpenhos,
@@ -33,7 +46,7 @@ const Highlights = ({ estatisticas, dataBloqueio }) => {
       </Highlight>
       <Highlight
         icon={faDollarSign}
-        title="Saldo sem condição de desbloqueio"
+        title={contextHighlightTitle(tipoInfo)}
         variant="info"
       >
         {formatCurrencyShort(balanceEmpenhos)}

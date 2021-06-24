@@ -125,6 +125,7 @@ const PossibleLocks = () => {
           <Highlights
             estatisticas={estatisticas}
             dataBloqueio={!isUndefined(param) && parseISO(param.dataBloqueio)}
+            tipoInfo={tipoInfo}
           />
 
           <Row>
