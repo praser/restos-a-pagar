@@ -23,7 +23,7 @@ function Heading({ children, data, headers, setState, buttons }) {
               as={CSVLink}
               data={data}
               separator=";"
-              filename={snakeCase(deburr(children))}
+              filename={`${snakeCase(deburr(children))}.csv`}
               headers={headers}
             >
               <FontAwesomeIcon icon={faDownload} />
